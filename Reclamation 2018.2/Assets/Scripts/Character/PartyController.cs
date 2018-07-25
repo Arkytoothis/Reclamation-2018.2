@@ -34,9 +34,7 @@ public class PartyController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 1000, movementMask))
             {
                 //Debug.Log("hit " + hit.collider.name + " " + hit.point);
-
-                pcMotor.MoveToPoint(hit.point);
-
+                pcMotor.SetMoveTarget(hit.point);
                 RemoveFocus();
             }
         }
@@ -49,28 +47,29 @@ public class PartyController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 1000))
             {
                 //Debug.Log("hit " + hit.collider.name + " " + hit.point);
-                WorldInteractable interactable = hit.collider.GetComponent<WorldInteractable>();
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
 
                 if (interactable != null)
                 {
+                    pcMotor.SetMoveTarget(interactable.interactionTransform.position);
                     SetFocus(interactable);
                 }
             }
         }
     }
 
-    void SetFocus(WorldInteractable interactable)
+    void SetFocus(Interactable interactable)
     {
         if (interactable != focus)
         {
             if(focus != null) focus.OnDefocused();
 
-            focus = interactable;
+            focus = (WorldInteractable)interactable;
 
             pcMotor.FollowTarget(focus);
         }
 
-        interactable.OnFocused(transform);
+        focus.OnFocused(transform);
     }
 
     void RemoveFocus()

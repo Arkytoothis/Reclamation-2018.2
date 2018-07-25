@@ -352,11 +352,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4561231192580300}
   - component: {fileID: 95419617360947296}
-  - component: {fileID: 114974645432441534}
   - component: {fileID: 114564180694425714}
-  - component: {fileID: 114202226122419970}
-  - component: {fileID: 195768261813945486}
+  - component: {fileID: 114974645432441534}
   - component: {fileID: 114973042182396998}
+  - component: {fileID: 114202226122419970}
+  - component: {fileID: 143495482009155892}
+  - component: {fileID: 114614906175592076}
+  - component: {fileID: 114888921581659464}
   m_Layer: 0
   m_Name: Female Character Empty
   m_TagString: Untagged
@@ -613,6 +615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4184004236065352}
   - component: {fileID: 137830648333494212}
+  - component: {fileID: 114280164481394366}
   m_Layer: 0
   m_Name: NPC_Woman_Normal
   m_TagString: Untagged
@@ -629,6 +632,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4229518653641316}
   - component: {fileID: 137894133015829804}
+  - component: {fileID: 114232490051881798}
   m_Layer: 0
   m_Name: NPC_Woman_Skinny
   m_TagString: Untagged
@@ -690,6 +694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4724450219901078}
   - component: {fileID: 137430793885463180}
+  - component: {fileID: 114542908497049836}
   m_Layer: 0
   m_Name: NPC_Woman_Fat
   m_TagString: Untagged
@@ -1428,6 +1433,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667836c15b348244f89f809c8f3f8548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
+  nextWaypointDistance: 3
+  repathRate: 0.5
+  reachedEndOfPath: 0
+--- !u!114 &114232490051881798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1874005676375502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 1
+  originalLayer: 0
+  originalMaterials: []
+--- !u!114 &114280164481394366
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855464644972196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 1
+  originalLayer: 0
+  originalMaterials: []
+--- !u!114 &114542908497049836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1963872875531870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 1
+  originalLayer: 0
+  originalMaterials: []
 --- !u!114 &114564180694425714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1439,6 +1493,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b589160d908921148ba8aff229375aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114614906175592076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491188713364614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask: -1
+--- !u!114 &114888921581659464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491188713364614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6a34d769a1e4ac7b0b30e433aa443c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  smoothType: 0
+  subdivisions: 2
+  iterations: 2
+  strength: 0.5
+  uniformLength: 1
+  maxSegmentLength: 2
+  bezierTangentLength: 0.4
+  offset: 0.2
+  factor: 0.1
 --- !u!114 &114973042182396998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1453,7 +1554,7 @@ MonoBehaviour:
   team: 0
   shapeType: 0
   offset: {x: 0, y: 0}
-  radius: 25
+  radius: 10
   innerRadius: 1
   angle: 180
   texture: {fileID: 0}
@@ -1722,24 +1823,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0791249, y: 0.0009751171, z: 0}
     m_Extent: {x: 0.47237113, y: 0.11460231, z: 0.5042317}
   m_DirtyAABB: 0
---- !u!195 &195768261813945486
-NavMeshAgent:
+--- !u!143 &143495482009155892
+CharacterController:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1491188713364614}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 1200
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  serializedVersion: 2
+  m_Height: 1
+  m_Radius: 0.3
+  m_SlopeLimit: 90
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.0001
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.5, z: 0}

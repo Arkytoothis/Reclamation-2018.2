@@ -8,17 +8,30 @@ public class PcAnimator : MonoBehaviour
     const float animationSmoothTime = 0.1f;
 
     Animator animator;
-    NavMeshAgent agent;
+    CharacterController controller;
+    PcMotor motor;
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        controller = GetComponent<CharacterController>();
+        if (controller == null) Debug.LogError("controller == null");
+
+        motor = GetComponent<PcMotor>();
+
+        if (motor == null)
+        {
+            Debug.LogError("EncounterPcMotor == null");
+        }
+
     }
 
     void Update()
     {
-        float speedPercent = agent.velocity.magnitude / agent.speed;
+        float speedPercent = 0f;
+
+        if (controller != null && motor != null) speedPercent = controller.velocity.magnitude / motor.speed;
+
         animator.SetFloat("speedPercent", speedPercent, animationSmoothTime, Time.deltaTime);
     }
 

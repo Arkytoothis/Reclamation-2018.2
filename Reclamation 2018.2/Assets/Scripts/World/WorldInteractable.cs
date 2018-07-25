@@ -1,33 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using cakeslice;
 
-public class WorldInteractable : MonoBehaviour
-{
-    public Transform interactionTransform;
-    public float radius = 3f;
+public class WorldInteractable : Interactable
+{    
+    private Transform partyTransform;
+    public Outline outline;
 
-    private bool isFocus = false;
-    private bool hasInteracted = false;
-    private Transform party;
+    void AWake()
+    {
+        outline = GetComponent<Outline>();
+    }
+
+    void Start()
+    {
+        if(outline != null) outline.enabled = false;
+    }
 
     public virtual void Interact()
     {
         //Debug.Log("Interacting ");
-        party.GetComponent<PartyController>().WorldInteraction();
+        partyTransform.GetComponent<PartyController>().WorldInteraction();
     }
 
     public void OnFocused(Transform partyTransform)
     {
         isFocus = true;
-        party = partyTransform;
+        this.partyTransform = partyTransform;
         hasInteracted = false;
     }
 
     public void OnDefocused()
     {
         isFocus = false;
-        party = null;
+        partyTransform = null;
         hasInteracted = false;
     }
 
@@ -35,7 +42,7 @@ public class WorldInteractable : MonoBehaviour
     {
         if (isFocus == true && hasInteracted == false)
         {
-            float distance = Vector3.Distance(party.position, interactionTransform.position);
+            float distance = Vector3.Distance(partyTransform.position, interactionTransform.position);
 
             if(distance <= radius)
             {
@@ -48,6 +55,17 @@ public class WorldInteractable : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(interactionTransform.position, radius);
+
+        if(interactionTransform != null) Gizmos.DrawWireSphere(interactionTransform.position, radius);
+    }
+
+    void OnMouseOver()
+    {
+        outline.enabled = true;
+    }
+
+    void OnMouseExit()
+    {
+        outline.enabled = false;
     }
 }

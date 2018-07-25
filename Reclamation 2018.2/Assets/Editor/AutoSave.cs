@@ -44,7 +44,7 @@ public class OnUnityLoad
         if (EditorApplication.isPlayingOrWillChangePlaymode && !EditorApplication.isPlaying)
         {
             // Unity 5+
-            Debug.Log("Auto-saving scene and any asset edits" + EditorSceneManager.GetActiveScene());
+            //Debug.Log("Auto-saving scene and any asset edits" + EditorSceneManager.GetActiveScene());
             EditorSceneManager.SaveOpenScenes();
             AssetDatabase.SaveAssets();
         }

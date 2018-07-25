@@ -45,6 +45,7 @@ public class DayNightManager : Singleton<DayNightManager>
         }
 
         sun.intensity = sunInitialIntensity * intensityMultiplier;
-        RenderSettings.ambientIntensity = 0.25f + intensityMultiplier;
+
+        //RenderSettings.ambientIntensity = (intensityMultiplier + 1) - 0.75f;
     }
 }

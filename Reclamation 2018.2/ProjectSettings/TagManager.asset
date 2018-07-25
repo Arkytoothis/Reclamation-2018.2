@@ -22,6 +22,7 @@ TagManager:
   - DungeonEntrance2D
   - OutsideDungeon
   - Dungeon
+  - Dungeon Spawn Point
   layers:
   - Default
   - TransparentFX
@@ -34,7 +35,7 @@ TagManager:
   - Ground
   - Portrait Room
   - LoS Obstacle
-  - 
+  - DungeonCharacter
   - 
   - 
   - 
