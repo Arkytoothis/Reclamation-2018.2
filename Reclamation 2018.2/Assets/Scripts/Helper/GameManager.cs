@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager>
         ItemGenerator.Initialize();
         PcGenerator.Initialize();
 
+        WorldManager.instance.Initialize();
         ScreenManager.instance.Initialize();
         PlayerManager.instance.Initialize();
 

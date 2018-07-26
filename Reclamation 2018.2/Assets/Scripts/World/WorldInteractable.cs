@@ -1,27 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using cakeslice;
+using Cromos;
 
 public class WorldInteractable : Interactable
-{    
-    private Transform partyTransform;
-    public Outline outline;
+{
+    public ColorTransition colorTransition;
+    public OutlineTarget outline;
+    public Color defaultColor;
 
-    void AWake()
+    void Awake()
     {
-        outline = GetComponent<Outline>();
-    }
-
-    void Start()
-    {
-        if(outline != null) outline.enabled = false;
-    }
-
-    public virtual void Interact()
-    {
-        //Debug.Log("Interacting ");
-        partyTransform.GetComponent<PartyController>().WorldInteraction();
+        renderer = gameObject.GetComponent<Renderer>();
     }
 
     public void OnFocused(Transform partyTransform)
@@ -43,7 +33,7 @@ public class WorldInteractable : Interactable
         if (isFocus == true && hasInteracted == false)
         {
             float distance = Vector3.Distance(partyTransform.position, interactionTransform.position);
-
+            //Debug.Log(distance);
             if(distance <= radius)
             {
                 Interact();
@@ -57,15 +47,18 @@ public class WorldInteractable : Interactable
         Gizmos.color = Color.yellow;
 
         if(interactionTransform != null) Gizmos.DrawWireSphere(interactionTransform.position, radius);
-    }
+    }    
 
     void OnMouseOver()
     {
+        colorTransition.enabled = true;
         outline.enabled = true;
     }
 
     void OnMouseExit()
     {
+        colorTransition.enabled = false;
         outline.enabled = false;
+        renderer.material.color = defaultColor;
     }
 }

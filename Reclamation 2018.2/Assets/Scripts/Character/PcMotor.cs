@@ -7,8 +7,8 @@ public abstract class PcMotor : MonoBehaviour
 {
 
     public Path path;
-    public float speed = 2;
-    public float nextWaypointDistance = 3;
+    public float speed = 3f;
+    public float nextWaypointDistance = 0.1f;
     public float repathRate = 0.5f;
 
     public bool reachedEndOfPath = false;

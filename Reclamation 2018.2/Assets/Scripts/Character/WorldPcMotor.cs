@@ -8,7 +8,6 @@ using Pathfinding;
 [RequireComponent(typeof(CharacterController))]
 public class WorldPcMotor : PcMotor
 {
-
     void Start()
     {
         seeker = GetComponent<Seeker>();
@@ -107,30 +106,18 @@ public class WorldPcMotor : PcMotor
         }
     }
 
-    public void MoveToPoint(Vector3 point)
+    public void FollowTarget(Interactable interactable)
     {
-        //agent.SetDestination(point);
-    }
-
-    public void FollowTarget(WorldInteractable interactable)
-    {
-        //agent.stoppingDistance = interactable.radius * 0.9f;
-        //agent.updateRotation = false;
         focusTarget = interactable.interactionTransform;
     }
 
     public void FollowTarget(Transform targetTransform)
     {
-        //agent.stoppingDistance = 1f;
-        //agent.updateRotation = false;
         focusTarget = targetTransform;
     }
 
     public void StopFollowingTarget()
     {
-        //agent.stoppingDistance = 0;
-        //agent.updateRotation = true;
-
         focusTarget = null;
     }
 
@@ -141,7 +128,7 @@ public class WorldPcMotor : PcMotor
         if (direction.x != 0 && direction.z != 0)
         {
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 25f);
         }
     }
 }

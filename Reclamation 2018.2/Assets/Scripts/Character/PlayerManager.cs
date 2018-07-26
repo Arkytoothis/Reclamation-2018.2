@@ -37,15 +37,16 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public GameObject CreatePartyObject(Transform parent, Vector3 position, PartyData data)
     {
+        float y = Terrain.activeTerrain.SampleHeight(new Vector3(position.x, 0, position.z));
+
         GameObject partyGO = Instantiate(partyPrefab);
         partyGO.name = data.name;
-        partyGO.transform.position = position;
+        partyGO.transform.position = new Vector3(position.x, y - 0.001f, position.z); 
 
         PartyController partyController = partyGO.GetComponent<PartyController>();
 
-        GameObject pcGO = Instantiate(ModelManager.instance.GetPrefab(data.pcs[0]), position, Quaternion.identity);
+        GameObject pcGO = Instantiate(ModelManager.instance.GetPrefab(data.pcs[0]), new Vector3(position.x, y - 0.001f, position.z), Quaternion.identity);
         pcGO.name = data.name + " PC ";
-        //pcGO.GetComponent<NavMeshAgent>().enabled = true;
 
         partyGO.transform.SetParent(pcGO.transform);
 
@@ -53,7 +54,7 @@ public class PlayerManager : Singleton<PlayerManager>
         partyController.SetPcAnimator(pcGO.GetComponent<PcAnimator>());
         partyController.SetPcMotor(pcGO.GetComponent<WorldPcMotor>());
 
-        Camera.main.transform.SetParent(partyGO.transform);
+        Camera.main.transform.SetParent(pcGO.transform);
         CameraController cam = Camera.main.GetComponent<CameraController>();
         cam.target = partyGO.transform;
 

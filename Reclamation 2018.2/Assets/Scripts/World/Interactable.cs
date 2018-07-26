@@ -9,4 +9,12 @@ public abstract class Interactable : MonoBehaviour
 
     protected bool isFocus = false;
     protected bool hasInteracted = false;
+
+    protected Transform partyTransform;
+    protected new Renderer renderer;
+
+    public virtual void Interact()
+    {
+        partyTransform.GetComponent<PartyController>().WorldInteraction();
+    }
 }
