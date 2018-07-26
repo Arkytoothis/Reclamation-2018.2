@@ -94,7 +94,7 @@ public static class Database
             LoadFiles();
 
             //LoadData();
-            //Save();
+            Save();
 
             //AudioManager.Instance.Initialize();
         }
@@ -1631,8 +1631,7 @@ public static class Database
     static void LoadProfessions()
     {
         Profession temp = new Profession("Citizen", "Citizen", "", 25, new UpkeepData(1, 0, 0, 0), new GameValue(10, 20));
-        temp.HealthPerLevel = new GameValue(1); temp.EnergyPerLevel = new GameValue(1);
-        temp.ActionsPerLevel = new GameValue(1); temp.ManaPerLevel = new GameValue(1);
+        temp.HealthPerLevel = new GameValue(1); temp.StaminaPerLevel = new GameValue(1); temp.EssencePerLevel = new GameValue(1);
         temp.StartingItems.Add(new ItemShort("Knife", "Copper", "", "", ""));
         temp.StartingItems.Add(new ItemShort("Cloth Shirt", "Linen", "", "", ""));
         temp.StartingItems.Add(new ItemShort("Cloth Pants", "Linen", "", "", ""));
@@ -1645,8 +1644,7 @@ public static class Database
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Soldier", "Soldier", "", 100, new UpkeepData(2, 1, 1, 0), new GameValue(20, 30));
-        temp.HealthPerLevel = new GameValue(10); temp.EnergyPerLevel = new GameValue(5);
-        temp.ActionsPerLevel = new GameValue(1); temp.ManaPerLevel = new GameValue(1);
+        temp.HealthPerLevel = new GameValue(10); temp.StaminaPerLevel = new GameValue(5); temp.EssencePerLevel = new GameValue(1);
         temp.StartingItems.Add(new ItemShort("Short Sword", "Copper", "", "", ""));
         temp.StartingItems.Add(new ItemShort("Metal Buckler", "Copper", "", "", ""));
         temp.StartingItems.Add(new ItemShort("Leather Helm", "Hide", "", "", ""));
@@ -1679,8 +1677,7 @@ public static class Database
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Scout", "Scout", "", 90, new UpkeepData(2, 0, 1, 0), new GameValue(20, 30));
-        temp.HealthPerLevel = new GameValue(5); temp.EnergyPerLevel = new GameValue(5);
-        temp.ActionsPerLevel = new GameValue(2); temp.ManaPerLevel = new GameValue(3);
+        temp.HealthPerLevel = new GameValue(5); temp.StaminaPerLevel = new GameValue(5); temp.EssencePerLevel = new GameValue(3);
         temp.StartingItems.Add(new ItemShort("Short Bow", "Wood", "", "", ""));
         temp.StartingItems.Add(new ItemShort("Cap", "Hide", "", "", ""));
         temp.StartingItems.Add(new ItemShort("Leather Jacket", "Hide", "", "", ""));
@@ -1689,7 +1686,7 @@ public static class Database
         temp.StartingItems.Add(new ItemShort("Leather Shoes", "Hide", "", "", ""));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Archery, 3, 6));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Navigation, 3, 6));
-        temp.SkillProficiencies.Add(new SkillProficiency(Skill.Perception, 3, 3));
+        temp.SkillProficiencies.Add(new SkillProficiency(Skill.Scouting, 3, 3));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.One_Hand_Melee, 2, 0));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Light_Armor, 2, 0));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Survival, 2, 1));
@@ -1713,8 +1710,7 @@ public static class Database
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Rogue", "Rogue", "", 120, new UpkeepData(3, 0, 1, 0), new GameValue(40, 50));
-        temp.HealthPerLevel = new GameValue(7); temp.EnergyPerLevel = new GameValue(5);
-        temp.ActionsPerLevel = new GameValue(2); temp.ManaPerLevel = new GameValue(1);
+        temp.HealthPerLevel = new GameValue(7); temp.StaminaPerLevel = new GameValue(5); temp.EssencePerLevel = new GameValue(1);
         temp.StartingItems.Add(new ItemShort("Knife", "Copper", "", "", ""));
         temp.StartingItems.Add(new ItemShort("Cap", "Hide", "", "", ""));
         temp.StartingItems.Add(new ItemShort("Leather Jacket", "Hide", "", "", ""));
@@ -1724,7 +1720,7 @@ public static class Database
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.One_Hand_Melee, 3, 6));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Tricks, 3, 6));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Devices, 3, 1));
-        temp.SkillProficiencies.Add(new SkillProficiency(Skill.Perception, 2, 1));
+        temp.SkillProficiencies.Add(new SkillProficiency(Skill.Scouting, 2, 1));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Persuasion, 2, 1));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Survival, 2, 1));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Shadow_Magic, 1, 0));
@@ -1746,8 +1742,7 @@ public static class Database
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Priest", "Priest", "", 80, new UpkeepData(2, 0, 1, 1), new GameValue(5, 10));
-        temp.HealthPerLevel = new GameValue(5); temp.EnergyPerLevel = new GameValue(3);
-        temp.ActionsPerLevel = new GameValue(1); temp.ManaPerLevel = new GameValue(6);
+        temp.HealthPerLevel = new GameValue(5); temp.StaminaPerLevel = new GameValue(3); temp.EssencePerLevel = new GameValue(6);
         temp.StartingItems.Add(new ItemShort("Club", "Wood", "", "", ""));
         temp.StartingItems.Add(new ItemShort("Wood Shield", "Wood", "", "", ""));
         temp.StartingItems.Add(new ItemShort("Cloth Shirt", "Linen", "", "", ""));
@@ -1779,8 +1774,7 @@ public static class Database
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Apprentice", "Apprentice", "", 110, new UpkeepData(1, 0, 1, 1), new GameValue(20, 30));
-        temp.HealthPerLevel = new GameValue(1); temp.EnergyPerLevel = new GameValue(1);
-        temp.ActionsPerLevel = new GameValue(2); temp.ManaPerLevel = new GameValue(10);
+        temp.HealthPerLevel = new GameValue(1); temp.StaminaPerLevel = new GameValue(1); temp.EssencePerLevel = new GameValue(10);
         temp.StartingItems.Add(new ItemShort("Staff", "Wood", "", "", ""));
         temp.StartingItems.Add(new ItemShort("Cloth Shirt", "Linen", "", "", ""));
         temp.StartingItems.Add(new ItemShort("Cloth Pants", "Linen", "", "", ""));
@@ -1811,8 +1805,7 @@ public static class Database
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Veteran", "Veteran", "", 150, new UpkeepData(5, 0, 0, 0), new GameValue(20, 30));
-        temp.HealthPerLevel = new GameValue(12); temp.EnergyPerLevel = new GameValue(6);
-        temp.ActionsPerLevel = new GameValue(1); temp.ManaPerLevel = new GameValue(1);
+        temp.HealthPerLevel = new GameValue(12); temp.StaminaPerLevel = new GameValue(6); temp.EssencePerLevel = new GameValue(1);
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.One_Hand_Melee, 3, 12));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Heavy_Armor, 3, 10));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Shields, 3, 10));
@@ -1822,8 +1815,7 @@ public static class Database
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Skirmisher", "Skirmisher", "", 125, new UpkeepData(5, 0, 0, 0), new GameValue(20, 30));
-        temp.HealthPerLevel = new GameValue(8); temp.EnergyPerLevel = new GameValue(5);
-        temp.ActionsPerLevel = new GameValue(2); temp.ManaPerLevel = new GameValue(1);
+        temp.HealthPerLevel = new GameValue(8); temp.StaminaPerLevel = new GameValue(5); temp.EssencePerLevel = new GameValue(1);
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.One_Hand_Melee, 3, 12));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Two_hand_Melee, 3, 10));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Medium_Armor, 3, 10));
@@ -1833,27 +1825,24 @@ public static class Database
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Archer", "Archer", "", 160, new UpkeepData(5, 0, 0, 0), new GameValue(20, 30));
-        temp.HealthPerLevel = new GameValue(6); temp.EnergyPerLevel = new GameValue(6);
-        temp.ActionsPerLevel = new GameValue(2); temp.ManaPerLevel = new GameValue(1);
+        temp.HealthPerLevel = new GameValue(6); temp.StaminaPerLevel = new GameValue(6); temp.EssencePerLevel = new GameValue(1);
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Archery, 3, 12));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Medium_Armor, 3, 10));
-        temp.SkillProficiencies.Add(new SkillProficiency(Skill.Perception, 3, 10));
+        temp.SkillProficiencies.Add(new SkillProficiency(Skill.Scouting, 3, 10));
         temp.MinimumAttributes[(int)BaseAttribute.Dexterity] = 25;
         temp.MinimumAttributes[(int)BaseAttribute.Agility] = 20;
         temp.MinimumAttributes[(int)BaseAttribute.Senses] = 20;
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Explorer", "Explorer", "", 140, new UpkeepData(5, 0, 0, 0), new GameValue(20, 30));
-        temp.HealthPerLevel = new GameValue(3); temp.EnergyPerLevel = new GameValue(5);
-        temp.ActionsPerLevel = new GameValue(1); temp.ManaPerLevel = new GameValue(1);
+        temp.HealthPerLevel = new GameValue(3); temp.StaminaPerLevel = new GameValue(5); temp.EssencePerLevel = new GameValue(1);
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Navigation, 3, 12));
-        temp.SkillProficiencies.Add(new SkillProficiency(Skill.Perception, 3, 10));
+        temp.SkillProficiencies.Add(new SkillProficiency(Skill.Scouting, 3, 10));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Survival, 3, 10));
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Burglar", "Burglar", "", 165, new UpkeepData(5, 0, 0, 0), new GameValue(20, 30));
-        temp.HealthPerLevel = new GameValue(3); temp.EnergyPerLevel = new GameValue(5);
-        temp.ActionsPerLevel = new GameValue(2); temp.ManaPerLevel = new GameValue(2);
+        temp.HealthPerLevel = new GameValue(3); temp.StaminaPerLevel = new GameValue(5); temp.EssencePerLevel = new GameValue(2);
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Stealth, 3, 12));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Devices, 3, 10));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Tricks, 3, 10));
@@ -1863,8 +1852,7 @@ public static class Database
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Mercenary", "Mercenary", "", 150, new UpkeepData(5, 0, 0, 0), new GameValue(20, 30));
-        temp.HealthPerLevel = new GameValue(6); temp.EnergyPerLevel = new GameValue(7);
-        temp.ActionsPerLevel = new GameValue(1); temp.ManaPerLevel = new GameValue(1);
+        temp.HealthPerLevel = new GameValue(6); temp.StaminaPerLevel = new GameValue(7); temp.EssencePerLevel = new GameValue(1);
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.One_Hand_Melee, 3, 12));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Medium_Armor, 3, 10));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Stealth, 3, 10));
@@ -1874,8 +1862,7 @@ public static class Database
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Cleric", "Cleric", "", 100, new UpkeepData(5, 0, 0, 0), new GameValue(20, 30));
-        temp.HealthPerLevel = new GameValue(8); temp.EnergyPerLevel = new GameValue(5);
-        temp.ActionsPerLevel = new GameValue(1); temp.ManaPerLevel = new GameValue(5);
+        temp.HealthPerLevel = new GameValue(8); temp.StaminaPerLevel = new GameValue(5); temp.EssencePerLevel = new GameValue(5);
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Life_Magic, 3, 12));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Persuasion, 3, 10));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Medium_Armor, 3, 10));
@@ -1885,19 +1872,17 @@ public static class Database
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Druid", "Druid", "", 85, new UpkeepData(5, 0, 0, 0), new GameValue(20, 30));
-        temp.HealthPerLevel = new GameValue(6); temp.EnergyPerLevel = new GameValue(4);
-        temp.ActionsPerLevel = new GameValue(1); temp.ManaPerLevel = new GameValue(6);
+        temp.HealthPerLevel = new GameValue(6); temp.StaminaPerLevel = new GameValue(4); temp.EssencePerLevel = new GameValue(6);
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Water_Magic, 3, 12));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Survival, 3, 10));
-        temp.SkillProficiencies.Add(new SkillProficiency(Skill.Perception, 3, 10));
+        temp.SkillProficiencies.Add(new SkillProficiency(Skill.Scouting, 3, 10));
         temp.MinimumAttributes[(int)BaseAttribute.Wisdom] = 25;
         temp.MinimumAttributes[(int)BaseAttribute.Willpower] = 20;
         temp.MinimumAttributes[(int)BaseAttribute.Senses] = 20;
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Wizard", "Wizard", "", 175, new UpkeepData(5, 0, 0, 0), new GameValue(20, 30));
-        temp.HealthPerLevel = new GameValue(2); temp.EnergyPerLevel = new GameValue(2);
-        temp.ActionsPerLevel = new GameValue(1); temp.ManaPerLevel = new GameValue(10);
+        temp.HealthPerLevel = new GameValue(2); temp.StaminaPerLevel = new GameValue(2); temp.EssencePerLevel = new GameValue(10);
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Channeling, 3, 12));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Arcane_Magic, 3, 10));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Lore, 3, 10));
@@ -1907,8 +1892,7 @@ public static class Database
         professions.Add(temp.Key, temp);
 
         temp = new Profession("Elementalist", "Elementalist", "", 175, new UpkeepData(5, 0, 0, 0), new GameValue(20, 30));
-        temp.HealthPerLevel = new GameValue(2); temp.EnergyPerLevel = new GameValue(2);
-        temp.ActionsPerLevel = new GameValue(1); temp.ManaPerLevel = new GameValue(10);
+        temp.HealthPerLevel = new GameValue(2); temp.StaminaPerLevel = new GameValue(2); temp.EssencePerLevel = new GameValue(10);
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Fire_Magic, 3, 10));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Air_Magic, 3, 10));
         temp.SkillProficiencies.Add(new SkillProficiency(Skill.Water_Magic, 3, 10));
@@ -1921,17 +1905,8 @@ public static class Database
 
     static void LoadRaces()
     {
-        Race temp = new Race("Aviak", "Aviak", "race_7", "race_6", false, "race_322", "", -1, -1, false, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 16, 0.9f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5));
-        temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Flight", 1));
-        temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 2;
-        temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 2;
-        temp.StartingAttributes[(int)BaseAttribute.Senses].Number = 2;
-        temp.StartingAttributes[(int)BaseAttribute.Intellect].Number = -2;
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Beastman", "Beastman", "race_69", "race_68", false, "", "", -1, -1, false, false, false,
-            new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5));
+        Race temp = new Race("Beastman", "Beastman", "race_69", "race_68", false, "", "", -1, -1, false, false, false,
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5));
         temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Bestial Rage", 1));
         temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 2;
         temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 2;
@@ -1939,32 +1914,8 @@ public static class Database
         temp.StartingAttributes[(int)BaseAttribute.Willpower].Number = 5;
         races.Add(temp.Key, temp);
 
-        temp = new Race("Hill Centaur", "Hill Centaur", "race_1", "race_0", false, "", "", 0, 0, true, false, false,
-            new GameValue(1, 10), new GameValue(1, 10), 14, 1.0f, new UpkeepData(0, 10, 0, 0), new GameValue(1, 5));
-        temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 2;
-        temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 5;
-        temp.StartingAttributes[(int)BaseAttribute.Senses].Number = 2;
-        temp.StartingAttributes[(int)BaseAttribute.Intellect].Number = -2;
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Forest Centaur", "Forest Centaur", "race_3", "race_2", false, "", "", 0, 0, true, false, false,
-            new GameValue(1, 10), new GameValue(1, 10), 14, 1.0f, new UpkeepData(0, 10, 0, 0), new GameValue(1, 5));
-        temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 2;
-        temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 5;
-        temp.StartingAttributes[(int)BaseAttribute.Senses].Number = 2;
-        temp.StartingAttributes[(int)BaseAttribute.Intellect].Number = -2;
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Mountain Centaur", "Mountain Centaur", "race_4", "race_5", false, "", "", 0, 0, true, false, false,
-            new GameValue(1, 10), new GameValue(1, 10), 14, 1.0f, new UpkeepData(0, 10, 0, 0), new GameValue(1, 5));
-        temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 2;
-        temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 5;
-        temp.StartingAttributes[(int)BaseAttribute.Senses].Number = 2;
-        temp.StartingAttributes[(int)BaseAttribute.Intellect].Number = -2;
-        races.Add(temp.Key, temp);
-
         temp = new Race("Deep Dwarf", "Deep Dwarf", "race_11", "race_10", true, "", "", 0, 0, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 8, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 8, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5));
         temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Dark Vision", 1));
         temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 2;
         temp.StartingAttributes[(int)BaseAttribute.Agility].Number = -2;
@@ -1973,55 +1924,33 @@ public static class Database
         races.Add(temp.Key, temp);
 
         temp = new Race("Spriggan", "Spriggan", "race_97", "race_96", false, "", "", -1, -1, false, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 6, 0.5f, new UpkeepData(0, 4, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 6, 0.5f, new UpkeepData(0, 4, 0, 0), new GameValue(1, 5));
         temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 2;
         temp.StartingAttributes[(int)BaseAttribute.Dexterity].Number = 2;
         temp.StartingAttributes[(int)BaseAttribute.Senses].Number = 2;
         temp.StartingAttributes[(int)BaseAttribute.Intellect].Number = -3;
         races.Add(temp.Key, temp);
 
-        temp = new Race("Flame Drake", "Flame Drake", "race_37", "race_36", false, "race_324", "", -1, -1, false, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 0.75f, new UpkeepData(0, 10, 0, 0), new GameValue(1, 5));
-        temp.Resistances.Add(new ResistanceData(DamageType.Fire, 25));
-        temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Scaly Hide", 1));
-        temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Fire Breath", 1));
-        temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Willpower].Number = 2;
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Forest Drake", "Forest Drake", "race_29", "race_28", false, "race_326", "", -1, -1, false, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 13, 0.75f, new UpkeepData(0, 10, 0, 0), new GameValue(1, 5));
-        temp.Resistances.Add(new ResistanceData(DamageType.Poison, 25));
-        temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Scaly Hide", 1));
-        temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Poison Breath", 1));
-        temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Willpower].Number = 2;
-        races.Add(temp.Key, temp);
-
         temp = new Race("Forest Elf", "Forest Elf", "race_43", "race_42", false, "", "", 0, -1, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 11, 0.75f, new UpkeepData(0, 5, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 11, 0.75f, new UpkeepData(0, 5, 0, 0), new GameValue(1, 5));
         temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Camoflage", 1));
         races.Add(temp.Key, temp);
 
         temp = new Race("Goblin", "Goblin", "race_61", "race_60", true, "", "", 0, -1, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 9, 0.8f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 9, 0.8f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5));
         races.Add(temp.Key, temp);
 
         temp = new Race("Godkin", "Godkin", "race_51", "race_50", false, "", "", 0, 0, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 0.1f, new UpkeepData(0, 0, 0, 5), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 0.1f, new UpkeepData(0, 0, 0, 5), new GameValue(1, 5));
         temp.Resistances.Add(new ResistanceData(DamageType.Holy, 95));
         races.Add(temp.Key, temp);
 
         temp = new Race("Half Orc", "Half Orc", "race_9", "race_8", false, "", "", 0, 0, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5));
         races.Add(temp.Key, temp);
 
         temp = new Race("Halfling", "Halfling", "race_43", "race_42", true, "", "", 0, -1, true, true, false,
-            new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 12, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 12, 0, 0), new GameValue(1, 5));
         temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 2;
         temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 4;
         temp.StartingAttributes[(int)BaseAttribute.Charisma].Number = 4;
@@ -2029,207 +1958,89 @@ public static class Database
         races.Add(temp.Key, temp);
 
         temp = new Race("High Elf", "High Elf", "race_13", "race_12", false, "", "", 0, -1, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 10, 0.5f, new UpkeepData(0, 5, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.5f, new UpkeepData(0, 5, 0, 0), new GameValue(1, 5));
         temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = -2;
         temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 4;
         temp.StartingAttributes[(int)BaseAttribute.Intellect].Number = 4;
         temp.StartingAttributes[(int)BaseAttribute.Memory].Number = 2;
         races.Add(temp.Key, temp);
 
-        temp = new Race("Lizardman", "Lizardman", "race_93", "race_92", false, "", "", -1, -1, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 9, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5));
-        temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Scaly Hide", 1));
-        temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 5;
-        temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 5;
-        temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 5;
-        temp.StartingAttributes[(int)BaseAttribute.Intellect].Number = -8;
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Night Drake", "Night Drake", "race_21", "race_20", false, "race_328", "", -1, -1, false, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 0.75f, new UpkeepData(0, 10, 0, 0), new GameValue(1, 5));
-        temp.Resistances.Add(new ResistanceData(DamageType.Unholy, 25));
-        temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Scaly Hide", 1));
-        temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Unholy Breath", 1));
-        temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Willpower].Number = 2;
-        races.Add(temp.Key, temp);
-
         temp = new Race("Mountain Dwarf", "Mountain Dwarf", "race_15", "race_14", true, "", "", 0, 0, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 9, 1.0f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 9, 1.0f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5));
         temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Dark Vision", 1));
         races.Add(temp.Key, temp);
 
-        temp = new Race("Mummy", "Mummy", "race_73", "race_72", false, "", "", -1, -1, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 6, 0.2f, new UpkeepData(0, 0, 2, 4), new GameValue(1, 5));
-        temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Undead", 1));
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Mystic Drake", "Mystic Drake", "race_35", "race_34", false, "race_331", "", -1, -1, false, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 0.75f, new UpkeepData(0, 10, 0, 1), new GameValue(1, 5));
-        temp.Resistances.Add(new ResistanceData(DamageType.Arcane, 25));
-        temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Scaly Hide", 1));
-        temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Arcane Breath", 1));
-        temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Willpower].Number = 2;
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Blue Naga", "Blue Naga", "race_75", "race_76", false, "", "", 0, -1, true, false, false,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 0.6f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5));
-        temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Scaly Hide", 1));
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Green Naga", "Green Naga", "race_77", "race_76", false, "", "", 0, -1, true, false, false,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 0.6f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5));
-        temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Scaly Hide", 1));
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Red Naga", "Red Naga", "race_79", "race_78", false, "", "", 0, -1, true, false, false,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 0.6f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5));
-        temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Scaly Hide", 1));
-        races.Add(temp.Key, temp);
-
         temp = new Race("Imperial", "Imperial", "race_51", "race_50", false, "", "", 0, 0, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5));
         temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Fast Learner", 1));
         races.Add(temp.Key, temp);
 
         temp = new Race("Southerner", "Southerner", "race_89", "race_88", false, "", "", 0, 0, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5));
         temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Fast Learner", 1));
         races.Add(temp.Key, temp);
 
         temp = new Race("Ogrin", "Ogrin", "race_51", "race_50", false, "", "", 0, 0, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5));
         temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Fast Learner", 1));
         races.Add(temp.Key, temp);
 
         temp = new Race("Orc", "Orc", "race_9", "race_8", false, "", "", 0, 0, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5));
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Phantom Drake", "Phantom Drake", "race_31", "race_30", false, "race_331", "", -1, -1, false, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 13, 0.75f, new UpkeepData(0, 10, 0, 0), new GameValue(1, 5));
-        temp.Resistances.Add(new ResistanceData(DamageType.Psychic, 25));
-        temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Scaly Hide", 1));
-        temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Shadow Breath", 1));
-        temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Willpower].Number = 2;
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5));
         races.Add(temp.Key, temp);
 
         temp = new Race("Plains Dwarf", "Plains Dwarf", "race_55", "race_54", true, "", "", 0, 0, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 9, 1.1f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 9, 1.1f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5));
         races.Add(temp.Key, temp);
 
         temp = new Race("Sidhe", "Sidhe", "race_13", "race_12", false, "race_323", "", 0, -1, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 16, 0.2f, new UpkeepData(0, 2, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 16, 0.2f, new UpkeepData(0, 2, 0, 0), new GameValue(1, 5));
         temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Flight", 1));
         races.Add(temp.Key, temp);
 
         temp = new Race("Revenant", "Revenant", "race_73", "race_72", false, "", "", 0, 0, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 7, 0.2f, new UpkeepData(0, 0, 0, 4), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 7, 0.2f, new UpkeepData(0, 0, 0, 4), new GameValue(1, 5));
         temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Undead", 1));
         races.Add(temp.Key, temp);
 
         temp = new Race("Shade", "Shade", "race_16", "race_15", false, "race_321", "", -1, -1, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 11, 0.5f, new UpkeepData(0, 0, 0, 6), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 11, 0.5f, new UpkeepData(0, 0, 0, 6), new GameValue(1, 5));
         temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Undead", 1));
         races.Add(temp.Key, temp);
 
         temp = new Race("Shadow Elf", "Shadow Elf", "race_49", "race_48", false, "", "", 0, -1, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 10, 0.5f, new UpkeepData(0, 4, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.5f, new UpkeepData(0, 4, 0, 0), new GameValue(1, 5));
         temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Dark Vision", 1));
         races.Add(temp.Key, temp);
 
-        temp = new Race("Sky Drake", "Sky Drake", "race_33", "race_32", false, "race_325", "", -1, -1, false, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 13, 0.75f, new UpkeepData(0, 10, 0, 0), new GameValue(1, 5));
-        temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Scaly Hide", 1));
-        temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Lightning Breath", 1));
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Stone Drake", "Stone Drake", "race_27", "race_26", false, "race_327", "", -1, -1, false, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 10, 0.5f, new UpkeepData(0, 10, 0, 0), new GameValue(1, 5));
-        temp.Resistances.Add(new ResistanceData((int)DamageType.Physical, 25));
-        temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Scaly Hide", 1));
-        temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Lava Breath", 1));
-        temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Willpower].Number = 2;
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Sun Drake", "Sun Drake", "race_25", "race_24", false, "race_329", "", -1, -1, false, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 0.5f, new UpkeepData(0, 10, 0, 0), new GameValue(1, 5));
-        temp.Resistances.Add(new ResistanceData(DamageType.Holy, 25));
-        temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Scaly Hide", 1));
-        temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Holy Breath", 1));
-        temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Willpower].Number = 2;
-        races.Add(temp.Key, temp);
-
         temp = new Race("Trollkin", "Trollkin", "race_47", "race_46", false, "", "", 0, -1, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 10, 0.75f, new UpkeepData(0, 11, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.75f, new UpkeepData(0, 11, 0, 0), new GameValue(1, 5));
         temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Regeneration", 1));
         races.Add(temp.Key, temp);
 
         temp = new Race("Valarian", "Valarian", "race_51", "race_50", false, "", "", -1, -1, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 10, 0.75f, new UpkeepData(0, 5, 0, 1), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.75f, new UpkeepData(0, 5, 0, 1), new GameValue(1, 5));
         races.Add(temp.Key, temp);
 
         temp = new Race("Vampire", "Vampire", "race_83", "race_82", false, "race_320", "", 0, 0, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 14, 0.1f, new UpkeepData(0, 0, 0, 6), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 14, 0.1f, new UpkeepData(0, 0, 0, 6), new GameValue(1, 5));
         temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Undead", 1));
         races.Add(temp.Key, temp);
 
         temp = new Race("Wolfen", "Wolfen", "race_81", "race_80", false, "", "", 0, -1, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 9, 0, 1), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 9, 0, 1), new GameValue(1, 5));
         races.Add(temp.Key, temp);
 
         temp = new Race("Infernal", "Infernal", "race_19", "race_18", false, "", "", 0, -1, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 7, 0, 1), new GameValue(1, 5));
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Dust Drake", "Dust Drake", "race_23", "race_22", false, "race_324", "", 0, -1, false, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 10, 0, 0), new GameValue(1, 5));
-        temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Willpower].Number = 2;
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Frost Drake", "Frost Drake", "race_39", "race_38", false, "race_325", "", -1, -1, false, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 10, 0, 0), new GameValue(1, 5));
-        temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 4;
-        temp.StartingAttributes[(int)BaseAttribute.Willpower].Number = 2;
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Margoyle", "Margoyle", "race_45", "race_44", false, "race_325", "", -1, -1, false, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 5, 0, 2), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 7, 0, 1), new GameValue(1, 5));
         races.Add(temp.Key, temp);
 
         temp = new Race("Gnome", "Gnome", "race_15", "race_14", false, "", "", 0, 0, true, true, true,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 5, 1, 1), new GameValue(1, 5));
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Kenku", "Kenku", "race_57", "race_56", false, "", "", 0, 0, false, true, false,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 5, 1, 1), new GameValue(1, 5));
         races.Add(temp.Key, temp);
 
         temp = new Race("Half Ogre", "Half Ogre", "race_63", "race_62", false, "", "", 0, 0, false, true, false,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 11, 0, 0), new GameValue(1, 5));
-        races.Add(temp.Key, temp);
-
-        temp = new Race("Ankheg", "Ankheg", "race_83", "race_84", false, "", "", 0, 0, false, true, false,
-            new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 5, 0, 0), new GameValue(1, 5));
+            new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 11, 0, 0), new GameValue(1, 5));
         races.Add(temp.Key, temp);
     }
 
@@ -2289,7 +2100,7 @@ public static class Database
     static void LoadPowers()
     {
         Ability ability = new Ability("Strike", "Strike", "abilities_178", AbilityClass.Encounter, AbilityType.Power, 0, Skill.One_Hand_Melee, 1);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2298,7 +2109,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Power Strike", "Power Strike", "abilities_178", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.One_Hand_Melee, 5);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2307,7 +2118,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("2H Strike", "2H Strike", "abilities_178", AbilityClass.Encounter, AbilityType.Power, 0, Skill.Two_hand_Melee, 1);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2316,7 +2127,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Reckless Strike", "Reckless Strike", "abilities_439", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Two_hand_Melee, 5);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2325,7 +2136,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Whirlwind", "Whirlwind", "abilities_439", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Two_hand_Melee, 10);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2334,7 +2145,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Long Strike", "Long Strike", "abilities_343", AbilityClass.Encounter, AbilityType.Power, 0, Skill.Polearms, 1);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 3));
@@ -2343,7 +2154,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Piercing Strike", "Piercing Strike", "abilities_343", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Polearms, 5);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 3));
@@ -2352,7 +2163,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Stunning Blow", "Stunning Blow", "abilities_345", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.One_Hand_Melee, 5);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2362,7 +2173,7 @@ public static class Database
 
 
         ability = new Ability("Taunt", "Taunt", "abilities_419", AbilityClass.Encounter, AbilityType.Power);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2371,7 +2182,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Improved Taunt", "Improved Taunt", "abilities_419", AbilityClass.Encounter, AbilityType.Power, 1000);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 2));
@@ -2380,7 +2191,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Pickpocket", "Pickpocket", "abilities_429", AbilityClass.Encounter, AbilityType.Power);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2389,37 +2200,37 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Metamagic - Empower", "Metamagic - Empower", "abilities_404", AbilityClass.Encounter, AbilityType.Power);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Metamagic - Overcharge", "Metamagic - Overcharge", "abilities_404", AbilityClass.Encounter, AbilityType.Power, 1000);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Metamagic - Quicken", "Metamagic - Quicken", "abilities_404", AbilityClass.Encounter, AbilityType.Power, 1000);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Eagle Eye", "Eagle Eye", "abilities_310", AbilityClass.Encounter, AbilityType.Power, 1000);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Repair", "Repair", "power", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Crafting, 5);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Rebuild", "Rebuild", "power", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Engineering, 5);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Careful Strike", "Careful Strike", "abilities_4", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.One_Hand_Melee, 5);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2428,7 +2239,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Shoot", "Shoot", "abilities_118", AbilityClass.Encounter, AbilityType.Power, 0, Skill.Archery, 1);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2437,7 +2248,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Accurate Shot", "Accurate Shot", "abilities_118", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Archery, 5);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2446,7 +2257,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Fire", "Fire", "abilities_118", AbilityClass.Encounter, AbilityType.Power, 0, Skill.Firearms, 1);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2455,7 +2266,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Throw", "Throw", "abilities_118", AbilityClass.Encounter, AbilityType.Power, 0, Skill.Thrown, 1);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2464,7 +2275,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Trick Throw", "Trick Throw", "abilities_291", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Tricks, 5);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2473,7 +2284,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Point Blank Shot", "Point Blank Shot", "abilities_421", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Firearms, 5);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Weapon));
@@ -2482,7 +2293,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Bestial Rage", "Bestial Rage", "abilities_424", AbilityClass.Encounter, AbilityType.Power);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Self));
@@ -2491,7 +2302,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Buckler Block", "Buckler Block", "abilities_257", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Bucklers, 1);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Self));
@@ -2500,7 +2311,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Shield Block", "Shield Block", "abilities_257", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Shields, 1);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Self));
@@ -2509,7 +2320,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Rally", "Rally", "abilities_445", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Leadership, 1);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
         ability.Components.Add(new RangeComponent(RangeType.Self));
@@ -2518,7 +2329,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Fire Breath", "Fire Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 5));
@@ -2526,7 +2337,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Lava Breath", "Lava Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 5));
@@ -2534,7 +2345,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Lightning Breath", "Lightning Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 5));
@@ -2542,7 +2353,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Ice Breath", "Ice Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 5));
@@ -2550,7 +2361,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Poison Breath", "Poison Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 5));
@@ -2558,7 +2369,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Acid Breath", "Acid Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 5));
@@ -2566,7 +2377,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Holy Breath", "Holy Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 5));
@@ -2574,7 +2385,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Unholy Breath", "Unholy Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 5));
@@ -2582,7 +2393,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Shadow Breath", "Shadow Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 5));
@@ -2590,7 +2401,7 @@ public static class Database
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Arcane Breath", "Arcane Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 5));
@@ -2602,7 +2413,7 @@ public static class Database
     {
         Ability ability = new Ability("Torchlight", "Torchlight", "abilities_24", AbilityClass.Encounter, AbilityType.Spell, 0, Skill.Fire_Magic, 1);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Fire, 1));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new TargetComponent(TargetType.Self, 1));
@@ -2610,7 +2421,7 @@ public static class Database
 
         ability = new Ability("Firebolt", "Firebolt", "abilities_24", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Fire_Magic, 5);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Fire, 1));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 5));
@@ -2621,7 +2432,7 @@ public static class Database
 
         ability = new Ability("Fireball", "Fireball", "abilities_19", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Fire_Magic, 10);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Fire, 3));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 20));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 20));
         ability.Components.Add(new DurationComponent(DurationType.Instant));
         ability.Components.Add(new CooldownComponent(TimeType.Hour, 1));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 10));
@@ -2633,7 +2444,7 @@ public static class Database
 
         ability = new Ability("Hasten", "Hasten", "abilities_24", AbilityClass.Encounter, AbilityType.Spell, 0, Skill.Air_Magic, 1);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Fire, 1));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new TargetComponent(TargetType.Self, 1));
@@ -2642,30 +2453,30 @@ public static class Database
 
         ability = new Ability("Shockbolt", "Shockbolt", "abilities_293", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Air_Magic, 5);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Air, 1));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 5));
         ability.Components.Add(new TargetComponent(TargetType.Enemy, 1));
         ability.Effects.Add(new DamageEffect(DamageType.Shock, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0, 0f, 3));
-        ability.Effects.Add(new DamageEffect(DamageType.Shock, (int)DerivedAttribute.Actions, new GameValue(1, 6), GameValue.Zero, 0, 0, 0f, 3));
+        ability.Effects.Add(new DamageEffect(DamageType.Shock, (int)DerivedAttribute.Stamina, new GameValue(1, 6), GameValue.Zero, 0, 0, 0f, 3));
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Lightning Bolt", "Lightning Bolt", "abilities_375", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Air_Magic, 10);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Air, 3));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 25));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 25));
         ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
         ability.Components.Add(new CooldownComponent(TimeType.None));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 5));
         ability.Components.Add(new TargetComponent(TargetType.Any));
         ability.Components.Add(new AreaComponent(AreaType.Beam, 10));
         ability.Effects.Add(new DamageEffect(DamageType.Shock, (int)DerivedAttribute.Health, new GameValue(1, 6), GameValue.Zero, 0, 0, 0f, 3));
-        ability.Effects.Add(new DamageEffect(DamageType.Shock, (int)DerivedAttribute.Actions, new GameValue(1, 6), GameValue.Zero, 0, 0, 0f, 3));
+        ability.Effects.Add(new DamageEffect(DamageType.Shock, (int)DerivedAttribute.Stamina, new GameValue(1, 6), GameValue.Zero, 0, 0, 0f, 3));
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Armor!", "Armor!", "abilities_420", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Earth_Magic, 1);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Earth, 1));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant));
         ability.Components.Add(new CooldownComponent(TimeType.Hour, 1));
         ability.Components.Add(new RangeComponent(RangeType.Touch));
@@ -2675,7 +2486,7 @@ public static class Database
 
         ability = new Ability("Stone Skin", "Stone Skin", "abilities_420", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Earth_Magic, 5);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Earth, 1));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant));
         ability.Components.Add(new CooldownComponent(TimeType.Hour, 1));
         ability.Components.Add(new RangeComponent(RangeType.Touch));
@@ -2686,7 +2497,7 @@ public static class Database
 
         ability = new Ability("Lesser Regen", "Lesser Regen", "abilities_82", AbilityClass.Encounter, AbilityType.Spell, 0, Skill.Water_Magic, 1);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Water, 2));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 15));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 15));
         ability.Components.Add(new DurationComponent(DurationType.Duration));
         ability.Components.Add(new CooldownComponent(TimeType.Hour, 1));
         ability.Components.Add(new RangeComponent(RangeType.Touch));
@@ -2696,7 +2507,7 @@ public static class Database
 
         ability = new Ability("Lesser Drain", "Lesser Drain", "abilities_163", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Death_Magic, 5);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Death, 1));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
         ability.Components.Add(new DurationComponent(DurationType.Duration));
         ability.Components.Add(new CooldownComponent(TimeType.Hour, 1));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 10));
@@ -2707,7 +2518,7 @@ public static class Database
 
         ability = new Ability("Curse", "Curse", "abilities_171", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Death_Magic, 1);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Death, 1));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant));
         ability.Components.Add(new CooldownComponent(TimeType.Hour, 1));
         ability.Components.Add(new TargetComponent(TargetType.Friend));
@@ -2719,7 +2530,7 @@ public static class Database
 
         ability = new Ability("Lesser Heal", "Lesser Heal", "abilities_188", AbilityClass.Encounter, AbilityType.Spell, 0, Skill.Life_Magic, 1);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Life, 1));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
         ability.Components.Add(new DurationComponent(DurationType.Duration));
         ability.Components.Add(new CooldownComponent(TimeType.Hour, 1));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 10));
@@ -2729,7 +2540,7 @@ public static class Database
 
         ability = new Ability("Lesser Courage", "Lesser Courage", "abilities_315", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Life_Magic, 5);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Life, 2));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
         ability.Components.Add(new DurationComponent(DurationType.Duration));
         ability.Components.Add(new CooldownComponent(TimeType.Hour, 1));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 10));
@@ -2739,7 +2550,7 @@ public static class Database
 
         ability = new Ability("Bless", "Bless", "abilities_189", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Life_Magic, 1);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Life, 1));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 10));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
         ability.Components.Add(new DurationComponent(DurationType.Instant));
         ability.Components.Add(new CooldownComponent(TimeType.Hour, 1));
         ability.Components.Add(new TargetComponent(TargetType.Friend));
@@ -2751,33 +2562,33 @@ public static class Database
 
         ability = new Ability("Mirror Image", "Mirror Image", "abilities_191", AbilityClass.World, AbilityType.Spell, 1000, Skill.Shadow_Magic, 5);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Shadow, 1));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 20));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 20));
         ability.Components.Add(new DurationComponent(DurationType.Instant));
         ability.Components.Add(new CooldownComponent(TimeType.Minute, 1));
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Detect Illusion", "Detect Illusion", "abilities_468", AbilityClass.World, AbilityType.Spell, 1000, Skill.Shadow_Magic, 1);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Shadow, 1));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 20));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 20));
         ability.Components.Add(new DurationComponent(DurationType.Instant));
         ability.Components.Add(new CooldownComponent(TimeType.Minute, 1));
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Arcane Missile", "Arcane Missile", "abilities_406", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Arcane_Magic, 5);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Arcane, 1));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 20));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 20));
         ability.Components.Add(new DurationComponent(DurationType.Instant));
         ability.Components.Add(new CooldownComponent(TimeType.Hour, 1));
         ability.Components.Add(new RangeComponent(RangeType.Distance, 10));
         ability.Components.Add(new TargetComponent(TargetType.Any));
         ability.Components.Add(new AreaComponent(AreaType.Sphere, 3));
         ability.Effects.Add(new DamageEffect(DamageType.Arcane, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0, 0f, 3));
-        ability.Effects.Add(new DamageEffect(DamageType.Arcane, (int)DerivedAttribute.Energy, new GameValue(1, 4), GameValue.Zero, 0, 0, 0f, 3));
+        ability.Effects.Add(new DamageEffect(DamageType.Arcane, (int)DerivedAttribute.Essence, new GameValue(1, 4), GameValue.Zero, 0, 0, 0f, 3));
         abilities.Add(ability.Key, ability);
 
         ability = new Ability("Identify", "Identify", "abilities_442", AbilityClass.World, AbilityType.Spell, 1000, Skill.Arcane_Magic, 1);
         ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Arcane, 1));
-        ability.Components.Add(new ResourceComponent(DerivedAttribute.Energy, 20));
+        ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 20));
         ability.Components.Add(new DurationComponent(DurationType.Instant));
         ability.Components.Add(new CooldownComponent(TimeType.Minute, 1));
         abilities.Add(ability.Key, ability);
@@ -3783,13 +3594,13 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(1, 1);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
 
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
 
@@ -3805,14 +3616,14 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(2, 2);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(1, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
 
         npc = new NPCDefinition(new FantasyName("Giant Rat Queen", "", ""), CharacterType.Animal, EntitySize.Small, Gender.Either, "giant_rat_queen", "", "", NPCImageType.Sprite, "npc_102",
@@ -3827,14 +3638,14 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(3, 6); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(1, 2);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(1, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
 
         npc = new NPCDefinition(new FantasyName("Spitting Grub", "", ""), CharacterType.Insect, EntitySize.Small, Gender.Either, "spitting_grub", "", "", NPCImageType.Sprite, "npc_487",
@@ -3849,14 +3660,14 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 3); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(1, 2);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(1, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
 
         npc = new NPCDefinition(new FantasyName("Biting Grub", "", ""), CharacterType.Insect, EntitySize.Small, Gender.Either, "biting_grub", "", "", NPCImageType.Sprite, "npc_519",
@@ -3871,14 +3682,14 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(3, 5); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(1, 2);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
 
         npc = new NPCDefinition(new FantasyName("Giant Bat", "", ""), CharacterType.Animal, EntitySize.Small, Gender.Either, "giant_bat", "", "", NPCImageType.Sprite, "npc_361",
@@ -3893,14 +3704,14 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(2, 3); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(4, 6);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
 
         npc = new NPCDefinition(new FantasyName("Walking Corpse", "", ""), CharacterType.Undead, EntitySize.Small, Gender.Either, "walking_corpse", "", "", NPCImageType.Sprite, "npc_967",
@@ -3915,14 +3726,14 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(10, 16); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(1, 2);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
 
         npc = new NPCDefinition(new FantasyName("Spirit", "", ""), CharacterType.Undead, EntitySize.Small, Gender.Either, "spirit", "", "", NPCImageType.Sprite, "npc_303",
@@ -3937,14 +3748,14 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(20, 30); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(4, 6);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(2, 3); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
 
         npc = new NPCDefinition(new FantasyName("Goblin", "", ""), CharacterType.Humanoid, EntitySize.Small, Gender.Either, "goblin", "", "", NPCImageType.Sprite, "npc_776",
@@ -3959,14 +3770,14 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(2, 3); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(1, 2);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
 
         npc = new NPCDefinition(new FantasyName("Orc Savage", "", ""), CharacterType.Humanoid, EntitySize.Small, Gender.Either, "orc_savage", "", "", NPCImageType.Sprite, "npc_101",
@@ -3981,58 +3792,14 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(8, 10); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(2, 4);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(1, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
-        npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
-
-        npc = new NPCDefinition(new FantasyName("Displacer Beast", "", ""), CharacterType.Beast, EntitySize.Small, Gender.Either, "displacer_beast", "", "", NPCImageType.Sprite, "npc_546",
-            -1, -1, 10, 15, 100, 10);
-        npc.BaseStart[(int)BaseAttribute.Strength] = 10; npc.BaseStart[(int)BaseAttribute.Intellect] = 10;
-        npc.BaseStart[(int)BaseAttribute.Endurance] = 10; npc.BaseStart[(int)BaseAttribute.Wisdom] = 10;
-        npc.BaseStart[(int)BaseAttribute.Agility] = 10; npc.BaseStart[(int)BaseAttribute.Willpower] = 10;
-        npc.BaseStart[(int)BaseAttribute.Dexterity] = 10; npc.BaseStart[(int)BaseAttribute.Charisma] = 10;
-        npc.BaseStart[(int)BaseAttribute.Senses] = 10; npc.BaseStart[(int)BaseAttribute.Memory] = 10;
-        npc.BasePerLevel[(int)BaseAttribute.Strength] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Intellect] = new GameValue(0, 0);
-        npc.BasePerLevel[(int)BaseAttribute.Endurance] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Wisdom] = new GameValue(0, 0);
-        npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
-        npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
-        npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(25, 35); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(4, 5);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(2, 3); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
-        npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
-
-        npc = new NPCDefinition(new FantasyName("Harpy", "", ""), CharacterType.Beast, EntitySize.Small, Gender.Either, "harpy", "", "", NPCImageType.Sprite, "npc_649",
-            -1, -1, 3, 10, 30, 10);
-        npc.BaseStart[(int)BaseAttribute.Strength] = 10; npc.BaseStart[(int)BaseAttribute.Intellect] = 10;
-        npc.BaseStart[(int)BaseAttribute.Endurance] = 10; npc.BaseStart[(int)BaseAttribute.Wisdom] = 10;
-        npc.BaseStart[(int)BaseAttribute.Agility] = 10; npc.BaseStart[(int)BaseAttribute.Willpower] = 10;
-        npc.BaseStart[(int)BaseAttribute.Dexterity] = 10; npc.BaseStart[(int)BaseAttribute.Charisma] = 10;
-        npc.BaseStart[(int)BaseAttribute.Senses] = 10; npc.BaseStart[(int)BaseAttribute.Memory] = 10;
-        npc.BasePerLevel[(int)BaseAttribute.Strength] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Intellect] = new GameValue(0, 0);
-        npc.BasePerLevel[(int)BaseAttribute.Endurance] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Wisdom] = new GameValue(0, 0);
-        npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
-        npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
-        npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(10, 12); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(6, 6);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(3, 4); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
 
         npc = new NPCDefinition(new FantasyName("Baby Flame Dragon", "", ""), CharacterType.Draconic, EntitySize.Small, Gender.Either, "baby_flame_dragon", "", "", NPCImageType.Sprite, "npc_138",
@@ -4047,14 +3814,14 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(4, 6); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(4, 8);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
 
         npc = new NPCDefinition(new FantasyName("Baby Stone Dragon", "", ""), CharacterType.Draconic, EntitySize.Small, Gender.Either, "baby_stone_dragon", "", "", NPCImageType.Sprite, "npc_106",
@@ -4069,14 +3836,14 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(8, 12); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(4, 6);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
 
         npc = new NPCDefinition(new FantasyName("Human Guard", "", ""), CharacterType.Humanoid, EntitySize.Small, Gender.Either, "human_guard", "", "", NPCImageType.Sprite, "npc_690",
@@ -4091,14 +3858,14 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(6, 9); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(3, 5);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(1, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
 
         npc = new NPCDefinition(new FantasyName("Human Citizen", "", ""), CharacterType.Humanoid, EntitySize.Small, Gender.Either, "human_citizen", "", "", NPCImageType.Sprite, "npc_695",
@@ -4113,14 +3880,14 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(4, 7); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(3, 6);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
 
         npc = new NPCDefinition(new FantasyName("Fire Elemental", "", ""), CharacterType.Elemental, EntitySize.Small, Gender.Either, "fire_elemental", "", "", NPCImageType.Sprite, "npc_874",
@@ -4135,14 +3902,14 @@ public static class Database
         npc.BasePerLevel[(int)BaseAttribute.Agility] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Willpower] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
         npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0); 
-        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(50, 70); npc.DerivedPerLevel[(int)DerivedAttribute.Energy] = new GameValue(10, 12);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Actions] = new GameValue(2, 3); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.DerivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.DerivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Parry] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Speed] = new GameValue(0, 0);
         npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.DerivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
-        npc.DerivedPerLevel[(int)DerivedAttribute.Detection_Range] = new GameValue(0, 0);
+        npc.DerivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
         npcs.Add(npc.Key, npc); npcKeys.Add(npc.Key);
     }
 

@@ -18,7 +18,7 @@ public class PartyData
     public Color color;
 
     public int maxCharacters;
-    public PC[] pcs;
+    public Pc[] pcs;
 
     public List<Characteristic> attributes;
     public List<int> combinedSkills;
@@ -38,7 +38,7 @@ public class PartyData
         this.index = index;
         this.maxCharacters = maxCharacters;
 
-        pcs = new PC[MaxPartySize];
+        pcs = new Pc[MaxPartySize];
 
         for (int i = 0; i < MaxPartySize; i++)
         {
@@ -73,7 +73,7 @@ public class PartyData
         index = data.index;
         maxCharacters = data.maxCharacters;
 
-        pcs = new PC[MaxPartySize];
+        pcs = new Pc[MaxPartySize];
 
         for (int i = 0; i < MaxPartySize; i++)
         {
@@ -99,7 +99,7 @@ public class PartyData
         }
     }
 
-    public void AddPc(PC pc)
+    public void AddPc(Pc pc)
     {
         if (pc == null)
         {
@@ -111,7 +111,7 @@ public class PartyData
         {
             if (pcs[i] == null)
             {
-                pcs[i] = new PC(pc);
+                pcs[i] = new Pc(pc);
                 //Debug.Log(pcs[i].Name.ShortName + " added");
                 break;
             }

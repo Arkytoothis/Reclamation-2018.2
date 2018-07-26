@@ -1,93 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using Pathfinding;
+using UnityEngine.EventSystems;
 
 [System.Serializable]
-public class EncounterPcController : MonoBehaviour
+public class EncounterPcController : Singleton<EncounterPcController>
 {
-    public LayerMask movementMask;
-    public WorldInteractable focus;
-    
-    private Camera cam;
-    private PcAnimator animator;
+    public EncounterInteractable focus;
+    public float moveSpeed = 3f;
+
     [SerializeField]
-    private EncounterPcMotor pcMotor;
+    private PcAnimator animator;
 
-    void Start()
-    {
-        cam = Camera.main;
-    }
-
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 1000, movementMask))
-            {
-                //Debug.Log("hit " + hit.collider.name + " " + hit.point);
-                pcMotor.SetMoveTarget(hit.point);
-                RemoveFocus();
-            }
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 1000))
-            {
-                //Debug.Log("hit " + hit.collider.name + " " + hit.point);
-                //WorldInteractable interactable = hit.collider.GetComponent<WorldInteractable>();
-
-                //if (interactable != null)
-                //{
-                //    SetFocus(interactable);
-                //}
-            }
-        }
-    }
-
-    void SetFocus(WorldInteractable interactable)
+    public void SetFocus(Interactable interactable)
     {
         if (interactable != focus)
         {
             if (focus != null) focus.OnDefocused();
 
-            focus = interactable;
-
-            pcMotor.FollowTarget(focus);
+            focus = (EncounterInteractable)interactable;
         }
 
-        interactable.OnFocused(transform);
+        focus.OnFocused(transform);
     }
 
-    void RemoveFocus()
+    public void RemoveFocus()
     {
         if (focus != null) focus.OnDefocused();
 
         focus = null;
-
-        pcMotor.StopFollowingTarget();
     }
 
-    public void WorldInteraction()
+    public void EncounterInteraction()
     {
         animator.WorldInteraction();
     }
 
-    public void SetPcAnimator(PcAnimator animator)
+    public void StopAnimations()
     {
-        this.animator = animator;
-    }
-
-    public void SetPcMotor(EncounterPcMotor pcMotor)
-    {
-        this.pcMotor = pcMotor;
+        animator.Stop();
     }
 }

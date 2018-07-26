@@ -122,10 +122,10 @@ public static class NpcGenerator
         npc.DerivedAttributes[(int)DerivedAttribute.Health].SetStart(value, 0, value);
 
         value = npc.BaseAttributes[(int)BaseAttribute.Intellect].Current + npc.BaseAttributes[(int)BaseAttribute.Willpower].Current;
-        npc.DerivedAttributes[(int)DerivedAttribute.Energy].SetStart(value, 0, value);
+        npc.DerivedAttributes[(int)DerivedAttribute.Stamina].SetStart(value, 0, value);
 
-        value = npc.BaseAttributes[(int)BaseAttribute.Agility].Current + npc.BaseAttributes[(int)BaseAttribute.Dexterity].Current;
-        npc.DerivedAttributes[(int)DerivedAttribute.Actions].SetStart(value, 0, value);
+        value = npc.BaseAttributes[(int)BaseAttribute.Intellect].Current + npc.BaseAttributes[(int)BaseAttribute.Wisdom].Current;
+        npc.DerivedAttributes[(int)DerivedAttribute.Essence].SetStart(value, 0, value);
 
 
         for (int a = 0; a < (int)DerivedAttribute.Number; a++)

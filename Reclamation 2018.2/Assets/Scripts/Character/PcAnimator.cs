@@ -1,36 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+using Pathfinding;
 
 public class PcAnimator : MonoBehaviour
 {
     const float animationSmoothTime = 0.1f;
 
-    Animator animator;
-    CharacterController controller;
-    PcMotor motor;
+    public Animator animator;
+    CharacterController characterController;
+    EncounterPcController pcController;
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        controller = GetComponent<CharacterController>();
-        if (controller == null) Debug.LogError("controller == null");
+        if (animator == null) Debug.LogError("animator == null");
 
-        motor = GetComponent<PcMotor>();
+        characterController = GetComponent<CharacterController>();
+        if (characterController == null) Debug.LogError("controller == null");
 
-        if (motor == null)
-        {
-            Debug.LogError("EncounterPcMotor == null");
-        }
-
+        pcController = GetComponent<EncounterPcController>();
+        if (pcController == null) Debug.LogError("pcController == null");
     }
 
     void Update()
     {
         float speedPercent = 0f;
 
-        if (controller != null && motor != null) speedPercent = controller.velocity.magnitude / motor.speed;
+        if (characterController != null && pcController.gameObject.GetComponent<AIPath>().canMove == true)
+            speedPercent = characterController.velocity.magnitude / pcController.moveSpeed;
 
         animator.SetFloat("speedPercent", speedPercent, animationSmoothTime, Time.deltaTime);
     }
@@ -38,5 +36,10 @@ public class PcAnimator : MonoBehaviour
     public void WorldInteraction()
     {
         animator.SetTrigger("interact");
+    }
+
+    public void Stop()
+    {
+        animator.SetFloat("speedPercent", 0);
     }
 }

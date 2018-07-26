@@ -13,21 +13,23 @@ public class ModelManager : Singleton<ModelManager>
 
     }
 
-    public void SpawnCharacter(Transform parent, PC pc)
+    public GameObject SpawnCharacter(Transform parent, Pc pc)
     {
-        //GameObject go = null;
+        GameObject go = null;
 
         if (pc.Gender == Gender.Male)
         {
-            Instantiate(malePrefab, parent);
+            go = Instantiate(malePrefab, parent);
         }
         else if (pc.Gender == Gender.Female)
         {
-            Instantiate(femalePrefab, parent);
+            go = Instantiate(femalePrefab, parent);
         }
+
+        return go;
     }
 
-    public GameObject GetPrefab(PC pc)
+    public GameObject GetPrefab(Pc pc)
     {
         if (pc.Gender == Gender.Male)
         {

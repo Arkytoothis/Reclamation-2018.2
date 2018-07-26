@@ -9,7 +9,7 @@ public class PartyPcElement : MonoBehaviour
     public TMP_Text detailsLabel;
     public TMP_Text hpLabel;
 
-    public void SetData(PC pc)
+    public void SetData(Pc pc)
     {
         if (pc != null)
         {

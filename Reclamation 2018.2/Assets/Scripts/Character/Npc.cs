@@ -216,19 +216,19 @@ public class NPC : Character
     public void CalculateDerivedAttributes()
     {
         DerivedAttributes[(int)DerivedAttribute.Armor].SetStart(0);
-        DerivedAttributes[(int)DerivedAttribute.Actions].SetStart(BaseAttributes[(int)BaseAttribute.Agility].Current + BaseAttributes[(int)BaseAttribute.Wisdom].Current);
-        DerivedAttributes[(int)DerivedAttribute.Health].SetStart(BaseAttributes[(int)BaseAttribute.Endurance].Current + BaseAttributes[(int)BaseAttribute.Willpower].Current
-            + Database.GetRace(RaceKey).HealthPerLevel.Roll(false));
-        DerivedAttributes[(int)DerivedAttribute.Energy].SetStart(BaseAttributes[(int)BaseAttribute.Intellect].Current + BaseAttributes[(int)BaseAttribute.Willpower].Current
-            + Database.GetRace(RaceKey).EnergyPerLevel.Roll(false));
+        DerivedAttributes[(int)DerivedAttribute.Health].SetStart(BaseAttributes[(int)BaseAttribute.Strength].Current + BaseAttributes[(int)BaseAttribute.Endurance].Current + Database.GetRace(RaceKey).HealthPerLevel.Roll(false));
+        DerivedAttributes[(int)DerivedAttribute.Stamina].SetStart(BaseAttributes[(int)BaseAttribute.Endurance].Current + BaseAttributes[(int)BaseAttribute.Willpower].Current + Database.GetRace(RaceKey).StaminaPerLevel.Roll(false));
+        DerivedAttributes[(int)DerivedAttribute.Essence].SetStart(BaseAttributes[(int)BaseAttribute.Intellect].Current + BaseAttributes[(int)BaseAttribute.Wisdom].Current + Database.GetRace(RaceKey).EssencePerLevel.Roll(false));
         DerivedAttributes[(int)DerivedAttribute.Morale].SetStart(100);
+
         DerivedAttributes[(int)DerivedAttribute.Might_Attack].SetStart(BaseAttributes[(int)BaseAttribute.Strength].Current + BaseAttributes[(int)BaseAttribute.Agility].Current);
         DerivedAttributes[(int)DerivedAttribute.Finesse_Attack].SetStart(BaseAttributes[(int)BaseAttribute.Agility].Current + BaseAttributes[(int)BaseAttribute.Senses].Current);
         DerivedAttributes[(int)DerivedAttribute.Block].SetStart(BaseAttributes[(int)BaseAttribute.Endurance].Current + BaseAttributes[(int)BaseAttribute.Agility].Current);
         DerivedAttributes[(int)DerivedAttribute.Dodge].SetStart(BaseAttributes[(int)BaseAttribute.Agility].Current + BaseAttributes[(int)BaseAttribute.Senses].Current);
         DerivedAttributes[(int)DerivedAttribute.Parry].SetStart(BaseAttributes[(int)BaseAttribute.Strength].Current + BaseAttributes[(int)BaseAttribute.Agility].Current);
         DerivedAttributes[(int)DerivedAttribute.Speed].SetStart(Database.GetRace(RaceKey).BaseSpeed);
-        DerivedAttributes[(int)DerivedAttribute.Detection_Range].SetStart(BaseAttributes[(int)BaseAttribute.Senses].Current);
+        DerivedAttributes[(int)DerivedAttribute.Perception].SetStart(BaseAttributes[(int)BaseAttribute.Senses].Current);
+        DerivedAttributes[(int)DerivedAttribute.Concentration].SetStart(BaseAttributes[(int)BaseAttribute.Memory].Current);
         DerivedAttributes[(int)DerivedAttribute.Might_Damage].SetStart((BaseAttributes[(int)BaseAttribute.Strength].Current - 12));
         DerivedAttributes[(int)DerivedAttribute.Resistance].SetStart((BaseAttributes[(int)BaseAttribute.Endurance].Current - 20));
         DerivedAttributes[(int)DerivedAttribute.Finesse_Damage].SetStart((BaseAttributes[(int)BaseAttribute.Agility].Current - 12));

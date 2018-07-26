@@ -16,7 +16,8 @@ public class Race
     public int BaseSpeed;
     public float ExpModifier;
     public GameValue HealthPerLevel;
-    public GameValue EnergyPerLevel;
+    public GameValue StaminaPerLevel;
+    public GameValue EssencePerLevel;
 
     public bool Short;
     public int Hair;
@@ -43,7 +44,6 @@ public class Race
         Key = "";
         Description = "empty";
 
-
         StartingAttributes = new List<GameValue>();
         SkillProficiencies = new List<SkillProficiency>();
         Resistances = new List<ResistanceData>();
@@ -60,7 +60,7 @@ public class Race
     }
 
     public Race(string name, string key, string male, string female, bool small, string wings, string horns, int hair, int beard, bool helm, bool pants, bool shoes,
-                GameValue health, GameValue energy, int movement, float exp_mod, UpkeepData upkeep, GameValue wealth)
+                GameValue health, GameValue stamina, GameValue essence, int movement, float exp_mod, UpkeepData upkeep, GameValue wealth)
     {
         Name = name;
         Key = key;
@@ -92,7 +92,8 @@ public class Race
         Spells = new List<AbilityUnlock>();
 
         HealthPerLevel = new GameValue(health.Number, health.Die);
-        EnergyPerLevel = new GameValue(energy.Number, energy.Die);
+        StaminaPerLevel = new GameValue(stamina.Number, stamina.Die);
+        EssencePerLevel = new GameValue(essence.Number, essence.Die);
 
         ExpModifier = exp_mod;
         BaseSpeed = movement;

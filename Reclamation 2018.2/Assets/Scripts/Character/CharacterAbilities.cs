@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterAbilities
 {
     [System.NonSerialized]
-    private PC pc;
+    private Pc pc;
 
     private List<Ability> traits;
     private List<Ability> availablePowers;
@@ -45,7 +45,7 @@ public class CharacterAbilities
         memorizedSpells = new List<Ability>();
     }
 
-    public CharacterAbilities(PC pc, int power_slots, int spell_slots)
+    public CharacterAbilities(Pc pc, int power_slots, int spell_slots)
     {
         this.pc = pc;
 
@@ -61,7 +61,7 @@ public class CharacterAbilities
         memorizedSpells = new List<Ability>();
     }
 
-    public CharacterAbilities(PC pc)
+    public CharacterAbilities(Pc pc)
     {
         this.pc = pc;
         PowerSlots = pc.Abilities.PowerSlots;

@@ -13,7 +13,7 @@ public enum PcStatus
 }
 
 [System.Serializable]
-public class PC : Character
+public class Pc : Character
 {
     public UpkeepData Upkeep;
     public int Wealth;
@@ -38,7 +38,7 @@ public class PC : Character
 
     public int MaxAccessories;
 
-    public PC()
+    public Pc()
     {
         Wealth = 0;
         Upkeep = new UpkeepData();
@@ -92,7 +92,7 @@ public class PC : Character
         Inventory = new CharacterInventory();
     }
 
-    public PC(FantasyName name, Gender gender, Background background, string race, string profession, int hair, int beard, int index, int enc_index,
+    public Pc(FantasyName name, Gender gender, Background background, string race, string profession, int hair, int beard, int index, int enc_index,
         int power_slots, int spell_slots)
     {
         Wealth = 0;
@@ -145,7 +145,7 @@ public class PC : Character
         Inventory = new CharacterInventory();
     }
 
-    public PC(PC pc)
+    public Pc(Pc pc)
     {
         Name = pc.Name;
         Gender = pc.Gender;
@@ -251,24 +251,28 @@ public class PC : Character
     public void CalculateDerivedAttributes()
     {
         DerivedAttributes[(int)DerivedAttribute.Armor].SetStart(0);
+        DerivedAttributes[(int)DerivedAttribute.Health].SetStart(BaseAttributes[(int)BaseAttribute.Strength].Current + BaseAttributes[(int)BaseAttribute.Endurance].Current + Database.GetRace(RaceKey).HealthPerLevel.Roll(false));
 
-        DerivedAttributes[(int)DerivedAttribute.Actions].SetStart(BaseAttributes[(int)BaseAttribute.Agility].Current + BaseAttributes[(int)BaseAttribute.Wisdom].Current
-            + (Database.Professions[ProfessionKey].ActionsPerLevel.Number * Level));
-        DerivedAttributes[(int)DerivedAttribute.Health].SetStart(BaseAttributes[(int)BaseAttribute.Strength].Current + BaseAttributes[(int)BaseAttribute.Endurance].Current
-            + (Database.Professions[ProfessionKey].HealthPerLevel.Number * Level));
-        DerivedAttributes[(int)DerivedAttribute.Energy].SetStart(BaseAttributes[(int)BaseAttribute.Endurance].Current + BaseAttributes[(int)BaseAttribute.Willpower].Current
-            + (Database.Professions[ProfessionKey].EnergyPerLevel.Number * Level));
-        DerivedAttributes[(int)DerivedAttribute.Mana].SetStart(BaseAttributes[(int)BaseAttribute.Intellect].Current + BaseAttributes[(int)BaseAttribute.Memory].Current
-            + (Database.Professions[ProfessionKey].ManaPerLevel.Number * Level));
+        if (Database.GetRace(RaceKey).StaminaPerLevel != null)
+        {
+            DerivedAttributes[(int)DerivedAttribute.Stamina].SetStart(BaseAttributes[(int)BaseAttribute.Endurance].Current + BaseAttributes[(int)BaseAttribute.Willpower].Current + Database.GetRace(RaceKey).StaminaPerLevel.Roll(false));
+        }
+
+        if (Database.GetRace(RaceKey).EssencePerLevel != null)
+        {
+            DerivedAttributes[(int)DerivedAttribute.Essence].SetStart(BaseAttributes[(int)BaseAttribute.Intellect].Current + BaseAttributes[(int)BaseAttribute.Wisdom].Current + Database.GetRace(RaceKey).EssencePerLevel.Roll(false));
+        }
 
         DerivedAttributes[(int)DerivedAttribute.Morale].SetStart(100);
+
         DerivedAttributes[(int)DerivedAttribute.Might_Attack].SetStart(BaseAttributes[(int)BaseAttribute.Strength].Current + BaseAttributes[(int)BaseAttribute.Agility].Current);
         DerivedAttributes[(int)DerivedAttribute.Finesse_Attack].SetStart(BaseAttributes[(int)BaseAttribute.Agility].Current + BaseAttributes[(int)BaseAttribute.Senses].Current);
         DerivedAttributes[(int)DerivedAttribute.Block].SetStart(BaseAttributes[(int)BaseAttribute.Endurance].Current + BaseAttributes[(int)BaseAttribute.Agility].Current);
         DerivedAttributes[(int)DerivedAttribute.Dodge].SetStart(BaseAttributes[(int)BaseAttribute.Agility].Current + BaseAttributes[(int)BaseAttribute.Senses].Current);
         DerivedAttributes[(int)DerivedAttribute.Parry].SetStart(BaseAttributes[(int)BaseAttribute.Strength].Current + BaseAttributes[(int)BaseAttribute.Agility].Current);
         DerivedAttributes[(int)DerivedAttribute.Speed].SetStart(Database.GetRace(RaceKey).BaseSpeed);
-        DerivedAttributes[(int)DerivedAttribute.Detection_Range].SetStart(BaseAttributes[(int)BaseAttribute.Senses].Current);
+        DerivedAttributes[(int)DerivedAttribute.Perception].SetStart(BaseAttributes[(int)BaseAttribute.Senses].Current);
+        DerivedAttributes[(int)DerivedAttribute.Concentration].SetStart(BaseAttributes[(int)BaseAttribute.Memory].Current);
         DerivedAttributes[(int)DerivedAttribute.Might_Damage].SetStart((BaseAttributes[(int)BaseAttribute.Strength].Current - 12));
         DerivedAttributes[(int)DerivedAttribute.Resistance].SetStart((BaseAttributes[(int)BaseAttribute.Endurance].Current - 20));
         DerivedAttributes[(int)DerivedAttribute.Finesse_Damage].SetStart((BaseAttributes[(int)BaseAttribute.Agility].Current - 12));

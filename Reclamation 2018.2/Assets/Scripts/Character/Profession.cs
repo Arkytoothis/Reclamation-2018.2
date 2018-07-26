@@ -7,10 +7,9 @@ public class Profession
     public string Name;
     public string Key;
     public string Description;
-    public GameValue ActionsPerLevel;
     public GameValue HealthPerLevel;
-    public GameValue EnergyPerLevel;
-    public GameValue ManaPerLevel;
+    public GameValue StaminaPerLevel;
+    public GameValue EssencePerLevel;
 
     public List<int> MinimumAttributes;
     public List<SkillProficiency> SkillProficiencies;
@@ -31,10 +30,9 @@ public class Profession
         Key = "";
         Description = "empty";
 
-        ActionsPerLevel = new GameValue();
         HealthPerLevel = new GameValue();
-        EnergyPerLevel = new GameValue();
-        ManaPerLevel = new GameValue();
+        StaminaPerLevel = new GameValue();
+        EssencePerLevel = new GameValue();
 
         MinimumAttributes = new List<int>();
         AttributePriorities = new List<BaseAttribute>();
@@ -56,10 +54,9 @@ public class Profession
         Key = key;
         Description = description;
 
-        ActionsPerLevel = new GameValue();
         HealthPerLevel = new GameValue();
-        EnergyPerLevel = new GameValue();
-        ManaPerLevel = new GameValue();
+        StaminaPerLevel = new GameValue();
+        EssencePerLevel = new GameValue();
 
         MinimumAttributes = new List<int>();
 

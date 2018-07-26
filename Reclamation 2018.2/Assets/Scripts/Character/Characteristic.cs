@@ -10,12 +10,12 @@ public enum BaseAttribute
 
 public enum DerivedAttribute
 {
-    Actions, Armor, Health, Energy, Mana, Morale, 
-    Might_Attack, Might_Damage, Finesse_Attack, Finesse_Damage, Spell_Attack, Spell_Damage, Spell_Modifier,
-    Block, Dodge, Parry, Resistance, Speed, Detection_Range, 
+    Armor, Health, Stamina, Essence, Morale, 
+    Might_Attack, Might_Damage, Finesse_Attack, Finesse_Damage, Spell_Attack, Spell_Damage, Spell_Modifier, 
+    Block, Dodge, Parry, Resistance, Speed, Perception, Concentration, 
     Action_Modifier, Duration_Modifier, Range_Modifier, Magic_Find,
     Fumble, Graze, Critical_Strike, Perfect_Strike, Critical_Damage,
-    Health_Regen, Energy_Regen, Mana_Regen,
+    Health_Regen, Stamina_Regen, Essence_Regen,
     Number, None
 }
 
@@ -31,14 +31,14 @@ public enum Skill
     Light_Armor, Medium_Armor, Heavy_Armor, Bucklers, Shields, Leadership, Tactics,
     Fire_Magic, Air_Magic, Water_Magic, Earth_Magic, Death_Magic, Life_Magic, Shadow_Magic, Arcane_Magic,
     Alchemy, Enchanting, Lore, Research, Channeling, 
-    Stealth, Perception, Tricks, Evasion, Precision, Devices, Persuasion, Poison_Craft, 
+    Stealth, Scouting, Tricks, Evasion, Precision, Devices, Persuasion, Poison_Crafting,
     Mining, Gathering, Crafting, Engineering, Logistics, Steamcraft, Survival, Navigation, Training, Medicine,
     Number, None
 }
 
 public enum PartyAttribute
 {
-    March_Speed, Scout_Range, Supplies, Supplies_Used, Max_Supplies, Rations, Rations_Used, Max_Rations, 
+    March_Speed, Detection_Range, Supplies, Supplies_Used, Max_Supplies, Rations, Rations_Used, Max_Rations, 
     Number, None
 }
 

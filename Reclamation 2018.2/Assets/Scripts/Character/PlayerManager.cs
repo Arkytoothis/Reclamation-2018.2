@@ -22,9 +22,9 @@ public class PlayerManager : Singleton<PlayerManager>
 
         PartyData party = new PartyData("Blue Party", Color.blue, 0, 3);
 
-        party.pcs[0] = new PC(PcGenerator.Generate(0, "Imperial", "Soldier"));
-        party.pcs[1] = new PC(PcGenerator.Generate(1, "Imperial", "Scout"));
-        party.pcs[2] = new PC(PcGenerator.Generate(2, "Imperial", "Priest"));
+        party.pcs[0] = new Pc(PcGenerator.Generate(0, "Imperial", "Soldier"));
+        party.pcs[1] = new Pc(PcGenerator.Generate(1, "Imperial", "Scout"));
+        party.pcs[2] = new Pc(PcGenerator.Generate(2, "Imperial", "Priest"));
 
         parties.Add(CreatePartyObject(this.transform, playerSpawn.position, party));
 
@@ -61,7 +61,7 @@ public class PlayerManager : Singleton<PlayerManager>
         return partyGO;
     }
 
-    public void CreatePortraitModel(Transform parent, PC pc)
+    public void CreatePortraitModel(Transform parent, Pc pc)
     {
         ModelManager.instance.SpawnCharacter(parent, pc);
     }

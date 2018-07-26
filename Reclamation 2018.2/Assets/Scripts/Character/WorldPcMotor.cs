@@ -18,6 +18,7 @@ public class WorldPcMotor : PcMotor
     {
         this.moveTarget = moveTarget;
         seeker.StartPath(transform.position, moveTarget, OnPathComplete);
+        FaceTarget(this.moveTarget);
     }
 
     public void OnPathComplete(Path p)
@@ -46,6 +47,7 @@ public class WorldPcMotor : PcMotor
         }
         else
         {
+
             if (Time.time > lastRepath + repathRate && seeker.IsDone())
             {
                 lastRepath = Time.time;
@@ -65,6 +67,7 @@ public class WorldPcMotor : PcMotor
             {
                 // If you want maximum performance you can check the squared distance instead to get rid of a
                 // square root calculation. But that is outside the scope of this tutorial.
+                distanceToTarget = Vector3.Distance(transform.position, moveTarget);
                 distanceToWaypoint = Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]);
                 if (distanceToWaypoint < nextWaypointDistance)
                 {
@@ -101,19 +104,26 @@ public class WorldPcMotor : PcMotor
             // Note that SimpleMove takes a velocity in meters/second, so we should not multiply by Time.deltaTime
             controller.SimpleMove(velocity);
 
-            if (reachedEndOfPath == false)
-                FaceTarget(path.vectorPath[currentWaypoint]);
+            //if (reachedEndOfPath == false)
+            //    FaceTarget(path.vectorPath[currentWaypoint]);
+            if (dir.x != 0 && dir.z != 0)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+            }
         }
     }
 
     public void FollowTarget(Interactable interactable)
     {
         focusTarget = interactable.interactionTransform;
+        FaceTarget(focusTarget.position);
     }
 
     public void FollowTarget(Transform targetTransform)
     {
         focusTarget = targetTransform;
+        FaceTarget(focusTarget.position);
     }
 
     public void StopFollowingTarget()
@@ -128,7 +138,7 @@ public class WorldPcMotor : PcMotor
         if (direction.x != 0 && direction.z != 0)
         {
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 25f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
         }
     }
 }

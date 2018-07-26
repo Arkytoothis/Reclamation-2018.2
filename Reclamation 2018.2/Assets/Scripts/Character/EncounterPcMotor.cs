@@ -8,6 +8,7 @@ using Pathfinding;
 [RequireComponent(typeof(CharacterController))]
 public class EncounterPcMotor : PcMotor
 {
+    public bool following = false;
 
     void Start()
     {
@@ -15,11 +16,14 @@ public class EncounterPcMotor : PcMotor
         controller = GetComponent<CharacterController>();
     }
 
-    public void SetMoveTarget(Vector3 moveTarget)
-    {
-        this.moveTarget = moveTarget;
-        seeker.StartPath(transform.position, moveTarget, OnPathComplete);
-    }
+    //public void SetMoveTarget(bool follow, Vector3 moveTarget)
+    //{
+    //    following = follow;
+    //    this.moveTarget = moveTarget;
+    //    followTransform.position = moveTarget;
+    //    seeker.StartPath(transform.position, moveTarget, OnPathComplete);
+    //    FaceTarget(this.moveTarget);
+    //}
 
     public void OnPathComplete(Path p)
     {
@@ -40,33 +44,40 @@ public class EncounterPcMotor : PcMotor
             FaceTarget(focusTarget.position);
         }
 
-        if (path == null)
-        {
-            // We have no path to follow yet, so don't do anything
-            return;
-        }
-        else
-        {
+        //if (Vector3.Distance(transform.position, EncounterCursor.instance.transform.position) <= 0)
+        //{
+        //    return;
+        //}
+        //if (path == null)
+        //{
+        //    // We have no path to follow yet, so don't do anything
+        //    return;
+        //}
+        //else
+        //{
             if (Time.time > lastRepath + repathRate && seeker.IsDone())
             {
-                lastRepath = Time.time;
+                lastRepath = Time.time;                
 
                 // Start a new path to the targetPosition, call the the OnPathComplete function
                 // when the path has been calculated (which may take a few frames depending on the complexity)
                 seeker.StartPath(transform.position, moveTarget, OnPathComplete);
-            }
+            
 
             // Check in a loop if we are close enough to the current waypoint to switch to the next one.
             // We do this in a loop because many waypoints might be close to each other and we may reach
             // several of them in the same frame.
             reachedEndOfPath = false;
             // The distance to the next waypoint in the path
-            float distanceToWaypoint;
             while (true)
             {
                 // If you want maximum performance you can check the squared distance instead to get rid of a
                 // square root calculation. But that is outside the scope of this tutorial.
-                distanceToWaypoint = Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]);
+                distanceToTarget = Vector3.Distance(transform.position, moveTarget);
+
+                if (path != null) distanceToWaypoint = Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]);
+                else distanceToWaypoint = 0f;
+
                 if (distanceToWaypoint < nextWaypointDistance)
                 {
                     // Check if there is another waypoint or if we have reached the end of the path
@@ -79,6 +90,7 @@ public class EncounterPcMotor : PcMotor
                         // Set a status variable to indicate that the agent has reached the end of the path.
                         // You can use this to trigger some special code if your game requires that.
                         reachedEndOfPath = true;
+                        following = false;
                         break;
                     }
                 }
@@ -102,37 +114,34 @@ public class EncounterPcMotor : PcMotor
             // Note that SimpleMove takes a velocity in meters/second, so we should not multiply by Time.deltaTime
             controller.SimpleMove(velocity);
 
-            if (reachedEndOfPath == false)
-                FaceTarget(path.vectorPath[currentWaypoint]);
+            //if (reachedEndOfPath == false)
+            //    FaceTarget(path.vectorPath[currentWaypoint]);
+
+            if (dir.x != 0 && dir.z != 0 && distanceToWaypoint > 0.05f)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+            }
         }
     }
 
-    public void MoveToPoint(Vector3 point)
-    {
-        //agent.SetDestination(point);
-    }
+    //public void FollowTarget(Interactable interactable)
+    //{
+    //    focusTarget = interactable.interactionTransform;
+    //    SetMoveTarget(true, focusTarget.position);
+    //}
 
-    public void FollowTarget(WorldInteractable interactable)
-    {
-        //agent.stoppingDistance = interactable.radius * 0.9f;
-        //agent.updateRotation = false;
-        focusTarget = interactable.interactionTransform;
-    }
+    //public void FollowTarget(Transform targetTransform)
+    //{
+    //    followTransform = targetTransform;
 
-    public void FollowTarget(Transform targetTransform)
-    {
-        //agent.stoppingDistance = 1f;
-        //agent.updateRotation = false;
-        focusTarget = targetTransform;
-    }
+    //    SetMoveTarget(true, followTransform.position);
+    //}
 
-    public void StopFollowingTarget()
-    {
-        //agent.stoppingDistance = 0;
-        //agent.updateRotation = true;
-
-        focusTarget = null;
-    }
+    //public void StopFollowingTarget()
+    //{
+    //    focusTarget = null;
+    //}
 
     public void FaceTarget(Vector3 targetPosition)
     {
@@ -141,7 +150,7 @@ public class EncounterPcMotor : PcMotor
         if (direction.x != 0 && direction.z != 0)
         {
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
         }
     }
 }

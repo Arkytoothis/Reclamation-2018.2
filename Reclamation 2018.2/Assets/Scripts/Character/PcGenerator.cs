@@ -69,7 +69,7 @@ public static class PcGenerator
         }
     }
 
-    public static PC Generate(int index, string r, string p)
+    public static Pc Generate(int index, string r, string p)
     {
         //if (availableRaces == null || availableProfessions == null) return null;
 
@@ -95,7 +95,7 @@ public static class PcGenerator
         if (Random.Range(0, 100) < 50) gender = Gender.Male;
         else  gender = Gender.Female;
 
-        PC pc = new PC(NameGenerator.Get(gender, race_key, profession_key), 
+        Pc pc = new Pc(NameGenerator.Get(gender, race_key, profession_key), 
             gender, BackgroundGenerator.Generate(), race_key, profession_key, hair, beard, index, -1, 
             3 + GameValue.Roll(new GameValue(1, 3), false), 3 + GameValue.Roll(new GameValue(1, 3), false));
 
@@ -196,7 +196,7 @@ public static class PcGenerator
         return pc;
     }
 
-    public static string GenerateDescription(PC pc)
+    public static string GenerateDescription(Pc pc)
     {
         string description = "";
 
