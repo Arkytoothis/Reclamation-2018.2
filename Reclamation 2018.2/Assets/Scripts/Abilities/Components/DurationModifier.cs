@@ -2,38 +2,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Misc;
 
-[System.Serializable]
-public class DurationModifier : AbilityComponent
+namespace Reclamation.Abilities
 {
-    public int MinValue;
-    public int MaxValue;
-
-    public DurationModifier()
+    [System.Serializable]
+    public class DurationModifier : AbilityComponent
     {
-        MinValue = 0;
-        MaxValue = 0;
-        Setup();
-    }
+        public int MinValue;
+        public int MaxValue;
 
-    public DurationModifier(int min_value, int max_value = 0)
-    {
-        MinValue = min_value;
-        MaxValue = max_value;
-        Setup();
-    }
+        public DurationModifier()
+        {
+            MinValue = 0;
+            MaxValue = 0;
+            Setup();
+        }
 
-    public override void Setup()
-    {
-        Widgets = new List<AbilityPartWidgetType>();
-        Widgets.Add(AbilityPartWidgetType.Input);
-        Widgets.Add(AbilityPartWidgetType.Input);
-    }
+        public DurationModifier(int min_value, int max_value = 0)
+        {
+            MinValue = min_value;
+            MaxValue = max_value;
+            Setup();
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
+        public override void Setup()
+        {
+            Widgets = new List<AbilityPartWidgetType>();
+            Widgets.Add(AbilityPartWidgetType.Input);
+            Widgets.Add(AbilityPartWidgetType.Input);
+        }
 
-        return s;
+        public override string GetTooltipString()
+        {
+            string s = "";
+
+            return s;
+        }
     }
 }

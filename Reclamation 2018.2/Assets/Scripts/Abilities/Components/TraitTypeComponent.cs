@@ -2,38 +2,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Misc;
 
-[System.Serializable]
-public class TraitTypeComponent : AbilityComponent
+namespace Reclamation.Abilities
 {
-    public TraitType Type;
-
-    public TraitTypeComponent()
+    [System.Serializable]
+    public class TraitTypeComponent : AbilityComponent
     {
-        ComponentType = AbilityComponentType.Trait_Type;
-        Type = TraitType.None;
-        Setup();
-    }
+        public TraitType Type;
 
-    public TraitTypeComponent(TraitType type)
-    {
-        ComponentType = AbilityComponentType.Trait_Type;
-        Type = type;
-        Setup();
-    }
+        public TraitTypeComponent()
+        {
+            ComponentType = AbilityComponentType.Trait_Type;
+            Type = TraitType.None;
+            Setup();
+        }
 
-    public override void Setup()
-    {
-        Widgets = new List<AbilityPartWidgetType>();
-        Widgets.Add(AbilityPartWidgetType.Dropdown);
-    }
+        public TraitTypeComponent(TraitType type)
+        {
+            ComponentType = AbilityComponentType.Trait_Type;
+            Type = type;
+            Setup();
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
-        
-        s = "Trait Type" + Type.ToString();
+        public override void Setup()
+        {
+            Widgets = new List<AbilityPartWidgetType>();
+            Widgets.Add(AbilityPartWidgetType.Dropdown);
+        }
 
-        return s;
+        public override string GetTooltipString()
+        {
+            string s = "";
+
+            s = "Trait Type" + Type.ToString();
+
+            return s;
+        }
     }
 }

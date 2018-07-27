@@ -1,51 +1,55 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Misc;
 
-public class WorldManager : Singleton<WorldManager>
+namespace Reclamation.World
 {
-    public GameObject[] worldSitePrefabs;
-    public List<GameObject> worldSites;
-    public float seaLevel = 1f;
-
-    private List<Vector3> worldSitePositions;
-
-    public void Initialize()
+    public class WorldManager : Singleton<WorldManager>
     {
-        worldSitePositions = new List<Vector3>();
-        FindWorldSiteSpawns();
-        SpawnWorldSite(10);
-    }
+        public GameObject[] worldSitePrefabs;
+        public List<GameObject> worldSites;
+        public float seaLevel = 1f;
 
-    public void FindWorldSiteSpawns()
-    {
-        for (int i = 0; i < 250; i++)
+        private List<Vector3> worldSitePositions;
+
+        public void Initialize()
         {
-            float x = Random.Range(0f, 250f);
-            float z = Random.Range(0f, 250f);
-            float y = Terrain.activeTerrain.SampleHeight(new Vector3(x, 0, z));
+            worldSitePositions = new List<Vector3>();
+            FindWorldSiteSpawns();
+            SpawnWorldSite(10);
+        }
 
-            if (y > seaLevel)
+        public void FindWorldSiteSpawns()
+        {
+            for (int i = 0; i < 250; i++)
             {
-                worldSitePositions.Add(new Vector3(x, y, z));
+                float x = Random.Range(0f, 250f);
+                float z = Random.Range(0f, 250f);
+                float y = Terrain.activeTerrain.SampleHeight(new Vector3(x, 0, z));
+
+                if (y > seaLevel)
+                {
+                    worldSitePositions.Add(new Vector3(x, y, z));
+                }
             }
         }
-    }
 
-    public void SpawnWorldSite(int numToSpawn)
-    {
-        for (int i = 0; i < numToSpawn; i++)
+        public void SpawnWorldSite(int numToSpawn)
         {
-            int prefabIndexToSpawn = Random.Range(0, worldSitePrefabs.Length);
+            for (int i = 0; i < numToSpawn; i++)
+            {
+                int prefabIndexToSpawn = Random.Range(0, worldSitePrefabs.Length);
 
-            GameObject go = Instantiate(worldSitePrefabs[prefabIndexToSpawn], transform);
+                GameObject go = Instantiate(worldSitePrefabs[prefabIndexToSpawn], transform);
 
-            int positionIndex = Random.Range(0, worldSitePositions.Count);
-            Vector3 positionToSpawn = worldSitePositions[positionIndex];
+                int positionIndex = Random.Range(0, worldSitePositions.Count);
+                Vector3 positionToSpawn = worldSitePositions[positionIndex];
 
-            go.transform.position = positionToSpawn;
+                go.transform.position = positionToSpawn;
 
-            worldSites.Add(go);
+                worldSites.Add(go);
+            }
         }
     }
 }

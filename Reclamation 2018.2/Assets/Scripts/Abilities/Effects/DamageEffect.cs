@@ -2,39 +2,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Characters;
+using Reclamation.Equipment;
+using Reclamation.Misc;
 
-[System.Serializable]
-public class DamageEffect : AbilityEffect
+namespace Reclamation.Abilities
 {
-    public DamageData Data;
-
-    public DamageEffect()
+    [System.Serializable]
+    public class DamageEffect : AbilityEffect
     {
-        EffectType = AbilityEffectType.Damage;
-        Data = new DamageData();
-    }
+        public DamageData Data;
 
-    public DamageEffect(DamageType type, int attribute, GameValue damage, GameValue duration, int armor_pierce, int barrier_pierce, float multiplier = 0f, int level = 0)
-    {
-        EffectType = AbilityEffectType.Damage;
+        public DamageEffect()
+        {
+            EffectType = AbilityEffectType.Damage;
+            Data = new DamageData();
+        }
 
-        Data = new DamageData();
-        Data.Type = type;
-        Data.ArmorPierce = armor_pierce;
-        Data.BarrierPierce = barrier_pierce;
-        Data.Attribute = attribute;
-        Data.DamageDice = new GameValue(damage);
-        Data.Duration = new GameValue(duration);
-        Data.Multiplier = multiplier;
-        Data.LevelModified = level;
-    }
+        public DamageEffect(DamageType type, int attribute, GameValue damage, GameValue duration, int armor_pierce, int barrier_pierce, float multiplier = 0f, int level = 0)
+        {
+            EffectType = AbilityEffectType.Damage;
 
-    public override string GetTooltipString()
-    {
-        string text = "";
+            Data = new DamageData();
+            Data.Type = type;
+            Data.ArmorPierce = armor_pierce;
+            Data.BarrierPierce = barrier_pierce;
+            Data.Attribute = attribute;
+            Data.DamageDice = new GameValue(damage);
+            Data.Duration = new GameValue(duration);
+            Data.Multiplier = multiplier;
+            Data.LevelModified = level;
+        }
 
-        text = Data.ToString();
+        public override string GetTooltipString()
+        {
+            string text = "";
 
-        return text;
+            text = Data.ToString();
+
+            return text;
+        }
     }
 }

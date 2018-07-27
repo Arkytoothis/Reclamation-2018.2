@@ -2,36 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class OpposingTraitComponent : AbilityComponent
+namespace Reclamation.Abilities
 {
-    public string Key;
-
-    public OpposingTraitComponent()
+    [System.Serializable]
+    public class OpposingTraitComponent : AbilityComponent
     {
-        ComponentType = AbilityComponentType.Opposing_Trait;
-        Key = "";
-    }
+        public string Key;
 
-    public OpposingTraitComponent(string key)
-    {
-        ComponentType = AbilityComponentType.Opposing_Trait;
-        Key = key;
-    }
-
-    public override void Setup()
-    {
-    }
-
-    public override string GetTooltipString()
-    {
-        string s = "";
-
-        if (Key != "")
+        public OpposingTraitComponent()
         {
-            s = Key;
+            ComponentType = AbilityComponentType.Opposing_Trait;
+            Key = "";
         }
 
-        return s;
+        public OpposingTraitComponent(string key)
+        {
+            ComponentType = AbilityComponentType.Opposing_Trait;
+            Key = key;
+        }
+
+        public override void Setup()
+        {
+        }
+
+        public override string GetTooltipString()
+        {
+            string s = "";
+
+            if (Key != "")
+            {
+                s = Key;
+            }
+
+            return s;
+        }
     }
 }

@@ -2,42 +2,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Characters;
+using Reclamation.Misc;
 
-[System.Serializable]
-public class WeaponAttackEffect : AbilityEffect
+namespace Reclamation.Abilities
 {
-    public int AttackMod;
-    public DamageType DamageType;
-    public int ProcChance;
-    public GameValue Damage;
-
-    public WeaponAttackEffect()
+    [System.Serializable]
+    public class WeaponAttackEffect : AbilityEffect
     {
-        EffectType = AbilityEffectType.Weapon_Attack;
-        AttackMod = 0;
-        DamageType = DamageType.None;
-        ProcChance = 0;
-        Damage = new GameValue();
-    }
+        public int AttackMod;
+        public DamageType DamageType;
+        public int ProcChance;
+        public GameValue Damage;
 
-    public WeaponAttackEffect(int attack_mod, DamageType damage_type, int proc, GameValue damage)
-    {
-        EffectType = AbilityEffectType.Weapon_Attack;
-        AttackMod = attack_mod;
-        DamageType = damage_type;
-        ProcChance = proc;
-        Damage = new GameValue(damage);
-    }
+        public WeaponAttackEffect()
+        {
+            EffectType = AbilityEffectType.Weapon_Attack;
+            AttackMod = 0;
+            DamageType = DamageType.None;
+            ProcChance = 0;
+            Damage = new GameValue();
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
+        public WeaponAttackEffect(int attack_mod, DamageType damage_type, int proc, GameValue damage)
+        {
+            EffectType = AbilityEffectType.Weapon_Attack;
+            AttackMod = attack_mod;
+            DamageType = damage_type;
+            ProcChance = proc;
+            Damage = new GameValue(damage);
+        }
 
-        if (ProcChance > 0)
-            s += ProcChance + "% ";
+        public override string GetTooltipString()
+        {
+            string s = "";
 
-        s += Damage.ToString();
+            if (ProcChance > 0)
+                s += ProcChance + "% ";
 
-        return s;
+            s += Damage.ToString();
+
+            return s;
+        }
     }
 }

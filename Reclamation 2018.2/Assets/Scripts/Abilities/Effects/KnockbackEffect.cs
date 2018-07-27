@@ -3,31 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class KnockbackEffect : AbilityEffect
+namespace Reclamation.Abilities
 {
-    public int MinDistance;
-    public int MaxDistance;
-
-    public KnockbackEffect()
+    [System.Serializable]
+    public class KnockbackEffect : AbilityEffect
     {
-        EffectType = AbilityEffectType.Knockback;
-        MinDistance = 0;
-        MaxDistance = 0;
-    }
+        public int MinDistance;
+        public int MaxDistance;
 
-    public KnockbackEffect(int min, int max)
-    {
-        EffectType = AbilityEffectType.Stun;
-        MinDistance = min;
-        MaxDistance = max;
-    }
+        public KnockbackEffect()
+        {
+            EffectType = AbilityEffectType.Knockback;
+            MinDistance = 0;
+            MaxDistance = 0;
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
-        s += "Knocked back " + MinDistance + " to " + MaxDistance + " tiles";
+        public KnockbackEffect(int min, int max)
+        {
+            EffectType = AbilityEffectType.Stun;
+            MinDistance = min;
+            MaxDistance = max;
+        }
 
-        return s;
+        public override string GetTooltipString()
+        {
+            string s = "";
+            s += "Knocked back " + MinDistance + " to " + MaxDistance + " tiles";
+
+            return s;
+        }
     }
 }

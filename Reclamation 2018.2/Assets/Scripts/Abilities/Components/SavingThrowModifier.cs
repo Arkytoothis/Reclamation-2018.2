@@ -3,36 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class SavingThrownModifier : AbilityComponent
+namespace Reclamation.Abilities
 {
-    public int Difficulty;
-
-    public SavingThrownModifier()
+    [System.Serializable]
+    public class SavingThrownModifier : AbilityComponent
     {
-        Difficulty = 0;
-        Setup();
-    }
+        public int Difficulty;
 
-    public SavingThrownModifier(int difficulty)
-    {
-        Difficulty = difficulty;
-        Setup();
-    }
+        public SavingThrownModifier()
+        {
+            Difficulty = 0;
+            Setup();
+        }
 
-    public override void Setup()
-    {
-        Widgets = new List<AbilityPartWidgetType>();
-        Widgets.Add(AbilityPartWidgetType.Input);
-        Widgets.Add(AbilityPartWidgetType.Input);
-    }
+        public SavingThrownModifier(int difficulty)
+        {
+            Difficulty = difficulty;
+            Setup();
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
+        public override void Setup()
+        {
+            Widgets = new List<AbilityPartWidgetType>();
+            Widgets.Add(AbilityPartWidgetType.Input);
+            Widgets.Add(AbilityPartWidgetType.Input);
+        }
 
-        s = Difficulty.ToString();
+        public override string GetTooltipString()
+        {
+            string s = "";
 
-        return s;
+            s = Difficulty.ToString();
+
+            return s;
+        }
     }
 }

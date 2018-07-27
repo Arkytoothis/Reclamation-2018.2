@@ -2,29 +2,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Misc;
 
-[System.Serializable]
-public class RestoreEffectModifier : AbilityEffect
+namespace Reclamation.Abilities
 {
-    public GameValue Amount;
-    public GameValue Duration;
-
-    public RestoreEffectModifier()
+    [System.Serializable]
+    public class RestoreEffectModifier : AbilityEffect
     {
-        Amount = new GameValue();
-        Duration = new GameValue();
-    }
+        public GameValue Amount;
+        public GameValue Duration;
 
-    public RestoreEffectModifier(GameValue amount, GameValue duration)
-    {
-        Amount = new GameValue(amount);
-        Duration = new GameValue(duration);
-    }
+        public RestoreEffectModifier()
+        {
+            Amount = new GameValue();
+            Duration = new GameValue();
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
+        public RestoreEffectModifier(GameValue amount, GameValue duration)
+        {
+            Amount = new GameValue(amount);
+            Duration = new GameValue(duration);
+        }
 
-        return s;
+        public override string GetTooltipString()
+        {
+            string s = "";
+
+            return s;
+        }
     }
 }

@@ -2,38 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class AbilityModifier
+namespace Reclamation.Abilities
 {
-    public string Name;
-    public string Key;
-    public List<AbilityComponent> Modifiers;
-
-    public AbilityModifier()
+    [System.Serializable]
+    public class AbilityModifier
     {
-        Name = "";
-        Key = "";
-        Modifiers = new List<AbilityComponent>();
-    }
+        public string Name;
+        public string Key;
+        public List<AbilityComponent> Modifiers;
 
-    public AbilityModifier(string name, string key)
-    {
-        Name = name;
-        Key = key;
-        Modifiers = new List<AbilityComponent>();
-    }
+        public AbilityModifier()
+        {
+            Name = "";
+            Key = "";
+            Modifiers = new List<AbilityComponent>();
+        }
 
-    public AbilityModifier(string name, string key, List<AbilityModifier> modifiers)
-    {
-        Name = name;
-        Key = key;
-        Modifiers = new List<AbilityComponent>();
-    }
+        public AbilityModifier(string name, string key)
+        {
+            Name = name;
+            Key = key;
+            Modifiers = new List<AbilityComponent>();
+        }
 
-    public AbilityModifier(AbilityModifier modifier)
-    {
-        Name = modifier.Name;
-        Key = modifier.Key;
-        Modifiers = new List<AbilityComponent>();
+        public AbilityModifier(string name, string key, List<AbilityModifier> modifiers)
+        {
+            Name = name;
+            Key = key;
+            Modifiers = new List<AbilityComponent>();
+        }
+
+        public AbilityModifier(AbilityModifier modifier)
+        {
+            Name = modifier.Name;
+            Key = modifier.Key;
+            Modifiers = new List<AbilityComponent>();
+        }
     }
 }

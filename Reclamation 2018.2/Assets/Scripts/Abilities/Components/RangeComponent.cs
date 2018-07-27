@@ -2,47 +2,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Misc;
 
-[System.Serializable]
-public class RangeComponent : AbilityComponent
+namespace Reclamation.Abilities
 {
-    public RangeType Type;
-    public int Distance;
-
-    public RangeComponent()
+    [System.Serializable]
+    public class RangeComponent : AbilityComponent
     {
-        ComponentType = AbilityComponentType.Range;
-        Type = RangeType.None;
-        Distance = 0;
-        Setup();
-    }
+        public RangeType Type;
+        public int Distance;
 
-    public RangeComponent(RangeType type, int distance = 0)
-    {
-        ComponentType = AbilityComponentType.Range;
-        Type = type;
-        Distance = distance;
-        Setup();
-    }
+        public RangeComponent()
+        {
+            ComponentType = AbilityComponentType.Range;
+            Type = RangeType.None;
+            Distance = 0;
+            Setup();
+        }
 
-    public override void Setup()
-    {
-        Widgets = new List<AbilityPartWidgetType>();
-        Widgets.Add(AbilityPartWidgetType.Dropdown);
-        Widgets.Add(AbilityPartWidgetType.Input);
-    }
+        public RangeComponent(RangeType type, int distance = 0)
+        {
+            ComponentType = AbilityComponentType.Range;
+            Type = type;
+            Distance = distance;
+            Setup();
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "Range: ";
+        public override void Setup()
+        {
+            Widgets = new List<AbilityPartWidgetType>();
+            Widgets.Add(AbilityPartWidgetType.Dropdown);
+            Widgets.Add(AbilityPartWidgetType.Input);
+        }
 
-        if (Type == RangeType.Self)
-            s += "from the caster";
-        else if (Type == RangeType.Weapon)
-            s += "hit by weapon";
-        else if (Type == RangeType.Distance)
-            s += "within " + Distance + " tiles";
+        public override string GetTooltipString()
+        {
+            string s = "Range: ";
 
-        return s;
+            if (Type == RangeType.Self)
+                s += "from the caster";
+            else if (Type == RangeType.Weapon)
+                s += "hit by weapon";
+            else if (Type == RangeType.Distance)
+                s += "within " + Distance + " tiles";
+
+            return s;
+        }
     }
 }

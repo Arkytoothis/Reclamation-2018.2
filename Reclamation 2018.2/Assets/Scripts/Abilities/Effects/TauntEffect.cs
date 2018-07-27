@@ -2,33 +2,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Misc;
 
-[System.Serializable]
-public class TauntEffect : AbilityEffect
+namespace Reclamation.Abilities
 {
-    public GameValue Duration;
-    public float DamageModifier;
-
-    public TauntEffect()
+    [System.Serializable]
+    public class TauntEffect : AbilityEffect
     {
-        EffectType = AbilityEffectType.Taunt;
-        Duration = GameValue.Zero;
-        DamageModifier = 0;
-    }
+        public GameValue Duration;
+        public float DamageModifier;
 
-    public TauntEffect(GameValue duration, float modifier)
-    {
-        EffectType = AbilityEffectType.Taunt;
-        Duration = new GameValue(duration);
-        DamageModifier = modifier;
-    }
+        public TauntEffect()
+        {
+            EffectType = AbilityEffectType.Taunt;
+            Duration = GameValue.Zero;
+            DamageModifier = 0;
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
+        public TauntEffect(GameValue duration, float modifier)
+        {
+            EffectType = AbilityEffectType.Taunt;
+            Duration = new GameValue(duration);
+            DamageModifier = modifier;
+        }
 
-        s += "Taunted for " + Duration.ToString() + "turns,  -" + DamageModifier + "% damage";
+        public override string GetTooltipString()
+        {
+            string s = "";
 
-        return s;
+            s += "Taunted for " + Duration.ToString() + "turns,  -" + DamageModifier + "% damage";
+
+            return s;
+        }
     }
 }

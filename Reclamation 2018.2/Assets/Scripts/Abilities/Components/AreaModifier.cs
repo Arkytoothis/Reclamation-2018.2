@@ -3,37 +3,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class AreaModifier : AbilityComponent
+namespace Reclamation.Abilities
 {
-    public int Distance;
-    public int Angle;
-
-    public AreaModifier()
+    [System.Serializable]
+    public class AreaModifier : AbilityComponent
     {
-        Distance = 0;
-        Angle = 0;
-        Setup();
-    }
+        public int Distance;
+        public int Angle;
 
-    public AreaModifier(int distance, int angle)
-    {
-        Distance = distance;
-        Angle = angle;
-        Setup();
-    }
+        public AreaModifier()
+        {
+            Distance = 0;
+            Angle = 0;
+            Setup();
+        }
 
-    public override void Setup()
-    {
-        Widgets = new List<AbilityPartWidgetType>();
-        Widgets.Add(AbilityPartWidgetType.Input);
-        Widgets.Add(AbilityPartWidgetType.Input);
-    }
+        public AreaModifier(int distance, int angle)
+        {
+            Distance = distance;
+            Angle = angle;
+            Setup();
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
+        public override void Setup()
+        {
+            Widgets = new List<AbilityPartWidgetType>();
+            Widgets.Add(AbilityPartWidgetType.Input);
+            Widgets.Add(AbilityPartWidgetType.Input);
+        }
 
-        return s;
+        public override string GetTooltipString()
+        {
+            string s = "";
+
+            return s;
+        }
     }
 }

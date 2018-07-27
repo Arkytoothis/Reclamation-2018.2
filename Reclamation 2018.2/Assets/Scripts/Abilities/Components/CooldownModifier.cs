@@ -3,37 +3,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class CooldownModifier : AbilityComponent
+namespace Reclamation.Abilities
 {
-    public int MinValue;
-    public int MaxValue;
-
-    public CooldownModifier()
+    [System.Serializable]
+    public class CooldownModifier : AbilityComponent
     {
-        MinValue = 0;
-        MaxValue = 0;
-        Setup();
-    }
+        public int MinValue;
+        public int MaxValue;
 
-    public CooldownModifier(int min_value, int max_value = 0)
-    {
-        MinValue = min_value;
-        MaxValue = max_value;
-        Setup();
-    }
+        public CooldownModifier()
+        {
+            MinValue = 0;
+            MaxValue = 0;
+            Setup();
+        }
 
-    public override void Setup()
-    {
-        Widgets = new List<AbilityPartWidgetType>();
-        Widgets.Add(AbilityPartWidgetType.Input);
-        Widgets.Add(AbilityPartWidgetType.Input);
-    }
+        public CooldownModifier(int min_value, int max_value = 0)
+        {
+            MinValue = min_value;
+            MaxValue = max_value;
+            Setup();
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
+        public override void Setup()
+        {
+            Widgets = new List<AbilityPartWidgetType>();
+            Widgets.Add(AbilityPartWidgetType.Input);
+            Widgets.Add(AbilityPartWidgetType.Input);
+        }
 
-        return s;
+        public override string GetTooltipString()
+        {
+            string s = "";
+
+            return s;
+        }
     }
 }

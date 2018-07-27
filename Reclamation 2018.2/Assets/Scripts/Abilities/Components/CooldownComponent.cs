@@ -2,48 +2,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Misc;
 
-[System.Serializable]
-public class CooldownComponent : AbilityComponent
+namespace Reclamation.Abilities
 {
-    public TimeType Type;
-    public int Value;
-
-    public CooldownComponent()
+    [System.Serializable]
+    public class CooldownComponent : AbilityComponent
     {
-        ComponentType = AbilityComponentType.Cooldown;
-        Type = TimeType.None;
-        Value = 0;
-        Setup();
-    }
+        public TimeType Type;
+        public int Value;
 
-    public CooldownComponent(TimeType type, int value = 0)
-    {
-        ComponentType = AbilityComponentType.Cooldown;
-        Type = type;
-        Value = value;
-        Setup();
-    }
+        public CooldownComponent()
+        {
+            ComponentType = AbilityComponentType.Cooldown;
+            Type = TimeType.None;
+            Value = 0;
+            Setup();
+        }
 
-    public override void Setup()
-    {
-        Widgets = new List<AbilityPartWidgetType>();
-        Widgets.Add(AbilityPartWidgetType.Dropdown);
-        Widgets.Add(AbilityPartWidgetType.Input);
-    }
+        public CooldownComponent(TimeType type, int value = 0)
+        {
+            ComponentType = AbilityComponentType.Cooldown;
+            Type = type;
+            Value = value;
+            Setup();
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
+        public override void Setup()
+        {
+            Widgets = new List<AbilityPartWidgetType>();
+            Widgets.Add(AbilityPartWidgetType.Dropdown);
+            Widgets.Add(AbilityPartWidgetType.Input);
+        }
 
-        if (Type == TimeType.None)
-            s = "Cooldown: None";
-        else
-            s = "Cooldown : "+ Value + " " + Type;
+        public override string GetTooltipString()
+        {
+            string s = "";
 
-        if (Value > 1)
-            s += "s";
+            if (Type == TimeType.None)
+                s = "Cooldown: None";
+            else
+                s = "Cooldown : " + Value + " " + Type;
 
-        return s;
+            if (Value > 1)
+                s += "s";
+
+            return s;
+        }
     }
 }

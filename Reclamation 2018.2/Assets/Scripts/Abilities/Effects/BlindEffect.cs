@@ -2,30 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Misc;
 
-[System.Serializable]
-public class BlindEffect : AbilityEffect
+namespace Reclamation.Abilities
 {
-    public GameValue Duration;
-
-    public BlindEffect()
+    [System.Serializable]
+    public class BlindEffect : AbilityEffect
     {
-        EffectType = AbilityEffectType.Blind;
-        Duration = new GameValue();
-    }
+        public GameValue Duration;
 
-    public BlindEffect(GameValue duration)
-    {
-        EffectType = AbilityEffectType.Blind;
-        Duration = new GameValue(duration);
-    }
+        public BlindEffect()
+        {
+            EffectType = AbilityEffectType.Blind;
+            Duration = new GameValue();
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
+        public BlindEffect(GameValue duration)
+        {
+            EffectType = AbilityEffectType.Blind;
+            Duration = new GameValue(duration);
+        }
 
-        s += "Blinded for " + Duration.ToString();
+        public override string GetTooltipString()
+        {
+            string s = "";
 
-        return s;
+            s += "Blinded for " + Duration.ToString();
+
+            return s;
+        }
     }
 }

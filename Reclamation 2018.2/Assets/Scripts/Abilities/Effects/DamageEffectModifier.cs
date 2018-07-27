@@ -2,39 +2,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Characters;
 
-[System.Serializable]
-public class DamageEffectModifier : AbilityEffect
+namespace Reclamation.Abilities
 {
-    public DamageType DamageType;
-    public int MinDuration;
-    public int MaxDuration;
-    public int MinValue;
-    public int MaxValue;
-
-    public DamageEffectModifier()
+    [System.Serializable]
+    public class DamageEffectModifier : AbilityEffect
     {
-        DamageType = DamageType.None;
-        DamageType = 0;
-        MinDuration = 0;
-        MaxDuration = 0;
-        MinValue = 0;
-        MaxValue = 0;
-    }
+        public DamageType DamageType;
+        public int MinDuration;
+        public int MaxDuration;
+        public int MinValue;
+        public int MaxValue;
 
-    public DamageEffectModifier(DamageType damage_type, int min_value, int max_value, int min_duration, int max_duration)
-    {
-        DamageType = damage_type;
-        MinDuration = min_duration;
-        MaxDuration = max_duration;
-        MinValue = min_value;
-        MaxValue = max_value;
-    }
+        public DamageEffectModifier()
+        {
+            DamageType = DamageType.None;
+            DamageType = 0;
+            MinDuration = 0;
+            MaxDuration = 0;
+            MinValue = 0;
+            MaxValue = 0;
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
+        public DamageEffectModifier(DamageType damage_type, int min_value, int max_value, int min_duration, int max_duration)
+        {
+            DamageType = damage_type;
+            MinDuration = min_duration;
+            MaxDuration = max_duration;
+            MinValue = min_value;
+            MaxValue = max_value;
+        }
 
-        return s;
+        public override string GetTooltipString()
+        {
+            string s = "";
+
+            return s;
+        }
     }
 }

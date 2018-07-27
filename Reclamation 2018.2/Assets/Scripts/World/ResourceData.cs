@@ -2,27 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class ResourceData
+namespace Reclamation.World
 {
-    public string Resource;
-    public int Amount;
-
-    public ResourceData()
+    [System.Serializable]
+    public class ResourceData
     {
-        Resource = "";
-        Amount = 0;
-    }
+        public string Resource;
+        public int Amount;
 
-    public ResourceData(string resource, int amount)
-    {
-        Resource = resource;
-        Amount = amount;
-    }
+        public ResourceData()
+        {
+            Resource = "";
+            Amount = 0;
+        }
 
-    public ResourceData(ResourceData data)
-    {
-        Resource = data.Resource;
-        Amount = data.Amount;
+        public ResourceData(string resource, int amount)
+        {
+            Resource = resource;
+            Amount = amount;
+        }
+
+        public ResourceData(ResourceData data)
+        {
+            Resource = data.Resource;
+            Amount = data.Amount;
+        }
     }
 }

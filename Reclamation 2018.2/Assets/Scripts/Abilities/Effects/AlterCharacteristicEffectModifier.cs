@@ -3,34 +3,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class AlterCharacteristicEffectModifier : AbilityEffect
+namespace Reclamation.Abilities
 {
-    public int MinDuration;
-    public int MaxDuration;
-    public int MinValue;
-    public int MaxValue;
-
-    public AlterCharacteristicEffectModifier()
+    [System.Serializable]
+    public class AlterCharacteristicEffectModifier : AbilityEffect
     {
-        MinDuration = 0;
-        MaxDuration = 0;
-        MinValue = 0;
-        MaxValue = 0;
-    }
+        public int MinDuration;
+        public int MaxDuration;
+        public int MinValue;
+        public int MaxValue;
 
-    public AlterCharacteristicEffectModifier(int min_value, int max_value, int min_duration, int max_duration)
-    {
-        MinDuration = min_duration;
-        MaxDuration = max_duration;
-        MinValue = min_value;
-        MaxValue = max_value;
-    }
+        public AlterCharacteristicEffectModifier()
+        {
+            MinDuration = 0;
+            MaxDuration = 0;
+            MinValue = 0;
+            MaxValue = 0;
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
+        public AlterCharacteristicEffectModifier(int min_value, int max_value, int min_duration, int max_duration)
+        {
+            MinDuration = min_duration;
+            MaxDuration = max_duration;
+            MinValue = min_value;
+            MaxValue = max_value;
+        }
 
-        return s;
+        public override string GetTooltipString()
+        {
+            string s = "";
+
+            return s;
+        }
     }
 }

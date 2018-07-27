@@ -2,67 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class BuildingDefinition
+namespace Reclamation.World
 {
-    public string Name;
-    public string Key;
-    public string Description;
-    public string Icon;
-    public bool Unlocked;
-
-    public int DurabilityMax;
-    public int HoursToBuild;
-    public List<ResourceData> ResourcesToBuild;
-    public List<ResourceData> ResourcesUsed;
-    public List<ResourceData> ResourcesGenerated;
-
-    public BuildingDefinition()
+    [System.Serializable]
+    public class BuildingDefinition
     {
-        Name = "";
-        Key = "";
-        Icon = "";
-        Unlocked = false;
+        public string Name;
+        public string Key;
+        public string Description;
+        public string Icon;
+        public bool Unlocked;
 
-        DurabilityMax = 0;
-        HoursToBuild = 0;
-        Description = "";
-    }
+        public int DurabilityMax;
+        public int HoursToBuild;
+        public List<ResourceData> ResourcesToBuild;
+        public List<ResourceData> ResourcesUsed;
+        public List<ResourceData> ResourcesGenerated;
 
-    public BuildingDefinition(string name, string key, string icon, int durability, int hours, bool unlocked, string description)
-    {
-        Name = name;
-        Key = key;
-        Icon = icon;
-        DurabilityMax = durability;
-        HoursToBuild = hours;
-        Unlocked = unlocked;
-        Description = description;
-    }
-
-    public string GetTooltipText()
-    {
-        string details = "Max Durability " + DurabilityMax;
-        details += "\nHours to build " + HoursToBuild;
-
-        details += "\nCost ";
-        foreach (ResourceData resource in ResourcesToBuild)
+        public BuildingDefinition()
         {
-            details += " " + resource.Amount + " " + resource.Resource;
+            Name = "";
+            Key = "";
+            Icon = "";
+            Unlocked = false;
+
+            DurabilityMax = 0;
+            HoursToBuild = 0;
+            Description = "";
         }
 
-        details += "\nMaintance ";
-        foreach (ResourceData resource in ResourcesUsed)
+        public BuildingDefinition(string name, string key, string icon, int durability, int hours, bool unlocked, string description)
         {
-            details += " " + resource.Resource + " -" + resource.Amount;
+            Name = name;
+            Key = key;
+            Icon = icon;
+            DurabilityMax = durability;
+            HoursToBuild = hours;
+            Unlocked = unlocked;
+            Description = description;
         }
 
-        details += "\nIncome ";
-        foreach (ResourceData resource in ResourcesGenerated)
+        public string GetTooltipText()
         {
-            details += " " + resource.Resource + " +" + resource.Amount;
-        }
+            string details = "Max Durability " + DurabilityMax;
+            details += "\nHours to build " + HoursToBuild;
 
-        return details;
+            details += "\nCost ";
+            foreach (ResourceData resource in ResourcesToBuild)
+            {
+                details += " " + resource.Amount + " " + resource.Resource;
+            }
+
+            details += "\nMaintance ";
+            foreach (ResourceData resource in ResourcesUsed)
+            {
+                details += " " + resource.Resource + " -" + resource.Amount;
+            }
+
+            details += "\nIncome ";
+            foreach (ResourceData resource in ResourcesGenerated)
+            {
+                details += " " + resource.Resource + " +" + resource.Amount;
+            }
+
+            return details;
+        }
     }
 }

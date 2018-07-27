@@ -2,44 +2,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Characters;
 
-[System.Serializable]
-public class SavingThrowComponent : AbilityComponent
+namespace Reclamation.Abilities
 {
-    public BaseAttribute SaveType;
-    public int Difficulty;
-
-    public SavingThrowComponent()
+    [System.Serializable]
+    public class SavingThrowComponent : AbilityComponent
     {
-        ComponentType = AbilityComponentType.Saving_Throw;
-        SaveType = BaseAttribute.None;
-        Difficulty = 0;
-        Setup();
-    }
+        public BaseAttribute SaveType;
+        public int Difficulty;
 
-    public SavingThrowComponent(BaseAttribute save_type, int difficulty)
-    {
-        ComponentType = AbilityComponentType.Saving_Throw;
-        SaveType = save_type;
-        Difficulty = difficulty;
-        Setup();
-    }
+        public SavingThrowComponent()
+        {
+            ComponentType = AbilityComponentType.Saving_Throw;
+            SaveType = BaseAttribute.None;
+            Difficulty = 0;
+            Setup();
+        }
 
-    public override void Setup()
-    {
-        Widgets = new List<AbilityPartWidgetType>();
-        Widgets.Add(AbilityPartWidgetType.Dropdown);
-        Widgets.Add(AbilityPartWidgetType.Dropdown);
-        Widgets.Add(AbilityPartWidgetType.Input);
-        Widgets.Add(AbilityPartWidgetType.Input);
-    }
+        public SavingThrowComponent(BaseAttribute save_type, int difficulty)
+        {
+            ComponentType = AbilityComponentType.Saving_Throw;
+            SaveType = save_type;
+            Difficulty = difficulty;
+            Setup();
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
+        public override void Setup()
+        {
+            Widgets = new List<AbilityPartWidgetType>();
+            Widgets.Add(AbilityPartWidgetType.Dropdown);
+            Widgets.Add(AbilityPartWidgetType.Dropdown);
+            Widgets.Add(AbilityPartWidgetType.Input);
+            Widgets.Add(AbilityPartWidgetType.Input);
+        }
 
-        s = SaveType.ToString() + " dif " + Difficulty;
+        public override string GetTooltipString()
+        {
+            string s = "";
 
-        return s;
+            s = SaveType.ToString() + " dif " + Difficulty;
+
+            return s;
+        }
     }
 }

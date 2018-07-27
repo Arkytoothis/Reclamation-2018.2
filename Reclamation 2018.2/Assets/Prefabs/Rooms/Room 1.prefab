@@ -319,7 +319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1336216192709762
 GameObject:
   m_ObjectHideFlags: 1
@@ -5795,9 +5795,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Props:
     Weights:
-    - Value: {fileID: 111892, guid: a8a91e6acd823984dbd12ec001e87f72, type: 2}
-      MainPathWeight: 0.5
-      BranchPathWeight: 0.5
+    - Value: {fileID: 1579473088994358, guid: a5eb15b9e7aa6514ebcf2d0645525f98, type: 2}
+      MainPathWeight: 0.25
+      BranchPathWeight: 0.25
       UseDepthScale: 1
       DepthWeightScale:
         serializedVersion: 2
@@ -5824,9 +5824,9 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       TileSet: {fileID: 0}
-    - Value: {fileID: 154352, guid: e9a889fe9bf8150499a2c9b1cf50c9dc, type: 2}
-      MainPathWeight: 0.5
-      BranchPathWeight: 0.5
+    - Value: {fileID: 1760552345242028, guid: 3a6b49ffd43de3840834daa4d46a6185, type: 2}
+      MainPathWeight: 0.25
+      BranchPathWeight: 0.25
       UseDepthScale: 1
       DepthWeightScale:
         serializedVersion: 2
@@ -5853,9 +5853,9 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       TileSet: {fileID: 0}
-    - Value: {fileID: 101270, guid: 1439dfae41896ea4782ecafbb6e74856, type: 2}
-      MainPathWeight: 0.5
-      BranchPathWeight: 0.5
+    - Value: {fileID: 1943269973714934, guid: fb839e159f6252242970c78c5cbf40dc, type: 2}
+      MainPathWeight: 0.25
+      BranchPathWeight: 0.25
       UseDepthScale: 1
       DepthWeightScale:
         serializedVersion: 2

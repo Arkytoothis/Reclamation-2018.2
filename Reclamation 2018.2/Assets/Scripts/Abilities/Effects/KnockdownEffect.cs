@@ -2,29 +2,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Misc;
 
-[System.Serializable]
-public class KnockdownEffect : AbilityEffect
+namespace Reclamation.Abilities
 {
-    public GameValue Duration;
-
-    public KnockdownEffect()
+    [System.Serializable]
+    public class KnockdownEffect : AbilityEffect
     {
-        EffectType = AbilityEffectType.Knockdown;
-        Duration = new GameValue();
-    }
+        public GameValue Duration;
 
-    public KnockdownEffect(GameValue duration)
-    {
-        EffectType = AbilityEffectType.Knockdown;
-        Duration = new GameValue(duration);
-    }
+        public KnockdownEffect()
+        {
+            EffectType = AbilityEffectType.Knockdown;
+            Duration = new GameValue();
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
-        s += "Knocked prone for " + Duration.ToString() + " turns";
+        public KnockdownEffect(GameValue duration)
+        {
+            EffectType = AbilityEffectType.Knockdown;
+            Duration = new GameValue(duration);
+        }
 
-        return s;
+        public override string GetTooltipString()
+        {
+            string s = "";
+            s += "Knocked prone for " + Duration.ToString() + " turns";
+
+            return s;
+        }
     }
 }

@@ -2,43 +2,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Misc;
 
-[System.Serializable]
-public class SpellLevelComponent : AbilityComponent
+namespace Reclamation.Abilities
 {
-    public SpellSchoolType School;
-    public int Level;
-
-    public SpellLevelComponent()
+    [System.Serializable]
+    public class SpellLevelComponent : AbilityComponent
     {
-        ComponentType = AbilityComponentType.Spell_Level;
-        School = SpellSchoolType.None;
-        Level = 0;
-        Setup();
-    }
+        public SpellSchoolType School;
+        public int Level;
 
-    public SpellLevelComponent(SpellSchoolType school, int level)
-    {
-        ComponentType = AbilityComponentType.Spell_Level;
-        School = school;
-        Level = level;
-        Setup();
-    }
+        public SpellLevelComponent()
+        {
+            ComponentType = AbilityComponentType.Spell_Level;
+            School = SpellSchoolType.None;
+            Level = 0;
+            Setup();
+        }
 
-    public override void Setup()
-    {
-        Widgets = new List<AbilityPartWidgetType>();
-        Widgets.Add(AbilityPartWidgetType.Dropdown);
-        Widgets.Add(AbilityPartWidgetType.Input);
-    }
+        public SpellLevelComponent(SpellSchoolType school, int level)
+        {
+            ComponentType = AbilityComponentType.Spell_Level;
+            School = school;
+            Level = level;
+            Setup();
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
+        public override void Setup()
+        {
+            Widgets = new List<AbilityPartWidgetType>();
+            Widgets.Add(AbilityPartWidgetType.Dropdown);
+            Widgets.Add(AbilityPartWidgetType.Input);
+        }
 
-        s += "\nLevel " + Level;
-        s += "\nSchool " + School;
+        public override string GetTooltipString()
+        {
+            string s = "";
 
-        return s;
+            s += "\nLevel " + Level;
+            s += "\nSchool " + School;
+
+            return s;
+        }
     }
 }

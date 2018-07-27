@@ -2,29 +2,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Misc;
 
-[System.Serializable]
-public class StunEffect : AbilityEffect
+namespace Reclamation.Abilities
 {
-    public GameValue Duration;
-
-    public StunEffect()
+    [System.Serializable]
+    public class StunEffect : AbilityEffect
     {
-        EffectType = AbilityEffectType.Stun;
-        Duration = new GameValue();
-    }
+        public GameValue Duration;
 
-    public StunEffect(GameValue duration)
-    {
-        EffectType = AbilityEffectType.Stun;
-        Duration = new GameValue(duration);
-    }
+        public StunEffect()
+        {
+            EffectType = AbilityEffectType.Stun;
+            Duration = new GameValue();
+        }
 
-    public override string GetTooltipString()
-    {
-        string s = "";
-        s += "Stunned for " + Duration.ToString() + " turns";
+        public StunEffect(GameValue duration)
+        {
+            EffectType = AbilityEffectType.Stun;
+            Duration = new GameValue(duration);
+        }
 
-        return s;
+        public override string GetTooltipString()
+        {
+            string s = "";
+            s += "Stunned for " + Duration.ToString() + " turns";
+
+            return s;
+        }
     }
 }
