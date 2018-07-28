@@ -15,7 +15,7 @@ namespace Reclamation.Characters
     }
 
     [System.Serializable]
-    public class Pc : BaseCharacter
+    public class Pc : Character
     {
         public UpkeepData Upkeep;
         public int Wealth;
@@ -66,29 +66,16 @@ namespace Reclamation.Characters
             maxExp = 0;
             expBonus = 0;
 
-            BaseAttributes = new List<Characteristic>();
+            attributeManager = new AttributeManager();
+
             for (int i = 0; i < (int)BaseAttribute.Number; i++)
-            {
-                BaseAttributes.Add(new Characteristic(CharacteristicType.Base_Attribute, i, GameSettings.AttributeExpCost));
-            }
+                attributeManager.AddAttribute(AttributeListType.Base, new Attribute(AttributeType.Base, i, GameSettings.AttributeExpCost));
 
-            DerivedAttributes = new List<Characteristic>();
             for (int i = 0; i < (int)DerivedAttribute.Number; i++)
-            {
-                DerivedAttributes.Add(new Characteristic(CharacteristicType.Derived_Attribute, i, 0));
-            }
+                attributeManager.AddAttribute(AttributeListType.Derived, new Attribute(AttributeType.Derived, i, 0));
 
-            Skills = new List<Characteristic>();
-            for (int i = 0; i < (int)Skill.Number; i++)
-            {
-                Skills.Add(new Characteristic(CharacteristicType.Skill, i, GameSettings.SkillExpCost));
-            }
-
-            Resistances = new List<Characteristic>();
             for (int i = 0; i < (int)DamageType.Number; i++)
-            {
-                Resistances.Add(new Characteristic(CharacteristicType.Resistance, i, 0));
-            }
+                attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
 
             Abilities = new CharacterAbilities();
             Inventory = new CharacterInventory();
@@ -119,28 +106,21 @@ namespace Reclamation.Characters
             maxExp = 0;
             expBonus = 0.0f;
 
-            BaseAttributes = new List<Characteristic>();
+            attributeManager = new AttributeManager();
+
             for (int i = 0; i < (int)BaseAttribute.Number; i++)
             {
-                BaseAttributes.Add(new Characteristic(CharacteristicType.Base_Attribute, i, GameSettings.AttributeExpCost));
+                attributeManager.AddAttribute(AttributeListType.Base, new Attribute(AttributeType.Base, i, GameSettings.AttributeExpCost));
             }
 
-            DerivedAttributes = new List<Characteristic>();
             for (int i = 0; i < (int)DerivedAttribute.Number; i++)
             {
-                DerivedAttributes.Add(new Characteristic(CharacteristicType.Derived_Attribute, i, 0));
+                attributeManager.AddAttribute(AttributeListType.Derived, new Attribute(AttributeType.Derived, i, 0));
             }
 
-            Skills = new List<Characteristic>();
-            for (int i = 0; i < (int)Skill.Number; i++)
-            {
-                Skills.Add(new Characteristic(CharacteristicType.Skill, i, GameSettings.SkillExpCost));
-            }
-
-            Resistances = new List<Characteristic>();
             for (int i = 0; i < (int)DamageType.Number; i++)
             {
-                Resistances.Add(new Characteristic(CharacteristicType.Resistance, i, 0));
+                attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
             }
 
             Abilities = new CharacterAbilities(this, power_slots, spell_slots);
@@ -172,180 +152,200 @@ namespace Reclamation.Characters
             maxExp = pc.MaxExp;
             expBonus = pc.ExpBonus;
 
-            BaseAttributes = new List<Characteristic>();
+            attributeManager = new AttributeManager();
+
             for (int i = 0; i < (int)BaseAttribute.Number; i++)
             {
-                BaseAttributes.Add(new Characteristic(pc.BaseAttributes[i]));
+                attributeManager.AddAttribute(AttributeListType.Base, new Attribute(pc.attributeManager.GetAttribute(AttributeListType.Base, i)));
             }
 
-            DerivedAttributes = new List<Characteristic>();
             for (int i = 0; i < (int)DerivedAttribute.Number; i++)
             {
-                DerivedAttributes.Add(new Characteristic(pc.DerivedAttributes[i]));
+                attributeManager.AddAttribute(AttributeListType.Derived, new Attribute(pc.attributeManager.GetAttribute(AttributeListType.Derived, i)));
             }
 
-            Skills = new List<Characteristic>();
-            for (int i = 0; i < (int)Skill.Number; i++)
-            {
-                Skills.Add(new Characteristic(pc.Skills[i]));
-            }
-
-            Resistances = new List<Characteristic>();
             for (int i = 0; i < (int)DamageType.Number; i++)
             {
-                Resistances.Add(new Characteristic(pc.Resistances[i]));
+                attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(pc.attributeManager.GetAttribute(AttributeListType.Resistance, i)));
+            }
+
+            foreach (KeyValuePair<Skill, Attribute> kvp in pc.GetSkills())
+            {
+                attributeManager.AddSkill(kvp.Key, new Attribute(kvp.Value));
             }
 
             Abilities = new CharacterAbilities(pc);
             Inventory = new CharacterInventory(pc.Inventory);
         }
 
-        public void CalculateStartingAttributes()
+        public override void CalculateStartSkills()
         {
-            List<int> rolls = new List<int>((int)BaseAttribute.Number);
-
-            for (int i = 0; i < (int)BaseAttribute.Number; i++)
+            int numSkills = Random.Range(0, 6);
+            int start = 0;
+            for (int i = 0; i < numSkills; i++)
             {
-                rolls.Add(Random.Range(5, 21));
+                SkillDefinition skillDef = Database.Skills[Random.Range(0, Database.Skills.Count)];
+                Attribute skill = new Attribute();
+
+                start = Random.Range(1, 4);
+                skill.Type = AttributeType.Skill;
+                skill.SetStart(start, 0, 100);
+
+                attributeManager.AddSkill(skillDef.key, skill);
             }
 
-            if (Database.Professions[ProfessionKey].AttributePriorities.Count > 0)
+            foreach (KeyValuePair<Skill, Attribute> kvp in attributeManager.GetSkills())
             {
-                rolls.Sort();
-                rolls.Reverse();
-                int total = 0;
-
-                for (int i = 0; i < (int)BaseAttribute.Number; i++)
-                {
-                    total = rolls[(int)Database.Professions[ProfessionKey].AttributePriorities[i]];
-                    total += Database.GetRace(RaceKey).StartingAttributes[i].Number;
-
-                    if (Database.Professions[ProfessionKey].MinimumAttributes[i] > 0 &&
-                        total < Database.Professions[ProfessionKey].MinimumAttributes[i])
-                        total = Database.Professions[ProfessionKey].MinimumAttributes[i];
-
-                    BaseAttributes[i].SetStart(total, 0, total);
-                }
-            }
-            else
-            {
-                int total = 0;
-
-                for (int i = 0; i < (int)BaseAttribute.Number; i++)
-                {
-                    total = rolls[i];
-                    total += Database.GetRace(RaceKey).StartingAttributes[i].Number;
-
-                    if (Database.Professions[ProfessionKey].MinimumAttributes[i] > 0 &&
-                        total < Database.Professions[ProfessionKey].MinimumAttributes[i])
-                        total = Database.Professions[ProfessionKey].MinimumAttributes[i];
-
-                    BaseAttributes[i].SetStart(total, 0, total);
-                }
-            }
-
-            for (int i = 0; i < (int)BaseAttribute.Number; i++)
-            {
-                BaseAttributes[i].SetMax(BaseAttributes[i].Start + BaseAttributes[i].Modifier, true);
+                Debug.Log(kvp.Key + " " + kvp.Value.Current);
             }
         }
+            //public void CalculateStartingAttributes()
+            //{
+            //    List<int> rolls = new List<int>((int)BaseAttribute.Number);
 
-        public void CalculateDerivedAttributes()
-        {
-            DerivedAttributes[(int)DerivedAttribute.Armor].SetStart(0);
-            DerivedAttributes[(int)DerivedAttribute.Health].SetStart(BaseAttributes[(int)BaseAttribute.Strength].Current + BaseAttributes[(int)BaseAttribute.Endurance].Current + Database.GetRace(RaceKey).HealthPerLevel.Roll(false));
+            //    for (int i = 0; i < (int)BaseAttribute.Number; i++)
+            //    {
+            //        rolls.Add(Random.Range(5, 21));
+            //    }
 
-            if (Database.GetRace(RaceKey).StaminaPerLevel != null)
-            {
-                DerivedAttributes[(int)DerivedAttribute.Stamina].SetStart(BaseAttributes[(int)BaseAttribute.Endurance].Current + BaseAttributes[(int)BaseAttribute.Willpower].Current + Database.GetRace(RaceKey).StaminaPerLevel.Roll(false));
-            }
+            //    if (Database.Professions[ProfessionKey].AttributePriorities.Count > 0)
+            //    {
+            //        rolls.Sort();
+            //        rolls.Reverse();
+            //        int total = 0;
 
-            if (Database.GetRace(RaceKey).EssencePerLevel != null)
-            {
-                DerivedAttributes[(int)DerivedAttribute.Essence].SetStart(BaseAttributes[(int)BaseAttribute.Intellect].Current + BaseAttributes[(int)BaseAttribute.Wisdom].Current + Database.GetRace(RaceKey).EssencePerLevel.Roll(false));
-            }
+            //        for (int i = 0; i < (int)BaseAttribute.Number; i++)
+            //        {
+            //            total = rolls[(int)Database.Professions[ProfessionKey].AttributePriorities[i]];
+            //            total += Database.GetRace(RaceKey).StartingAttributes[i].Number;
 
-            DerivedAttributes[(int)DerivedAttribute.Morale].SetStart(100);
+            //            if (Database.Professions[ProfessionKey].MinimumAttributes[i] > 0 &&
+            //                total < Database.Professions[ProfessionKey].MinimumAttributes[i])
+            //                total = Database.Professions[ProfessionKey].MinimumAttributes[i];
 
-            DerivedAttributes[(int)DerivedAttribute.Might_Attack].SetStart(BaseAttributes[(int)BaseAttribute.Strength].Current + BaseAttributes[(int)BaseAttribute.Agility].Current);
-            DerivedAttributes[(int)DerivedAttribute.Finesse_Attack].SetStart(BaseAttributes[(int)BaseAttribute.Agility].Current + BaseAttributes[(int)BaseAttribute.Senses].Current);
-            DerivedAttributes[(int)DerivedAttribute.Block].SetStart(BaseAttributes[(int)BaseAttribute.Endurance].Current + BaseAttributes[(int)BaseAttribute.Agility].Current);
-            DerivedAttributes[(int)DerivedAttribute.Dodge].SetStart(BaseAttributes[(int)BaseAttribute.Agility].Current + BaseAttributes[(int)BaseAttribute.Senses].Current);
-            DerivedAttributes[(int)DerivedAttribute.Parry].SetStart(BaseAttributes[(int)BaseAttribute.Strength].Current + BaseAttributes[(int)BaseAttribute.Agility].Current);
-            DerivedAttributes[(int)DerivedAttribute.Speed].SetStart(Database.GetRace(RaceKey).BaseSpeed);
-            DerivedAttributes[(int)DerivedAttribute.Perception].SetStart(BaseAttributes[(int)BaseAttribute.Senses].Current);
-            DerivedAttributes[(int)DerivedAttribute.Concentration].SetStart(BaseAttributes[(int)BaseAttribute.Memory].Current);
-            DerivedAttributes[(int)DerivedAttribute.Might_Damage].SetStart((BaseAttributes[(int)BaseAttribute.Strength].Current - 12));
-            DerivedAttributes[(int)DerivedAttribute.Resistance].SetStart((BaseAttributes[(int)BaseAttribute.Endurance].Current - 20));
-            DerivedAttributes[(int)DerivedAttribute.Finesse_Damage].SetStart((BaseAttributes[(int)BaseAttribute.Agility].Current - 12));
-            DerivedAttributes[(int)DerivedAttribute.Action_Modifier].SetStart((BaseAttributes[(int)BaseAttribute.Dexterity].Current - 20) * -1);
-            DerivedAttributes[(int)DerivedAttribute.Range_Modifier].SetStart((BaseAttributes[(int)BaseAttribute.Senses].Current - 20));
-            DerivedAttributes[(int)DerivedAttribute.Spell_Damage].SetStart((BaseAttributes[(int)BaseAttribute.Intellect].Current - 12));
-            DerivedAttributes[(int)DerivedAttribute.Duration_Modifier].SetStart((BaseAttributes[(int)BaseAttribute.Wisdom].Current - 20));
-            DerivedAttributes[(int)DerivedAttribute.Spell_Attack].SetStart(BaseAttributes[(int)BaseAttribute.Intellect].Current + BaseAttributes[(int)BaseAttribute.Willpower].Current);
-            DerivedAttributes[(int)DerivedAttribute.Spell_Modifier].SetStart((BaseAttributes[(int)BaseAttribute.Charisma].Current - 12));
-            DerivedAttributes[(int)DerivedAttribute.Magic_Find].SetStart((BaseAttributes[(int)BaseAttribute.Memory].Current - 20));
+            //            attributeManager.SetStart(AttributeListType.Base, i, total);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        int total = 0;
 
-            DerivedAttributes[(int)DerivedAttribute.Fumble].SetStart(5);
-            DerivedAttributes[(int)DerivedAttribute.Graze].SetStart(10);
-            DerivedAttributes[(int)DerivedAttribute.Critical_Strike].SetStart(95);
-            DerivedAttributes[(int)DerivedAttribute.Perfect_Strike].SetStart(100);
-            DerivedAttributes[(int)DerivedAttribute.Critical_Damage].SetStart(BaseAttributes[(int)BaseAttribute.Dexterity].Current + BaseAttributes[(int)BaseAttribute.Senses].Current);
+            //        for (int i = 0; i < (int)BaseAttribute.Number; i++)
+            //        {
+            //            total = rolls[i];
+            //            total += Database.GetRace(RaceKey).StartingAttributes[i].Number;
 
-            for (int i = 0; i < (int)DerivedAttribute.Number; i++)
-            {
-                DerivedAttributes[i].SetMax(DerivedAttributes[i].Start + DerivedAttributes[i].Modifier, true);
-            }
-        }
+            //            if (Database.Professions[ProfessionKey].MinimumAttributes[i] > 0 &&
+            //                total < Database.Professions[ProfessionKey].MinimumAttributes[i])
+            //                total = Database.Professions[ProfessionKey].MinimumAttributes[i];
 
-        public void CalculateStartingSkills()
-        {
-            for (int i = 0; i < (int)Skill.Number; i++)
-            {
-                Skills[i].SetStart(0, 0, 100);
-            }
+            //            attributeManager.SetStart(AttributeListType.Base, i, total);
+            //        }
+            //    }
 
-            for (int j = 0; j < Database.GetProfession(ProfessionKey).SkillProficiencies.Count; j++)
-            {
-                int skill = (int)Database.GetProfession(ProfessionKey).SkillProficiencies[j].Skill;
-                int value = Database.GetProfession(ProfessionKey).SkillProficiencies[j].Value;
-                int result = GameValue.Roll(new GameValue(1, 2), false) * value;
+            //    for (int i = 0; i < (int)BaseAttribute.Number; i++)
+            //    {
+            //        int total = attributeManager.GetAttributeValue(AttributeListType.Base, AttributeComponentType.Start, i) + attributeManager.GetAttributeValue(AttributeListType.Base, AttributeComponentType.Modifier, i);
+            //        attributeManager.SetStart(AttributeListType.Base, i, total);
+            //    }
+            //}
 
-                Skills[skill].SetStart(result, 0, 100);
-            }
+            //public void CalculateDerivedAttributes()
+            //{
+            //    attributeManager.SetStart(AttributeListType.Derived, (int)DerivedAttribute.Armor, 0);
+            //    attributeManager.SetStart(AttributeListType.Derived, (int)DerivedAttribute.Health, GetBase((int)BaseAttribute.Strength).Maximum + GetBase((int)BaseAttribute.Endurance).Maximum + Database.GetRace(RaceKey).HealthPerLevel.Roll(false));
 
-            for (int i = 0; i < Database.GetRace(RaceKey).SkillProficiencies.Count; i++)
-            {
-                int skill = (int)Database.GetRace(RaceKey).SkillProficiencies[i].Skill;
-                int value = Database.GetRace(RaceKey).SkillProficiencies[i].Value;
+            //    //if (Database.GetRace(RaceKey).StaminaPerLevel != null)
+            //    //{
+            //    //    DerivedAttributes[(int)DerivedAttribute.Stamina].SetStart(BaseAttributes[(int)BaseAttribute.Endurance].Current + BaseAttributes[(int)BaseAttribute.Willpower].Current + Database.GetRace(RaceKey).StaminaPerLevel.Roll(false));
+            //    //}
 
-                Skills[skill].SetStart(Skills[skill].Start + value, 0, 100);
-            }
+            //    //if (Database.GetRace(RaceKey).EssencePerLevel != null)
+            //    //{
+            //    //    DerivedAttributes[(int)DerivedAttribute.Essence].SetStart(BaseAttributes[(int)BaseAttribute.Intellect].Current + BaseAttributes[(int)BaseAttribute.Wisdom].Current + Database.GetRace(RaceKey).EssencePerLevel.Roll(false));
+            //    //}
 
-            for (int i = 0; i < (int)Skill.Number; i++)
-            {
-                Skills[i].SetMax(Skills[i].Start + Skills[i].Modifier, true);
-            }
+            //    //DerivedAttributes[(int)DerivedAttribute.Morale].SetStart(100);
 
-            CalculateExpCosts();
-        }
+            //    //DerivedAttributes[(int)DerivedAttribute.Might_Attack].SetStart(BaseAttributes[(int)BaseAttribute.Strength].Current + BaseAttributes[(int)BaseAttribute.Agility].Current);
+            //    //DerivedAttributes[(int)DerivedAttribute.Finesse_Attack].SetStart(BaseAttributes[(int)BaseAttribute.Agility].Current + BaseAttributes[(int)BaseAttribute.Senses].Current);
+            //    //DerivedAttributes[(int)DerivedAttribute.Block].SetStart(BaseAttributes[(int)BaseAttribute.Endurance].Current + BaseAttributes[(int)BaseAttribute.Agility].Current);
+            //    //DerivedAttributes[(int)DerivedAttribute.Dodge].SetStart(BaseAttributes[(int)BaseAttribute.Agility].Current + BaseAttributes[(int)BaseAttribute.Senses].Current);
+            //    //DerivedAttributes[(int)DerivedAttribute.Parry].SetStart(BaseAttributes[(int)BaseAttribute.Strength].Current + BaseAttributes[(int)BaseAttribute.Agility].Current);
+            //    //DerivedAttributes[(int)DerivedAttribute.Speed].SetStart(Database.GetRace(RaceKey).BaseSpeed);
+            //    //DerivedAttributes[(int)DerivedAttribute.Perception].SetStart(BaseAttributes[(int)BaseAttribute.Senses].Current);
+            //    //DerivedAttributes[(int)DerivedAttribute.Concentration].SetStart(BaseAttributes[(int)BaseAttribute.Memory].Current);
+            //    //DerivedAttributes[(int)DerivedAttribute.Might_Damage].SetStart((BaseAttributes[(int)BaseAttribute.Strength].Current - 12));
+            //    //DerivedAttributes[(int)DerivedAttribute.Resistance].SetStart((BaseAttributes[(int)BaseAttribute.Endurance].Current - 20));
+            //    //DerivedAttributes[(int)DerivedAttribute.Finesse_Damage].SetStart((BaseAttributes[(int)BaseAttribute.Agility].Current - 12));
+            //    //DerivedAttributes[(int)DerivedAttribute.Action_Modifier].SetStart((BaseAttributes[(int)BaseAttribute.Dexterity].Current - 20) * -1);
+            //    //DerivedAttributes[(int)DerivedAttribute.Range_Modifier].SetStart((BaseAttributes[(int)BaseAttribute.Senses].Current - 20));
+            //    //DerivedAttributes[(int)DerivedAttribute.Spell_Damage].SetStart((BaseAttributes[(int)BaseAttribute.Intellect].Current - 12));
+            //    //DerivedAttributes[(int)DerivedAttribute.Duration_Modifier].SetStart((BaseAttributes[(int)BaseAttribute.Wisdom].Current - 20));
+            //    //DerivedAttributes[(int)DerivedAttribute.Spell_Attack].SetStart(BaseAttributes[(int)BaseAttribute.Intellect].Current + BaseAttributes[(int)BaseAttribute.Willpower].Current);
+            //    //DerivedAttributes[(int)DerivedAttribute.Spell_Modifier].SetStart((BaseAttributes[(int)BaseAttribute.Charisma].Current - 12));
+            //    //DerivedAttributes[(int)DerivedAttribute.Magic_Find].SetStart((BaseAttributes[(int)BaseAttribute.Memory].Current - 20));
 
-        public void CalculateResistances()
-        {
-            for (int i = 0; i < Database.Races[RaceKey].Resistances.Count; i++)
-            {
-                int resistance = (int)Database.Races[RaceKey].Resistances[i].DamageType;
-                int value = Database.Races[RaceKey].Resistances[i].Value;
-                Resistances[resistance].SetStart(value, 0, 100);
-            }
+            //    //DerivedAttributes[(int)DerivedAttribute.Fumble].SetStart(5);
+            //    //DerivedAttributes[(int)DerivedAttribute.Graze].SetStart(10);
+            //    //DerivedAttributes[(int)DerivedAttribute.Critical_Strike].SetStart(95);
+            //    //DerivedAttributes[(int)DerivedAttribute.Perfect_Strike].SetStart(100);
+            //    //DerivedAttributes[(int)DerivedAttribute.Critical_Damage].SetStart(BaseAttributes[(int)BaseAttribute.Dexterity].Current + BaseAttributes[(int)BaseAttribute.Senses].Current);
 
-            for (int i = 0; i < (int)DamageType.Number; i++)
-            {
-                Resistances[i].SetMax(Resistances[i].Start + Resistances[i].Modifier, true);
-            }
-        }
+            //    for (int i = 0; i < (int)DerivedAttribute.Number; i++)
+            //    {
+            //        attributeManager.SetStart(AttributeListType.Derived, i, 0);
+            //    }
+            //}
 
-        public bool CanEquip(Item item, EquipmentSlot slot)
+            //public void CalculateStartingSkills()
+            //{
+            //    for (int i = 0; i < (int)Skill.Number; i++)
+            //    {
+            //        attributeManager.SetStart(AttributeListType.Skill, i, 0);
+            //    }
+
+            //    for (int j = 0; j < Database.GetProfession(ProfessionKey).SkillProficiencies.Count; j++)
+            //    {
+            //        int skill = (int)Database.GetProfession(ProfessionKey).SkillProficiencies[j].Skill;
+            //        int value = Database.GetProfession(ProfessionKey).SkillProficiencies[j].Value;
+            //        int result = GameValue.Roll(new GameValue(1, 2), false) * value;
+
+            //    }
+
+            //    for (int i = 0; i < Database.GetRace(RaceKey).SkillProficiencies.Count; i++)
+            //    {
+            //        int skill = (int)Database.GetRace(RaceKey).SkillProficiencies[i].Skill;
+            //        int value = Database.GetRace(RaceKey).SkillProficiencies[i].Value;
+
+            //        attributeManager.SetStart(AttributeListType.Skill, skill, attributeManager.GetAttributeValue(AttributeListType.Skill, AttributeComponentType.Start, i) + value);
+            //    }
+
+            //    for (int i = 0; i < (int)Skill.Number; i++)
+            //    {
+            //        //Skills[i].SetMax(Skills[i].Start + Skills[i].Modifier, true);
+            //    }
+
+            //    CalculateExpCosts();
+            //}
+
+            //public void CalculateResistances()
+            //{
+            //    for (int i = 0; i < Database.Races[RaceKey].Resistances.Count; i++)
+            //    {
+            //        int resistance = (int)Database.Races[RaceKey].Resistances[i].DamageType;
+            //        int value = Database.Races[RaceKey].Resistances[i].Value;
+            //        //Resistances[resistance].SetStart(value, 0, 100);
+            //    }
+
+            //    for (int i = 0; i < (int)DamageType.Number; i++)
+            //    {
+            //        attributeManager.SetStart(AttributeListType.Resistance, i, 0);
+            //        //Resistances[i].SetMax(Resistances[i].Start + Resistances[i].Modifier, true);
+            //    }
+            //}
+
+            public bool CanEquip(Item item, EquipmentSlot slot)
         {
             bool canEquip = false;
 
@@ -418,26 +418,26 @@ namespace Reclamation.Characters
 
                     if (item.WeaponData != null)
                     {
-                        if (item.WeaponData.AttackType == AttackType.Might)
-                            DerivedAttributes[(int)DerivedAttribute.Might_Attack].AddToModifier(item.WeaponData.Attributes[(int)WeaponAttributes.Attack].Value);
-                        else if (item.WeaponData.AttackType == AttackType.Finesse)
-                            DerivedAttributes[(int)DerivedAttribute.Finesse_Attack].AddToModifier(item.WeaponData.Attributes[(int)WeaponAttributes.Attack].Value);
-                        else if (item.WeaponData.AttackType == AttackType.Spell)
-                            DerivedAttributes[(int)DerivedAttribute.Spell_Attack].AddToModifier(item.WeaponData.Attributes[(int)WeaponAttributes.Attack].Value);
+                        //if (item.WeaponData.AttackType == AttackType.Might)
+                        //    DerivedAttributes[(int)DerivedAttribute.Might_Attack].AddToModifier(item.WeaponData.Attributes[(int)WeaponAttributes.Attack].Value);
+                        //else if (item.WeaponData.AttackType == AttackType.Finesse)
+                        //    DerivedAttributes[(int)DerivedAttribute.Finesse_Attack].AddToModifier(item.WeaponData.Attributes[(int)WeaponAttributes.Attack].Value);
+                        //else if (item.WeaponData.AttackType == AttackType.Spell)
+                        //    DerivedAttributes[(int)DerivedAttribute.Spell_Attack].AddToModifier(item.WeaponData.Attributes[(int)WeaponAttributes.Attack].Value);
 
-                        DerivedAttributes[(int)DerivedAttribute.Parry].AddToModifier(item.WeaponData.Attributes[(int)WeaponAttributes.Parry].Value);
+                        //DerivedAttributes[(int)DerivedAttribute.Parry].AddToModifier(item.WeaponData.Attributes[(int)WeaponAttributes.Parry].Value);
                     }
 
                     if (item.WearableData != null)
                     {
-                        DerivedAttributes[(int)DerivedAttribute.Armor].AddToModifier(item.WearableData.Attributes[(int)WearableAttributes.Armor].Value);
-                        DerivedAttributes[(int)DerivedAttribute.Block].AddToModifier(item.WearableData.Attributes[(int)WearableAttributes.Block].Value);
-                        DerivedAttributes[(int)DerivedAttribute.Dodge].AddToModifier(item.WearableData.Attributes[(int)WearableAttributes.Dodge].Value);
+                        //DerivedAttributes[(int)DerivedAttribute.Armor].AddToModifier(item.WearableData.Attributes[(int)WearableAttributes.Armor].Value);
+                        //DerivedAttributes[(int)DerivedAttribute.Block].AddToModifier(item.WearableData.Attributes[(int)WearableAttributes.Block].Value);
+                        //DerivedAttributes[(int)DerivedAttribute.Dodge].AddToModifier(item.WearableData.Attributes[(int)WearableAttributes.Dodge].Value);
 
-                        for (int r = 0; r < item.WearableData.Resistances.Count; r++)
-                        {
-                            Resistances[(int)item.WearableData.Resistances[r].DamageType].AddToModifier(item.WearableData.Resistances[r].Value);
-                        }
+                        //for (int r = 0; r < item.WearableData.Resistances.Count; r++)
+                        //{
+                        //    Resistances[(int)item.WearableData.Resistances[r].DamageType].AddToModifier(item.WearableData.Resistances[r].Value);
+                        //}
                     }
 
                     //for (int m = 0; m < item.Modifiers.Count; m++)
@@ -471,15 +471,15 @@ namespace Reclamation.Characters
 
         public void CalculateExpCosts()
         {
-            for (int i = 0; i < BaseAttributes.Count; i++)
-            {
-                BaseAttributes[i].CalculateExpCost();
-            }
+            //for (int i = 0; i < BaseAttributes.Count; i++)
+            //{
+            //    BaseAttributes[i].CalculateExpCost();
+            //}
 
-            for (int i = 0; i < Skills.Count; i++)
-            {
-                Skills[i].CalculateExpCost();
-            }
+            //for (int i = 0; i < Skills.Count; i++)
+            //{
+            //    Skills[i].CalculateExpCost();
+            //}
         }
 
         public void AddExperience(int amount, bool adjusted)
@@ -530,6 +530,11 @@ namespace Reclamation.Characters
             Upkeep.Rations += profession.Upkeep.Rations;
 
             Wealth = Database.Races[RaceKey].StartingWealth.Roll(false) + Database.Professions[ProfessionKey].StartingWealth.Roll(false);
+        }
+
+        public new void ModifyAttribute(AttributeType type, int attribute, int value)
+        {
+            base.ModifyAttribute(type, attribute, value);
         }
     }
 }

@@ -6,24 +6,24 @@ using Reclamation.Misc;
 namespace Reclamation.Characters
 {
     [System.Serializable]
-    public class CharacteristicModifier
+    public class AttributeModifier
     {
-        public CharacteristicType Type;
+        public AttributeModifierType Type;
         public int Attribute;
 
-        public CharacteristicModifier()
+        public AttributeModifier()
         {
-            Type = CharacteristicType.None;
+            Type = AttributeModifierType.None;
             Attribute = 0;
         }
 
-        public CharacteristicModifier(CharacteristicType type, int attribute)
+        public AttributeModifier(AttributeModifierType type, int attribute)
         {
             Type = type;
             Attribute = attribute;
         }
 
-        public CharacteristicModifier(CharacteristicModifier mod)
+        public AttributeModifier(AttributeModifier mod)
         {
             Type = mod.Type;
             Attribute = mod.Attribute;

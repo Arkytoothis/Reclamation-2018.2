@@ -184,13 +184,14 @@ namespace Reclamation.Characters
             }
 
             pc.CalculateAttributeModifiers();
-            pc.CalculateStartingAttributes();
+            pc.CalculateStartAttributes(true);
             pc.CalculateDerivedAttributes();
-            pc.CalculateStartingSkills();
+            pc.CalculateStartSkills();
             pc.CalculateResistances();
+            pc.CalculateExpCosts();
 
-            pc.Abilities.PowerSlots = (pc.BaseAttributes[(int)BaseAttribute.Memory].Current / 5) + 1;
-            pc.Abilities.SpellSlots = (pc.BaseAttributes[(int)BaseAttribute.Memory].Current / 5) + 1;
+            //pc.Abilities.PowerSlots = (pc.BaseAttributes[(int)BaseAttribute.Memory].Current / 5) + 1;
+            //pc.Abilities.SpellSlots = (pc.BaseAttributes[(int)BaseAttribute.Memory].Current / 5) + 1;
 
             pc.Abilities.FindTraits();
             pc.Abilities.FindAvailableAbilities();

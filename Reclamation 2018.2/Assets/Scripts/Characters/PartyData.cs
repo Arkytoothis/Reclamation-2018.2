@@ -23,7 +23,7 @@ namespace Reclamation.Characters
         public int maxCharacters;
         public Pc[] pcs;
 
-        public List<Characteristic> attributes;
+        public List<Attribute> attributes;
         public List<int> combinedSkills;
         public List<CharacterSkillPair> highestSkills;
 
@@ -48,10 +48,10 @@ namespace Reclamation.Characters
                 pcs[i] = null;
             }
 
-            attributes = new List<Characteristic>();
+            attributes = new List<Attribute>();
             for (int i = 0; i < (int)PartyAttribute.Number; i++)
             {
-                attributes.Add(new Characteristic(CharacteristicType.Party_Attribute, i, 0));
+                attributes.Add(new Attribute(AttributeType.Party, i, 0));
             }
 
             combinedSkills = new List<int>();
@@ -83,7 +83,7 @@ namespace Reclamation.Characters
                 AddPc(data.pcs[i]);
             }
 
-            attributes = new List<Characteristic>();
+            attributes = new List<Attribute>();
             for (int i = 0; i < (int)PartyAttribute.Number; i++)
             {
                 attributes.Add(data.attributes[i]);

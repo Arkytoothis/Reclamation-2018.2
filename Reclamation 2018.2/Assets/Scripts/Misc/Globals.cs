@@ -27,11 +27,38 @@ namespace Reclamation.Misc
         Number, None
     };
 
-    public enum AttributeType
+    public enum AttributeDefinitionType
     {
-        Base, Derived_Points, Derived_Percent, Derived_Score, Resistance, Skill, Party, Weapon, Ammo, Wearable, Accessory,
+        Base, Derived_Points, Derived_Score, Derived_Percent, Resistance, Skill, Party, Weapon, Ammo, Wearable, Accessory,
         Number, None
     }
+
+    public enum AttributeComponentType
+    {
+        Current, Start, Minimum, Maximum, Modifier, Spent, Exp_Cost,
+        Number, None
+    }
+
+    public enum AttributeType
+    {
+        Base, Derived, Resistance, Skill, Party, Weapon, Ammo, Wearable, Accessory,
+        Number, None
+    }
+
+    public enum DerivedAttributeType
+    {
+        Derived_Points, Derived_Percent, Derived_Score,
+        Number, None
+    }
+
+    public enum AttributeModifierType
+    {
+        Base_Attribute, Derived_Attribute, Resistance, Skill, Party_Attribute, Value, Race,
+        Number, None
+    }
+
+    public enum AttributeField
+    { Start, Current, Minimum, Maximum, Modifier }
 
     public enum Gender
     {
@@ -186,22 +213,6 @@ namespace Reclamation.Misc
         Always_On, Use, Cast, Channel, On_Attack, On_Damage, On_Miss, On_Defense, On_Dodge, On_Block, On_Damaged,
         Number, None
     }
-
-    public enum CharacteristicType
-    {
-        Base_Attribute, Derived_Attribute, Resistance, Skill, Party_Attribute, Value, Race,
-        Number, None
-    }
-
-    public enum CharacteristicTypeShort
-    {
-        Base, Derived, Resistance, Skill, Party,
-        Number, None
-    }
-
-    public enum AttributeField
-    { Start, Current, Minimum, Maximum, Modifier }
-
     public enum ResearchCategory
     {
         Stronghold, Library, Stockpile, Armory, Barracks, Codex, Combat, Magic,

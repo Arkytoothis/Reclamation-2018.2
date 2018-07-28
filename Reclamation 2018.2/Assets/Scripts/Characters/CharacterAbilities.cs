@@ -159,7 +159,11 @@ namespace Reclamation.Characters
 
             foreach (KeyValuePair<string, Ability> kvp in Database.Abilities)
             {
-                if (kvp.Value.SkillUsed != Skill.None && pc.Skills[(int)kvp.Value.SkillUsed].Current > kvp.Value.SkillRequired)
+                Attribute skill = pc.attributeManager.GetSkill(kvp.Value.SkillUsed);
+
+                if (skill == null) return;
+
+                if (kvp.Value.SkillUsed != Skill.None && skill.Current > kvp.Value.SkillRequired)
                 {
                     if (kvp.Value.Type == AbilityType.Power)
                         availablePowers.Add(Database.GetAbility(kvp.Key));

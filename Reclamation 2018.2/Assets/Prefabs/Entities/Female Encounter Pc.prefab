@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 114172542328606322}
   - component: {fileID: 114620495141604432}
   - component: {fileID: 114522511796171706}
+  - component: {fileID: 114520640016178404}
   m_Layer: 0
   m_Name: Female Encounter Pc
   m_TagString: Untagged
@@ -1532,6 +1533,21 @@ MonoBehaviour:
   focus: {fileID: 0}
   moveSpeed: 3
   animator: {fileID: 114564180694425714}
+--- !u!114 &114520640016178404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491188713364614}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 4803171081227630223
+  updateError: 1
+  checkTime: 0.5
 --- !u!114 &114522511796171706
 MonoBehaviour:
   m_ObjectHideFlags: 1

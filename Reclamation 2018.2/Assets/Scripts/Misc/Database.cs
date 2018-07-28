@@ -187,7 +187,7 @@ namespace Reclamation.Misc
 
         public static void SaveAttributes(string file, List<AttributeDefinition> list)
         {
-            AttributeList al = new AttributeList();
+            AttributeDefinitionList al = new AttributeDefinitionList();
             foreach (AttributeDefinition def in list)
             {
                 al.Attributes.Add(def);
@@ -257,7 +257,7 @@ namespace Reclamation.Misc
             if (File.Exists(filePath))
             {
                 string dataAsJson = File.ReadAllText(filePath);
-                AttributeList list = JsonUtility.FromJson<AttributeList>(dataAsJson);
+                AttributeDefinitionList list = JsonUtility.FromJson<AttributeDefinitionList>(dataAsJson);
 
                 foreach (AttributeDefinition def in list.Attributes)
                 {
@@ -273,7 +273,7 @@ namespace Reclamation.Misc
             if (File.Exists(filePath))
             {
                 string dataAsJson = File.ReadAllText(filePath);
-                AttributeList list = JsonUtility.FromJson<AttributeList>(dataAsJson);
+                AttributeDefinitionList list = JsonUtility.FromJson<AttributeDefinitionList>(dataAsJson);
 
                 foreach (AttributeDefinition def in list.Attributes)
                 {
@@ -289,7 +289,7 @@ namespace Reclamation.Misc
             if (File.Exists(filePath))
             {
                 string dataAsJson = File.ReadAllText(filePath);
-                AttributeList list = JsonUtility.FromJson<AttributeList>(dataAsJson);
+                AttributeDefinitionList list = JsonUtility.FromJson<AttributeDefinitionList>(dataAsJson);
 
                 foreach (AttributeDefinition def in list.Attributes)
                 {
@@ -305,7 +305,7 @@ namespace Reclamation.Misc
             if (File.Exists(filePath))
             {
                 string dataAsJson = File.ReadAllText(filePath);
-                AttributeList list = JsonUtility.FromJson<AttributeList>(dataAsJson);
+                AttributeDefinitionList list = JsonUtility.FromJson<AttributeDefinitionList>(dataAsJson);
 
                 foreach (AttributeDefinition def in list.Attributes)
                 {
@@ -2495,8 +2495,8 @@ namespace Reclamation.Misc
             ability.Components.Add(new CooldownComponent(TimeType.Hour, 1));
             ability.Components.Add(new RangeComponent(RangeType.Touch));
             ability.Components.Add(new TargetComponent(TargetType.Friend));
-            ability.Effects.Add(new AlterCharacteristicEffect(CharacteristicType.Derived_Attribute, (int)DerivedAttribute.Armor, new GameValue(1, 4), new GameValue(2, 6)));
-            ability.Effects.Add(new AlterCharacteristicEffect(CharacteristicType.Resistance, (int)DamageType.Physical, new GameValue(10), new GameValue(2, 6)));
+            ability.Effects.Add(new AlterCharacteristicEffect(AttributeType.Derived, (int)DerivedAttribute.Armor, new GameValue(1, 4), new GameValue(2, 6)));
+            ability.Effects.Add(new AlterCharacteristicEffect(AttributeType.Resistance, (int)DamageType.Physical, new GameValue(10), new GameValue(2, 6)));
             abilities.Add(ability.Key, ability);
 
             ability = new Ability("Lesser Regen", "Lesser Regen", "abilities_82", AbilityClass.Encounter, AbilityType.Spell, 0, Skill.Water_Magic, 1);
@@ -2527,8 +2527,8 @@ namespace Reclamation.Misc
             ability.Components.Add(new CooldownComponent(TimeType.Hour, 1));
             ability.Components.Add(new TargetComponent(TargetType.Friend));
             ability.Components.Add(new AreaComponent(AreaType.Sphere, 10));
-            ability.Effects.Add(new AlterCharacteristicEffect(CharacteristicType.Derived_Attribute, (int)DerivedAttribute.Might_Attack, new GameValue(-1, -6), new GameValue(2, 6)));
-            ability.Effects.Add(new AlterCharacteristicEffect(CharacteristicType.Derived_Attribute, (int)DerivedAttribute.Finesse_Attack, new GameValue(-1, -6), new GameValue(2, 6)));
+            ability.Effects.Add(new AlterCharacteristicEffect(AttributeType.Derived, (int)DerivedAttribute.Might_Attack, new GameValue(-1, -6), new GameValue(2, 6)));
+            ability.Effects.Add(new AlterCharacteristicEffect(AttributeType.Derived, (int)DerivedAttribute.Finesse_Attack, new GameValue(-1, -6), new GameValue(2, 6)));
             //ability.Effects.Add(new RestoreEffect(RestoreType.Morale, new GameValue(-1, -4), GameValue.Zero, false, 2));
             abilities.Add(ability.Key, ability);
 
@@ -2559,8 +2559,8 @@ namespace Reclamation.Misc
             ability.Components.Add(new CooldownComponent(TimeType.Hour, 1));
             ability.Components.Add(new TargetComponent(TargetType.Friend));
             ability.Components.Add(new AreaComponent(AreaType.Sphere, 10));
-            ability.Effects.Add(new AlterCharacteristicEffect(CharacteristicType.Derived_Attribute, (int)DerivedAttribute.Might_Attack, new GameValue(1, 4), new GameValue(2, 6)));
-            ability.Effects.Add(new AlterCharacteristicEffect(CharacteristicType.Derived_Attribute, (int)DerivedAttribute.Finesse_Attack, new GameValue(1, 4), new GameValue(2, 6)));
+            ability.Effects.Add(new AlterCharacteristicEffect(AttributeType.Derived, (int)DerivedAttribute.Might_Attack, new GameValue(1, 4), new GameValue(2, 6)));
+            ability.Effects.Add(new AlterCharacteristicEffect(AttributeType.Derived, (int)DerivedAttribute.Finesse_Attack, new GameValue(1, 4), new GameValue(2, 6)));
             //ability.Effects.Add(new RestoreEffect(RestoreType.Morale, new GameValue(1, 4), GameValue.Zero, false, 2));
             abilities.Add(ability.Key, ability);
 
@@ -2965,452 +2965,461 @@ namespace Reclamation.Misc
 
         public static void LoadAttributes()
         {
-            AttributeDefinition bA = new AttributeDefinition("Strength", "Strength", "Str", "", 0, 999, AttributeType.Base, null);
+            AttributeDefinition bA = new AttributeDefinition("Strength", "Strength", "Str", "", 0, 999, AttributeDefinitionType.Base, null);
             baseAttributeDefinitions.Add(bA);
 
-            bA = new AttributeDefinition("Endurance", "Endurance", "End", "", 0, 999, AttributeType.Base, null);
+            bA = new AttributeDefinition("Endurance", "Endurance", "End", "", 0, 999, AttributeDefinitionType.Base, null);
             baseAttributeDefinitions.Add(bA);
 
-            bA = new AttributeDefinition("Agility", "Agility", "Agi", "", 0, 999, AttributeType.Base, null);
+            bA = new AttributeDefinition("Agility", "Agility", "Agi", "", 0, 999, AttributeDefinitionType.Base, null);
             baseAttributeDefinitions.Add(bA);
 
-            bA = new AttributeDefinition("Dexterity", "Dexterity", "Dex", "", 0, 999, AttributeType.Base, null);
+            bA = new AttributeDefinition("Dexterity", "Dexterity", "Dex", "", 0, 999, AttributeDefinitionType.Base, null);
             baseAttributeDefinitions.Add(bA);
 
-            bA = new AttributeDefinition("Senses", "Senses", "Sns", "", 0, 999, AttributeType.Base, null);
+            bA = new AttributeDefinition("Senses", "Senses", "Sns", "", 0, 999, AttributeDefinitionType.Base, null);
             baseAttributeDefinitions.Add(bA);
 
-            bA = new AttributeDefinition("Intellect", "Intellect", "Int", "", 0, 999, AttributeType.Base, null);
+            bA = new AttributeDefinition("Intellect", "Intellect", "Int", "", 0, 999, AttributeDefinitionType.Base, null);
             baseAttributeDefinitions.Add(bA);
 
-            bA = new AttributeDefinition("Wisdom", "Wisdom", "Wis", "", 0, 999, AttributeType.Base, null);
+            bA = new AttributeDefinition("Wisdom", "Wisdom", "Wis", "", 0, 999, AttributeDefinitionType.Base, null);
             baseAttributeDefinitions.Add(bA);
 
-            bA = new AttributeDefinition("Willpower", "Willpower", "Wil", "", 0, 999, AttributeType.Base, null);
+            bA = new AttributeDefinition("Willpower", "Willpower", "Wil", "", 0, 999, AttributeDefinitionType.Base, null);
             baseAttributeDefinitions.Add(bA);
 
-            bA = new AttributeDefinition("Charisma", "Charisma", "Cha", "", 0, 999, AttributeType.Base, null);
+            bA = new AttributeDefinition("Charisma", "Charisma", "Cha", "", 0, 999, AttributeDefinitionType.Base, null);
             baseAttributeDefinitions.Add(bA);
 
-            bA = new AttributeDefinition("Memory", "Memory", "Mem", "", 0, 999, AttributeType.Base, null);
+            bA = new AttributeDefinition("Memory", "Memory", "Mem", "", 0, 999, AttributeDefinitionType.Base, null);
             baseAttributeDefinitions.Add(bA);
 
 
-            AttributeDefinition dA = new AttributeDefinition("Armor", "Armor", "Arm", "", 0, 999, AttributeType.Derived_Points,
+            AttributeDefinition dA = new AttributeDefinition("Armor", "Armor", "Arm", "", 0, 999, AttributeDefinitionType.Derived_Points,
                 null);
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Barrier", "Barrier", "Bar", "", 0, 999, AttributeType.Derived_Points,
-                null);
-            derivedAttributeDefinitions.Add(dA);
-
-            dA = new AttributeDefinition("Actions", "Actions", "Act", "", 0, 999, AttributeType.Derived_Points, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Agility),
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Wisdom), null,
+            dA = new AttributeDefinition("Health", "Health", "Hp", "", 0, 999, AttributeDefinitionType.Derived_Points, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Strength),
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Endurance), null,
                     AttributeCalculationOpperator.Add,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Health", "Health", "Hp", "", 0, 999, AttributeType.Derived_Points, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Strength),
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Endurance), null,
+            dA = new AttributeDefinition("Stamina", "Stamina", "Sta", "", 0, 999, AttributeDefinitionType.Derived_Points, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Endurance),
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Willpower), null,
                     AttributeCalculationOpperator.Add,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Energy", "Energy", "Ene", "", 0, 999, AttributeType.Derived_Points, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Endurance),
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Willpower), null,
+            dA = new AttributeDefinition("Essence", "Essence", "Ess", "", 0, 999, AttributeDefinitionType.Derived_Points, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Intellect),
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Memory), null,
                     AttributeCalculationOpperator.Add,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Mana", "Mana", "Man", "", 0, 999, AttributeType.Derived_Points, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Intellect),
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Memory), null,
+            dA = new AttributeDefinition("Morale", "Morale", "Mor", "", 0, 999, AttributeDefinitionType.Derived_Points, null);
+            derivedAttributeDefinitions.Add(dA);
+
+            dA = new AttributeDefinition("Might Attack", "Might Att", "Matt", "", 0, 999, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Strength),
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Agility), null,
                     AttributeCalculationOpperator.Add,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Morale", "Morale", "Mor", "", 0, 999, AttributeType.Derived_Points, null);
-            derivedAttributeDefinitions.Add(dA);
-
-            dA = new AttributeDefinition("Might Attack", "Might Att", "Matt", "", 0, 999, AttributeType.Derived_Score, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Strength),
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Agility), null,
-                    AttributeCalculationOpperator.Add,
-                    AttributeCalculationOpperator.None));
-            derivedAttributeDefinitions.Add(dA);
-
-            dA = new AttributeDefinition("Might Damage", "Might Dmg", "Mdmg", "", -1000, 1000, AttributeType.Derived_Percent, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Strength),
-                    new CharacteristicModifier(CharacteristicType.Value, 12), null,
+            dA = new AttributeDefinition("Might Damage", "Might Dmg", "Mdmg", "", -1000, 1000, AttributeDefinitionType.Derived_Percent, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Strength),
+                    new AttributeModifier(AttributeModifierType.Value, 12), null,
                     AttributeCalculationOpperator.Subtract,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Finesse Attack", "Finesse Att", "Fatt", "", 0, 999, AttributeType.Derived_Score, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Agility),
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Senses), null,
+            dA = new AttributeDefinition("Finesse Attack", "Finesse Att", "Fatt", "", 0, 999, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Agility),
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Senses), null,
                     AttributeCalculationOpperator.Add,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Finesse Damage", "Finesse Dmg", "FDmg", "", -1000, 1000, AttributeType.Derived_Percent, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Agility),
-                    new CharacteristicModifier(CharacteristicType.Value, 12), null,
+            dA = new AttributeDefinition("Finesse Damage", "Finesse Dmg", "FDmg", "", -1000, 1000, AttributeDefinitionType.Derived_Percent, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Agility),
+                    new AttributeModifier(AttributeModifierType.Value, 12), null,
                     AttributeCalculationOpperator.Subtract,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Spell Attack", "Spell Att", "Satt", "", 1, 100, AttributeType.Derived_Score, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Intellect),
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Wisdom), null,
+            dA = new AttributeDefinition("Spell Attack", "Spell Att", "Satt", "", 1, 100, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Intellect),
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Wisdom), null,
                     AttributeCalculationOpperator.Add,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Spell Damage", "Spell Dmg", "Sdmg", "", -1000, 1000, AttributeType.Derived_Percent, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Intellect),
-                    new CharacteristicModifier(CharacteristicType.Value, 12), null,
+            dA = new AttributeDefinition("Spell Damage", "Spell Dmg", "Sdmg", "", -1000, 1000, AttributeDefinitionType.Derived_Percent, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Intellect),
+                    new AttributeModifier(AttributeModifierType.Value, 12), null,
                     AttributeCalculationOpperator.Subtract,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Magic Modifier", "Magic Mod", "Mmod", "", -1000, 1000, AttributeType.Derived_Percent, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Charisma),
-                    new CharacteristicModifier(CharacteristicType.Value, 12), null,
+            dA = new AttributeDefinition("Spell Modifier", "Spell Mod", "Mmod", "", -1000, 1000, AttributeDefinitionType.Derived_Percent, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Memory),
+                    new AttributeModifier(AttributeModifierType.Value, 12), null,
                     AttributeCalculationOpperator.Subtract,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Block", "Block", "Blk", "", 0, 999, AttributeType.Derived_Score, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Endurance),
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Agility), null,
+            dA = new AttributeDefinition("Block", "Block", "Blk", "", 0, 999, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Endurance),
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Agility), null,
                     AttributeCalculationOpperator.Add,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Dodge", "Dodge", "Ddg", "", 0, 999, AttributeType.Derived_Score, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Agility),
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Senses), null,
+            dA = new AttributeDefinition("Dodge", "Dodge", "Ddg", "", 0, 999, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Agility),
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Senses), null,
                     AttributeCalculationOpperator.Add,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Parry", "Parry", "Par", "", 0, 999, AttributeType.Derived_Score, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Agility),
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Dexterity), null,
+            dA = new AttributeDefinition("Parry", "Parry", "Par", "", 0, 999, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Agility),
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Dexterity), null,
                     AttributeCalculationOpperator.Add,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Resistance", "Resistance", "Res", "", 0, 99, AttributeType.Derived_Percent, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Endurance),
-                    new CharacteristicModifier(CharacteristicType.Value, 20), null,
+            dA = new AttributeDefinition("Resistance", "Resistance", "Res", "", 0, 99, AttributeDefinitionType.Derived_Percent, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Endurance),
+                    new AttributeModifier(AttributeModifierType.Value, 20), null,
                     AttributeCalculationOpperator.Subtract,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Movement", "Move", "Mv", "", 0, 99, AttributeType.Derived_Score, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Race, 0), null, null,
+            dA = new AttributeDefinition("Speed", "Speed", "Spd", "", 0, 99, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Race, 0), null, null,
                     AttributeCalculationOpperator.None,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Detection Range", "Detect", "Rng", "", 0, 99, AttributeType.Derived_Score, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Senses), null, null,
+            dA = new AttributeDefinition("Perception", "Perception", "Per", "", 0, 99, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Senses), null, null,
                     AttributeCalculationOpperator.None,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
+            dA = new AttributeDefinition("Concentration", "Concentration", "Con", "", 0, 999, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Willpower),
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Memory), null,
+                    AttributeCalculationOpperator.Add,
+                    AttributeCalculationOpperator.None));
+            derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Action Modifier", "Action Mod", "Amod", "", -1000, 1000, AttributeType.Derived_Percent, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Dexterity),
-                    new CharacteristicModifier(CharacteristicType.Value, 20),
-                    new CharacteristicModifier(CharacteristicType.Value, 1),
+
+            dA = new AttributeDefinition("Action Modifier", "Action Mod", "Amod", "", -1000, 1000, AttributeDefinitionType.Derived_Percent, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Dexterity),
+                    new AttributeModifier(AttributeModifierType.Value, 20),
+                    new AttributeModifier(AttributeModifierType.Value, 1),
                     AttributeCalculationOpperator.Subtract,
                     AttributeCalculationOpperator.Multiply_Neg));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Duration Modifier", "Duration Mod", "Dur", "", -100, 100, AttributeType.Derived_Percent, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Wisdom),
-                    new CharacteristicModifier(CharacteristicType.Value, 20), null,
+            dA = new AttributeDefinition("Duration Modifier", "Duration Mod", "Dur", "", -100, 100, AttributeDefinitionType.Derived_Percent, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Wisdom),
+                    new AttributeModifier(AttributeModifierType.Value, 20), null,
                     AttributeCalculationOpperator.Subtract,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Range Modifier", "Range Mod", "Rng", "", -100, 100, AttributeType.Derived_Percent, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Senses),
-                    new CharacteristicModifier(CharacteristicType.Value, 20), null,
+            dA = new AttributeDefinition("Range Modifier", "Range Mod", "Rng", "", -100, 100, AttributeDefinitionType.Derived_Percent, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Senses),
+                    new AttributeModifier(AttributeModifierType.Value, 20), null,
                     AttributeCalculationOpperator.Subtract,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Magic Find", "Magic Find", "Mag", "", -100, 100, AttributeType.Derived_Percent, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Value, 0), null, null,
+            dA = new AttributeDefinition("Magic Find", "Magic Find", "Mag", "", -100, 100, AttributeDefinitionType.Derived_Percent, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Value, 0), null, null,
                     AttributeCalculationOpperator.None,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
 
 
-            dA = new AttributeDefinition("Fumble", "Fumble", "Fum", "", 1, 20, AttributeType.Derived_Score, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Value, 5), null, null,
+            dA = new AttributeDefinition("Fumble", "Fumble", "Fum", "", 1, 20, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Value, 5), null, null,
                     AttributeCalculationOpperator.None,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Graze", "Graze", "Grz", "", 1, 30, AttributeType.Derived_Score, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Value, 10), null, null,
+            dA = new AttributeDefinition("Graze", "Graze", "Grz", "", 1, 30, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Value, 10), null, null,
                     AttributeCalculationOpperator.None,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Critical Hit", "Crit", "CH", "", 75, 99, AttributeType.Derived_Score, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Value, 65), null, null,
+            dA = new AttributeDefinition("Critical Hit", "Crit", "CH", "", 75, 99, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Value, 65), null, null,
                     AttributeCalculationOpperator.None,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Critical Dmg", "Crit Dmg", "CD", "", 0, 1000, AttributeType.Derived_Percent, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Dexterity),
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Senses), null,
+            dA = new AttributeDefinition("Perfect Hit", "Perfect", "PH", "", 75, 99, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Value, 65), null, null,
+                    AttributeCalculationOpperator.None,
+                    AttributeCalculationOpperator.None));
+            derivedAttributeDefinitions.Add(dA);
+
+            dA = new AttributeDefinition("Critical Dmg", "Crit Dmg", "CD", "", 0, 1000, AttributeDefinitionType.Derived_Percent, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Dexterity),
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Senses), null,
                     AttributeCalculationOpperator.Add,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
 
-            dA = new AttributeDefinition("Health Regen", "Health Reg", "HReg", "", 0, 1000, AttributeType.Derived_Score, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Endurance),
-                    new CharacteristicModifier(CharacteristicType.Value, 20), null,
+            dA = new AttributeDefinition("Health Regen", "Health Reg", "HReg", "", 0, 1000, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Endurance),
+                    new AttributeModifier(AttributeModifierType.Value, 20), null,
                     AttributeCalculationOpperator.Subtract,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Energy Regen", "Energy Reg", "EReg", "", 0, 1000, AttributeType.Derived_Score, new AttributeCalculation(
-                    new CharacteristicModifier(CharacteristicType.Base_Attribute, (int)BaseAttribute.Willpower),
-                    new CharacteristicModifier(CharacteristicType.Value, 20), null,
+            dA = new AttributeDefinition("Stamina Regen", "Stamina Reg", "SReg", "", 0, 1000, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Willpower),
+                    new AttributeModifier(AttributeModifierType.Value, 20), null,
+                    AttributeCalculationOpperator.Subtract,
+                    AttributeCalculationOpperator.None));
+            derivedAttributeDefinitions.Add(dA);
+
+            dA = new AttributeDefinition("Essence Regen", "Essence Reg", "EReg", "", 0, 1000, AttributeDefinitionType.Derived_Score, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Base_Attribute, (int)BaseAttribute.Willpower),
+                    new AttributeModifier(AttributeModifierType.Value, 20), null,
                     AttributeCalculationOpperator.Subtract,
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
 
 
-            AttributeDefinition res = new AttributeDefinition("Physical", "Physical", "Phy", "", 0, 9999, AttributeType.Resistance, null);
+            AttributeDefinition res = new AttributeDefinition("Physical", "Physical", "Phy", "", 0, 9999, AttributeDefinitionType.Resistance, null);
             damageTypeDefinitions.Add(res);
 
-            res = new AttributeDefinition("Fire", "Fire", "Fir", "", 0, 9999, AttributeType.Resistance, null);
+            res = new AttributeDefinition("Fire", "Fire", "Fir", "", 0, 9999, AttributeDefinitionType.Resistance, null);
             damageTypeDefinitions.Add(res);
 
-            res = new AttributeDefinition("Cold", "Cold", "cld", "", 0, 9999, AttributeType.Resistance, null);
+            res = new AttributeDefinition("Cold", "Cold", "cld", "", 0, 9999, AttributeDefinitionType.Resistance, null);
             damageTypeDefinitions.Add(res);
 
-            res = new AttributeDefinition("Shock", "Shock", "Shk", "", 0, 9999, AttributeType.Resistance, null);
+            res = new AttributeDefinition("Shock", "Shock", "Shk", "", 0, 9999, AttributeDefinitionType.Resistance, null);
             damageTypeDefinitions.Add(res);
 
-            res = new AttributeDefinition("Poison", "Poison", "Poi", "", 0, 9999, AttributeType.Resistance, null);
+            res = new AttributeDefinition("Poison", "Poison", "Poi", "", 0, 9999, AttributeDefinitionType.Resistance, null);
             damageTypeDefinitions.Add(res);
 
-            res = new AttributeDefinition("Acid", "Acid", "Acd", "", 0, 9999, AttributeType.Resistance, null);
+            res = new AttributeDefinition("Acid", "Acid", "Acd", "", 0, 9999, AttributeDefinitionType.Resistance, null);
             damageTypeDefinitions.Add(res);
 
-            res = new AttributeDefinition("Unholy", "Unholy", "Unh", "", 0, 9999, AttributeType.Resistance, null);
+            res = new AttributeDefinition("Unholy", "Unholy", "Unh", "", 0, 9999, AttributeDefinitionType.Resistance, null);
             damageTypeDefinitions.Add(res);
 
-            res = new AttributeDefinition("Holy", "Holy", "Hly", "", 0, 9999, AttributeType.Resistance, null);
+            res = new AttributeDefinition("Holy", "Holy", "Hly", "", 0, 9999, AttributeDefinitionType.Resistance, null);
             damageTypeDefinitions.Add(res);
 
-            res = new AttributeDefinition("Psychic", "Psychic", "Psy", "", 0, 9999, AttributeType.Resistance, null);
+            res = new AttributeDefinition("Psychic", "Psychic", "Psy", "", 0, 9999, AttributeDefinitionType.Resistance, null);
             damageTypeDefinitions.Add(res);
 
-            res = new AttributeDefinition("Arcane", "Arcane", "Arc", "", 0, 9999, AttributeType.Resistance, null);
+            res = new AttributeDefinition("Arcane", "Arcane", "Arc", "", 0, 9999, AttributeDefinitionType.Resistance, null);
             damageTypeDefinitions.Add(res);
         }
 
         public static void LoadSkills()
         {
-            SkillDefinition skill = new SkillDefinition(SkillCategory.Combat, "One Handed Melee", "1h Melee", "1HM", "", "strength", 0, 999,
+            SkillDefinition skill = new SkillDefinition(SkillCategory.Combat, Skill.One_Hand_Melee, "One Handed Melee", "1h Melee", "1HM", "", "strength", 0, 999,
                 new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Combat, "Two Handed Melee", "2h Melee", "2HM", "", "strength", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Combat, Skill.Two_hand_Melee, "Two Handed Melee", "2h Melee", "2HM", "", "strength", 0, 999,
                 new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Combat, "Polearms", "Polearm", "Pol", "", "strength", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Combat, Skill.Polearms, "Polearms", "Polearm", "Pol", "", "strength", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Combat, "Unarmed", "Unarmed", "Una", "", "strength", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Combat, Skill.Unarmed, "Unarmed", "Unarmed", "Una", "", "strength", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Combat, "Thrown", "Thrown", "Thr", "", "dexterity", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Combat, Skill.Thrown, "Thrown", "Thrown", "Thr", "", "dexterity", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Combat, "Archery", "Archery", "Arc", "", "dexterity", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Combat, Skill.Archery, "Archery", "Archery", "Arc", "", "dexterity", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Combat, "Firearms", "Firarm", "Fir", "", "dexterity", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Combat, Skill.Firearms, "Firearms", "Firarm", "Fir", "", "dexterity", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Combat, "Explosives", "Explosive", "Exp", "", "dexterity", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Combat, Skill.Explosives, "Explosives", "Explosive", "Exp", "", "dexterity", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Combat, "Light Armor", "L Armor", "LAr", "", "agility", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Combat, Skill.Light_Armor, "Light Armor", "L Armor", "LAr", "", "agility", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Combat, "Medium Armor", "M Armor", "MAr", "", "endurance", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Combat, Skill.Medicine, "Medium Armor", "M Armor", "MAr", "", "endurance", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Combat, "Heavy Armor", "H Armor", "HAr", "", "endurance", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Combat, Skill.Heavy_Armor, "Heavy Armor", "H Armor", "HAr", "", "endurance", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Combat, "Bucklers", "Buckler", "Buc", "", "agility", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Combat, Skill.Bucklers, "Bucklers", "Buckler", "Buc", "", "agility", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Combat, "Shields", "Shield", "Shi", "", "endurance", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Combat, Skill.Shields, "Shields", "Shield", "Shi", "", "endurance", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Combat, "Leadership", "Leader", "Lea", "", "charisma", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Combat, Skill.Leadership, "Leadership", "Leader", "Lea", "", "charisma", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Combat, "Tactics", "Tactics", "Tac", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Combat, Skill.Tactics, "Tactics", "Tactics", "Tac", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Magic, "Fire Magic", "Fire", "FMa", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Magic, Skill.Firearms, "Fire Magic", "Fire", "FMa", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Magic, "Air Magic", "Air", "AMa", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Magic, Skill.Air_Magic, "Air Magic", "Air", "AMa", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Magic, "Water Magic", "Water", "WMa", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Magic, Skill.Water_Magic, "Water Magic", "Water", "WMa", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Magic, "Earth Magic", "Earth", "EMa", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Magic, Skill.Earth_Magic, "Earth Magic", "Earth", "EMa", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Magic, "Death Magic", "Death", "DMa", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Magic, Skill.Death_Magic, "Death Magic", "Death", "DMa", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Magic, "Life Magic", "Life", "LMa", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Magic, Skill.Life_Magic, "Life Magic", "Life", "LMa", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Magic, "Shadow Magic", "Shadow", "SMa", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Magic, Skill.Shadow_Magic, "Shadow Magic", "Shadow", "SMa", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Magic, "Arcane Magic", "Arcane", "AMa", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Magic, Skill.Arcane_Magic, "Arcane Magic", "Arcane", "AMa", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Magic, "Alchemy", "Alchemy", "Alc", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Magic, Skill.Alchemy, "Alchemy", "Alchemy", "Alc", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Magic, "Enchanting", "Enchant", "Enc", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Magic, Skill.Enchanting, "Enchanting", "Enchant", "Enc", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Magic, "Lore", "Lore", "Lor", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Magic, Skill.Lore, "Lore", "Lore", "Lor", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Magic, "Researching", "Research", "Res", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Magic, Skill.Research, "Researching", "Research", "Res", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Channeling", "Channel", "Cha", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Channeling, "Channeling", "Channel", "Cha", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Stealth", "Stealth", "Ste", "", "agility", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Stealth, "Stealth", "Stealth", "Ste", "", "agility", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Perception", "Percept", "Per", "", "senses", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Scouting, "Scounting", "Scout", "Sct", "", "senses", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Tricks", "Tricks", "Tri", "", "dexterity", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Tricks, "Tricks", "Tricks", "Tri", "", "dexterity", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Evasion", "Evasion", "Eva", "", "agility", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Evasion, "Evasion", "Evasion", "Eva", "", "agility", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Precision", "Precise", "Pre", "", "senses", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Precision, "Precision", "Precise", "Pre", "", "senses", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Devices", "Device", "Dev", "", "dexterity", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Devices, "Devices", "Device", "Dev", "", "dexterity", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Persuasion", "Persuade", "Pes", "", "charisma", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Persuasion, "Persuasion", "Persuade", "Pes", "", "charisma", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Poison Craft", "Poison", "Poi", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Poison_Crafting, "Poison Craft", "Poison", "Poi", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Mining", "Mining", "Min", "", "endurance", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Mining, "Mining", "Mining", "Min", "", "endurance", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Gathering", "Gather", "Gat", "", "senses", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Gathering, "Gathering", "Gather", "Gat", "", "senses", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Crafting", "Craft", "cra", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Crafting, "Crafting", "Craft", "cra", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Engineering", "Engine", "Eng", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Engineering, "Engineering", "Engine", "Eng", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Logistics", "Logistics", "Log", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Logistics, "Logistics", "Logistics", "Log", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Steamcraft", "Steam", "Ste", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Steamcraft, "Steamcraft", "Steam", "Ste", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Survival", "Survival", "Sur", "", "endurance", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Survival, "Survival", "Survival", "Sur", "", "endurance", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Navigation", "Navigate", "Nav", "", "senses", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Navigation, "Navigation", "Navigate", "Nav", "", "senses", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Training", "Train", "Tra", "", "charisma", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Training, "Training", "Train", "Tra", "", "charisma", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
 
-            skill = new SkillDefinition(SkillCategory.Misc, "Medicine", "Medic", "Med", "", "intellect", 0, 999,
+            skill = new SkillDefinition(SkillCategory.Misc, Skill.Medicine, "Medicine", "Medic", "Med", "", "intellect", 0, 999,
                  new List<AbilityUnlock> { });
             skillDefinitions.Add(skill);
         }
@@ -3556,28 +3565,28 @@ namespace Reclamation.Misc
 
         public static void LoadPartyAttributes()
         {
-            AttributeDefinition attDef = new AttributeDefinition("March Speed", "March", "Spd", "", 0, 9999, AttributeType.Party, null);
+            AttributeDefinition attDef = new AttributeDefinition("March Speed", "March", "Spd", "", 0, 9999, AttributeDefinitionType.Party, null);
             partyAttributeDefinitions.Add(attDef);
 
-            attDef = new AttributeDefinition("Scouting Range", "Scout", "Sct", "", 0, 9999, AttributeType.Party, null);
+            attDef = new AttributeDefinition("Scouting Range", "Scout", "Sct", "", 0, 9999, AttributeDefinitionType.Party, null);
             partyAttributeDefinitions.Add(attDef);
 
-            attDef = new AttributeDefinition("Supplies", "Supplies", "Sup", "", 0, 9999, AttributeType.Party, null);
+            attDef = new AttributeDefinition("Supplies", "Supplies", "Sup", "", 0, 9999, AttributeDefinitionType.Party, null);
             partyAttributeDefinitions.Add(attDef);
 
-            attDef = new AttributeDefinition("Supplies Used", "Supply U", "SupU", "", 0, 9999, AttributeType.Party, null);
+            attDef = new AttributeDefinition("Supplies Used", "Supply U", "SupU", "", 0, 9999, AttributeDefinitionType.Party, null);
             partyAttributeDefinitions.Add(attDef);
 
-            attDef = new AttributeDefinition("Max Supplies", "Supply M", "MSup", "", 0, 9999, AttributeType.Party, null);
+            attDef = new AttributeDefinition("Max Supplies", "Supply M", "MSup", "", 0, 9999, AttributeDefinitionType.Party, null);
             partyAttributeDefinitions.Add(attDef);
 
-            attDef = new AttributeDefinition("Rations", "Rations", "Rat", "", 0, 9999, AttributeType.Party, null);
+            attDef = new AttributeDefinition("Rations", "Rations", "Rat", "", 0, 9999, AttributeDefinitionType.Party, null);
             partyAttributeDefinitions.Add(attDef);
 
-            attDef = new AttributeDefinition("Max Rations", "Rations U", "MRat", "", 0, 9999, AttributeType.Party, null);
+            attDef = new AttributeDefinition("Max Rations", "Rations U", "MRat", "", 0, 9999, AttributeDefinitionType.Party, null);
             partyAttributeDefinitions.Add(attDef);
 
-            attDef = new AttributeDefinition("Rations Used", "Rations M", "RatU", "", 0, 9999, AttributeType.Party, null);
+            attDef = new AttributeDefinition("Rations Used", "Rations M", "RatU", "", 0, 9999, AttributeDefinitionType.Party, null);
             partyAttributeDefinitions.Add(attDef);
         }
 
@@ -4282,34 +4291,34 @@ namespace Reclamation.Misc
 
         public static void LoadItemAttributes()
         {
-            AttributeDefinition att = new AttributeDefinition("Attack", "Attack", "Acc", "", 0, 9999, AttributeType.Weapon, null);
+            AttributeDefinition att = new AttributeDefinition("Attack", "Attack", "Acc", "", 0, 9999, AttributeDefinitionType.Weapon, null);
             weaponAttributes.Add(att);
-            att = new AttributeDefinition("Range", "Range", "Ran", "", 0, 9999, AttributeType.Weapon, null);
+            att = new AttributeDefinition("Range", "Range", "Ran", "", 0, 9999, AttributeDefinitionType.Weapon, null);
             weaponAttributes.Add(att);
-            att = new AttributeDefinition("Actions", "Actions", "Act", "", 0, 9999, AttributeType.Weapon, null);
+            att = new AttributeDefinition("Actions", "Actions", "Act", "", 0, 9999, AttributeDefinitionType.Weapon, null);
             weaponAttributes.Add(att);
-            att = new AttributeDefinition("Parry", "Parry", "Pry", "", 0, 9999, AttributeType.Weapon, null);
+            att = new AttributeDefinition("Parry", "Parry", "Pry", "", 0, 9999, AttributeDefinitionType.Weapon, null);
             weaponAttributes.Add(att);
 
-            att = new AttributeDefinition("Armor", "Armor", "Arm", "", 0, 9999, AttributeType.Wearable, null);
+            att = new AttributeDefinition("Armor", "Armor", "Arm", "", 0, 9999, AttributeDefinitionType.Wearable, null);
             wearableAttributes.Add(att);
-            att = new AttributeDefinition("Dodge", "Dodge", "Ddg", "", 0, 9999, AttributeType.Wearable, null);
+            att = new AttributeDefinition("Dodge", "Dodge", "Ddg", "", 0, 9999, AttributeDefinitionType.Wearable, null);
             wearableAttributes.Add(att);
-            att = new AttributeDefinition("Block", "Block", "Blk", "", 0, 9999, AttributeType.Wearable, null);
+            att = new AttributeDefinition("Block", "Block", "Blk", "", 0, 9999, AttributeDefinitionType.Wearable, null);
             wearableAttributes.Add(att);
-            att = new AttributeDefinition("Actions", "Actions", "Act", "", 0, 9999, AttributeType.Wearable, null);
+            att = new AttributeDefinition("Actions", "Actions", "Act", "", 0, 9999, AttributeDefinitionType.Wearable, null);
             wearableAttributes.Add(att);
 
-            att = new AttributeDefinition("Attack", "Attack", "Attack", "", 0, 9999, AttributeType.Ammo, null);
+            att = new AttributeDefinition("Attack", "Attack", "Attack", "", 0, 9999, AttributeDefinitionType.Ammo, null);
             ammoAttributes.Add(att);
-            att = new AttributeDefinition("Range", "Range", "Ran", "", 0, 9999, AttributeType.Ammo, null);
+            att = new AttributeDefinition("Range", "Range", "Ran", "", 0, 9999, AttributeDefinitionType.Ammo, null);
             ammoAttributes.Add(att);
-            att = new AttributeDefinition("Actions", "Actions", "Act", "", 0, 9999, AttributeType.Ammo, null);
+            att = new AttributeDefinition("Actions", "Actions", "Act", "", 0, 9999, AttributeDefinitionType.Ammo, null);
             ammoAttributes.Add(att);
 
-            att = new AttributeDefinition("Actions", "Actions", "Act", "", 0, 9999, AttributeType.Accessory, null);
+            att = new AttributeDefinition("Actions", "Actions", "Act", "", 0, 9999, AttributeDefinitionType.Accessory, null);
             accessoryAttributes.Add(att);
-            att = new AttributeDefinition("Cooldown", "Cooldown", "Cd", "", 0, 9999, AttributeType.Accessory, null);
+            att = new AttributeDefinition("Cooldown", "Cooldown", "Cd", "", 0, 9999, AttributeDefinitionType.Accessory, null);
             accessoryAttributes.Add(att);
         }
     }

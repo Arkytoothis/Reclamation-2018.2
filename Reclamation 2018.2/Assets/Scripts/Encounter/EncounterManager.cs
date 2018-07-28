@@ -79,5 +79,16 @@ namespace Reclamation.Encounter
         {
             ModelManager.instance.SpawnCharacter(parent, pc);
         }
+
+        void Update()
+        {
+            if(Input.GetKeyUp(KeyCode.Space))
+            {
+                for (int i = 0; i < parties[0].pcs.Length; i++)
+                {
+                    //parties[0].pcs[i].DerivedAttributes.
+                }
+            }
+        }
     }
 }

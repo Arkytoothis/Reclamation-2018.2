@@ -7,20 +7,9 @@ using Reclamation.Misc;
 namespace Reclamation.Characters
 {
     [System.Serializable]
-    public class AttributeList
-    {
-        public List<AttributeDefinition> Attributes;
-
-        public AttributeList()
-        {
-            Attributes = new List<AttributeDefinition>();
-        }
-    }
-
-    [System.Serializable]
     public class AttributeDefinition
     {
-        public AttributeType Type;
+        public AttributeDefinitionType Type;
         public string Name;
         public string ShortName;
         public string Abbreviated;
@@ -32,7 +21,7 @@ namespace Reclamation.Characters
 
         public AttributeDefinition()
         {
-            Type = AttributeType.None;
+            Type = AttributeDefinitionType.None;
             Name = "";
             ShortName = "";
             Abbreviated = "";
@@ -42,7 +31,7 @@ namespace Reclamation.Characters
             Calculation = new AttributeCalculation();
         }
 
-        public AttributeDefinition(string name, string short_name, string abbreviated, string description, int minimum, int maximum, AttributeType type,
+        public AttributeDefinition(string name, string short_name, string abbreviated, string description, int minimum, int maximum, AttributeDefinitionType type,
             AttributeCalculation calc)
         {
             Name = name;

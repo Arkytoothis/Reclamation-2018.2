@@ -9,7 +9,7 @@ namespace Reclamation.Abilities
     [System.Serializable]
     public class AlterCharacteristicEffect : AbilityEffect
     {
-        public CharacteristicType CharacteristicType;
+        public AttributeType CharacteristicType;
         public int Characteristic;
         public GameValue Amount;
         public GameValue Duration;
@@ -17,13 +17,13 @@ namespace Reclamation.Abilities
         public AlterCharacteristicEffect()
         {
             EffectType = AbilityEffectType.Alter_Characteristic;
-            CharacteristicType = CharacteristicType.None;
+            CharacteristicType = AttributeType.None;
             Characteristic = 0;
             Amount = new GameValue();
             Duration = new GameValue();
         }
 
-        public AlterCharacteristicEffect(CharacteristicType type, int characteristic, GameValue amount, GameValue duration)
+        public AlterCharacteristicEffect(AttributeType type, int characteristic, GameValue amount, GameValue duration)
         {
             EffectType = AbilityEffectType.Alter_Characteristic;
             CharacteristicType = type;
@@ -51,19 +51,19 @@ namespace Reclamation.Abilities
             else
                 s += Amount.ToString();
 
-            if (CharacteristicType == CharacteristicType.Base_Attribute)
+            if (CharacteristicType == AttributeType.Base)
             {
                 s += " " + Database.BaseAttributes[Characteristic].Name;
             }
-            else if (CharacteristicType == CharacteristicType.Derived_Attribute)
+            else if (CharacteristicType == AttributeType.Derived)
             {
                 s += " " + Database.DerivedAttributes[Characteristic].Name;
             }
-            else if (CharacteristicType == CharacteristicType.Skill)
+            else if (CharacteristicType == AttributeType.Skill)
             {
                 s += " " + Database.Skills[Characteristic].Name;
             }
-            else if (CharacteristicType == CharacteristicType.Resistance)
+            else if (CharacteristicType == AttributeType.Resistance)
             {
                 s += "% " + Database.DamageTypes[Characteristic].Name + " Resistance";
             }

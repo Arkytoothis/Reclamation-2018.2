@@ -112,23 +112,23 @@ namespace Reclamation.Characters
                     value += mod;
                 }
 
-                npc.BaseAttributes[i].SetStart(value + mod, 0, value + mod);
+                //npc.BaseAttributes[i].SetStart(value + mod, 0, value + mod);
             }
 
-            value = npc.BaseAttributes[(int)BaseAttribute.Strength].Current + npc.BaseAttributes[(int)BaseAttribute.Dexterity].Current;
-            npc.DerivedAttributes[(int)DerivedAttribute.Might_Attack].SetStart(value, 0, value);
+            //value = npc.BaseAttributes[(int)BaseAttribute.Strength].Current + npc.BaseAttributes[(int)BaseAttribute.Dexterity].Current;
+            //npc.DerivedAttributes[(int)DerivedAttribute.Might_Attack].SetStart(value, 0, value);
 
-            value = npc.BaseAttributes[(int)BaseAttribute.Dexterity].Current + npc.BaseAttributes[(int)BaseAttribute.Senses].Current;
-            npc.DerivedAttributes[(int)DerivedAttribute.Finesse_Attack].SetStart(value, 0, value);
+            //value = npc.BaseAttributes[(int)BaseAttribute.Dexterity].Current + npc.BaseAttributes[(int)BaseAttribute.Senses].Current;
+            //npc.DerivedAttributes[(int)DerivedAttribute.Finesse_Attack].SetStart(value, 0, value);
 
-            value = npc.BaseAttributes[(int)BaseAttribute.Endurance].Current + npc.BaseAttributes[(int)BaseAttribute.Willpower].Current;
-            npc.DerivedAttributes[(int)DerivedAttribute.Health].SetStart(value, 0, value);
+            //value = npc.BaseAttributes[(int)BaseAttribute.Endurance].Current + npc.BaseAttributes[(int)BaseAttribute.Willpower].Current;
+            //npc.DerivedAttributes[(int)DerivedAttribute.Health].SetStart(value, 0, value);
 
-            value = npc.BaseAttributes[(int)BaseAttribute.Intellect].Current + npc.BaseAttributes[(int)BaseAttribute.Willpower].Current;
-            npc.DerivedAttributes[(int)DerivedAttribute.Stamina].SetStart(value, 0, value);
+            //value = npc.BaseAttributes[(int)BaseAttribute.Intellect].Current + npc.BaseAttributes[(int)BaseAttribute.Willpower].Current;
+            //npc.DerivedAttributes[(int)DerivedAttribute.Stamina].SetStart(value, 0, value);
 
-            value = npc.BaseAttributes[(int)BaseAttribute.Intellect].Current + npc.BaseAttributes[(int)BaseAttribute.Wisdom].Current;
-            npc.DerivedAttributes[(int)DerivedAttribute.Essence].SetStart(value, 0, value);
+            //value = npc.BaseAttributes[(int)BaseAttribute.Intellect].Current + npc.BaseAttributes[(int)BaseAttribute.Wisdom].Current;
+            //npc.DerivedAttributes[(int)DerivedAttribute.Essence].SetStart(value, 0, value);
 
 
             for (int a = 0; a < (int)DerivedAttribute.Number; a++)
@@ -140,19 +140,19 @@ namespace Reclamation.Characters
                     value += Random.Range(Database.NPCs[npc.Key].DerivedPerLevel[a].Number, Database.NPCs[npc.Key].DerivedPerLevel[a].Die + 1);
                 }
 
-                npc.DerivedAttributes[a].ModifyStart(value);
+                //npc.DerivedAttributes[a].ModifyStart(value);
             }
 
-            npc.DerivedAttributes[(int)DerivedAttribute.Speed].SetStart(Database.NPCs[npc.Key].BaseSpeed, 0, Database.NPCs[npc.Key].BaseSpeed);
+            //npc.DerivedAttributes[(int)DerivedAttribute.Speed].SetStart(Database.NPCs[npc.Key].BaseSpeed, 0, Database.NPCs[npc.Key].BaseSpeed);
         }
 
         public static void GenerateBoss(NPC npc)
         {
             npc.Name.LastName = "Boss";
-            npc.DerivedAttributes[(int)DerivedAttribute.Health].ModifyStart(Random.Range(200, 1000));
-            npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 100));
-            npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 100));
-            npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 100));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Health].ModifyStart(Random.Range(200, 1000));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 100));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 100));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 100));
             npc.Level += 3;
             npc.ExpValue *= 3;
         }
@@ -160,10 +160,10 @@ namespace Reclamation.Characters
         public static void GenerateBossGuard(NPC npc)
         {
             npc.Name.LastName = "Boss Guard";
-            npc.DerivedAttributes[(int)DerivedAttribute.Health].ModifyStart(Random.Range(100, 250));
-            npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 50));
-            npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 50));
-            npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 50));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Health].ModifyStart(Random.Range(100, 250));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 50));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 50));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 50));
             npc.Level += 1;
             npc.ExpValue *= 2;
         }
@@ -171,34 +171,34 @@ namespace Reclamation.Characters
         public static void GenerateObjectiveEnemy(NPC npc)
         {
             npc.Name.LastName = "Objective Enemy";
-            npc.DerivedAttributes[(int)DerivedAttribute.Health].ModifyStart(Random.Range(5, 20));
-            npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
-            npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
-            npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Health].ModifyStart(Random.Range(5, 20));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));
         }
 
         public static void GenerateEnemy(NPC npc)
         {
             npc.Name.LastName = "Enemy";
-            npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
-            npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
-            npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));
         }
 
         public static void GenerateRescueTarget(NPC npc)
         {
             npc.Name.LastName = "Rescue Target";
-            npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
-            npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
-            npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));
         }
 
         public static void GenerateCitizen(NPC npc)
         {
             npc.Name.LastName = "Citizen";
-            npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
-            npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
-            npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
+            //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));
         }
 
         public static string GetKey(CharacterType character_type)

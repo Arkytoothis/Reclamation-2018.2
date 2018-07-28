@@ -70,9 +70,9 @@ namespace Reclamation.Characters
     }
 
     [System.Serializable]
-    public class Characteristic
+    public class Attribute
     {
-        public CharacteristicType Type;
+        public AttributeType Type;
         public int Index;
         private int start;
         private int current;
@@ -92,9 +92,9 @@ namespace Reclamation.Characters
 
         public int ExpModifier;
 
-        public Characteristic()
+        public Attribute()
         {
-            Type = CharacteristicType.None;
+            Type = AttributeType.None;
             Index = 0;
             start = 0;
             current = 0;
@@ -106,7 +106,7 @@ namespace Reclamation.Characters
             ExpModifier = 0;
         }
 
-        public Characteristic(CharacteristicType type, int index, int exp_mod)
+        public Attribute(AttributeType type, int index, int exp_mod)
         {
             Type = type;
             Index = index;
@@ -118,7 +118,7 @@ namespace Reclamation.Characters
             spent = 0;
             ExpModifier = exp_mod;
         }
-        public Characteristic(Characteristic c)
+        public Attribute(Attribute c)
         {
             Type = c.Type;
             Index = c.Index;
@@ -132,7 +132,7 @@ namespace Reclamation.Characters
             ExpModifier = c.ExpModifier;
         }
 
-        public Characteristic(CharacteristicType type, int index, int start, int current, int modifier, int minimum, int maximum, int exp_mod)
+        public Attribute(AttributeType type, int index, int start, int current, int modifier, int minimum, int maximum, int exp_mod)
         {
             Type = type;
             Index = index;
@@ -150,23 +150,13 @@ namespace Reclamation.Characters
             current = maximum;
         }
 
-        public static Characteristic Max { get { return new Characteristic(CharacteristicType.Base_Attribute, 0, 999999, 999999, 999999, 0, 999999, 999999); } }
+        public static Attribute Max { get { return new Attribute(AttributeType.Base, 0, 999999, 999999, 999999, 0, 999999, 999999); } }
 
         public void SetStart(int start, int min, int max)
         {
             this.start = start;
             this.minimum = min;
             this.maximum = max;
-            this.current = start;
-            this.spent = 0;
-            Check();
-        }
-
-        public void SetStart(int start)
-        {
-            this.start = start;
-            this.minimum = 0;
-            this.maximum = start;
             this.current = start;
             this.spent = 0;
             Check();
@@ -227,6 +217,44 @@ namespace Reclamation.Characters
         public void CalculateExpCost()
         {
             expCost = current * ExpModifier;
+        }
+
+        public int Get(AttributeComponentType type)
+        {
+            int val = 0;
+
+            switch (type)
+            {
+                case AttributeComponentType.Current:
+                    val = current;
+                    break;
+                case AttributeComponentType.Start:
+                    val = start;
+                    break;
+                case AttributeComponentType.Minimum:
+                    val = minimum;
+                    break;
+                case AttributeComponentType.Maximum:
+                    val = maximum;
+                    break;
+                case AttributeComponentType.Modifier:
+                    val = modifier;
+                    break;
+                case AttributeComponentType.Spent:
+                    val = spent;
+                    break;
+                case AttributeComponentType.Exp_Cost:
+                    val = expCost;
+                    break;
+                case AttributeComponentType.Number:
+                    break;
+                case AttributeComponentType.None:
+                    break;
+                default:
+                    break;
+            }
+
+            return val;
         }
     }
 }

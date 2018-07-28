@@ -21,7 +21,7 @@ namespace Reclamation.Characters
     public class SkillDefinition
     {
         public SkillCategory Category;
-
+        public Skill key;
         public string Name;
         public string ShortName;
         public string Abbreviated;
@@ -33,6 +33,7 @@ namespace Reclamation.Characters
 
         public SkillDefinition()
         {
+            key = Skill.None;
             Name = "";
             ShortName = "";
             Abbreviated = "";
@@ -43,9 +44,10 @@ namespace Reclamation.Characters
             AbilityUnlocks = new List<AbilityUnlock>();
         }
 
-        public SkillDefinition(SkillCategory category, string name, string short_name, string abbreviated, string description, string attribute, int minimum, int maximum,
+        public SkillDefinition(SkillCategory category, Skill key, string name, string short_name, string abbreviated, string description, string attribute, int minimum, int maximum,
             List<AbilityUnlock> list)
         {
+            this.key = key;
             Category = category;
             Name = name;
             ShortName = short_name;
@@ -65,6 +67,7 @@ namespace Reclamation.Characters
 
         public SkillDefinition(SkillDefinition def)
         {
+            key = def.key;
             Category = def.Category;
             Name = def.Name;
             ShortName = def.ShortName;
