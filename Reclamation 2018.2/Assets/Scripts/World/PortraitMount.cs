@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Reclamation.World
+namespace Reclamation.Misc
 {
     [System.Serializable]
     public class PortraitMount : MonoBehaviour

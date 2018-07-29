@@ -7,6 +7,7 @@ using Reclamation.Characters;
 using Reclamation.Equipment;
 using Reclamation.Misc;
 using Reclamation.Gui.Encounter;
+using Reclamation.World;
 
 namespace Reclamation.Encounter
 {
@@ -40,25 +41,16 @@ namespace Reclamation.Encounter
             party.pcs[0] = new Pc(PcGenerator.Generate(0, "Imperial", "Soldier"));
             party.pcs[1] = new Pc(PcGenerator.Generate(1, "Imperial", "Scout"));
             party.pcs[2] = new Pc(PcGenerator.Generate(2, "Imperial", "Priest"));
-            party.pcs[3] = new Pc(PcGenerator.Generate(0, "Imperial", "Soldier"));
-            party.pcs[4] = new Pc(PcGenerator.Generate(1, "Imperial", "Scout"));
-            party.pcs[5] = new Pc(PcGenerator.Generate(2, "Imperial", "Priest"));
+            party.pcs[3] = new Pc(PcGenerator.Generate(3, "Imperial", "Soldier"));
+            party.pcs[4] = new Pc(PcGenerator.Generate(4, "Imperial", "Scout"));
+            party.pcs[5] = new Pc(PcGenerator.Generate(5, "Imperial", "Priest"));
 
             parties.Add(party);
-            //ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[0].pivot, party.pcs[0]);
-            //ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[1].pivot, party.pcs[1]);
-            //ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[2].pivot, party.pcs[2]);
 
             CreatePcs();
             EncounterPartyManager.instance.Initialize();
 
             EncounterCursor.instance.pointToTarget = pcs[0].transform;
-
-            for (int i = 0; i < 6; i++)
-            {
-                pcs[i].transform.position = EncounterPartyManager.instance.formationTransforms[i].position;
-            }
-
             EncounterGuiManager.instance.Initialize();
         }
 
@@ -68,7 +60,8 @@ namespace Reclamation.Encounter
             {
                 if (parties[0].pcs[i] != null)
                 {
-                    pcs.Add(ModelManager.instance.SpawnCharacter(transform, parties[0].pcs[i]));
+                    pcs.Add(ModelManager.instance.SpawnPc(transform, parties[0].pcs[i]));
+                    pcs[i].transform.position = EncounterPartyManager.instance.formationTransforms[i].position;
                 }
             }
 
@@ -77,16 +70,25 @@ namespace Reclamation.Encounter
 
         public void CreatePortraitModel(Transform parent, Pc pc)
         {
-            ModelManager.instance.SpawnCharacter(parent, pc);
+            ModelManager.instance.SpawnPc(parent, pc);
         }
 
         void Update()
-        {
-            if(Input.GetKeyUp(KeyCode.Space))
+        {            
+            if (Input.GetKeyUp(KeyCode.Space))
             {
                 for (int i = 0; i < parties[0].pcs.Length; i++)
                 {
-                    //parties[0].pcs[i].DerivedAttributes.
+                    if (parties[0].pcs[i] != null)
+                    {
+                        parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Armor, -Random.Range(0, 1));
+                        parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, -Random.Range(0, 6));
+                        parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Stamina, -Random.Range(0, 6));
+                        parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Essence, -Random.Range(0, 6));
+                        parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Morale, -Random.Range(0, 6));
+
+                        parties[0].pcs[i].AddExperience(Random.Range(0, 150), true);
+                    }
                 }
             }
         }

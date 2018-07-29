@@ -2996,8 +2996,12 @@ namespace Reclamation.Misc
             baseAttributeDefinitions.Add(bA);
 
 
-            AttributeDefinition dA = new AttributeDefinition("Armor", "Armor", "Arm", "", 0, 999, AttributeDefinitionType.Derived_Points,
-                null);
+            AttributeDefinition
+
+            dA = new AttributeDefinition("Armor", "Armor", "Arm", "", 0, 999, AttributeDefinitionType.Derived_Points, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Value, 0), null, null,
+                    AttributeCalculationOpperator.None,
+                    AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
             dA = new AttributeDefinition("Health", "Health", "Hp", "", 0, 999, AttributeDefinitionType.Derived_Points, new AttributeCalculation(
@@ -3021,7 +3025,10 @@ namespace Reclamation.Misc
                     AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
-            dA = new AttributeDefinition("Morale", "Morale", "Mor", "", 0, 999, AttributeDefinitionType.Derived_Points, null);
+            dA = new AttributeDefinition("Morale", "Morale", "Mor", "", 0, 999, AttributeDefinitionType.Derived_Points, new AttributeCalculation(
+                    new AttributeModifier(AttributeModifierType.Value, 100), null, null,
+                    AttributeCalculationOpperator.None,
+                    AttributeCalculationOpperator.None));
             derivedAttributeDefinitions.Add(dA);
 
             dA = new AttributeDefinition("Might Attack", "Might Att", "Matt", "", 0, 999, AttributeDefinitionType.Derived_Score, new AttributeCalculation(

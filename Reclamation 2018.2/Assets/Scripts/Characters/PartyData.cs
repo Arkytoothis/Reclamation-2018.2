@@ -27,6 +27,21 @@ namespace Reclamation.Characters
         public List<int> combinedSkills;
         public List<CharacterSkillPair> highestSkills;
 
+        public int currentPcs
+        {
+            get
+            {
+                int num = 0;
+                for (int i = 0; i < pcs.Length; i++)
+                {
+                    if (pcs[i] != null)
+                        num++;
+                    else
+                        break;
+                }
+                return num;
+            }
+        }
         public PartyData()
         {
             name = "New Party";

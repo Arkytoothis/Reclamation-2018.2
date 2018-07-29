@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Encounter;
 using Reclamation.Misc;
 
 namespace Reclamation.Gui.Encounter
@@ -14,6 +15,14 @@ namespace Reclamation.Gui.Encounter
         {
             partyPanel.Initialize();
             characterViewer.Initialize();
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.C))
+            {
+                characterViewer.Toggle();
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Reclamation.Equipment
             AttackType = attack_type;
 
             Attributes = new List<ItemAttribute>();
-            Attributes.Add(new ItemAttribute((int)WeaponAttributes.Actions, actions));
+            Attributes.Add(new ItemAttribute((int)WeaponAttributes.Action_Speed, actions));
             Attributes.Add(new ItemAttribute((int)WeaponAttributes.Attack, attack));
             Attributes.Add(new ItemAttribute((int)WeaponAttributes.Parry, parry));
             Attributes.Add(new ItemAttribute((int)WeaponAttributes.Range, range));
@@ -77,10 +77,10 @@ namespace Reclamation.Equipment
             s += " - " + Type;
             s += "\n" + Attributes[(int)WeaponAttributes.Attack].Value + " " + AttackType + " Attack";
 
-            if (Attributes[(int)WeaponAttributes.Actions].Value != 1)
-                s += "\n" + Attributes[(int)WeaponAttributes.Actions].Value + " Actions";
+            if (Attributes[(int)WeaponAttributes.Action_Speed].Value != 1)
+                s += "\n" + Attributes[(int)WeaponAttributes.Action_Speed].Value + " Actions";
             else
-                s += "\n" + Attributes[(int)WeaponAttributes.Actions].Value + " Action";
+                s += "\n" + Attributes[(int)WeaponAttributes.Action_Speed].Value + " Action";
 
             s += "<pos=50%>" + Attributes[(int)WeaponAttributes.Range].Value + " tile Range";
 

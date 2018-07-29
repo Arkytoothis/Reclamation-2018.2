@@ -9,16 +9,86 @@ namespace Reclamation.Misc
         public static int AttributeMax = 999999;
 
         public static List<Color> RarityColors = new List<Color>
+        {
+            new Color(0.4f, 0.4f, 0.4f, 1f),    //Common
+            new Color(1.0f, 1.0f, 1.0f, 1f),    //Uncommon
+            new Color(0.1f, 0.1f, 1.0f, 1f),    //Rare
+            new Color(0.0f, 1.0f, 0.0f, 1f),    //Fabled        
+            new Color(0.6f, 0.0f, 0.6f, 1f),    //Mythical
+            new Color(0.6f, 0.4f, 0.0f, 1f),    //Legendary
+            new Color(0.0f, 0.9f, 1.0f, 1f),    //Artifact
+            new Color(1.0f, 0.9f, 0.1f, 1f)     //Set
+        };
+    }
+
+    public enum BaseAttribute
     {
-        new Color(0.4f, 0.4f, 0.4f, 1f),    //Common
-        new Color(1.0f, 1.0f, 1.0f, 1f),    //Uncommon
-        new Color(0.1f, 0.1f, 1.0f, 1f),    //Rare
-        new Color(0.0f, 1.0f, 0.0f, 1f),    //Fabled        
-        new Color(0.6f, 0.0f, 0.6f, 1f),    //Mythical
-        new Color(0.6f, 0.4f, 0.0f, 1f),    //Legendary
-        new Color(0.0f, 0.9f, 1.0f, 1f),    //Artifact
-        new Color(1.0f, 0.9f, 0.1f, 1f)     //Set
-    };
+        Strength, Endurance, Agility, Dexterity, Senses, Intellect, Wisdom, Willpower, Charisma, Memory,
+        Number, None
+    }
+
+    public enum DerivedAttribute
+    {
+        Armor, Health, Stamina, Essence, Morale,
+        Might_Attack, Might_Damage, Finesse_Attack, Finesse_Damage, Spell_Attack, Spell_Damage, Spell_Modifier,
+        Block, Dodge, Parry, Resistance, Speed, Perception, Concentration,
+        Action_Modifier, Duration_Modifier, Range_Modifier, Magic_Find,
+        Fumble, Graze, Critical_Strike, Perfect_Strike, Critical_Damage,
+        Health_Regen, Stamina_Regen, Essence_Regen,
+        Number, None
+    }
+
+    public enum Vital
+    {
+        Armor, Health, Stamina, Essence, Morale,
+        Number, None
+    }
+
+    public enum DamageType
+    {
+        Physical, Fire, Shock, Cold, Poison, Acid, Unholy, Holy, Psychic, Arcane,
+        Number, None
+    }
+
+    public enum Skill
+    {
+        One_Hand_Melee, Two_hand_Melee, Polearms, Unarmed, Thrown, Archery, Firearms, Explosives,
+        Light_Armor, Medium_Armor, Heavy_Armor, Bucklers, Shields, Leadership, Tactics,
+        Fire_Magic, Air_Magic, Water_Magic, Earth_Magic, Death_Magic, Life_Magic, Shadow_Magic, Arcane_Magic,
+        Alchemy, Enchanting, Lore, Research, Channeling,
+        Stealth, Scouting, Tricks, Evasion, Precision, Devices, Persuasion, Poison_Crafting,
+        Mining, Gathering, Crafting, Engineering, Logistics, Steamcraft, Survival, Navigation, Training, Medicine,
+        Number, None
+    }
+
+    public enum PartyAttribute
+    {
+        March_Speed, Detection_Range, Supplies, Supplies_Used, Max_Supplies, Rations, Rations_Used, Max_Rations,
+        Number, None
+    }
+
+    public enum WeaponAttributes
+    {
+        Action_Speed, Attack, Parry, Range,
+        Number, None
+    }
+
+    public enum AmmoAttributes
+    {
+        Action_Speed, Attack, Range,
+        Number, None
+    }
+
+    public enum WearableAttributes
+    {
+        Action_Speed, Armor, Block, Dodge,
+        Number, None
+    }
+
+    public enum AccessoryAttributes
+    {
+        Action_Speed, Cooldown,
+        Number, None
     }
 
     public enum Rarity

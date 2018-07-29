@@ -25,7 +25,7 @@ namespace Reclamation.Equipment
             Type = type;
 
             Attributes = new List<ItemAttribute>();
-            Attributes.Add(new ItemAttribute((int)WearableAttributes.Actions, actions));
+            Attributes.Add(new ItemAttribute((int)WearableAttributes.Action_Speed, actions));
             Attributes.Add(new ItemAttribute((int)WearableAttributes.Armor, armor));
             Attributes.Add(new ItemAttribute((int)WearableAttributes.Block, block));
             Attributes.Add(new ItemAttribute((int)WearableAttributes.Dodge, dodge));
@@ -66,7 +66,7 @@ namespace Reclamation.Equipment
             string s = "";
 
             s += " - " + Type;
-            s += "\nActions +" + Attributes[(int)WearableAttributes.Actions].Value;
+            s += "\nActions +" + Attributes[(int)WearableAttributes.Action_Speed].Value;
             s += "\n" + Attributes[(int)WearableAttributes.Dodge].Value + "% Dodge";
             s += "<pos=50%>" + Attributes[(int)WearableAttributes.Block].Value + "% Block";
             s += "\n" + Attributes[(int)WearableAttributes.Armor].Value + " Armor";

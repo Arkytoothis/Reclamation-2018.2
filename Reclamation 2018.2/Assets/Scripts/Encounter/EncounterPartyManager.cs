@@ -47,7 +47,7 @@ namespace Reclamation.Encounter
             SetCurrentPc(0);
             SetMoveMode(MoveMode.Formation);
             SetFormation(0);
-            DisableMovement(false);
+            //DisableMovement(false);
             Invoke("EnableMovement", 1f);
         }
 
@@ -111,8 +111,8 @@ namespace Reclamation.Encounter
         {
             for (int i = 0; i < pcControllers.Count; i++)
             {
-                pcControllers[i].GetComponent<AIPath>().canSearch = true;
-                pcControllers[i].GetComponent<AIPath>().canMove = true;
+                pcControllers[i].GetComponent<RichAI>().canSearch = true;
+                pcControllers[i].GetComponent<RichAI>().canMove = true;
             }
         }
 
@@ -120,8 +120,8 @@ namespace Reclamation.Encounter
         {
             for (int i = 0; i < pcControllers.Count; i++)
             {
-                pcControllers[i].GetComponent<AIPath>().canSearch = canSearch;
-                pcControllers[i].GetComponent<AIPath>().canMove = false;
+                pcControllers[i].GetComponent<RichAI>().canSearch = canSearch;
+                pcControllers[i].GetComponent<RichAI>().canMove = false;
             }
         }
 
@@ -142,6 +142,11 @@ namespace Reclamation.Encounter
         public void Interact(Interactable interactable)
         {
             pcControllers[0].EncounterInteraction();
+        }
+
+        public void Attack(Interactable interactable)
+        {
+            pcControllers[0].AttackInteraction();
         }
 
         public void SetFormation(int index)

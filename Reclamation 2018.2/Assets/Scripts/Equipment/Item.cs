@@ -202,7 +202,7 @@ namespace Reclamation.Equipment
             if (def.WeaponData != null && def.WeaponData.Type != WeaponType.None)
             {
                 WeaponData = new WeaponData(def.WeaponData);
-                ActionCost = WeaponData.Attributes[(int)WeaponAttributes.Actions].Value;
+                ActionCost = WeaponData.Attributes[(int)WeaponAttributes.Action_Speed].Value;
             }
             else
                 WeaponData = null;
@@ -210,7 +210,7 @@ namespace Reclamation.Equipment
             if (def.AmmoData != null && def.AmmoData.Type != AmmoType.None)
             {
                 AmmoData = new AmmoData(def.AmmoData);
-                ActionCost += AmmoData.Attributes[(int)AmmoAttributes.Actions].Value;
+                ActionCost += AmmoData.Attributes[(int)AmmoAttributes.Action_Speed].Value;
             }
             else
                 AmmoData = null;
@@ -218,7 +218,7 @@ namespace Reclamation.Equipment
             if (def.WearableData != null && def.WearableData.Type != WearableType.None)
             {
                 WearableData = new WearableData(def.WearableData);
-                ActionCost += WearableData.Attributes[(int)WearableAttributes.Actions].Value;
+                ActionCost += WearableData.Attributes[(int)WearableAttributes.Action_Speed].Value;
             }
             else
                 WearableData = null;
@@ -226,7 +226,7 @@ namespace Reclamation.Equipment
             if (def.AccessoryData != null && def.AccessoryData.Type != AccessoryType.None)
             {
                 AccessoryData = new AccessoryData(def.AccessoryData);
-                ActionCost += AccessoryData.Attributes[(int)AccessoryAttributes.Actions].Value;
+                ActionCost += AccessoryData.Attributes[(int)AccessoryAttributes.Action_Speed].Value;
             }
             else
                 AccessoryData = null;
@@ -468,10 +468,10 @@ namespace Reclamation.Equipment
                 details += " - " + WeaponData.Type;
                 details += "\n" + WeaponData.Attributes[(int)WeaponAttributes.Attack].Value + " " + WeaponData.AttackType + " Attack";
 
-                if (WeaponData.Attributes[(int)WeaponAttributes.Actions].Value != 1)
-                    details += "\n" + WeaponData.Attributes[(int)WeaponAttributes.Actions].Value + " Actions";
+                if (WeaponData.Attributes[(int)WeaponAttributes.Action_Speed].Value != 1)
+                    details += "\n" + WeaponData.Attributes[(int)WeaponAttributes.Action_Speed].Value + " Actions";
                 else
-                    details += "\n" + WeaponData.Attributes[(int)WeaponAttributes.Actions].Value + " Action";
+                    details += "\n" + WeaponData.Attributes[(int)WeaponAttributes.Action_Speed].Value + " Action";
 
                 details += "<pos=50%>" + WeaponData.Attributes[(int)WeaponAttributes.Range].Value + " tile Range";
 
@@ -492,10 +492,10 @@ namespace Reclamation.Equipment
                 details += "\n" + AmmoData.Attributes[(int)AmmoAttributes.Attack].Value + " Attack";
                 details += "<pos=50%>" + AmmoData.Attributes[(int)AmmoAttributes.Range].Value + " tile Range";
 
-                if (AmmoData.Attributes[(int)AmmoAttributes.Actions].Value != 1)
-                    details += "\n" + AmmoData.Attributes[(int)AmmoAttributes.Actions].Value + " Actions";
+                if (AmmoData.Attributes[(int)AmmoAttributes.Action_Speed].Value != 1)
+                    details += "\n" + AmmoData.Attributes[(int)AmmoAttributes.Action_Speed].Value + " Actions";
                 else
-                    details += "\n" + AmmoData.Attributes[(int)AmmoAttributes.Actions].Value + " Action";
+                    details += "\n" + AmmoData.Attributes[(int)AmmoAttributes.Action_Speed].Value + " Action";
 
 
                 if (AmmoData.Damage != null)

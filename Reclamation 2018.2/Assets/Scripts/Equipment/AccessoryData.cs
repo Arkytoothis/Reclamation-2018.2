@@ -21,7 +21,7 @@ namespace Reclamation.Equipment
         {
             Type = type;
             Attributes = new List<ItemAttribute>();
-            Attributes.Add(new ItemAttribute((int)AccessoryAttributes.Actions, actions));
+            Attributes.Add(new ItemAttribute((int)AccessoryAttributes.Action_Speed, actions));
             Attributes.Add(new ItemAttribute((int)AccessoryAttributes.Cooldown, actions));
         }
 
@@ -42,10 +42,10 @@ namespace Reclamation.Equipment
 
             s += " - " + Type;
 
-            if (Attributes[(int)AccessoryAttributes.Actions].Value != 1)
-                s += "\n" + Attributes[(int)AccessoryAttributes.Actions].Value + " Actions";
+            if (Attributes[(int)AccessoryAttributes.Action_Speed].Value != 1)
+                s += "\n" + Attributes[(int)AccessoryAttributes.Action_Speed].Value + " Actions";
             else
-                s += "\n" + Attributes[(int)AccessoryAttributes.Actions].Value + " Action";
+                s += "\n" + Attributes[(int)AccessoryAttributes.Action_Speed].Value + " Action";
 
             s += "\nCooldown " + Attributes[(int)AccessoryAttributes.Cooldown].Value + " turns";
             return s;

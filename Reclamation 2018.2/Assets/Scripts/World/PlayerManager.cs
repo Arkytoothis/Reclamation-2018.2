@@ -35,9 +35,9 @@ namespace Reclamation.World
 
             partyPanel.Initialize();
 
-            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[0].pivot, party.pcs[0]);
-            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[1].pivot, party.pcs[1]);
-            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[2].pivot, party.pcs[2]);
+            ModelManager.instance.SpawnPc(PortraitRoom.instance.characterMounts[0].pivot, party.pcs[0]);
+            ModelManager.instance.SpawnPc(PortraitRoom.instance.characterMounts[1].pivot, party.pcs[1]);
+            ModelManager.instance.SpawnPc(PortraitRoom.instance.characterMounts[2].pivot, party.pcs[2]);
         }
 
         public GameObject CreatePartyObject(Transform parent, Vector3 position, PartyData data)
@@ -68,7 +68,7 @@ namespace Reclamation.World
 
         public void CreatePortraitModel(Transform parent, Pc pc)
         {
-            ModelManager.instance.SpawnCharacter(parent, pc);
+            ModelManager.instance.SpawnPc(parent, pc);
         }
     }
 }

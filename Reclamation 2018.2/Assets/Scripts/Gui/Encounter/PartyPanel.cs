@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Reclamation.Encounter;
+using TMPro;
 
 namespace Reclamation.Gui.Encounter
 {
@@ -10,10 +11,11 @@ namespace Reclamation.Gui.Encounter
         public GameObject pcElementPrefab;
         public List<GameObject> pcButtons;
         public Transform pcElementsParent;
+        public TMP_Text label;
 
         public void Initialize()
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < EncounterManager.instance.pcs.Count; i++)
             {
                 GameObject go = Instantiate(pcElementPrefab, pcElementsParent);
                 FlexiblePcButton button = go.GetComponent<FlexiblePcButton>();
@@ -21,16 +23,11 @@ namespace Reclamation.Gui.Encounter
 
                 pcButtons.Add(go);
             }
-
-            InvokeRepeating("UpdatePcs", 0.1f, 0.1f);
         }
 
-        public void UpdatePcs()
+        public void UpdateLabel(int layer)
         {
-            for (int i = 0; i < 6; i++)
-            {
-                pcButtons[i].GetComponent<FlexiblePcButton>().UpdateData();
-            }
+            label.text = "Layer " + layer;
         }
 	}
 }

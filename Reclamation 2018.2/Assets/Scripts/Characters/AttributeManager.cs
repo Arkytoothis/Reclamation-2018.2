@@ -82,5 +82,26 @@ namespace Reclamation.Characters
             else
                 return 0;
         }
+
+        public void ModifyAttribute(AttributeType type, int attribute, int value)
+        {
+            switch (type)
+            {
+                case AttributeType.Base:
+                    lists[(int)AttributeListType.Base].Attributes[attribute].Modify(AttributeComponentType.Current, value);
+                    break;
+                case AttributeType.Derived:
+                    lists[(int)AttributeListType.Derived].Attributes[attribute].Modify(AttributeComponentType.Current, value);
+                    break;
+                case AttributeType.Resistance:
+                    lists[(int)AttributeListType.Resistance].Attributes[attribute].Modify(AttributeComponentType.Current, value);
+                    break;
+                case AttributeType.Skill:
+                    //lists[(int)AttributeListType.ski].Attributes[attribute].Current += value;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

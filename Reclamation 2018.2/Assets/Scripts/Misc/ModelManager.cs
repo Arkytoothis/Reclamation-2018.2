@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using Reclamation.Characters;
+using Reclamation.Encounter;
 
 namespace Reclamation.Misc
 {
@@ -16,7 +16,7 @@ namespace Reclamation.Misc
 
         }
 
-        public GameObject SpawnCharacter(Transform parent, Pc pc)
+        public GameObject SpawnPc(Transform parent, Pc pc)
         {
             GameObject go = null;
 
@@ -28,6 +28,8 @@ namespace Reclamation.Misc
             {
                 go = Instantiate(femalePrefab, parent);
             }
+
+            go.GetComponent<EncounterPcController>().SetPcData(pc);
 
             return go;
         }

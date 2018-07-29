@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using Pathfinding.RVO;
 using Reclamation.Encounter;
 
 namespace Reclamation.Characters
@@ -11,7 +12,7 @@ namespace Reclamation.Characters
         const float animationSmoothTime = 0.1f;
 
         public Animator animator;
-        CharacterController characterController;
+        RVOController characterController;
         EncounterPcController pcController;
 
         void Start()
@@ -19,7 +20,7 @@ namespace Reclamation.Characters
             animator = GetComponent<Animator>();
             if (animator == null) Debug.LogError("animator == null");
 
-            characterController = GetComponent<CharacterController>();
+            characterController = GetComponent<RVOController>();
             if (characterController == null) Debug.LogError("controller == null");
 
             pcController = GetComponent<EncounterPcController>();
@@ -30,7 +31,7 @@ namespace Reclamation.Characters
         {
             float speedPercent = 0f;
 
-            if (characterController != null && pcController.gameObject.GetComponent<AIPath>().canMove == true)
+            if (characterController != null && pcController.gameObject.GetComponent<RichAI>().canMove == true)
                 speedPercent = characterController.velocity.magnitude / pcController.moveSpeed;
 
             animator.SetFloat("speedPercent", speedPercent, animationSmoothTime, Time.deltaTime);
@@ -49,6 +50,27 @@ namespace Reclamation.Characters
         public void Stop()
         {
             animator.SetFloat("speedPercent", 0);
+        }
+
+        public void Death()
+        {
+            animator.SetBool("isDead", true);
+            animator.SetTrigger("die");
+        }
+
+        public void Revive()
+        {
+            animator.SetBool("isDead", false);
+        }
+
+        public void LevelUp()
+        {
+            animator.SetTrigger("levelUp");
+        }
+
+        public void Attack()
+        {
+            animator.SetTrigger("attack");
         }
     }
 }

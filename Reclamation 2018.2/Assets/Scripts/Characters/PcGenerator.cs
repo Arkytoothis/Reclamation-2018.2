@@ -102,7 +102,7 @@ namespace Reclamation.Characters
             else gender = Gender.Female;
 
             Pc pc = new Pc(NameGenerator.Get(gender, race_key, profession_key),
-                gender, BackgroundGenerator.Generate(), race_key, profession_key, hair, beard, index, -1,
+                gender, BackgroundGenerator.Generate(), race_key, profession_key, hair, beard, index, index, index,
                 3 + GameValue.Roll(new GameValue(1, 3), false), 3 + GameValue.Roll(new GameValue(1, 3), false));
 
             Race race = Database.GetRace(race_key);
@@ -196,7 +196,7 @@ namespace Reclamation.Characters
             pc.Abilities.FindTraits();
             pc.Abilities.FindAvailableAbilities();
 
-            pc.AddExperience(Random.Range(0, 500) * 10, false);
+            //pc.AddExperience(Random.Range(0, 500) * 10, false);
 
             pc.CalculateUpkeep();
 

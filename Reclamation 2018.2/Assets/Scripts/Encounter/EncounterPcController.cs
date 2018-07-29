@@ -9,13 +9,22 @@ using Reclamation.Props;
 namespace Reclamation.Encounter
 {
     [System.Serializable]
-    public class EncounterPcController : Singleton<EncounterPcController>
+    public class EncounterPcController : MonoBehaviour
     {
         public Interactable focus;
         public float moveSpeed = 3f;
 
         [SerializeField]
         private PcAnimator animator;
+        private Pc pcData;
+
+        public void SetPcData(Pc pc)
+        {
+            pcData = pc;
+            pcData.onDeath += animator.Death;
+            pcData.onRevive += animator.Revive;
+            pcData.onLevelUp += animator.LevelUp;
+        }
 
         public void SetFocus(Interactable interactable)
         {
@@ -39,6 +48,11 @@ namespace Reclamation.Encounter
         public void EncounterInteraction()
         {
             animator.EncounterInteraction();
+        }
+
+        public void AttackInteraction()
+        {
+            animator.Attack();
         }
 
         public void StopAnimations()

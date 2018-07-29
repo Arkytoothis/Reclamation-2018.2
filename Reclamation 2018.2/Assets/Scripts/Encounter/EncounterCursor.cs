@@ -13,6 +13,10 @@ namespace Reclamation.Encounter
         public Transform pointToTarget;
         public float turnSpeed = 20f;
         public List<GameObject> markers;
+        public bool isEnabled = true;
+        [SerializeField] Texture2D walkCursor = null;
+        [SerializeField] Texture2D unknownCursor = null;
+        [SerializeField] Texture2D guiCursor = null;
 
         private Camera cam;
         private bool interactableFound;
@@ -22,14 +26,45 @@ namespace Reclamation.Encounter
             cam = Camera.main;
         }
 
+        void Start()
+        {
+            InvokeRepeating("UpdateCursor", 0.1f, 0.1f);
+        }
+
+        public void UpdateCursor()
+        {
+            if (isEnabled == false) return;
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 1000))
+            {
+                if (hit.collider.gameObject.layer == 8)
+                {
+                    Cursor.SetCursor(walkCursor, Vector2.zero, CursorMode.Auto);
+                }
+                else if (hit.collider.gameObject.layer == 0)
+                {
+                    Cursor.SetCursor(unknownCursor, Vector2.zero, CursorMode.Auto);
+                }
+            }
+        }
+
         void Update()
         {
-            if (EventSystem.current.IsPointerOverGameObject() == true) return;
+            if (EventSystem.current.IsPointerOverGameObject() == true)
+            {
+                Cursor.SetCursor(guiCursor, Vector2.zero, CursorMode.Auto);
+                return;
+            }
+
+            if (isEnabled == false) return;
 
             if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
+                RaycastHit hit; 
 
                 if (Physics.Raycast(ray, out hit, 1000))
                 {

@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Reclamation.Misc;
+using UnityEngine.UI;
+using Reclamation.Gui;
+using FoW;
+using Pathfinding;
+using Reclamation.Encounter;
+using Reclamation.Characters;
 
-namespace Reclamation.World
+namespace Reclamation.Misc
 {
     public class PortraitRoom : Singleton<PortraitRoom>
     {
@@ -14,9 +19,16 @@ namespace Reclamation.World
             Reload();
         }
 
-        public void SpawnCharacter(int index)
+        public void AddModel(GameObject model, int index)
         {
+            model.GetComponent<FogOfWarUnit>().enabled = false;
+            model.GetComponent<Seeker>().enabled = false;
+            //model.GetComponent<SimpleSmoothModifier>().enabled = false;
+            model.GetComponent<EncounterPcController>().enabled = false;
+            model.GetComponent<AIDestinationSetter>().enabled = false;
+            model.GetComponent<RichAI>().enabled = false;
 
+            model.transform.SetParent(characterMounts[index].pivot, false);
         }
 
         //public RenderTexture CreatePortrait(GameObject go)

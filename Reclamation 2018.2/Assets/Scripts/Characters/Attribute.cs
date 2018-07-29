@@ -5,69 +5,7 @@ using Reclamation.Misc;
 
 namespace Reclamation.Characters
 {
-    public enum BaseAttribute
-    {
-        Strength, Endurance, Agility, Dexterity, Senses, Intellect, Wisdom, Willpower, Charisma, Memory,
-        Number, None
-    }
-
-    public enum DerivedAttribute
-    {
-        Armor, Health, Stamina, Essence, Morale,
-        Might_Attack, Might_Damage, Finesse_Attack, Finesse_Damage, Spell_Attack, Spell_Damage, Spell_Modifier,
-        Block, Dodge, Parry, Resistance, Speed, Perception, Concentration,
-        Action_Modifier, Duration_Modifier, Range_Modifier, Magic_Find,
-        Fumble, Graze, Critical_Strike, Perfect_Strike, Critical_Damage,
-        Health_Regen, Stamina_Regen, Essence_Regen,
-        Number, None
-    }
-
-    public enum DamageType
-    {
-        Physical, Fire, Shock, Cold, Poison, Acid, Unholy, Holy, Psychic, Arcane,
-        Number, None
-    }
-
-    public enum Skill
-    {
-        One_Hand_Melee, Two_hand_Melee, Polearms, Unarmed, Thrown, Archery, Firearms, Explosives,
-        Light_Armor, Medium_Armor, Heavy_Armor, Bucklers, Shields, Leadership, Tactics,
-        Fire_Magic, Air_Magic, Water_Magic, Earth_Magic, Death_Magic, Life_Magic, Shadow_Magic, Arcane_Magic,
-        Alchemy, Enchanting, Lore, Research, Channeling,
-        Stealth, Scouting, Tricks, Evasion, Precision, Devices, Persuasion, Poison_Crafting,
-        Mining, Gathering, Crafting, Engineering, Logistics, Steamcraft, Survival, Navigation, Training, Medicine,
-        Number, None
-    }
-
-    public enum PartyAttribute
-    {
-        March_Speed, Detection_Range, Supplies, Supplies_Used, Max_Supplies, Rations, Rations_Used, Max_Rations,
-        Number, None
-    }
-
-    public enum WeaponAttributes
-    {
-        Actions, Attack, Parry, Range,
-        Number, None
-    }
-
-    public enum AmmoAttributes
-    {
-        Actions, Attack, Range,
-        Number, None
-    }
-
-    public enum WearableAttributes
-    {
-        Actions, Armor, Block, Dodge,
-        Number, None
-    }
-
-    public enum AccessoryAttributes
-    {
-        Actions, Cooldown,
-        Number, None
-    }
+    
 
     [System.Serializable]
     public class Attribute
@@ -219,6 +157,38 @@ namespace Reclamation.Characters
             expCost = current * ExpModifier;
         }
 
+        public void Modify(AttributeComponentType type, int value)
+        {
+            switch (type)
+            {
+                case AttributeComponentType.Current:
+                    current += value;
+                    break;
+                case AttributeComponentType.Start:
+                    start += value;
+                    break;
+                case AttributeComponentType.Minimum:
+                    minimum += value;
+                    break;
+                case AttributeComponentType.Maximum:
+                    maximum += value;
+                    break;
+                case AttributeComponentType.Modifier:
+                    modifier += value;
+                    break;
+                case AttributeComponentType.Spent:
+                    spent += value;
+                    break;
+                case AttributeComponentType.Exp_Cost:
+                    expCost += value;
+                    break;
+                default:
+                    break;
+            }
+
+            Check();
+        }
+
         public int Get(AttributeComponentType type)
         {
             int val = 0;
@@ -245,10 +215,6 @@ namespace Reclamation.Characters
                     break;
                 case AttributeComponentType.Exp_Cost:
                     val = expCost;
-                    break;
-                case AttributeComponentType.Number:
-                    break;
-                case AttributeComponentType.None:
                     break;
                 default:
                     break;

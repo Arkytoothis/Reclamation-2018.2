@@ -15,22 +15,20 @@ namespace Reclamation.Gui.Encounter
         public TMP_Text derivedAttributesLabel;
         public TMP_Text skillsLabel;
         public TMP_Text resistancesLabel;
+        public bool isOpen = false;
 
         private int currentPc = 0;
+        private Pc pc;
 
         public void Initialize()
         {
             SetData(EncounterManager.instance.parties[0].pcs[0]);
+            UpdateData();
+            Close();
         }
 
-        public void SetData(Pc pc)
+        public void UpdateData()
         {
-            if (pc == null)
-            {
-                Debug.LogError("pc == null");
-                return;
-            }
-
             detailsLabel.text = pc.Name.FullName + ", Lvl " + pc.Level + " " + pc.RaceKey + " " + pc.ProfessionKey + "\n";
 
             string s = "";
@@ -53,7 +51,7 @@ namespace Reclamation.Gui.Encounter
                 definition = Database.GetDerivedAttribute(i);
                 attribute = pc.GetDerived(i);
 
-                if(definition.Type == AttributeDefinitionType.Derived_Percent)
+                if (definition.Type == AttributeDefinitionType.Derived_Percent)
                     s += definition.Name + "<pos=200>" + attribute.Current + "%\n";
                 else if (definition.Type == AttributeDefinitionType.Derived_Points)
                     s += definition.Name + "<pos=200>" + attribute.Current + "/" + attribute.Maximum + "\n";
@@ -81,20 +79,64 @@ namespace Reclamation.Gui.Encounter
                 skillDef = Database.GetSkill(kvp.Value.Index);
                 Attribute skill = pc.GetSkill(kvp.Key);
 
-                s += kvp.Key + "<pos=200>" + skill.Current + "\n";
+                s += skillDef.Name + "<pos=200>" + skill.Current + "\n";
             }
 
             skillsLabel.text = s;
         }
 
+        public void SetData(Pc pc)
+        {
+            if (pc == null)
+            {
+                Debug.LogError("pc == null");
+                return;
+            }
+
+            this.pc = pc;
+        }
+
         public void NextPc()
         {
-            Debug.Log("Next Pc");
+            //Debug.Log("Next Pc");
+            currentPc++;
+            if (currentPc > EncounterManager.instance.parties[0].currentPcs - 1)
+                currentPc = 0;
+
+            SetData(EncounterManager.instance.parties[0].pcs[currentPc]);
+            UpdateData();
         }
 
         public void PreviousPc()
         {
-            Debug.Log("Previous Pc");
+            //Debug.Log("Previous Pc");
+            currentPc--;
+            if (currentPc < 0)
+                currentPc = EncounterManager.instance.parties[0].currentPcs - 1;
+
+            SetData(EncounterManager.instance.parties[0].pcs[currentPc]);
+            UpdateData();
+        }
+
+        public void Toggle()
+        {
+            isOpen = !isOpen;
+
+            if (isOpen == true) Open();
+            else Close();
+        }
+        public void Open()
+        {
+            EncounterCursor.instance.isEnabled = false;
+            isOpen = true;
+            transform.localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
+        }
+
+        public void Close()
+        {
+            EncounterCursor.instance.isEnabled = true;
+            isOpen = false;
+            transform.localPosition = new Vector3(-10000, transform.localPosition.y, transform.localPosition.z);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Reclamation.Equipment
             Type = type;
 
             Attributes = new List<ItemAttribute>();
-            Attributes.Add(new ItemAttribute((int)AmmoAttributes.Actions, actions));
+            Attributes.Add(new ItemAttribute((int)AmmoAttributes.Action_Speed, actions));
             Attributes.Add(new ItemAttribute((int)AmmoAttributes.Attack, attack));
             Attributes.Add(new ItemAttribute((int)AmmoAttributes.Range, range));
 
@@ -67,10 +67,10 @@ namespace Reclamation.Equipment
             s += "\n" + Attributes[(int)AmmoAttributes.Attack].Value + " Attack";
             s += "<pos=50%>" + Attributes[(int)AmmoAttributes.Range].Value + " tile Range";
 
-            if (Attributes[(int)AmmoAttributes.Actions].Value != 1)
-                s += "\n" + Attributes[(int)AmmoAttributes.Actions].Value + " Actions";
+            if (Attributes[(int)AmmoAttributes.Action_Speed].Value != 1)
+                s += "\n" + Attributes[(int)AmmoAttributes.Action_Speed].Value + " Actions";
             else
-                s += "\n" + Attributes[(int)AmmoAttributes.Actions].Value + " Action";
+                s += "\n" + Attributes[(int)AmmoAttributes.Action_Speed].Value + " Action";
 
 
             if (Damage != null)

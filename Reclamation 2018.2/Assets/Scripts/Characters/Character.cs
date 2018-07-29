@@ -30,8 +30,14 @@ namespace Reclamation.Characters
         public CharacterInventory Inventory;
         public Vector3 position;
 
+        public bool isDead = false;
+        public bool isExhausted = false;
+        public bool isDrained = false;
+        public bool isBroken = false;
+
         public virtual void ModifyAttribute(AttributeType type, int attribute, int value)
         {
+            attributeManager.ModifyAttribute(type, attribute, value);
         }
 
         public Attribute GetBase(int attribute)
@@ -141,6 +147,10 @@ namespace Reclamation.Characters
                     {
                         start = Database.GetRace(RaceKey).StartingAttributes[definition.Calculation.Attribute1.Attribute].Roll(false);
                     }
+                    else if (definition.Calculation.Attribute1.Type == AttributeModifierType.Value)
+                    {
+                        start = definition.Calculation.Attribute1.Attribute;
+                    }
                 }
 
                 if (definition.Calculation.Attribute2 != null)
@@ -206,11 +216,13 @@ namespace Reclamation.Characters
         {
             for (int i = 0; i < Database.Races[RaceKey].Resistances.Count; i++)
             {
-                int resistance = (int)Database.Races[RaceKey].Resistances[i].DamageType;
+                //int resistance = (int)Database.Races[RaceKey].Resistances[i].DamageType;
                 int value = Database.Races[RaceKey].Resistances[i].Value;
                 //Resistances[resistance].SetStart(value, 0, 100);
                 attributeManager.SetStart(AttributeListType.Resistance, i, value, 0, 100);
             }
         }
+
+        
     }
 }

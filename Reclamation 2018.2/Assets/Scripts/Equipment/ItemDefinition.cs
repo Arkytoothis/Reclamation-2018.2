@@ -222,10 +222,10 @@ namespace Reclamation.Equipment
                 details += " - " + WeaponData.Type;
                 details += "\n" + WeaponData.Attributes[(int)WeaponAttributes.Attack].Value + " " + WeaponData.AttackType + " Attack";
 
-                if (WeaponData.Attributes[(int)WeaponAttributes.Actions].Value != 1)
-                    details += "\n" + WeaponData.Attributes[(int)WeaponAttributes.Actions].Value + " Actions";
+                if (WeaponData.Attributes[(int)WeaponAttributes.Action_Speed].Value != 1)
+                    details += "\n" + WeaponData.Attributes[(int)WeaponAttributes.Action_Speed].Value + " Actions";
                 else
-                    details += "\n" + WeaponData.Attributes[(int)WeaponAttributes.Actions].Value + " Action";
+                    details += "\n" + WeaponData.Attributes[(int)WeaponAttributes.Action_Speed].Value + " Action";
 
                 details += "<pos=50%>" + WeaponData.Attributes[(int)WeaponAttributes.Range].Value + " tile Range";
 
@@ -246,10 +246,10 @@ namespace Reclamation.Equipment
                 details += "\n" + AmmoData.Attributes[(int)AmmoAttributes.Attack].Value + " Attack";
                 details += "<pos=50%>" + AmmoData.Attributes[(int)AmmoAttributes.Range].Value + " tile Range";
 
-                if (AmmoData.Attributes[(int)AmmoAttributes.Actions].Value != 1)
-                    details += "\n" + AmmoData.Attributes[(int)AmmoAttributes.Actions].Value + " Actions";
+                if (AmmoData.Attributes[(int)AmmoAttributes.Action_Speed].Value != 1)
+                    details += "\n" + AmmoData.Attributes[(int)AmmoAttributes.Action_Speed].Value + " Actions";
                 else
-                    details += "\n" + AmmoData.Attributes[(int)AmmoAttributes.Actions].Value + " Action";
+                    details += "\n" + AmmoData.Attributes[(int)AmmoAttributes.Action_Speed].Value + " Action";
 
 
                 if (AmmoData.Damage != null)
