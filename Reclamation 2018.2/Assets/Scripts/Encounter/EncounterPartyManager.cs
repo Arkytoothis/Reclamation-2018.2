@@ -34,6 +34,8 @@ namespace Reclamation.Encounter
         public void Initialize()
         {
             cam = Camera.main;
+            cam.gameObject.GetComponent<CameraRaycaster>().onMouseOverEnemy += OnMouseOverEnemy;
+            cam.gameObject.GetComponent<CameraRaycaster>().onMouseOverInteractable += OnMouseOverInteractable;
 
             for (int i = 0; i < selectedPcs.Length; i++)
             {
@@ -47,8 +49,7 @@ namespace Reclamation.Encounter
             SetCurrentPc(0);
             SetMoveMode(MoveMode.Formation);
             SetFormation(0);
-            //DisableMovement(false);
-            Invoke("EnableMovement", 1f);
+            //Invoke("EnableMovement", .1f);
         }
 
         public void SetControllers(List<GameObject> pcs)
@@ -111,8 +112,7 @@ namespace Reclamation.Encounter
         {
             for (int i = 0; i < pcControllers.Count; i++)
             {
-                pcControllers[i].GetComponent<RichAI>().canSearch = true;
-                pcControllers[i].GetComponent<RichAI>().canMove = true;
+                pcControllers[i].CanMove(true);
             }
         }
 
@@ -120,8 +120,7 @@ namespace Reclamation.Encounter
         {
             for (int i = 0; i < pcControllers.Count; i++)
             {
-                pcControllers[i].GetComponent<RichAI>().canSearch = canSearch;
-                pcControllers[i].GetComponent<RichAI>().canMove = false;
+                pcControllers[i].CanMove(false);
             }
         }
 
@@ -133,20 +132,62 @@ namespace Reclamation.Encounter
             }
         }
 
-        public void MoveToInteractable(Interactable interactable)
+        public void OnMouseOverInteractable(GameObject target)
         {
-            formationTransforms[0].position = new Vector3(interactable.interactionTransform.position.x, 0, interactable.interactionTransform.position.z);
-            pcControllers[0].SetFocus(interactable);
+            if (Input.GetMouseButtonUp(0))
+            {
+                Interactable interactable = target.GetComponent<Interactable>();
+
+                if (interactable != null)
+                {
+                    pcControllers[0].SetInteractionTarget(target);
+                    pcControllers[0].MoveTo(target);
+                }
+            }
         }
 
-        public void Interact(Interactable interactable)
+        public void OnMouseOverEnemy(GameObject target)
         {
-            pcControllers[0].EncounterInteraction();
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (moveMode == MoveMode.Solo)
+                {
+                    if (pcControllers[0].CheckAttack(target) == true)
+                    {
+                        pcControllers[0].SetAttackTarget(target);
+                    }
+                }
+                else if (moveMode == MoveMode.Formation)
+                {
+                    for (int i = 0; i < pcControllers.Count; i++)
+                    {
+                        if (pcControllers[i].CheckRange(target) == true)
+                        {
+                            pcControllers[i].SetAttackTarget(target);
+                        }
+                        else
+                        {
+                            pcControllers[i].SetAttackTarget(target);
+                            MoveTo(target);
+                        }
+                    }
+                }
+            }
         }
 
-        public void Attack(Interactable interactable)
+        public void MoveTo(GameObject target)
         {
-            pcControllers[0].AttackInteraction();
+            if (moveMode == MoveMode.Solo)
+            {
+                pcControllers[0].MoveTo(target);
+            }
+            else if (moveMode == MoveMode.Formation)
+            {
+                for (int i = 0; i < pcControllers.Count; i++)
+                {
+                    pcControllers[i].MoveTo(target);
+                }
+            }
         }
 
         public void SetFormation(int index)
@@ -160,6 +201,13 @@ namespace Reclamation.Encounter
             for (int i = 0; i < PartyData.MaxPartySize; i++)
             {
                 formationTransforms[i].localPosition = new Vector3(defaultFormations[formationIndex].Positions[i].x, 0, defaultFormations[formationIndex].Positions[i].y);
+            }
+
+            for (int i = 0; i < pcControllers.Count; i++)
+            {
+                pcControllers[i].CanMove(true);
+                pcControllers[i].SetAttackTarget(null);
+                pcControllers[i].GetComponent<AIDestinationSetter>().target = formationTransforms[i];
             }
         }
     }

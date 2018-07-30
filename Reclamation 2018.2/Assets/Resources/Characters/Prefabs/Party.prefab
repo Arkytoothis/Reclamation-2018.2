@@ -56,7 +56,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4421899024143202}
   - component: {fileID: 114854375770234866}
-  - component: {fileID: 114030833586198890}
   m_Layer: 0
   m_Name: Party
   m_TagString: Untagged
@@ -387,17 +386,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114030833586198890
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1142518400079104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2a80a1d8a1dfed4d8771ccd196ace6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114854375770234866
 MonoBehaviour:
   m_ObjectHideFlags: 1

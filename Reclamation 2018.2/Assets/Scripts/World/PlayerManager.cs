@@ -27,17 +27,17 @@ namespace Reclamation.World
 
             PartyData party = new PartyData("Blue Party", Color.blue, 0, 3);
 
-            party.pcs[0] = new Pc(PcGenerator.Generate(0, "Imperial", "Soldier"));
-            party.pcs[1] = new Pc(PcGenerator.Generate(1, "Imperial", "Scout"));
-            party.pcs[2] = new Pc(PcGenerator.Generate(2, "Imperial", "Priest"));
+            party.pcs[0] = new Pc(PcGenerator.Generate(0, Gender.None, "Imperial", "Soldier"));
+            party.pcs[1] = new Pc(PcGenerator.Generate(1, Gender.None, "Imperial", "Scout"));
+            party.pcs[2] = new Pc(PcGenerator.Generate(2, Gender.None, "Imperial", "Priest"));
 
             parties.Add(CreatePartyObject(this.transform, playerSpawn.position, party));
 
             partyPanel.Initialize();
 
-            ModelManager.instance.SpawnPc(PortraitRoom.instance.characterMounts[0].pivot, party.pcs[0]);
-            ModelManager.instance.SpawnPc(PortraitRoom.instance.characterMounts[1].pivot, party.pcs[1]);
-            ModelManager.instance.SpawnPc(PortraitRoom.instance.characterMounts[2].pivot, party.pcs[2]);
+            ModelManager.instance.SpawnPc(PortraitRoom.instance.characterMounts[0].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, party.pcs[0]);
+            ModelManager.instance.SpawnPc(PortraitRoom.instance.characterMounts[1].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, party.pcs[1]);
+            ModelManager.instance.SpawnPc(PortraitRoom.instance.characterMounts[2].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, party.pcs[2]);
         }
 
         public GameObject CreatePartyObject(Transform parent, Vector3 position, PartyData data)
@@ -68,7 +68,7 @@ namespace Reclamation.World
 
         public void CreatePortraitModel(Transform parent, Pc pc)
         {
-            ModelManager.instance.SpawnPc(parent, pc);
+            ModelManager.instance.SpawnPc(parent, parent.position, pc);
         }
     }
 }

@@ -75,7 +75,7 @@ namespace Reclamation.Characters
             }
         }
 
-        public static Pc Generate(int index, string r, string p)
+        public static Pc Generate(int index, Gender gender, string r, string p)
         {
             //if (availableRaces == null || availableProfessions == null) return null;
 
@@ -96,10 +96,11 @@ namespace Reclamation.Characters
             //if (Database.Races[race_key].Beard != -1)
             //    beard = SpriteManager.Instance.GetRandomBeard();
 
-            Gender gender;
-
-            if (Random.Range(0, 100) < 50) gender = Gender.Male;
-            else gender = Gender.Female;
+            if (gender == Gender.None)
+            {
+                if (Random.Range(0, 100) < 50) gender = Gender.Male;
+                else gender = Gender.Female;
+            }
 
             Pc pc = new Pc(NameGenerator.Get(gender, race_key, profession_key),
                 gender, BackgroundGenerator.Generate(), race_key, profession_key, hair, beard, index, index, index,

@@ -20,111 +20,59 @@ namespace Reclamation.Encounter
 
         private Camera cam;
         private bool interactableFound;
+        private CameraRaycaster raycaster;
 
         void Awake()
         {
             cam = Camera.main;
+            raycaster = cam.GetComponent<CameraRaycaster>();
         }
 
         void Start()
         {
-            InvokeRepeating("UpdateCursor", 0.1f, 0.1f);
+            raycaster.onMouseOverWalkable += OnMouseOverWalkable;
         }
 
-        public void UpdateCursor()
+        public void OnMouseOverWalkable(Vector3 position)
         {
-            if (isEnabled == false) return;
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    gameObject.transform.position = position;
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            //    if (pointToTarget)
+            //    {
+            //        transform.LookAt(pointToTarget, Vector3.up);
+            //        EncounterPartyManager.instance.EnableMovement();
+            //        EncounterPartyManager.instance.ResetFormation();
+            //    }
+            //}
 
-            if (Physics.Raycast(ray, out hit, 1000))
-            {
-                if (hit.collider.gameObject.layer == 8)
-                {
-                    Cursor.SetCursor(walkCursor, Vector2.zero, CursorMode.Auto);
-                }
-                else if (hit.collider.gameObject.layer == 0)
-                {
-                    Cursor.SetCursor(unknownCursor, Vector2.zero, CursorMode.Auto);
-                }
-            }
-        }
+            //if (Input.GetMouseButton(0))
+            //{
+            //    gameObject.transform.position = position;
 
-        void Update()
-        {
-            if (EventSystem.current.IsPointerOverGameObject() == true)
-            {
-                Cursor.SetCursor(guiCursor, Vector2.zero, CursorMode.Auto);
-                return;
-            }
-
-            if (isEnabled == false) return;
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit; 
-
-                if (Physics.Raycast(ray, out hit, 1000))
-                {
-                    Interactable interactable = hit.collider.GetComponent<Interactable>();
-
-                    if (interactable != null)
-                    {
-                        interactableFound = true;
-                        EncounterPartyManager.instance.MoveToInteractable(interactable);
-                    }
-                    else
-                    {
-                        interactableFound = false;
-                    }
-                }
-            }
-
-            if (interactableFound == false && Input.GetMouseButton(0))
-            {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit, 1000, movementMask))
-                {
-                    gameObject.transform.position = hit.point;
-
-                    if (pointToTarget)
-                    {
-                        transform.LookAt(pointToTarget, Vector3.up);
-                        EncounterPartyManager.instance.ResetFormation();
-                    }
-                }
-            }
+            //    if (pointToTarget)
+            //    {
+            //        transform.LookAt(pointToTarget, Vector3.up);
+            //        EncounterPartyManager.instance.ResetFormation();
+            //    }
+            //}
 
             if (Input.GetMouseButtonDown(1))
             {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit, 1000, movementMask))
-                {
-                    EncounterPartyManager.instance.Stop();
-                    gameObject.transform.position = hit.point;
-                    transform.LookAt(pointToTarget, Vector3.up);
-                    EncounterPartyManager.instance.ResetFormation();
-                }
+                EncounterPartyManager.instance.Stop();
+                EncounterPartyManager.instance.DisableMovement(false);
+                gameObject.transform.position = position;
+                transform.LookAt(pointToTarget, Vector3.up);
+                EncounterPartyManager.instance.ResetFormation();
             }
 
             if (Input.GetMouseButton(1))
             {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit, 1000, movementMask))
+                if (pointToTarget)
                 {
-                    if (pointToTarget)
-                    {
-                        EncounterPartyManager.instance.DisableMovement(false);
-                        transform.Rotate(Vector3.up, (-Input.GetAxis("Mouse X") * Time.deltaTime * 300f));
-                    }
+                    EncounterPartyManager.instance.DisableMovement(false);
+                    transform.Rotate(Vector3.up, (-Input.GetAxis("Mouse X") * Time.deltaTime * 300f));
                 }
             }
 

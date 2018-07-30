@@ -40,7 +40,8 @@ GameObject:
   - component: {fileID: 64310557818812072}
   - component: {fileID: 114094033848361096}
   - component: {fileID: 114078445464582430}
-  - component: {fileID: 114801862869989178}
+  - component: {fileID: 114794246181375554}
+  - component: {fileID: 114289020505955970}
   m_Layer: 0
   m_Name: Stairs Small
   m_TagString: Untagged
@@ -234,7 +235,7 @@ MonoBehaviour:
     rgba: 4278190335
   AffectChildren: 1
   ExcludeParticleSystems: 1
---- !u!114 &114801862869989178
+--- !u!114 &114289020505955970
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,12 +243,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1929083263658970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5a85013ae15d594fbafbef85d10e932, type: 3}
+  m_Script: {fileID: 11500000, guid: d337721a6a8e9b34bb81e72e47413352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionTransform: {fileID: 4853948405457710}
+  interactionTransform: {fileID: 4645441495018612}
   radius: 1
+  gold: 0
+--- !u!114 &114794246181375554
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1929083263658970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da578f3a5810d8340aa4b2e91fad4d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 23655901928668672}
+  interactableData: {fileID: 11400000, guid: b8045d4f49c84af41865e3eacc543c9e, type: 2}
   colorTransition: {fileID: 114078445464582430}
   outline: {fileID: 114094033848361096}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  interactableData: {fileID: 11400000, guid: 6786012d8fa508442b70dbb27a890467, type: 2}

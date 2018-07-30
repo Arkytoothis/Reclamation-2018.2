@@ -38,12 +38,12 @@ namespace Reclamation.Encounter
 
             PartyData party = new PartyData("Blue Party", Color.blue, 0, 3);
 
-            party.pcs[0] = new Pc(PcGenerator.Generate(0, "Imperial", "Soldier"));
-            party.pcs[1] = new Pc(PcGenerator.Generate(1, "Imperial", "Scout"));
-            party.pcs[2] = new Pc(PcGenerator.Generate(2, "Imperial", "Priest"));
-            party.pcs[3] = new Pc(PcGenerator.Generate(3, "Imperial", "Soldier"));
-            party.pcs[4] = new Pc(PcGenerator.Generate(4, "Imperial", "Scout"));
-            party.pcs[5] = new Pc(PcGenerator.Generate(5, "Imperial", "Priest"));
+            party.pcs[0] = new Pc(PcGenerator.Generate(0, Gender.Female, "Imperial", "Soldier"));
+            party.pcs[1] = new Pc(PcGenerator.Generate(1, Gender.Male, "Imperial", "Scout"));
+            //party.pcs[2] = new Pc(PcGenerator.Generate(2, "Imperial", "Priest"));
+            //party.pcs[3] = new Pc(PcGenerator.Generate(3, "Imperial", "Soldier"));
+            //party.pcs[4] = new Pc(PcGenerator.Generate(4, "Imperial", "Scout"));
+            //party.pcs[5] = new Pc(PcGenerator.Generate(5, "Imperial", "Priest"));
 
             parties.Add(party);
 
@@ -52,6 +52,20 @@ namespace Reclamation.Encounter
 
             EncounterCursor.instance.pointToTarget = pcs[0].transform;
             EncounterGuiManager.instance.Initialize();
+
+            for (int i = 0; i < parties[0].pcs.Length; i++)
+            {
+                if (parties[0].pcs[i] != null)
+                {
+                    pcs[i].transform.position = EncounterPartyManager.instance.formationTransforms[i].position;
+
+                    if (i == 0)
+                        pcs[i].GetComponent<EncounterPcController>().light.enabled = true;
+                    else
+                        pcs[i].GetComponent<EncounterPcController>().light.enabled = false;
+                }
+            }
+
         }
 
         public void CreatePcs()
@@ -60,8 +74,7 @@ namespace Reclamation.Encounter
             {
                 if (parties[0].pcs[i] != null)
                 {
-                    pcs.Add(ModelManager.instance.SpawnPc(transform, parties[0].pcs[i]));
-                    pcs[i].transform.position = EncounterPartyManager.instance.formationTransforms[i].position;
+                    pcs.Add(ModelManager.instance.SpawnPc(transform, EncounterPartyManager.instance.formationTransforms[i].position, parties[0].pcs[i]));
                 }
             }
 
@@ -70,7 +83,7 @@ namespace Reclamation.Encounter
 
         public void CreatePortraitModel(Transform parent, Pc pc)
         {
-            ModelManager.instance.SpawnPc(parent, pc);
+            ModelManager.instance.SpawnPc(parent, parent.position, pc);
         }
 
         void Update()

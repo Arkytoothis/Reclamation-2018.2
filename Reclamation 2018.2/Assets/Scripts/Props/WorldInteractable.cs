@@ -13,24 +13,6 @@ namespace Reclamation.Props
         public OutlineTarget outline;
         public Color defaultColor;
 
-        void Awake()
-        {
-            renderer = gameObject.GetComponent<Renderer>();
-        }
-        void Update()
-        {
-            if (isFocus == true && hasInteracted == false)
-            {
-                float distance = Vector3.Distance(partyTransform.position, interactionTransform.position);
-                //Debug.Log(distance);
-                if (distance <= radius)
-                {
-                    Interact();
-                    hasInteracted = true;
-                }
-            }
-        }
-
         void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.yellow;
@@ -48,12 +30,13 @@ namespace Reclamation.Props
         {
             colorTransition.enabled = false;
             outline.enabled = false;
-            renderer.material.color = defaultColor;
+            GetComponent<Renderer>().material.color = defaultColor;
         }
 
-        public override void Interact()
+        public override bool Interact(GameObject other)
         {
             partyTransform.GetComponent<PartyController>().WorldInteraction();
+            return true;
         }
     }
 }

@@ -377,7 +377,6 @@ GameObject:
   - component: {fileID: 114603987656406932}
   - component: {fileID: 114071593161155508}
   - component: {fileID: 23719672574243912}
-  - component: {fileID: 114858267411641406}
   m_Layer: 0
   m_Name: Male World Pc
   m_TagString: Untagged
@@ -1797,23 +1796,6 @@ MonoBehaviour:
   lineOfSightPenetration: 0
   cellBased: 0
   antiFlicker: 0
---- !u!114 &114858267411641406
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1545789435861336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: defbe8e21dbcdcd4daa83c080658c98c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionTransform: {fileID: 0}
-  radius: 1
-  colorTransition: {fileID: 114071593161155508}
-  outline: {fileID: 114603987656406932}
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  interactableData: {fileID: 11400000, guid: b8045d4f49c84af41865e3eacc543c9e, type: 2}
 --- !u!114 &114903197015047792
 MonoBehaviour:
   m_ObjectHideFlags: 1

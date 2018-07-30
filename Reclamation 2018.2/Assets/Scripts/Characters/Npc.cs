@@ -20,8 +20,6 @@ namespace Reclamation.Characters
 
     public class NPC : Character
     {
-        public NPCImageType ImageType;
-        public string Sprite;
         public string Key;
         public int NPCIndex;
         public int PartyIndex;
@@ -32,14 +30,65 @@ namespace Reclamation.Characters
 
         public List<Ability> Abilities;
 
-        //StatBarWidgetWorld healthBar;
-        //StatBarWidgetWorld actionsBar;
-
         CombatStatus combatStatus;
         public CombatStatus CombatStatus { get { return combatStatus; } }
 
-        SpriteRenderer statusSprite;
-        public SpriteRenderer StatusSprite { get { return statusSprite; } }
+
+        public new void ModifyAttribute(AttributeType type, int attribute, int value)
+        {
+            if (value == 0) return;
+
+            base.ModifyAttribute(type, attribute, value);
+
+            int cur = attributeManager.GetAttribute(AttributeListType.Derived, attribute).Current;
+            int max = attributeManager.GetAttribute(AttributeListType.Derived, attribute).Maximum;
+
+            if (attribute == (int)DerivedAttribute.Armor)
+                onArmorChange(cur, max);
+            else if (attribute == (int)DerivedAttribute.Health)
+                onHealthChange(cur, max);
+            else if (attribute == (int)DerivedAttribute.Stamina)
+                onStaminaChange(cur, max);
+            else if (attribute == (int)DerivedAttribute.Essence)
+                onEssenceChange(cur, max);
+            else if (attribute == (int)DerivedAttribute.Morale)
+                onMoraleChange(cur, max);
+
+            CheckVitals();
+        }
+
+        public delegate void OnArmorChange(int current, int max);
+        public event OnArmorChange onArmorChange;
+
+        public delegate void OnHealthChange(int current, int max);
+        public event OnHealthChange onHealthChange;
+
+        public delegate void OnStaminaChange(int current, int max);
+        public event OnStaminaChange onStaminaChange;
+
+        public delegate void OnEssenceChange(int current, int max);
+        public event OnEssenceChange onEssenceChange;
+
+        public delegate void OnMoraleChange(int current, int max);
+        public event OnMoraleChange onMoraleChange;
+
+        public delegate void OnExperienceChange(int current, int max);
+        public event OnExperienceChange onExperienceChange;
+
+        public delegate void OnDeath();
+        public event OnDeath onDeath;
+
+        public delegate void OnRevive();
+        public event OnRevive onRevive;
+
+        public delegate void OnLevelUp();
+        public event OnLevelUp onLevelUp;
+
+        public delegate void OnInteract();
+        public event OnInteract onInteract;
+
+        public delegate void OnAttack();
+        public event OnAttack onAttack;
 
         public NPC()
         {
@@ -48,8 +97,6 @@ namespace Reclamation.Characters
             Background = null;
 
             Key = "";
-            ImageType = NPCImageType.None;
-            Sprite = "";
             combatStatus = CombatStatus.None;
             RaceKey = "";
             ProfessionKey = "";
@@ -76,13 +123,9 @@ namespace Reclamation.Characters
 
             Abilities = new List<Ability>();
             Inventory = new CharacterInventory();
-
-            //healthBar = null;
-            //actionsBar = null;
-            statusSprite = null;
         }
 
-        public NPC(FantasyName name, string key, Gender gender, NPCImageType image_type, string sprite, string race, string profession, int hair, int beard, int index, int map_x, int map_y, int enc_x, int enc_y)
+        public NPC(FantasyName name, string key, Gender gender, string race, string profession, int hair, int beard, int index, int map_x, int map_y, int enc_x, int enc_y)
         {
             Name = new FantasyName(name);
             Background = new Background();
@@ -96,8 +139,6 @@ namespace Reclamation.Characters
             Hair = hair;
             Beard = beard;
             combatStatus = CombatStatus.Awake;
-            ImageType = image_type;
-            Sprite = sprite;
 
             attributeManager = new AttributeManager();
 
@@ -118,10 +159,6 @@ namespace Reclamation.Characters
 
             Abilities = new List<Ability>();
             Inventory = new CharacterInventory();
-
-            //healthBar = null;
-            //actionsBar = null;
-            statusSprite = null;
         }
 
         public NPC(NPC npc)
@@ -136,8 +173,6 @@ namespace Reclamation.Characters
             PartyIndex = npc.PartyIndex;
             PartySlot = npc.PartySlot;
 
-            ImageType = npc.ImageType;
-            Sprite = npc.Sprite;
             Hair = npc.Hair;
             Beard = npc.Beard;
 
@@ -148,7 +183,6 @@ namespace Reclamation.Characters
             ExpValue = npc.ExpValue;
 
             combatStatus = npc.combatStatus;
-            statusSprite = npc.statusSprite;
 
             attributeManager = new AttributeManager();
 
@@ -169,15 +203,79 @@ namespace Reclamation.Characters
 
             Abilities = new List<Ability>();
             Inventory = new CharacterInventory(npc.Inventory);
-
-            //healthBar = npc.healthBar;
-            //actionsBar = npc.actionsBar;
         }
 
-
-        public override void ModifyAttribute(AttributeType type, int attribute, int value)
+        public void CheckVitals()
         {
-            base.ModifyAttribute(type, attribute, value);
+            CheckHealth();
+            CheckStamina();
+            CheckEssence();
+            CheckMorale();
+        }
+
+        public void CheckHealth()
+        {
+            if (isDead == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Health).Current <= 0)
+            {
+                Death();
+            }
+            else if (isDead == true && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Health).Current > 0)
+            {
+                Revive();
+            }
+        }
+
+        public void CheckStamina()
+        {
+            if (isDead == false && isExhausted == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Stamina).Current <= 0)
+            {
+                isExhausted = true;
+                //Debug.Log(Name.FirstName + " is exhausted");
+            }
+        }
+
+        public void CheckEssence()
+        {
+            if (isDead == false && isDrained == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Essence).Current <= 0)
+            {
+                isDrained = true;
+                //Debug.Log(Name.FirstName + " is out of essence");
+            }
+        }
+
+        public void CheckMorale()
+        {
+            if (isDead == false && isBroken == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Morale).Current <= 0)
+            {
+                isBroken = true;
+                //Debug.Log(Name.FirstName + " is broken");
+            }
+        }
+
+        public void Death()
+        {
+            isDead = true;
+            onDeath();
+            Debug.Log(Name.FirstName + " has died");
+        }
+
+        public void Revive()
+        {
+            isDead = false;
+            onRevive();
+            Debug.Log(Name.FirstName + " has revived");
+        }
+
+        public void Interact()
+        {
+            Debug.Log(Name.FirstName + " is interacting");
+            onInteract();
+        }
+
+        public void Attack()
+        {
+            Debug.Log(Name.FirstName + " is attacking");
+            onAttack();
         }
     }
 }

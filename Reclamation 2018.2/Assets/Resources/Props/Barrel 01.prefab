@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 136230035431863982}
   - component: {fileID: 114228223858478376}
   - component: {fileID: 114827133309573246}
-  - component: {fileID: 114589582477196204}
+  - component: {fileID: 114283977011767998}
   m_Layer: 13
   m_Name: Barrel 01
   m_TagString: Untagged
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1760552345242028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ca8bae6fe6d47146a943ff711db024d, type: 3}
   m_Name: 
@@ -134,7 +134,7 @@ MonoBehaviour:
     rgba: 4278255600
   AffectChildren: 1
   ExcludeParticleSystems: 1
---- !u!114 &114589582477196204
+--- !u!114 &114283977011767998
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,22 +142,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1760552345242028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bb127679bcf64844a9da514b1a00a8f, type: 3}
+  m_Script: {fileID: 11500000, guid: d337721a6a8e9b34bb81e72e47413352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionTransform: {fileID: 4850697623782798}
-  radius: 1
-  colorTransition: {fileID: 114827133309573246}
-  outline: {fileID: 114228223858478376}
-  defaultColor: {r: 1, g: 1, b: 1, a: 0}
-  interactableData: {fileID: 11400000, guid: 3d5f9c17fb5c372469b00e7b0b2fc24e, type: 2}
+  interactionTransform: {fileID: 4979984608386634}
+  radius: 2
+  hasInteracted: 0
+  locked: 0
+  gold: 0
 --- !u!114 &114827133309573246
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1760552345242028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20bcd6bb759fd4442ab9af61d2d81b37, type: 3}
   m_Name: 
@@ -228,6 +227,6 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.46
-  m_Height: 1.97
+  m_Height: 4
   m_Direction: 1
-  m_Center: {x: -0.012285665, y: 1.02, z: 0.000000074505806}
+  m_Center: {x: -0.012285665, y: 2, z: 0.000000074505806}

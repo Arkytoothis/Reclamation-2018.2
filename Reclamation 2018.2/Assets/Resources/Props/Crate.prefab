@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 65676789364465650}
   - component: {fileID: 114765731183367490}
   - component: {fileID: 114252281458517348}
-  - component: {fileID: 114758964108930522}
+  - component: {fileID: 114946201514231170}
   m_Layer: 13
   m_Name: Crate
   m_TagString: Untagged
@@ -126,15 +126,15 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8473934, y: 0.81458014, z: 0.80913675}
-  m_Center: {x: -0.019128412, y: 0.39625064, z: 0.000000074505806}
+  m_Size: {x: 0.8473934, y: 4, z: 0.80913675}
+  m_Center: {x: -0.019128412, y: 2, z: 0.000000074505806}
 --- !u!114 &114252281458517348
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1579473088994358}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20bcd6bb759fd4442ab9af61d2d81b37, type: 3}
   m_Name: 
@@ -195,30 +195,13 @@ MonoBehaviour:
   MaterialPropertyName: 
   ExcludeParticleSystems: 1
   CurrentColorEditor: {r: 0, g: 0, b: 0, a: 1}
---- !u!114 &114758964108930522
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1579473088994358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bb127679bcf64844a9da514b1a00a8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionTransform: {fileID: 4963352386066152}
-  radius: 1
-  colorTransition: {fileID: 114252281458517348}
-  outline: {fileID: 114765731183367490}
-  defaultColor: {r: 1, g: 1, b: 1, a: 0}
-  interactableData: {fileID: 11400000, guid: 3d5f9c17fb5c372469b00e7b0b2fc24e, type: 2}
 --- !u!114 &114765731183367490
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1579473088994358}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ca8bae6fe6d47146a943ff711db024d, type: 3}
   m_Name: 
@@ -230,3 +213,19 @@ MonoBehaviour:
     rgba: 4278255600
   AffectChildren: 1
   ExcludeParticleSystems: 1
+--- !u!114 &114946201514231170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1579473088994358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d337721a6a8e9b34bb81e72e47413352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionTransform: {fileID: 4878369618534954}
+  radius: 2
+  hasInteracted: 0
+  locked: 0
+  gold: 0

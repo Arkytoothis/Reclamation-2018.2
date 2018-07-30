@@ -4,34 +4,16 @@ using UnityEngine;
 
 namespace Reclamation.Props
 {
-    public abstract class Interactable : MonoBehaviour
+    public abstract class Interactable : MonoBehaviour, IInteractable
     {
         public Transform interactionTransform;
-        public float radius = 3f;
-
-        protected bool isFocus = false;
-        protected bool hasInteracted = false;
+        public float radius = 1f;
+        public bool hasInteracted = false;
+        public bool locked = false;
 
         protected Transform partyTransform;
-        protected new Renderer renderer;
+        protected GameObject other;
 
-
-        public virtual void OnFocused(Transform partyTransform)
-        {
-            isFocus = true;
-            this.partyTransform = partyTransform;
-            hasInteracted = false;
-        }
-
-        public virtual void OnDefocused()
-        {
-            isFocus = false;
-            partyTransform = null;
-            hasInteracted = false;
-        }
-
-        public virtual void Interact()
-        {
-        }
+        public abstract bool Interact(GameObject other);
     }
 }

@@ -37,12 +37,7 @@ namespace Reclamation.Characters
             animator.SetFloat("speedPercent", speedPercent, animationSmoothTime, Time.deltaTime);
         }
 
-        public void WorldInteraction()
-        {
-            animator.SetTrigger("interact");
-        }
-
-        public void EncounterInteraction()
+        public void Interact()
         {
             animator.SetTrigger("interact");
         }

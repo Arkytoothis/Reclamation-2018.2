@@ -16,7 +16,7 @@ namespace Reclamation.Misc
 
         }
 
-        public GameObject SpawnPc(Transform parent, Pc pc)
+        public GameObject SpawnPc(Transform parent, Vector3 position, Pc pc)
         {
             GameObject go = null;
 
@@ -29,6 +29,7 @@ namespace Reclamation.Misc
                 go = Instantiate(femalePrefab, parent);
             }
 
+            go.transform.position = position;
             go.GetComponent<EncounterPcController>().SetPcData(pc);
 
             return go;

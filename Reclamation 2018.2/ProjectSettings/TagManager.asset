@@ -24,6 +24,7 @@ TagManager:
   - Dungeon
   - Dungeon Spawn Point
   - Outline
+  - Pc
   layers:
   - Default
   - TransparentFX
@@ -41,7 +42,7 @@ TagManager:
   - Interactable
   - Interactable Character
   - Player Character
-  - 
+  - Interactable Enemy
   - 
   - 
   - 

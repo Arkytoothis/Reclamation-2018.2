@@ -60,7 +60,7 @@ namespace Reclamation.Gui
                 bar.SetExpData(this.pc);
                 expBar = go;
 
-                PortraitRoom.instance.AddModel(ModelManager.instance.SpawnPc(null, this.pc), this.pc.EncounterIndex);
+                PortraitRoom.instance.AddModel(ModelManager.instance.SpawnPc(null, Vector3.zero, this.pc), this.pc.EncounterIndex);
                 portrait.texture = PortraitRoom.instance.characterMounts[this.pc.EncounterIndex].rtCamera.targetTexture;
             }
             else

@@ -28,32 +28,32 @@ namespace Reclamation.Characters
                 {
                     Any.Add(kvp.Key);
 
-                    switch (kvp.Value.Type)
+                    switch (kvp.Value.Species)
                     {
-                        case CharacterType.Animal:
+                        case Species.Animal:
                             Animals.Add(kvp.Key);
                             break;
-                        case CharacterType.Beast:
+                        case Species.Beast:
                             Beasts.Add(kvp.Key);
                             break;
-                        case CharacterType.Undead:
+                        case Species.Undead:
                             Undead.Add(kvp.Key);
                             break;
-                        case CharacterType.Humanoid:
+                        case Species.Humanoid:
                             Humanoids.Add(kvp.Key);
                             break;
-                        case CharacterType.Elemental:
+                        case Species.Elemental:
                             Elementals.Add(kvp.Key);
                             break;
-                        case CharacterType.Draconic:
+                        case Species.Draconic:
                             Draconic.Add(kvp.Key);
                             break;
-                        case CharacterType.Insect:
+                        case Species.Insect:
                             Insects.Add(kvp.Key);
                             break;
-                        case CharacterType.Number:
+                        case Species.Number:
                             break;
-                        case CharacterType.None:
+                        case Species.None:
                             break;
                         default:
                             break;
@@ -62,7 +62,7 @@ namespace Reclamation.Characters
             }
         }
 
-        public static NPC Generate(NpcType data_type, CharacterType character_type, int level)
+        public static NPC Generate(NpcType data_type, Species character_type, int level)
         {
             NPC npc = null;
             string def = GetKey(character_type);
@@ -201,36 +201,36 @@ namespace Reclamation.Characters
             //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));
         }
 
-        public static string GetKey(CharacterType character_type)
+        public static string GetKey(Species character_type)
         {
             string key = "";
 
             switch (character_type)
             {
-                case CharacterType.Animal:
+                case Species.Animal:
                     key = Animals[Random.Range(0, Animals.Count)];
                     break;
-                case CharacterType.Beast:
+                case Species.Beast:
                     key = Beasts[Random.Range(0, Beasts.Count)];
                     break;
-                case CharacterType.Undead:
+                case Species.Undead:
                     key = Undead[Random.Range(0, Undead.Count)];
                     break;
-                case CharacterType.Humanoid:
+                case Species.Humanoid:
                     key = Humanoids[Random.Range(0, Humanoids.Count)];
                     break;
-                case CharacterType.Elemental:
+                case Species.Elemental:
                     key = Elementals[Random.Range(0, Elementals.Count)];
                     break;
-                case CharacterType.Draconic:
+                case Species.Draconic:
                     key = Draconic[Random.Range(0, Draconic.Count)];
                     break;
-                case CharacterType.Insect:
+                case Species.Insect:
                     key = Insects[Random.Range(0, Insects.Count)];
                     break;
-                case CharacterType.Number:
+                case Species.Number:
                     break;
-                case CharacterType.None:
+                case Species.None:
                     break;
                 default:
                     break;

@@ -14,8 +14,8 @@ namespace Reclamation.Characters
         public Background Background;
         public CharacterPersonality Personality;
 
-        public CharacterType Type;
-        public EntitySize Size;
+        public Species Type;
+        public Size Size;
 
         public string RaceKey;
         public string ProfessionKey;

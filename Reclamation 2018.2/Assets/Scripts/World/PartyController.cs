@@ -66,19 +66,19 @@ namespace Reclamation.World
         {
             if (interactable != focus)
             {
-                if (focus != null) focus.OnDefocused();
+                //if (focus != null) focus.OnDefocused();
 
                 focus = (WorldInteractable)interactable;
 
                 pcMotor.FollowTarget(focus);
             }
 
-            focus.OnFocused(transform);
+            //focus.OnFocused(transform);
         }
 
         void RemoveFocus()
         {
-            if (focus != null) focus.OnDefocused();
+            //if (focus != null) focus.OnDefocused();
 
             focus = null;
 
@@ -87,7 +87,7 @@ namespace Reclamation.World
 
         public void WorldInteraction()
         {
-            animator.WorldInteraction();
+            animator.Interact();
         }
 
         public void SetPartyData(PartyData partyData)

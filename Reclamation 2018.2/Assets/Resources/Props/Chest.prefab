@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 65635564155997232}
   - component: {fileID: 114569324968496550}
   - component: {fileID: 114968296300039616}
-  - component: {fileID: 114105769398970260}
+  - component: {fileID: 114067641571579626}
   m_Layer: 13
   m_Name: Chest
   m_TagString: Untagged
@@ -266,7 +266,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.53, y: 0.49, z: 0.67}
   m_Center: {x: 0, y: 0.28, z: 0}
---- !u!114 &114105769398970260
+--- !u!114 &114067641571579626
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -274,15 +274,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1937162252673648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bb127679bcf64844a9da514b1a00a8f, type: 3}
+  m_Script: {fileID: 11500000, guid: d337721a6a8e9b34bb81e72e47413352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionTransform: {fileID: 4735584469079802}
+  interactionTransform: {fileID: 4790955308024932}
   radius: 1
-  colorTransition: {fileID: 114968296300039616}
-  outline: {fileID: 114569324968496550}
-  defaultColor: {r: 1, g: 1, b: 1, a: 0}
-  interactableData: {fileID: 11400000, guid: 3d5f9c17fb5c372469b00e7b0b2fc24e, type: 2}
+  gold: 0
 --- !u!114 &114569324968496550
 MonoBehaviour:
   m_ObjectHideFlags: 1
