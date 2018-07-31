@@ -36,7 +36,7 @@ namespace Reclamation.Equipment
             StackSize = 0;
         }
 
-        public ItemShort(Item item)
+        public ItemShort(ItemData item)
         {
             ItemKey = item.Key;
             StackSize = item.StackSize;

@@ -13,17 +13,17 @@ namespace Reclamation.Characters
 
         public Animator animator;
         RVOController characterController;
-        EncounterPcController pcController;
+        Pc pcController;
 
         void Start()
         {
-            animator = GetComponent<Animator>();
+            animator = GetComponentInChildren<Animator>();
             if (animator == null) Debug.LogError("animator == null");
 
             characterController = GetComponent<RVOController>();
             if (characterController == null) Debug.LogError("controller == null");
 
-            pcController = GetComponent<EncounterPcController>();
+            pcController = GetComponent<Pc>();
             if (pcController == null) Debug.LogError("pcController == null");
         }
 

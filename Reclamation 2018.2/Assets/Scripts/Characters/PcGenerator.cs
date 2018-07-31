@@ -75,7 +75,7 @@ namespace Reclamation.Characters
             }
         }
 
-        public static Pc Generate(int index, Gender gender, string r, string p)
+        public static PcData Generate(int index, Gender gender, string r, string p)
         {
             //if (availableRaces == null || availableProfessions == null) return null;
 
@@ -102,7 +102,7 @@ namespace Reclamation.Characters
                 else gender = Gender.Female;
             }
 
-            Pc pc = new Pc(NameGenerator.Get(gender, race_key, profession_key),
+            PcData pc = new PcData(NameGenerator.Get(gender, race_key, profession_key),
                 gender, BackgroundGenerator.Generate(), race_key, profession_key, hair, beard, index, index, index,
                 3 + GameValue.Roll(new GameValue(1, 3), false), 3 + GameValue.Roll(new GameValue(1, 3), false));
 
@@ -119,7 +119,7 @@ namespace Reclamation.Characters
             {
                 for (int i = 0; i < profession.StartingItems.Count; i++)
                 {
-                    Item item = ItemGenerator.CreateItem(profession.StartingItems[i].ItemKey, profession.StartingItems[i].MaterialKey, profession.StartingItems[i].PlusKey,
+                    ItemData item = ItemGenerator.CreateItem(profession.StartingItems[i].ItemKey, profession.StartingItems[i].MaterialKey, profession.StartingItems[i].PlusKey,
                         profession.StartingItems[i].PreKey, profession.StartingItems[i].PostKey, profession.StartingItems[i].StackSize);
 
                     if (race.ArmorSlotAllowed((EquipmentSlot)item.Slot) == true)
@@ -138,17 +138,15 @@ namespace Reclamation.Characters
                             chanceForItem = 100;
                         else if (i == (int)EquipmentSlot.Body)
                             chanceForItem = 100;
-                        else if (i == (int)EquipmentSlot.Legs)
-                            chanceForItem = 100;
                         else if (i == (int)EquipmentSlot.Feet)
                             chanceForItem = 100;
 
                         if (Random.Range(1, 101) <= chanceForItem)
                         {
-                            Item item = ItemGenerator.CreateRandomItem(i, 25, 25, 25);
+                            ItemData item = ItemGenerator.CreateRandomItem(i, 25, 25, 25);
 
                             if (item != null)
-                                pc.Inventory.EquippedItems[i] = new Item(item);
+                                pc.Inventory.EquippedItems[i] = new ItemData(item);
                         }
                     }
                 }
@@ -204,7 +202,7 @@ namespace Reclamation.Characters
             return pc;
         }
 
-        public static string GenerateDescription(Pc pc)
+        public static string GenerateDescription(PcData pc)
         {
             string description = "";
 

@@ -1176,459 +1176,65 @@ namespace Reclamation.Misc
 
         static void LoadArtifacts()
         {
-            ItemDefinition artifact = new ItemDefinition("Dragon Slayer", "Dragon Slayer", "items_large_322", "items_small_254", EquipmentSlot.Right_Hand, 10, 1, 10, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Artifact,
-                new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Might, 15, 1, 5, 5,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            artifact.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 100000), new ResourceData("Materials", 500), new ResourceData("Tools", 25), new ResourceData("Rare Materials", 25), new ResourceData("Essence", 25) };
-            artifactDefinitions.Add(artifact.Key, artifact);
-
-            artifact = new ItemDefinition("Champions Armor", "Champions Armor", "items_large_99", "items_small_474", EquipmentSlot.Body, 18, 4, 28, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Artifact, null,
-                null, new WearableData(WearableType.Armor, 3, -4, 0, 0, new List<ResistanceData> { new ResistanceData(DamageType.Physical, 1) }), null, null);
-            artifact.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 100000), new ResourceData("Materials", 500), new ResourceData("Tools", 25), new ResourceData("Rare Materials", 25), new ResourceData("Essence", 25) };
-            artifact.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Medium_Armor, 1) };
-            artifactDefinitions.Add(artifact.Key, artifact);
-
-            artifact = new ItemDefinition("Holy Bulwark", "Holy Bulwark", "items_large_83", "items_small_559", EquipmentSlot.Left_Hand, 15, 3, 10, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Soft, ItemNameFormat.Artifact, null,
-                null, new WearableData(WearableType.Armor, 2, -5, 20, 0, new List<ResistanceData> { new ResistanceData(DamageType.Physical, 1) }), null, null);
-            artifact.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 100000), new ResourceData("Materials", 500), new ResourceData("Tools", 25), new ResourceData("Rare Materials", 25), new ResourceData("Essence", 25) };
-            artifact.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Shields, 1) };
-            artifactDefinitions.Add(artifact.Key, artifact);
         }
 
         static void LoadItems()
         {
-            ItemDefinition item = new ItemDefinition("Knife", "Knife", "items_large_347", "items_small_692", EquipmentSlot.Right_Hand, 10, 1, 10, 5,
+            ItemDefinition item = new ItemDefinition("Knife", "Knife", "Weapons/knife", "Weapons/knife", "Weapons/knife", EquipmentSlot.Right_Hand, 10, 1, 10, 0.5f, 0.1f,
                 ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
                 new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Finesse, 15, 1, 5, 5,
                 new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
+                null, null, null, null, new Vector3(-8.696f, 4.995f, -179.488f), new Vector3(0.156f, 0.052f, -0.033f));
             item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
             itemDefinitions.Add(item.Key, item);
 
-            item = new ItemDefinition("Dagger", "Dagger", "items_large_371", "items_small_691", EquipmentSlot.Right_Hand, 12, 2, 12, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First,
+            item = new ItemDefinition("Short Sword", "Short Sword", "Weapons/short sword", "Weapons/short sword", "Weapons/short sword", EquipmentSlot.Right_Hand, 10, 1, 10, 0.75f, 0.25f,
+                ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
                 new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Finesse, 15, 1, 5, 5,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4, 1), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 12), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.One_Hand_Melee, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Arrow", "Arrow", "items_large_676", "blank", EquipmentSlot.Left_Hand, 0, 1, 2, 5,
-                ItemType.Ammo, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First,
-                null, new AmmoData(AmmoType.Arrow, 0, 1, 1,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4, 2), GameValue.Zero, 0, 0) }),
-                null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 1), new ResourceData("Materials", 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Hatchet", "Hatchet", "items_large_336", "items_small_648", EquipmentSlot.Right_Hand, 8, 1, 5, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Might, 15, 1, 6, 3,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4, 2), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 4), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.One_Hand_Melee, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Axe", "Axe", "items_large_282", "items_small_649", EquipmentSlot.Right_Hand, 10, 2, 10, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Might, -10, 1, 7, 5,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4, 4), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 15), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.One_Hand_Melee, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Battle Axe", "Battle Axe", "items_large_482", "items_small_288", EquipmentSlot.Right_Hand, 14, 3, 15, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Might, -15, 1, 8, 8,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4, 6), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 20), new ResourceData("Materials", 6), new ResourceData("Tools", 2) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.One_Hand_Melee, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Great Axe", "Great Axe", "items_large_412", "items_small_711", EquipmentSlot.Right_Hand, 20, 5, 20, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Might, -20, 1, 12, 10,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 6, 5), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 30), new ResourceData("Materials", 8), new ResourceData("Tools", 3) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.One_Hand_Melee, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Short Sword", "Short Sword", "items_large_377", "items_small_687", EquipmentSlot.Right_Hand, 10, 1, 11, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Finesse, 0, 1, 5, 6,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4, 4), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 12), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.One_Hand_Melee, 2) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Long Sword", "Long Sword", "items_large_350", "items_small_662", EquipmentSlot.Right_Hand, 14, 2, 15, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Might, 0, 1, 6, 8,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4, 6), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 15), new ResourceData("Materials", 6), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.One_Hand_Melee, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Broad Sword", "Broad Sword", "items_large_543", "items_small_665", EquipmentSlot.Right_Hand, 16, 3, 16, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Might, 0, 1, 7, 8,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 6, 6), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 20), new ResourceData("Materials", 7), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.One_Hand_Melee, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Great Sword", "Great Sword", "items_large_498", "items_small_254", EquipmentSlot.Right_Hand, 20, 4, 20, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.Two_Handed_Melee, AmmoType.None, AttackType.Might, 0, 1, 10, 10,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 6, 10), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 30), new ResourceData("Materials", 8), new ResourceData("Tools", 2) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.One_Hand_Melee, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Club", "Club", "items_large_503", "items_small_235", EquipmentSlot.Right_Hand, 8, 1, 2, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Might, 0, 1, 6, 5,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4, 2), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 5), new ResourceData("Materials", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.One_Hand_Melee, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Mace", "Mace", "items_large_550", "items_small_668", EquipmentSlot.Right_Hand, 10, 2, 10, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Might, 0, 1, 7, 5,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4, 4), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.One_Hand_Melee, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Spear", "Spear", "items_large_380", "items_small_696", EquipmentSlot.Right_Hand, 7, 1, 4, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.Polearm, AmmoType.None, AttackType.Might, 0, 2, 6, 7,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 6, 2), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 8), new ResourceData("Materials", 4), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.One_Hand_Melee, 2) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("War Spear", "War Spear", "items_large_578", "items_small_695", EquipmentSlot.Right_Hand, 9, 2, 8, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.Polearm, AmmoType.None, AttackType.Might, 0, 1, 7, 9,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 6, 5), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 15), new ResourceData("Materials", 6), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.One_Hand_Melee, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Halberd", "Halberd", "items_large_329", "items_small_641", EquipmentSlot.Right_Hand, 12, 3, 16, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.Polearm, AmmoType.None, AttackType.Might, 0, 1, 10, 12,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 6, 10), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 28), new ResourceData("Materials", 8), new ResourceData("Tools", 2) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.One_Hand_Melee, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Throwing Knife", "Throwing Knife", "items_large_293", "items_small_306", EquipmentSlot.Right_Hand, 5, 1, 6, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.Thrown, AmmoType.None, AttackType.Finesse, 0, 1, 3, 0,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4, 2), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 1), new ResourceData("Materials", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Thrown, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Short Bow", "Short Bow", "items_large_646", "items_small_218", EquipmentSlot.Right_Hand, 12, 2, 12, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Soft, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.Bow, AmmoType.Arrow, AttackType.Finesse, 0, 10, 7, 0,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 6, 6), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 15), new ResourceData("Materials", 6), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Archery, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Long Bow", "Long Bow", "items_large_447", "items_small_220", EquipmentSlot.Right_Hand, 14, 4, 16, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Soft, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.Bow, AmmoType.Arrow, AttackType.Finesse, 0, 15, 10, 0,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 6, 10), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 20), new ResourceData("Materials", 7), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Archery, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Staff", "Staff", "items_large_354", "items_small_265", EquipmentSlot.Right_Hand, 6, 1, 4, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.Polearm, AmmoType.None, AttackType.Might, 0, 2, 6, 8,
-                new List<DamageData> { new DamageData(DamageType.Fire, (int)DerivedAttribute.Health, new GameValue(1, 6, 1), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 8), new ResourceData("Materials", 4), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Polearms, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Wand", "Wand", "items_large_264", "items_small_675", EquipmentSlot.Right_Hand, 100, 1, 12, 5,
-                ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.Firearm, AmmoType.None, AttackType.Spell, 0, 10, 4, 0,
-                new List<DamageData> { new DamageData(DamageType.Fire, (int)DerivedAttribute.Health, new GameValue(1, 6, 4), GameValue.Zero, 0, 0) }),
-                null, null, null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 30), new ResourceData("Materials", 6), new ResourceData("Essence", 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Amulet", "Amulet", "items_large_1", "blank", EquipmentSlot.Neck, 5, 1, 10, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Clothing, 0, 0, 0, 0, null), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 20), new ResourceData("Materials", 4), new ResourceData("Tools", 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Belt", "Belt", "items_large_176", "blank", EquipmentSlot.Waist, 6, 1, 5, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Clothing, 0, 0, 0, 0, null), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 8), new ResourceData("Materials", 2) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Bracelet", "Bracelet", "items_large_785", "blank", EquipmentSlot.Arms, 5, 1, 10, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Clothing, 0, 0, 0, 0, null), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 25), new ResourceData("Materials", 4), new ResourceData("Tools", 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Climbing Boot", "Climbing Boot", "items_large_194", "items_small_505", EquipmentSlot.Feet, 8, 1, 15, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Clothing, 0, 0, 0, 0, null), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 16), new ResourceData("Materials", 6), new ResourceData("Tools", 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Shirt", "Cloth Shirt", "items_large_96", "items_small_417", EquipmentSlot.Body, 4, 1, 10, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Leather, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Clothing, 0, 0, 0, 0, null), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 6), new ResourceData("Materials", 4), new ResourceData("Tools", 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Jacket", "Leather Jacket", "items_large_111", "items_small_44", EquipmentSlot.Body, 6, 2, 12, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Leather, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 1, 0, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Armor", "Leather Armor", "items_large_149", "items_small_450", EquipmentSlot.Body, 8, 2, 15, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Leather, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 1, -1, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 14), new ResourceData("Materials", 6), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 2) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Cuirass", "Leather Curaiss", "items_large_130", "items_small_62", EquipmentSlot.Body, 12, 3, 16, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Leather, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 2, -2, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 18), new ResourceData("Materials", 7), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 5) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Ringmail", "Ringmail", "items_large_148", "items_small_455", EquipmentSlot.Body, 15, 4, 24, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 3, -5, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 25), new ResourceData("Materials", 8), new ResourceData("Tools", 2) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Chainmail", "Chainmail", "items_large_97", "items_small_418", EquipmentSlot.Body, 18, 4, 28, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 3, -4, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 30), new ResourceData("Materials", 9), new ResourceData("Tools", 2) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Breastplate", "Breastplate", "items_large_136", "items_small_469", EquipmentSlot.Body, 22, 5, 32, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 4, -5, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 35), new ResourceData("Materials", 10), new ResourceData("Tools", 3) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Platemail", "Platemail", "items_large_144", "items_small_452", EquipmentSlot.Body, 26, 6, 36, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 5, -7, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 40), new ResourceData("Materials", 12), new ResourceData("Tools", 3) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Half Plate", "Half Plate", "items_large_142", "items_small_470", EquipmentSlot.Body, 30, 7, 34, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 7, -10, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 50), new ResourceData("Materials", 15), new ResourceData("Tools", 3) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Full Plate", "Full Plate", "items_large_106", "items_small_438", EquipmentSlot.Body, 50, 8, 40, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 8, -20, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 100), new ResourceData("Materials", 25), new ResourceData("Tools", 5) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Pants", "Cloth Pants", "items_large_54", "items_small_815", EquipmentSlot.Legs, 4, 1, 10, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Cloth, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Clothing, 0, 0, 0, 0, null), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 6), new ResourceData("Materials", 3), new ResourceData("Tools", 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Pants", "Leather Pants", "items_large_56", "items_small_810", EquipmentSlot.Legs, 5, 2, 12, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Leather, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 0, 0, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 8), new ResourceData("Materials", 4), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Shoes", "Leather Shoes", "items_large_192", "items_small_99", EquipmentSlot.Feet, 5, 1, 8, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Leather, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 0, 0, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 6), new ResourceData("Materials", 3) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Boots", "Leather Boots", "items_large_194", "items_small_96", EquipmentSlot.Feet, 6, 1, 10, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Leather, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 0, 0, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 8), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Cloak", "Cloak", "items_large_186", "items_small_113", EquipmentSlot.Back, 5, 1, 6, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Cloth, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Clothing, 0, 0, 0, 0, null), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 5), new ResourceData("Materials", 2) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Hunting Cloak", "Hunting Cloak", "items_large_188", "items_small_107", EquipmentSlot.Back, 12, 2, 10, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Cloth, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 0, 0, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 15), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Cap", "Cap", "items_large_244", "items_small_388", EquipmentSlot.Head, 7, 1, 4, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Cloth, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 0, 0, 0, 0, null), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 6), new ResourceData("Materials", 2), new ResourceData("Tools", 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Leather Helm", "Leather Helm", "items_large_250", "items_small_157", EquipmentSlot.Head, 8, 2, 6, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Leather, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 0, 0, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 8), new ResourceData("Materials", 4), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Metal Helm", "Metal Helm", "items_large_210", "items_small_796", EquipmentSlot.Head, 12, 4, 12, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 0, 0, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 12), new ResourceData("Materials", 6), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Full Helm", "Full Helm", "items_large_218", "items_small_769", EquipmentSlot.Head, 16, 6, 16, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 0, 0, 0, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 16), new ResourceData("Materials", 8), new ResourceData("Tools", 2) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Wood Buckler", "Wood Buckler", "items_large_69", "items_small_554", EquipmentSlot.Left_Hand, 10, 1, 5, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Soft, ItemNameFormat.Material_Middle, null,
-                null, new WearableData(WearableType.Armor, 0, -1, 10, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 4), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Metal Buckler", "Metal Buckler", "items_large_75", "items_small_183", EquipmentSlot.Left_Hand, 14, 2, 8, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_Middle, null,
-                null, new WearableData(WearableType.Armor, 1, -2, 15, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 12), new ResourceData("Materials", 6), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Wood Shield", "Wood Shield", "items_large_95", "items_small_168", EquipmentSlot.Left_Hand, 15, 3, 10, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Soft, ItemNameFormat.Material_Middle, null,
-                null, new WearableData(WearableType.Armor, 2, -5, 20, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 15), new ResourceData("Materials", 7), new ResourceData("Tools", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Metal Shield", "Metal Shield", "items_large_93", "items_small_176", EquipmentSlot.Left_Hand, 20, 4, 14, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_Middle, null,
-                null, new WearableData(WearableType.Armor, 3, -7, 25, 0, new List<ResistanceData> { new ResistanceData((int)DamageType.Physical, 1) }), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 20), new ResourceData("Materials", 8), new ResourceData("Tools", 2) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Cloth Glove", "Cloth Glove", "items_large_232", "items_small_128", EquipmentSlot.Hands, 4, 1, 8, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Cloth, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 0, 0, 0, 0, null), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 3), new ResourceData("Materials", 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Gauntlet", "Gauntlet", "items_large_233", "items_small_533", EquipmentSlot.Hands, 10, 5, 8, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Metal, ItemNameFormat.Material_First,
-                new WeaponData(WeaponType.Unarmed, AmmoType.None, AttackType.Might, 0, 1, 3, 10,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 6, 1), GameValue.Zero, 0, 0) }),
-                null, new WearableData(WearableType.Armor, 0, 0, 0, 0, null), null, null);
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 3), new ResourceData("Materials", 1) };
-            item.SkillRequirements = new List<SkillRequirement> { new SkillRequirement((int)Skill.Unarmed, 1), new SkillRequirement((int)Skill.Light_Armor, 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Cloth Hat", "Cloth Hat", "items_large_244", "items_small_401", EquipmentSlot.Head, 5, 1, 10, 5,
-                ItemType.Wearable, ItemHardnessAllowed.Cloth, ItemNameFormat.Material_First, null,
-                null, new WearableData(WearableType.Armor, 0, 0, 0, 0, null), null, null);
+                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }),
+                null, null, null, null, new Vector3(7.232f, -9.425f, 171.125f), new Vector3(0.064f, 0.084f, 0.031f));
             item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
             itemDefinitions.Add(item.Key, item);
 
-            item = new ItemDefinition("Small Healing Potion", "Small Healing Potion", "items_large_753", "blank", EquipmentSlot.None, 1, 2, 20, 5,
+            item = new ItemDefinition("Short Bow", "Short Bow", "Weapons/short bow", "Weapons/short bow", "Weapons/short bow", EquipmentSlot.Right_Hand, 10, 1, 10, 1f, 0.5f,
+                ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
+                new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Finesse, 15, 1, 5, 5,
+                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }),
+                null, null, null, null, new Vector3(0.0f, -195.245f, 8.925f), new Vector3(-0.003f, -0.096f, 0.0010f));
+            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
+            itemDefinitions.Add(item.Key, item);
+
+            item = new ItemDefinition("Club", "Club", "Weapons/club", "Weapons/club", "Weapons/club", EquipmentSlot.Right_Hand, 10, 1, 10, 0.75f, 0.25f,
+                ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
+                new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Finesse, 15, 1, 5, 5,
+                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }),
+                null, null, null, null, new Vector3(0f, 0f, -179.976f), new Vector3(0.011f, 0.045f, -0.009f));
+            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
+            itemDefinitions.Add(item.Key, item);
+
+            item = new ItemDefinition("Staff", "Staff", "Weapons/staff", "Weapons/staff", "Weapons/staff", EquipmentSlot.Right_Hand, 10, 1, 10, 1f, 0.5f,
+                ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
+                new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Finesse, 15, 1, 5, 5,
+                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }),
+                null, null, null, null, new Vector3(0.0f, 0.0f, -189.922f), new Vector3(-0.004f, 0.08f, 0.013f));
+            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
+            itemDefinitions.Add(item.Key, item);
+
+            item = new ItemDefinition("Small Healing Potion", "Small Healing Potion", "Accessories/small healing potion", "Accessories/small healing potion", "Accessories/small healing potion", 
+                EquipmentSlot.None, 1, 2, 20, 1f, 1f,
                 ItemType.Accessory, ItemHardnessAllowed.Potion, ItemNameFormat.Material_First, null, null, null,
                 new AccessoryData(AccessoryType.Consumable, 5), new UsableData(TimeType.None, 0, new List<AbilityEffect> {
-        }));
+                }), new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 0.0f, 0.0f));
             item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 100), new ResourceData("Materials", 10), new ResourceData("Essence", 1) };
             itemDefinitions.Add(item.Key, item);
 
-            item = new ItemDefinition("Energy Potion", "Energy Potion", "items_large_750", "blank", EquipmentSlot.None, 1, 2, 20, 5,
+            item = new ItemDefinition("Small Energy Potion", "Small Energy Potion", "Accessories/small energy potion", "Accessories/small energy potion", "Accessories/small energy potion", 
+                EquipmentSlot.None, 1, 2, 20, 1f, 1f,
                 ItemType.Accessory, ItemHardnessAllowed.Potion, ItemNameFormat.Material_First, null, null, null,
                 new AccessoryData(AccessoryType.Consumable, 5),
                 new UsableData(TimeType.None, 0, new List<AbilityEffect> {
-                }));
+                }), new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 0.0f, 0.0f));
             item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 100), new ResourceData("Materials", 10), new ResourceData("Essence", 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Spell Scroll", "Spell Scroll", "items_large_904", "blank", EquipmentSlot.None, 1, 1, 30, 5,
-                ItemType.Accessory, ItemHardnessAllowed.Scroll, ItemNameFormat.Material_First, null, null, null,
-                new AccessoryData(AccessoryType.Consumable, 10),
-                new UsableData(TimeType.None, 0, new List<AbilityEffect> { }));
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 150), new ResourceData("Materials", 5), new ResourceData("Essence", 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Orange", "Orange", "items_large_833", "blank", EquipmentSlot.None, 1, 1, 1, 5,
-                ItemType.Accessory, ItemHardnessAllowed.Food, ItemNameFormat.Material_First, null, null, null,
-                new AccessoryData(AccessoryType.Consumable, 2),
-                new UsableData(TimeType.None, 0, new List<AbilityEffect> {
-                }));
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Supplies", 1) };
-            itemDefinitions.Add(item.Key, item);
-
-            item = new ItemDefinition("Meat", "Meat", "items_large_839", "blank", EquipmentSlot.None, 1, 1, 1, 5,
-                ItemType.Accessory, ItemHardnessAllowed.Food, ItemNameFormat.Material_First, null, null, null,
-                new AccessoryData(AccessoryType.Consumable, 2),
-                new UsableData(TimeType.None, 0, new List<AbilityEffect> {
-                }));
-            item.ResourcesRequired = new List<ResourceData> { new ResourceData("Supplies", 1) };
             itemDefinitions.Add(item.Key, item);
         }
 
@@ -1637,9 +1243,6 @@ namespace Reclamation.Misc
             Profession temp = new Profession("Citizen", "Citizen", "", 25, new UpkeepData(1, 0, 0, 0), new GameValue(10, 20));
             temp.HealthPerLevel = new GameValue(1); temp.StaminaPerLevel = new GameValue(1); temp.EssencePerLevel = new GameValue(1);
             temp.StartingItems.Add(new ItemShort("Knife", "Copper", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Cloth Shirt", "Linen", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Cloth Pants", "Linen", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Leather Shoes", "Hide", "", "", ""));
             temp.SkillProficiencies.Add(SkillProficiency.Randomize(new GameValue(1, 4)));
             temp.SkillProficiencies.Add(SkillProficiency.Randomize(new GameValue(1, 4)));
             temp.SkillProficiencies.Add(SkillProficiency.Randomize(new GameValue(1, 4)));
@@ -1650,11 +1253,6 @@ namespace Reclamation.Misc
             temp = new Profession("Soldier", "Soldier", "", 100, new UpkeepData(2, 1, 1, 0), new GameValue(20, 30));
             temp.HealthPerLevel = new GameValue(10); temp.StaminaPerLevel = new GameValue(5); temp.EssencePerLevel = new GameValue(1);
             temp.StartingItems.Add(new ItemShort("Short Sword", "Copper", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Metal Buckler", "Copper", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Leather Helm", "Hide", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Leather Armor", "Hide", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Leather Pants", "Hide", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Leather Shoes", "Hide", "", "", ""));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.One_Hand_Melee, 3, 6));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Shields, 3, 1));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Heavy_Armor, 3, 1));
@@ -1683,11 +1281,6 @@ namespace Reclamation.Misc
             temp = new Profession("Scout", "Scout", "", 90, new UpkeepData(2, 0, 1, 0), new GameValue(20, 30));
             temp.HealthPerLevel = new GameValue(5); temp.StaminaPerLevel = new GameValue(5); temp.EssencePerLevel = new GameValue(3);
             temp.StartingItems.Add(new ItemShort("Short Bow", "Wood", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Cap", "Hide", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Leather Jacket", "Hide", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Leather Pants", "Hide", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Cloak", "Linen", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Leather Shoes", "Hide", "", "", ""));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Archery, 3, 6));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Navigation, 3, 6));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Scouting, 3, 3));
@@ -1716,11 +1309,6 @@ namespace Reclamation.Misc
             temp = new Profession("Rogue", "Rogue", "", 120, new UpkeepData(3, 0, 1, 0), new GameValue(40, 50));
             temp.HealthPerLevel = new GameValue(7); temp.StaminaPerLevel = new GameValue(5); temp.EssencePerLevel = new GameValue(1);
             temp.StartingItems.Add(new ItemShort("Knife", "Copper", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Cap", "Hide", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Leather Jacket", "Hide", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Cloth Pants", "Linen", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Cloak", "Linen", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Leather Shoes", "Hide", "", "", ""));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.One_Hand_Melee, 3, 6));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Tricks, 3, 6));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Devices, 3, 1));
@@ -1748,10 +1336,6 @@ namespace Reclamation.Misc
             temp = new Profession("Priest", "Priest", "", 80, new UpkeepData(2, 0, 1, 1), new GameValue(5, 10));
             temp.HealthPerLevel = new GameValue(5); temp.StaminaPerLevel = new GameValue(3); temp.EssencePerLevel = new GameValue(6);
             temp.StartingItems.Add(new ItemShort("Club", "Wood", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Wood Shield", "Wood", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Cloth Shirt", "Linen", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Cloth Pants", "Linen", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Leather Shoes", "Hide", "", "", ""));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Persuasion, 3, 1));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Life_Magic, 3, 6));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Medium_Armor, 3, 0));
@@ -1780,10 +1364,6 @@ namespace Reclamation.Misc
             temp = new Profession("Apprentice", "Apprentice", "", 110, new UpkeepData(1, 0, 1, 1), new GameValue(20, 30));
             temp.HealthPerLevel = new GameValue(1); temp.StaminaPerLevel = new GameValue(1); temp.EssencePerLevel = new GameValue(10);
             temp.StartingItems.Add(new ItemShort("Staff", "Wood", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Cloth Shirt", "Linen", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Cloth Pants", "Linen", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Cloak", "Linen", "", "", ""));
-            temp.StartingItems.Add(new ItemShort("Leather Shoes", "Hide", "", "", ""));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Channeling, 3, 6));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Fire_Magic, 2, 1));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Air_Magic, 2, 1));
@@ -1909,8 +1489,9 @@ namespace Reclamation.Misc
 
         static void LoadRaces()
         {
-            Race temp = new Race("Beastman", "Beastman", "race_69", "race_68", false, "", "", -1, -1, false, false, false,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5));
+            Race temp = new Race("Beastman", "Beastman", "", "", false, "", "", -1, -1, false, false, false,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5),
+                new Vector3(1,1,1));
             temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Bestial Rage", 1));
             temp.StartingAttributes[(int)BaseAttribute.Strength].Number = 2;
             temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 2;
@@ -1918,8 +1499,9 @@ namespace Reclamation.Misc
             temp.StartingAttributes[(int)BaseAttribute.Willpower].Number = 5;
             races.Add(temp.Key, temp);
 
-            temp = new Race("Deep Dwarf", "Deep Dwarf", "race_11", "race_10", true, "", "", 0, 0, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 8, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5));
+            temp = new Race("Deep Dwarf", "Deep Dwarf", "", "", true, "", "", 0, 0, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 8, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Dark Vision", 1));
             temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 2;
             temp.StartingAttributes[(int)BaseAttribute.Agility].Number = -2;
@@ -1927,124 +1509,148 @@ namespace Reclamation.Misc
             temp.StartingAttributes[(int)BaseAttribute.Willpower].Number = 2;
             races.Add(temp.Key, temp);
 
-            temp = new Race("Spriggan", "Spriggan", "race_97", "race_96", false, "", "", -1, -1, false, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 6, 0.5f, new UpkeepData(0, 4, 0, 0), new GameValue(1, 5));
+            temp = new Race("Spriggan", "Spriggan", "", "", false, "", "", -1, -1, false, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 6, 0.5f, new UpkeepData(0, 4, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 2;
             temp.StartingAttributes[(int)BaseAttribute.Dexterity].Number = 2;
             temp.StartingAttributes[(int)BaseAttribute.Senses].Number = 2;
             temp.StartingAttributes[(int)BaseAttribute.Intellect].Number = -3;
             races.Add(temp.Key, temp);
 
-            temp = new Race("Forest Elf", "Forest Elf", "race_43", "race_42", false, "", "", 0, -1, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 11, 0.75f, new UpkeepData(0, 5, 0, 0), new GameValue(1, 5));
+            temp = new Race("Forest Elf", "Forest Elf", "", "", false, "", "", 0, -1, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 11, 0.75f, new UpkeepData(0, 5, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Camoflage", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Goblin", "Goblin", "race_61", "race_60", true, "", "", 0, -1, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 9, 0.8f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5));
+            temp = new Race("Goblin", "Goblin", "", "", true, "", "", 0, -1, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 9, 0.8f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Godkin", "Godkin", "race_51", "race_50", false, "", "", 0, 0, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 0.1f, new UpkeepData(0, 0, 0, 5), new GameValue(1, 5));
+            temp = new Race("Godkin", "Godkin", "", "", false, "", "", 0, 0, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 0.1f, new UpkeepData(0, 0, 0, 5), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             temp.Resistances.Add(new ResistanceData(DamageType.Holy, 95));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Half Orc", "Half Orc", "race_9", "race_8", false, "", "", 0, 0, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5));
+            temp = new Race("Half Orc", "Half Orc", "", "", false, "", "", 0, 0, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Halfling", "Halfling", "race_43", "race_42", true, "", "", 0, -1, true, true, false,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 12, 0, 0), new GameValue(1, 5));
+            temp = new Race("Halfling", "Halfling", "Halfling Male", "Halfling Female", true, "", "", 0, -1, true, true, false,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 12, 0, 0), new GameValue(1, 5),
+                new Vector3(0.7f, 0.8f, 0.8f));
             temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 2;
             temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 4;
             temp.StartingAttributes[(int)BaseAttribute.Charisma].Number = 4;
             temp.StartingAttributes[(int)BaseAttribute.Memory].Number = 2;
             races.Add(temp.Key, temp);
 
-            temp = new Race("High Elf", "High Elf", "race_13", "race_12", false, "", "", 0, -1, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.5f, new UpkeepData(0, 5, 0, 0), new GameValue(1, 5));
+            temp = new Race("High Elf", "High Elf", "High Elf Male", "High Elf Female", false, "", "", 0, -1, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.5f, new UpkeepData(0, 5, 0, 0), new GameValue(1, 5),
+                new Vector3(0.65f, 0.9f, 0.8f));
             temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = -2;
             temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 4;
             temp.StartingAttributes[(int)BaseAttribute.Intellect].Number = 4;
             temp.StartingAttributes[(int)BaseAttribute.Memory].Number = 2;
             races.Add(temp.Key, temp);
 
-            temp = new Race("Mountain Dwarf", "Mountain Dwarf", "race_15", "race_14", true, "", "", 0, 0, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 9, 1.0f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5));
+            temp = new Race("Mountain Dwarf", "Mountain Dwarf", "Mountain Dwarf Male", "Mountain Dwarf Female", true, "", "", 0, 0, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 9, 1.0f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 0.75f, 1.1f));
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Dark Vision", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Imperial", "Imperial", "race_51", "race_50", false, "", "", 0, 0, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5));
+            temp = new Race("Imperial", "Imperial", "Imperial Male", "Imperial Female", false, "", "", 0, 0, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Fast Learner", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Southerner", "Southerner", "race_89", "race_88", false, "", "", 0, 0, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5));
+            temp = new Race("Southerner", "Southerner", "", "", false, "", "", 0, 0, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Fast Learner", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Ogrin", "Ogrin", "race_51", "race_50", false, "", "", 0, 0, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5));
+            temp = new Race("Ogrin", "Ogrin", "", "", false, "", "", 0, 0, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Fast Learner", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Orc", "Orc", "race_9", "race_8", false, "", "", 0, 0, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5));
+            temp = new Race("Orc", "Orc", "", "", false, "", "", 0, 0, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Plains Dwarf", "Plains Dwarf", "race_55", "race_54", true, "", "", 0, 0, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 9, 1.1f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5));
+            temp = new Race("Plains Dwarf", "Plains Dwarf", "", "", true, "", "", 0, 0, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 9, 1.1f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Sidhe", "Sidhe", "race_13", "race_12", false, "race_323", "", 0, -1, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 16, 0.2f, new UpkeepData(0, 2, 0, 0), new GameValue(1, 5));
+            temp = new Race("Sidhe", "Sidhe", "", "", false, "race_323", "", 0, -1, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 16, 0.2f, new UpkeepData(0, 2, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Flight", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Revenant", "Revenant", "race_73", "race_72", false, "", "", 0, 0, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 7, 0.2f, new UpkeepData(0, 0, 0, 4), new GameValue(1, 5));
+            temp = new Race("Revenant", "Revenant", "", "", false, "", "", 0, 0, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 7, 0.2f, new UpkeepData(0, 0, 0, 4), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Undead", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Shade", "Shade", "race_16", "race_15", false, "race_321", "", -1, -1, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 11, 0.5f, new UpkeepData(0, 0, 0, 6), new GameValue(1, 5));
+            temp = new Race("Shade", "Shade", "", "", false, "race_321", "", -1, -1, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 11, 0.5f, new UpkeepData(0, 0, 0, 6), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Undead", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Shadow Elf", "Shadow Elf", "race_49", "race_48", false, "", "", 0, -1, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.5f, new UpkeepData(0, 4, 0, 0), new GameValue(1, 5));
+            temp = new Race("Shadow Elf", "Shadow Elf", "", "", false, "", "", 0, -1, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.5f, new UpkeepData(0, 4, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Dark Vision", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Trollkin", "Trollkin", "race_47", "race_46", false, "", "", 0, -1, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.75f, new UpkeepData(0, 11, 0, 0), new GameValue(1, 5));
+            temp = new Race("Trollkin", "Trollkin", "", "", false, "", "", 0, -1, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.75f, new UpkeepData(0, 11, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Regeneration", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Valarian", "Valarian", "race_51", "race_50", false, "", "", -1, -1, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.75f, new UpkeepData(0, 5, 0, 1), new GameValue(1, 5));
+            temp = new Race("Valarian", "Valarian", "", "", false, "", "", -1, -1, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.75f, new UpkeepData(0, 5, 0, 1), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Vampire", "Vampire", "race_83", "race_82", false, "race_320", "", 0, 0, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 14, 0.1f, new UpkeepData(0, 0, 0, 6), new GameValue(1, 5));
+            temp = new Race("Vampire", "Vampire", "", "", false, "race_320", "", 0, 0, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 14, 0.1f, new UpkeepData(0, 0, 0, 6), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Undead", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Wolfen", "Wolfen", "race_81", "race_80", false, "", "", 0, -1, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 9, 0, 1), new GameValue(1, 5));
+            temp = new Race("Wolfen", "Wolfen", "", "", false, "", "", 0, -1, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 9, 0, 1), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Infernal", "Infernal", "race_19", "race_18", false, "", "", 0, -1, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 7, 0, 1), new GameValue(1, 5));
+            temp = new Race("Infernal", "Infernal", "", "", false, "", "", 0, -1, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 7, 0, 1), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Gnome", "Gnome", "race_15", "race_14", false, "", "", 0, 0, true, true, true,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 5, 1, 1), new GameValue(1, 5));
+            temp = new Race("Gnome", "Gnome", "", "", false, "", "", 0, 0, true, true, true,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 5, 1, 1), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Half Ogre", "Half Ogre", "race_63", "race_62", false, "", "", 0, 0, false, true, false,
-                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 11, 0, 0), new GameValue(1, 5));
+            temp = new Race("Half Ogre", "Half Ogre", "", "", false, "", "", 0, 0, false, true, false,
+                new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 11, 0, 0), new GameValue(1, 5),
+                new Vector3(1, 1, 1));
             races.Add(temp.Key, temp);
         }
 

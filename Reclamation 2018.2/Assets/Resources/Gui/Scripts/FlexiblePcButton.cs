@@ -24,7 +24,7 @@ namespace Reclamation.Gui
 
         public GameObject expBar;
 
-        private Pc pc;
+        private PcData pc;
 
         protected override void OnSkinGui()
         {
@@ -37,7 +37,7 @@ namespace Reclamation.Gui
             button.colors = skinData.buttonColors;
         }
 
-        public void SetData(Pc pc)
+        public void SetData(PcData pc)
         {
             if (pc != null)
             {
@@ -60,7 +60,7 @@ namespace Reclamation.Gui
                 bar.SetExpData(this.pc);
                 expBar = go;
 
-                PortraitRoom.instance.AddModel(ModelManager.instance.SpawnPc(null, Vector3.zero, this.pc), this.pc.EncounterIndex);
+                PortraitRoom.instance.AddModel(ModelManager.instance.SpawnCharacter(null, Vector3.zero, this.pc), this.pc.EncounterIndex);
                 portrait.texture = PortraitRoom.instance.characterMounts[this.pc.EncounterIndex].rtCamera.targetTexture;
             }
             else

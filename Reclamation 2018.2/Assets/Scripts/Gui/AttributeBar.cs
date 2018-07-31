@@ -13,7 +13,7 @@ namespace Reclamation.Gui
         public Color color;
         public VitalData vitalData;
 
-        public void SetData(Pc pc, int attribute)
+        public void SetData(PcData pc, int attribute)
         {
             if (attribute == (int)DerivedAttribute.Armor)
             {
@@ -44,7 +44,7 @@ namespace Reclamation.Gui
             foreground.color = color;
         }
 
-        public void SetExpData(Pc pc)
+        public void SetExpData(PcData pc)
         {
             pc.onExperienceChange += UpdateAttribute;
             color = vitalData.experienceColor;

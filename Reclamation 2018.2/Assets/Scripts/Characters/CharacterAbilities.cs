@@ -10,7 +10,7 @@ namespace Reclamation.Characters
     public class CharacterAbilities
     {
         [System.NonSerialized]
-        private Pc pc;
+        private PcData pc;
 
         private List<Ability> traits;
         private List<Ability> availablePowers;
@@ -49,7 +49,7 @@ namespace Reclamation.Characters
             memorizedSpells = new List<Ability>();
         }
 
-        public CharacterAbilities(Pc pc, int power_slots, int spell_slots)
+        public CharacterAbilities(PcData pc, int power_slots, int spell_slots)
         {
             this.pc = pc;
 
@@ -65,7 +65,7 @@ namespace Reclamation.Characters
             memorizedSpells = new List<Ability>();
         }
 
-        public CharacterAbilities(Pc pc)
+        public CharacterAbilities(PcData pc)
         {
             this.pc = pc;
             PowerSlots = pc.Abilities.PowerSlots;

@@ -178,7 +178,7 @@ namespace Reclamation.Equipment
 
         public static ItemShort CreateRandomItemShort(ItemTypeAllowed type, int plus_chance, int pre_chance, int post_chance)
         {
-            Item item = CreateRandomItem(type, plus_chance, pre_chance, post_chance);
+            ItemData item = CreateRandomItem(type, plus_chance, pre_chance, post_chance);
 
             return new ItemShort(item);
         }
@@ -249,7 +249,7 @@ namespace Reclamation.Equipment
             return key;
         }
 
-        public static Item CreateRandomItem(int slot, int plus_chance, int pre_chance, int post_chance)
+        public static ItemData CreateRandomItem(int slot, int plus_chance, int pre_chance, int post_chance)
         {
             string itemKey = GetItemKey(slot);
             if (itemKey == "") return null;
@@ -272,12 +272,12 @@ namespace Reclamation.Equipment
                 post = PostEnchants[Random.Range(0, PostEnchants.Count)];
             }
 
-            Item item = CreateItem(itemKey, material, plus, pre, post, 1);
+            ItemData item = CreateItem(itemKey, material, plus, pre, post, 1);
 
             return item;
         }
 
-        public static Item CreateRandomItem(ItemTypeAllowed type, int plus_chance, int pre_chance, int post_chance)
+        public static ItemData CreateRandomItem(ItemTypeAllowed type, int plus_chance, int pre_chance, int post_chance)
         {
             string itemKey = GetItemKey(type);
             string material = GetMaterial(itemKey);
@@ -298,16 +298,16 @@ namespace Reclamation.Equipment
                 post = PostEnchants[Random.Range(0, PostEnchants.Count)];
             }
 
-            Item item = CreateItem(itemKey, material, plus, pre, post, 1);
+            ItemData item = CreateItem(itemKey, material, plus, pre, post, 1);
 
             return item;
         }
 
-        public static Item CreateArtifact(ItemTypeAllowed type)
+        public static ItemData CreateArtifact(ItemTypeAllowed type)
         {
             bool setDataAllowed = true;
             string itemKey = GetArtifactKey(type);
-            Item newItem = new Item(Database.GetItem(itemKey, true), 1);
+            ItemData newItem = new ItemData(Database.GetItem(itemKey, true), 1);
 
             newItem.ArtifactData = GenerateArtifactData();
 
@@ -320,9 +320,9 @@ namespace Reclamation.Equipment
             return newItem;
         }
 
-        public static Item CreateItem(string item, string material, string plus, string pre, string post, int stack_size)
+        public static ItemData CreateItem(string item, string material, string plus, string pre, string post, int stack_size)
         {
-            Item newItem = new Item(Database.Items[item], stack_size);
+            ItemData newItem = new ItemData(Database.Items[item], stack_size);
 
             bool plusAllowed = true;
             bool preAllowed = true;

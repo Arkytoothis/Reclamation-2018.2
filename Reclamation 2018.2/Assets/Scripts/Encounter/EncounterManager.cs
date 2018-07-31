@@ -31,19 +31,16 @@ namespace Reclamation.Encounter
             PcGenerator.Initialize();
             ModelManager.instance.Initialize();
 
-            //WorldManager.instance.Initialize();
-            //ScreenManager.instance.Initialize();
-
             parties = new List<PartyData>(MaxParties);
 
             PartyData party = new PartyData("Blue Party", Color.blue, 0, 3);
 
-            party.pcs[0] = new Pc(PcGenerator.Generate(0, Gender.Female, "Imperial", "Soldier"));
-            party.pcs[1] = new Pc(PcGenerator.Generate(1, Gender.Male, "Imperial", "Scout"));
-            //party.pcs[2] = new Pc(PcGenerator.Generate(2, "Imperial", "Priest"));
-            //party.pcs[3] = new Pc(PcGenerator.Generate(3, "Imperial", "Soldier"));
-            //party.pcs[4] = new Pc(PcGenerator.Generate(4, "Imperial", "Scout"));
-            //party.pcs[5] = new Pc(PcGenerator.Generate(5, "Imperial", "Priest"));
+            party.pcs[0] = new PcData(PcGenerator.Generate(0, Gender.Male, "Mountain Dwarf", "Soldier"));
+            party.pcs[1] = new PcData(PcGenerator.Generate(1, Gender.Female, "Mountain Dwarf", "Rogue"));
+            party.pcs[2] = new PcData(PcGenerator.Generate(2, Gender.Male, "Halfling", "Scout"));
+            party.pcs[3] = new PcData(PcGenerator.Generate(3, Gender.Female, "Halfling", "Priest"));
+            party.pcs[4] = new PcData(PcGenerator.Generate(4, Gender.Male, "High Elf", "Apprentice"));
+            party.pcs[5] = new PcData(PcGenerator.Generate(5, Gender.Female, "High Elf", "Priest"));
 
             parties.Add(party);
 
@@ -60,9 +57,9 @@ namespace Reclamation.Encounter
                     pcs[i].transform.position = EncounterPartyManager.instance.formationTransforms[i].position;
 
                     if (i == 0)
-                        pcs[i].GetComponent<EncounterPcController>().light.enabled = true;
+                        pcs[i].GetComponent<Pc>().light.enabled = true;
                     else
-                        pcs[i].GetComponent<EncounterPcController>().light.enabled = false;
+                        pcs[i].GetComponent<Pc>().light.enabled = false;
                 }
             }
 
@@ -74,16 +71,16 @@ namespace Reclamation.Encounter
             {
                 if (parties[0].pcs[i] != null)
                 {
-                    pcs.Add(ModelManager.instance.SpawnPc(transform, EncounterPartyManager.instance.formationTransforms[i].position, parties[0].pcs[i]));
+                    pcs.Add(ModelManager.instance.SpawnCharacter(transform, EncounterPartyManager.instance.formationTransforms[i].position, parties[0].pcs[i]));
                 }
             }
 
             EncounterPartyManager.instance.SetControllers(pcs);
         }
 
-        public void CreatePortraitModel(Transform parent, Pc pc)
+        public void CreatePortraitModel(Transform parent, PcData pc)
         {
-            ModelManager.instance.SpawnPc(parent, parent.position, pc);
+            ModelManager.instance.SpawnCharacter(parent, parent.position, pc);
         }
 
         void Update()

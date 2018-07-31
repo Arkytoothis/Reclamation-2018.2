@@ -18,7 +18,7 @@ namespace Reclamation.Gui.Encounter
         public bool isOpen = false;
 
         private int currentPc = 0;
-        private Pc pc;
+        private PcData pc;
 
         public void Initialize()
         {
@@ -85,7 +85,7 @@ namespace Reclamation.Gui.Encounter
             skillsLabel.text = s;
         }
 
-        public void SetData(Pc pc)
+        public void SetData(PcData pc)
         {
             if (pc == null)
             {

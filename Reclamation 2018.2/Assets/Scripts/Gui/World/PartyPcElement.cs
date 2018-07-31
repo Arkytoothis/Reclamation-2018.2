@@ -12,7 +12,7 @@ namespace Reclamation.Gui
         public TMP_Text detailsLabel;
         public TMP_Text hpLabel;
 
-        public void SetData(Pc pc)
+        public void SetData(PcData pc)
         {
             if (pc != null)
             {

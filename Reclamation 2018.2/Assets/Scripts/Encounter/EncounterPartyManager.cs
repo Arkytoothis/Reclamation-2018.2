@@ -15,7 +15,7 @@ namespace Reclamation.Encounter
 
         public MoveMode moveMode = MoveMode.Follow;
         public LayerMask movementMask;
-        public List<EncounterPcController> pcControllers;
+        public List<Pc> pcControllers;
         public GameObject movementCursor;
 
         public List<Formation> defaultFormations;
@@ -27,7 +27,7 @@ namespace Reclamation.Encounter
 
         void Awake()
         {
-            pcControllers = new List<EncounterPcController>();
+            pcControllers = new List<Pc>();
             selectedPcs = new bool[PartyData.MaxPartySize];
         }
 
@@ -56,7 +56,7 @@ namespace Reclamation.Encounter
         {
             for (int i = 0; i < pcs.Count; i++)
             {
-                pcControllers.Add(pcs[i].GetComponent<EncounterPcController>());
+                pcControllers.Add(pcs[i].GetComponent<Pc>());
             }
         }
 

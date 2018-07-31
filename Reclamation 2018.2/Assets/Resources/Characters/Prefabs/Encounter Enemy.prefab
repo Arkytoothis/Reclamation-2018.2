@@ -1438,9 +1438,9 @@ MonoBehaviour:
   centerOffset: 1
   rotationIn2D: 0
   targetCompatibility: {fileID: 0}
-  acceleration: 5
-  rotationSpeed: 360
-  slowdownTime: 0.5
+  acceleration: 10
+  rotationSpeed: 500
+  slowdownTime: 0.25
   endReachedDistance: 2
   wallForce: 0.1
   wallDist: 0.01
@@ -1661,9 +1661,10 @@ MonoBehaviour:
   perceptionRadius: 3
   rangedDistance: 0
   meleeDistance: 1.25
-  attackTarget: {fileID: 0}
+  target: {fileID: 0}
   destinationSetter: {fileID: 0}
   rvo: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!114 &114861301633720880
 MonoBehaviour:
   m_ObjectHideFlags: 1

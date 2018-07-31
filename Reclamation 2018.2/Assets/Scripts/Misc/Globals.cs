@@ -142,15 +142,16 @@ namespace Reclamation.Misc
 
     public enum EquipmentSlot
     {
-        Right_Hand, Left_Hand, Body, Head, Arms, Hands, Legs, Feet, Back, Neck, Waist, Left_Finger, Right_Finger,
+        Right_Hand, Left_Hand, Body, Head, Shoulders, Arms, Hands, Feet, Back, Neck, Waist, Left_Finger, Right_Finger,
         Number, None
     };
 
-    public enum CharacterRendererSlots
+    public enum EquipmentRenderSlot
     {
-        Back, Wings, Body, Horns, Main_Hand, Ammo, Torso, Legs, Beard, Hair, Head, Hands, Feet, Neck, Left_Finger, Right_Finger, Waist, Wrists, Off_Hand,
+        Right_Hand, Left_Hand, Body, Head, Right_Shoulder, Left_Shoulder, Right_Arm, Left_Arm,
+        Right_Foot, Left_Foot, Back, Neck, Waist, Hip, Right_Finger, Left_Finger, Hair, Beard, Face,
         Number, None
-    };
+    }
 
     public enum ItemType
     {
@@ -316,6 +317,12 @@ namespace Reclamation.Misc
     public enum ActionType
     {
         Movement, Weapon_Attack, Unarmed_Attack, Power, Spell, Item,
+        Number, None
+    }
+
+    public enum BodyType
+    {
+        Large, Normal, Small,
         Number, None
     }
 }

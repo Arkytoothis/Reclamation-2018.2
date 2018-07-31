@@ -58,7 +58,7 @@ namespace Reclamation.Misc
 
             if (Physics.Raycast(ray, out hit, 1000))
             {
-                EncounterNpcController npc = hit.collider.gameObject.GetComponent<EncounterNpcController>();
+                Npc npc = hit.collider.gameObject.GetComponent<Npc>();
 
                 if (npc != null)
                 {

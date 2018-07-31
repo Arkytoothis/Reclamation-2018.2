@@ -11,7 +11,7 @@ public class PcElement : MonoBehaviour
     public TMP_Text detailsLabel;
     public RawImage portraitImage;
 
-    public void SetData(Pc pc)
+    public void SetData(PcData pc)
     {
         if (pc != null)
         {

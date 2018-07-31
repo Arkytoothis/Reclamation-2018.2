@@ -8,20 +8,20 @@ namespace Reclamation.Characters
     [System.Serializable]
     public class CharacterInventory
     {
-        public Item[] EquippedItems;
-        public List<Item> Accessories;
+        public ItemData[] EquippedItems;
+        public List<ItemData> Accessories;
         public static int MaximumAccessories = 14;
         public int AccessoryLimit = 4;
 
-        public Item GetItem(int slot)
+        public ItemData GetItem(int slot)
         {
             return EquippedItems[slot];
         }
 
         public CharacterInventory()
         {
-            EquippedItems = new Item[(int)EquipmentSlot.Number];
-            Accessories = new List<Item>(MaximumAccessories);
+            EquippedItems = new ItemData[(int)EquipmentSlot.Number];
+            Accessories = new List<ItemData>(MaximumAccessories);
 
             for (int i = 0; i < EquippedItems.Length; i++)
             {
@@ -37,36 +37,36 @@ namespace Reclamation.Characters
         public CharacterInventory(CharacterInventory inventory)
         {
             AccessoryLimit = inventory.AccessoryLimit;
-            EquippedItems = new Item[(int)EquipmentSlot.Number];
-            Accessories = new List<Item>(MaximumAccessories);
+            EquippedItems = new ItemData[(int)EquipmentSlot.Number];
+            Accessories = new List<ItemData>(MaximumAccessories);
 
             for (int i = 0; i < inventory.EquippedItems.Length; i++)
             {
                 if (inventory.EquippedItems[i] != null)
-                    EquippedItems[i] = new Item(inventory.EquippedItems[i]);
+                    EquippedItems[i] = new ItemData(inventory.EquippedItems[i]);
             }
 
             for (int i = 0; i < inventory.Accessories.Count; i++)
             {
                 if (inventory.Accessories[i] != null)
-                    Accessories.Add(new Item(inventory.Accessories[i]));
+                    Accessories.Add(new ItemData(inventory.Accessories[i]));
             }
         }
 
-        public void EquipItem(Item item, EquipmentSlot slot)
+        public void EquipItem(ItemData item, EquipmentSlot slot)
         {
             if (item != null)
-                EquippedItems[(int)slot] = new Item(item);
+                EquippedItems[(int)slot] = new ItemData(item);
             else
                 EquippedItems[(int)slot] = null;
 
         }
 
-        public void EquipAccessory(Item item, int slot)
+        public void EquipAccessory(ItemData item, int slot)
         {
             if (slot != -1)
             {
-                Accessories[slot] = new Item(item);
+                Accessories[slot] = new ItemData(item);
             }
             else
             {
@@ -74,14 +74,14 @@ namespace Reclamation.Characters
                 {
                     if (Accessories[i] == null)
                     {
-                        Accessories[i] = new Item(item);
+                        Accessories[i] = new ItemData(item);
                         break;
                     }
                 }
             }
         }
 
-        public bool TryEquip(Item item, EquipmentSlot slot)
+        public bool TryEquip(ItemData item, EquipmentSlot slot)
         {
             bool success = true;
 

@@ -21,7 +21,7 @@ namespace Reclamation.Characters
         public Color color;
 
         public int maxCharacters;
-        public Pc[] pcs;
+        public PcData[] pcs;
 
         public List<Attribute> attributes;
         public List<int> combinedSkills;
@@ -56,7 +56,7 @@ namespace Reclamation.Characters
             this.index = index;
             this.maxCharacters = maxCharacters;
 
-            pcs = new Pc[MaxPartySize];
+            pcs = new PcData[MaxPartySize];
 
             for (int i = 0; i < MaxPartySize; i++)
             {
@@ -91,7 +91,7 @@ namespace Reclamation.Characters
             index = data.index;
             maxCharacters = data.maxCharacters;
 
-            pcs = new Pc[MaxPartySize];
+            pcs = new PcData[MaxPartySize];
 
             for (int i = 0; i < MaxPartySize; i++)
             {
@@ -117,7 +117,7 @@ namespace Reclamation.Characters
             }
         }
 
-        public void AddPc(Pc pc)
+        public void AddPc(PcData pc)
         {
             if (pc == null)
             {
@@ -129,7 +129,7 @@ namespace Reclamation.Characters
             {
                 if (pcs[i] == null)
                 {
-                    pcs[i] = new Pc(pc);
+                    pcs[i] = new PcData(pc);
                     //Debug.Log(pcs[i].Name.ShortName + " added");
                     break;
                 }

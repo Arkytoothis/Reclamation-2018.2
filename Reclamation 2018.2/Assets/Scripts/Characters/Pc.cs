@@ -1,471 +1,228 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using Reclamation.Characters;
 using Reclamation.Misc;
-using Reclamation.Name;
-using Reclamation.Equipment;
+using Reclamation.Props;
+using Pathfinding;
+using Pathfinding.RVO;
 
-namespace Reclamation.Characters
+namespace Reclamation.Encounter
 {
-    public enum PcStatus
-    {
-        Idle, Adventuring, Resting, Camping, Working, Training,
-        Number, None
-    }
-
     [System.Serializable]
-    public class Pc : Character
+    public class Pc : MonoBehaviour
     {
-        public UpkeepData Upkeep;
-        public int Wealth;
-        public PcStatus Status;
-        public int EncounterIndex;
-        public int WorldIndex;
-        public int PartyIndex;
-        public int PartySlot;
+        public GameObject model;
+        public new Light light;
 
-        public int Level;
+        public float moveSpeed = 3f;
+        public float turnSpeed = 100f;
+        public float perceptionRadius = 10f;
+        public float rangedDistance = 5f;
+        public float meleeDistance = 1f;
 
-        private int experience;
-        public int Experience { get { return experience; } }
-        private int expToLevel;
-        public int ExpToLevel { get { return expToLevel; } }
-        private int maxExp;
-        public int MaxExp { get { return maxExp; } }
-        private float expBonus;
-        public float ExpBonus { get { return expBonus; } }
+        public GameObject target = null;
 
-        public CharacterAbilities Abilities;
+        public AIDestinationSetter destinationSetter;
+        public RichAI pathfinder;
+        public RVOController rvo;
 
-        public int MaxAccessories;
+        public bool isAttacking = false;
 
-        public Pc()
+        [SerializeField]
+        private PcAnimator animator;
+        private PcData pcData;
+
+        // The furthest distance that the agent is able to attack from
+        public float attackDistance = 1f;
+        // The amount of time it takes for the agent to be able to attack again
+        public float repeatAttackDelay = 1f;
+        // The last time the agent attacked
+        private float lastAttackTime;
+
+        private CharacterRenderer pcRenderer = null;
+        private Damagable targetDamagable = null;
+        private Interactable targetInteractable = null;
+
+        void Awake()
         {
-            Wealth = 0;
-            Upkeep = new UpkeepData();
-            Name = new FantasyName();
-            Gender = Gender.None;
-            Background = null;
-            Status = PcStatus.Idle;
-
-            RaceKey = "";
-            ProfessionKey = "";
-            Description = "";
-
-            EncounterIndex = -1;
-            WorldIndex = -1;
-            PartyIndex = -1;
-            Hair = -1;
-            Beard = -1;
-            MaxAccessories = 1;
-
-            Level = 0;
-            experience = 0;
-            expToLevel = 0;
-            maxExp = 0;
-            expBonus = 0;
-
-            attributeManager = new AttributeManager();
-
-            for (int i = 0; i < (int)BaseAttribute.Number; i++)
-                attributeManager.AddAttribute(AttributeListType.Base, new Attribute(AttributeType.Base, i, GameSettings.AttributeExpCost));
-
-            for (int i = 0; i < (int)DerivedAttribute.Number; i++)
-                attributeManager.AddAttribute(AttributeListType.Derived, new Attribute(AttributeType.Derived, i, 0));
-
-            for (int i = 0; i < (int)DamageType.Number; i++)
-                attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
-
-            Abilities = new CharacterAbilities();
-            Inventory = new CharacterInventory();
+            destinationSetter = gameObject.GetComponent<AIDestinationSetter>();
+            rvo = gameObject.GetComponent<RVOController>();
+            pathfinder = gameObject.GetComponent<RichAI>();
         }
 
-        public Pc(FantasyName name, Gender gender, Background background, string race, string profession, int hair, int beard, int index, int enc_index, int party_index,
-            int power_slots, int spell_slots)
+        void Start()
         {
-            Wealth = 0;
-            Upkeep = new UpkeepData();
-            Name = name;
-            Background = new Background(background);
-
-            Gender = gender;
-            RaceKey = race;
-            ProfessionKey = profession;
-            WorldIndex = index;
-            EncounterIndex = enc_index;
-            PartyIndex = party_index;
-            Hair = hair;
-            Beard = beard;
-
-            MaxAccessories = Random.Range(1, 4);
-
-            Level = 0;
-            experience = 0;
-            expToLevel = 0;
-            maxExp = 0;
-            expBonus = 0.0f;
-
-            attributeManager = new AttributeManager();
-
-            for (int i = 0; i < (int)BaseAttribute.Number; i++)
-            {
-                attributeManager.AddAttribute(AttributeListType.Base, new Attribute(AttributeType.Base, i, GameSettings.AttributeExpCost));
-            }
-
-            for (int i = 0; i < (int)DerivedAttribute.Number; i++)
-            {
-                attributeManager.AddAttribute(AttributeListType.Derived, new Attribute(AttributeType.Derived, i, 0));
-            }
-
-            for (int i = 0; i < (int)DamageType.Number; i++)
-            {
-                attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
-            }
-
-            Abilities = new CharacterAbilities(this, power_slots, spell_slots);
-            Inventory = new CharacterInventory();
+            destinationSetter.target = null;
+            InvokeRepeating("ProcessAi", 2f, 0.1f);
         }
 
-        public Pc(Pc pc)
+        void LateUpdate()
         {
-            Name = pc.Name;
-            Gender = pc.Gender;
-
-            Wealth = pc.Wealth;
-            Upkeep = new UpkeepData(pc.Upkeep);
-            Background = new Background(pc.Background);
-            RaceKey = pc.RaceKey;
-            ProfessionKey = pc.ProfessionKey;
-            WorldIndex = pc.WorldIndex;
-            EncounterIndex = pc.EncounterIndex;
-            PartyIndex = pc.PartyIndex;
-            PartySlot = pc.PartySlot;
-            Hair = pc.Hair;
-            Beard = pc.Beard;
-
-            Description = pc.Description;
-
-            Level = pc.Level;
-            experience = pc.Experience;
-            expToLevel = pc.ExpToLevel;
-            maxExp = pc.MaxExp;
-            expBonus = pc.ExpBonus;
-
-            attributeManager = new AttributeManager();
-
-            for (int i = 0; i < (int)BaseAttribute.Number; i++)
-            {
-                attributeManager.AddAttribute(AttributeListType.Base, new Attribute(pc.attributeManager.GetAttribute(AttributeListType.Base, i)));
-            }
-
-            for (int i = 0; i < (int)DerivedAttribute.Number; i++)
-            {
-                attributeManager.AddAttribute(AttributeListType.Derived, new Attribute(pc.attributeManager.GetAttribute(AttributeListType.Derived, i)));
-            }
-
-            for (int i = 0; i < (int)DamageType.Number; i++)
-            {
-                attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(pc.attributeManager.GetAttribute(AttributeListType.Resistance, i)));
-            }
-
-            foreach (KeyValuePair<Skill, Attribute> kvp in pc.GetSkills())
-            {
-                attributeManager.AddSkill(kvp.Key, new Attribute(kvp.Value));
-            }
-
-            Abilities = new CharacterAbilities(pc);
-            Inventory = new CharacterInventory(pc.Inventory);
+            FaceTarget();
         }
 
-        public override void CalculateStartSkills()
+        void ProcessAi()
         {
-            int numSkills = Random.Range(0, 6);
-            int start = 0;
-            for (int i = 0; i < numSkills; i++)
+            if (target != null)
             {
-                SkillDefinition skillDef = Database.Skills[Random.Range(0, Database.Skills.Count)];
-                Attribute skill = new Attribute();
-
-                start = Random.Range(1, 4);
-                skill.Type = AttributeType.Skill;
-                skill.SetStart(start, 0, 100);
-
-                attributeManager.AddSkill(skillDef.key, skill);
-            }
-        }           
-
-        public bool CanEquip(Item item, EquipmentSlot slot)
-        {
-            bool canEquip = false;
-
-            if (item.Slot != slot)
-                canEquip = true;
-
-            return canEquip;
-        }
-
-        public void CalculateAttributeModifiers()
-        {
-            for (int slot = 0; slot < (int)EquipmentSlot.Number; slot++)
-            {
-                if (Inventory.EquippedItems[slot] != null)
+                targetDamagable = CheckDamagable(target);
+                targetInteractable = CheckInteractable(target);
+                
+                if (targetInteractable != null)
                 {
-                    Item item = Inventory.EquippedItems[slot];
-
-                    if (item.WeaponData != null)
-                    {
-                        //if (item.WeaponData.AttackType == AttackType.Might)
-                        //    DerivedAttributes[(int)DerivedAttribute.Might_Attack].AddToModifier(item.WeaponData.Attributes[(int)WeaponAttributes.Attack].Value);
-                        //else if (item.WeaponData.AttackType == AttackType.Finesse)
-                        //    DerivedAttributes[(int)DerivedAttribute.Finesse_Attack].AddToModifier(item.WeaponData.Attributes[(int)WeaponAttributes.Attack].Value);
-                        //else if (item.WeaponData.AttackType == AttackType.Spell)
-                        //    DerivedAttributes[(int)DerivedAttribute.Spell_Attack].AddToModifier(item.WeaponData.Attributes[(int)WeaponAttributes.Attack].Value);
-
-                        //DerivedAttributes[(int)DerivedAttribute.Parry].AddToModifier(item.WeaponData.Attributes[(int)WeaponAttributes.Parry].Value);
-                    }
-
-                    if (item.WearableData != null)
-                    {
-                        //DerivedAttributes[(int)DerivedAttribute.Armor].AddToModifier(item.WearableData.Attributes[(int)WearableAttributes.Armor].Value);
-                        //DerivedAttributes[(int)DerivedAttribute.Block].AddToModifier(item.WearableData.Attributes[(int)WearableAttributes.Block].Value);
-                        //DerivedAttributes[(int)DerivedAttribute.Dodge].AddToModifier(item.WearableData.Attributes[(int)WearableAttributes.Dodge].Value);
-
-                        //for (int r = 0; r < item.WearableData.Resistances.Count; r++)
-                        //{
-                        //    Resistances[(int)item.WearableData.Resistances[r].DamageType].AddToModifier(item.WearableData.Resistances[r].Value);
-                        //}
-                    }
-
-                    //for (int m = 0; m < item.Modifiers.Count; m++)
-                    //{
-                    //    for (int e = 0; e < item.Modifiers[m].Effects.Count; e++)
-                    //    {
-                    //        if (item.Modifiers[m].Effects[e].GetType() == typeof(AlterCharacteristicEffect))
-                    //        {
-                    //            AlterCharacteristicEffect effect = (AlterCharacteristicEffect)item.Modifiers[m].Effects[e];
-
-                    //            if (effect.Type == CharacteristicType.Base_Attribute)
-                    //                BaseAttributes[effect.Characteristic].AddToModifier(effect.MaxValue);
-                    //            else if (effect.Type == CharacteristicType.Derived_Attribute)
-                    //                DerivedAttributes[effect.Characteristic].AddToModifier(effect.MaxValue);
-                    //            else if (effect.Type == CharacteristicType.Skill)
-                    //                Skills[effect.Characteristic].AddToModifier(effect.MaxValue);
-                    //            else if (effect.Type == CharacteristicType.Resistance)
-                    //                Resistances[effect.Characteristic].AddToModifier(effect.MaxValue);
-                    //        }
-                    //    }
-                    //}
+                    ProcessInteraction(targetInteractable);
+                }
+                else if (targetDamagable != null)
+                {
+                    ProcessAttack(targetDamagable);
                 }
             }
         }
 
-        public void CalculateExp()
+        public void SetModel(GameObject model)
         {
-            expToLevel = Level * 1000;
-            maxExp = Level * 10000;
+            this.model = model;
+            pcRenderer = gameObject.GetComponentInChildren<CharacterRenderer>();
         }
 
-        public void CalculateExpCosts()
+        public void ProcessAttack(Damagable damagable)
         {
-            //for (int i = 0; i < BaseAttributes.Count; i++)
-            //{
-            //    BaseAttributes[i].CalculateExpCost();
-            //}
-
-            //for (int i = 0; i < Skills.Count; i++)
-            //{
-            //    Skills[i].CalculateExpCost();
-            //}
-        }
-
-        public void AddExperience(int amount, bool adjusted)
-        {
-            if (amount == 0) return;
-
-            int expToAdd = 0;
-
-            if (adjusted == true)
+            if (CheckRange(target) == true && CheckTiming(target) == true)
             {
-                expToAdd = (int)((float)amount * Database.GetRace(RaceKey).ExpModifier);
-                expToAdd += (int)((float)amount * ExpBonus);
+                isAttacking = true;
+                lastAttackTime = Time.time;
+                animator.Attack();
+                CanMove(false);
+            }
+            else if (CheckRange(target) == false)
+            {
+                CanMove(true);
+                MoveTo(target);
+            }
+        }
+
+        public void ProcessInteraction(Interactable interactable)
+        {
+            if (CanInteract(target) == true)
+            {
+                animator.Interact();
+                SetInteractionTarget(null);
+                interactable.Interact(gameObject);
+            }
+        }
+
+        public void SetPcData(PcData pc, GameObject model)
+        {
+            pcData = pc;
+            pcData.onDeath += animator.Death;
+            pcData.onRevive += animator.Revive;
+            pcData.onLevelUp += animator.LevelUp;
+
+            SetModel(model);
+            pcRenderer.LoadEquipment(pcData);
+            //animator.animator.avatar = this.model.GetComponent<Animator>().avatar;
+            //animator.animator.runtimeAnimatorController = this.model.GetComponent<Animator>().runtimeAnimatorController;
+        }
+
+        public void StopAnimations()
+        {
+            animator.Stop();
+        }
+
+        public void SetAttackTarget(GameObject target)
+        {
+            this.target = target;
+        }
+
+        public void SetInteractionTarget(GameObject target)
+        {
+            this.target = target;
+        }
+
+        public bool CheckRange(GameObject target)
+        {
+            float distance = Vector3.Distance(transform.position, target.transform.position);
+
+            if (distance <= meleeDistance)
+            {
+                return true;
             }
             else
             {
-                expToAdd = amount;
+                return false;
             }
-
-            experience += expToAdd;
-
-            if (experience >= expToLevel)
-                LevelUp();
-
-            onExperienceChange(experience, expToLevel);
         }
 
-        public void SpendExperience(int amount)
+        public bool CheckTiming(GameObject target)
         {
-            experience -= amount;
+            bool canAttack = lastAttackTime + repeatAttackDelay < Time.time;
+            return canAttack;
         }
 
-        public void LevelUp()
+        public Damagable CheckDamagable(GameObject target)
         {
-            //Debug.Log(Name.FirstName + " has gained a level!");
-            SpendExperience(expToLevel);
-            Level++;
-            CalculateExp();
-            CalculateExpCosts();
-            CalculateDerivedAttributes();
-
-            onLevelUp();
+            Damagable damagable = target.GetComponent<Damagable>();
+            return damagable;
         }
 
-        public void CalculateUpkeep()
+        public Interactable CheckInteractable (GameObject target)
         {
-            Upkeep = new UpkeepData();
-
-            Race race = Database.GetRace(RaceKey);
-            Upkeep.Coin = race.Upkeep.Coin;
-            Upkeep.Essence = race.Upkeep.Essence;
-            Upkeep.Materials = race.Upkeep.Materials;
-            Upkeep.Rations = race.Upkeep.Rations;
-
-            Profession profession = Database.GetProfession(ProfessionKey);
-            Upkeep.Coin += profession.Upkeep.Coin;
-            Upkeep.Essence += profession.Upkeep.Essence;
-            Upkeep.Materials += profession.Upkeep.Materials;
-            Upkeep.Rations += profession.Upkeep.Rations;
-
-            Wealth = Database.Races[RaceKey].StartingWealth.Roll(false) + Database.Professions[ProfessionKey].StartingWealth.Roll(false);
+            Interactable interactable = target.GetComponent<Interactable>();
+            return interactable;
         }
 
-        public new void ModifyAttribute(AttributeType type, int attribute, int value)
+        public bool CheckAttack(GameObject target)
         {
-            if (value == 0) return;
+            if (target == null) return false;
 
-            base.ModifyAttribute(type, attribute, value);
-
-            int cur = attributeManager.GetAttribute(AttributeListType.Derived, attribute).Current;
-            int max = attributeManager.GetAttribute(AttributeListType.Derived, attribute).Maximum;
-
-            if (attribute == (int)DerivedAttribute.Armor)
-                onArmorChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Health)
-                onHealthChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Stamina)
-                onStaminaChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Essence)
-                onEssenceChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Morale)
-                onMoraleChange(cur, max);
-
-            CheckVitals();
-        }
-
-        public delegate void OnArmorChange(int current, int max);
-        public event OnArmorChange onArmorChange;
-
-        public delegate void OnHealthChange(int current, int max);
-        public event OnHealthChange onHealthChange;
-
-        public delegate void OnStaminaChange(int current, int max);
-        public event OnStaminaChange onStaminaChange;
-
-        public delegate void OnEssenceChange(int current, int max);
-        public event OnEssenceChange onEssenceChange;
-
-        public delegate void OnMoraleChange(int current, int max);
-        public event OnMoraleChange onMoraleChange;
-
-        public delegate void OnExperienceChange(int current, int max);
-        public event OnExperienceChange onExperienceChange;
-
-        public delegate void OnDeath();
-        public event OnDeath onDeath;
-
-        public delegate void OnRevive();
-        public event OnRevive onRevive;
-
-        public delegate void OnLevelUp();
-        public event OnLevelUp onLevelUp;
-
-        public delegate void OnInteract();
-        public event OnInteract onInteract;
-
-        public delegate void OnAttack();
-        public event OnAttack onAttack;
-
-        public void CheckVitals()
-        {
-            CheckHealth();
-            CheckStamina();
-            CheckEssence();
-            CheckMorale();
-        }
-
-        public void CheckHealth()
-        {
-            if (isDead == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Health).Current <= 0)
+            if(CheckRange(target) == false || CheckTiming(target) == false || CheckDamagable(target) == false)
             {
-                Death();
+                return false;
             }
-            else if (isDead == true && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Health).Current > 0)
+            else
             {
-                Revive();
+                return true;
             }
         }
 
-        public void CheckStamina()
+        public void MoveTo(GameObject target)
         {
-            if (isDead == false && isExhausted == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Stamina).Current <= 0)
+            destinationSetter.target = target.transform;
+        }
+
+        public void FaceTarget()
+        {
+            if(target != null)
             {
-                isExhausted = true;
-                //Debug.Log(Name.FirstName + " is exhausted");
+                Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime * 10);
             }
         }
 
-        public void CheckEssence()
+        public void CanMove(bool canMove)
         {
-            if (isDead == false && isDrained == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Essence).Current <= 0)
+            rvo.locked = !canMove;
+        }
+
+        public bool CanInteract(GameObject go)
+        {
+            Interactable interactable = go.GetComponent<Interactable>();
+            if (interactable == null)
             {
-                isDrained = true;
-                //Debug.Log(Name.FirstName + " is out of essence");
+                return false;
             }
-        }
 
-        public void CheckMorale()
-        {
-            if (isDead == false && isBroken == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Morale).Current <= 0)
+            bool canInteract = false;
+            float distance = Vector3.Distance(transform.position, go.transform.position);
+
+            if (distance <= 1f)
             {
-                isBroken = true;
-                //Debug.Log(Name.FirstName + " is broken");
+                canInteract = true;
             }
-        }
 
-        public void Death()
-        {
-            isDead = true;
-            onDeath();
-            Debug.Log(Name.FirstName + " has died");
-        }
-
-        public void Revive()
-        {
-            isDead = false;
-            onRevive();
-            Debug.Log(Name.FirstName + " has revived");
-        }
-
-        public void Interact()
-        {
-            Debug.Log(Name.FirstName + " is interacting");
-            onInteract();
-        }
-
-        public void Attack()
-        {
-            Debug.Log(Name.FirstName + " is attacking");
-            onAttack();
+            return canInteract;
         }
     }
 }

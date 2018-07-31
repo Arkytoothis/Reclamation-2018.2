@@ -24,7 +24,7 @@ namespace Reclamation.Misc
             model.GetComponent<FogOfWarUnit>().enabled = false;
             model.GetComponent<Seeker>().enabled = false;
             //model.GetComponent<SimpleSmoothModifier>().enabled = false;
-            model.GetComponent<EncounterPcController>().enabled = false;
+            model.GetComponent<Pc>().enabled = false;
             model.GetComponent<AIDestinationSetter>().enabled = false;
             model.GetComponent<RichAI>().enabled = false;
 

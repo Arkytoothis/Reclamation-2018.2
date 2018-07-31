@@ -14,9 +14,6 @@ namespace Reclamation.Encounter
         public float turnSpeed = 20f;
         public List<GameObject> markers;
         public bool isEnabled = true;
-        [SerializeField] Texture2D walkCursor = null;
-        [SerializeField] Texture2D unknownCursor = null;
-        [SerializeField] Texture2D guiCursor = null;
 
         private Camera cam;
         private bool interactableFound;

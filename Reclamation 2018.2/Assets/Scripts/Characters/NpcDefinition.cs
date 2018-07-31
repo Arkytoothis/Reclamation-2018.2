@@ -151,9 +151,9 @@ namespace Reclamation.Characters
             }
         }
 
-        public NPC ConvertToCharacter()
+        public NpcData ConvertToCharacter()
         {
-            NPC npc = new NPC(Name, Key, Gender, RaceKey, ProfessionKey, Hair, Beard, -1, -1, -1, -1, -1);
+            NpcData npc = new NpcData(Name, Key, Gender, RaceKey, ProfessionKey, Hair, Beard, -1, -1, -1, -1, -1);
 
             return npc;
         }

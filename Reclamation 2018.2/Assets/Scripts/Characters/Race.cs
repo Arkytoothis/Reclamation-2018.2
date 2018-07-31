@@ -13,10 +13,10 @@ namespace Reclamation.Characters
         public string Key;
         public string Description;
 
-        public string MaleSprite;
-        public string FemaleSprite;
-        public string WingsSprite;
-        public string HornsSprite;
+        public string maleModelPath;
+        public string femaleModelPath;
+        public string wingsPath;
+        public string hornsPath;
 
         public int BaseSpeed;
         public float ExpModifier;
@@ -43,6 +43,8 @@ namespace Reclamation.Characters
         public UpkeepData Upkeep;
         public GameValue StartingWealth;
 
+        public Vector3 scale;
+
         public Race()
         {
             Name = "";
@@ -62,26 +64,29 @@ namespace Reclamation.Characters
 
             Upkeep = new UpkeepData();
             StartingWealth = new GameValue();
+            scale = Vector3.one;
         }
 
         public Race(string name, string key, string male, string female, bool small, string wings, string horns, int hair, int beard, bool helm, bool pants, bool shoes,
-                    GameValue health, GameValue stamina, GameValue essence, int movement, float exp_mod, UpkeepData upkeep, GameValue wealth)
+                    GameValue health, GameValue stamina, GameValue essence, int movement, float exp_mod, UpkeepData upkeep, GameValue wealth,
+                    Vector3 scale)
         {
             Name = name;
             Key = key;
             Description = "empty";
-            MaleSprite = male;
-            FemaleSprite = female;
+            maleModelPath = male;
+            femaleModelPath = female;
 
             Short = small;
-            WingsSprite = wings;
-            HornsSprite = horns;
+            wingsPath = wings;
+            hornsPath = horns;
             Hair = hair;
             Beard = beard;
 
             HelmAllowed = helm;
             PantsAllowed = pants;
             ShoesAllowed = shoes;
+            this.scale = scale;
 
             StartingAttributes = new List<GameValue>();
             for (int i = 0; i < (int)BaseAttribute.Number; i++)

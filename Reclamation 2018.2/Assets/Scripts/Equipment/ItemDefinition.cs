@@ -13,15 +13,21 @@ namespace Reclamation.Equipment
         public string Key;
         public string Description;
 
-        public string LargeSpriteKey;
-        public string SmallSpriteKey;
+        public string IconPath;
+        public string MeshPath;
+        public string TexturePath;
+
+        public Vector3 offset;
+        public Vector3 rotation;
 
         public ItemNameFormat NameFormat;
         public ItemType Type;
         public EquipmentSlot Slot;
         public ItemHardnessAllowed Hardness;
 
-        public int BaseActions;
+        public float RecoveryTime;
+        public float ActionSpeed;
+
         public int BasePower;
         public int BaseBuildTime;
         public int DurabilityMax;
@@ -42,14 +48,21 @@ namespace Reclamation.Equipment
             Name = "";
             Key = "";
             Description = "empty";
+            IconPath = "";
+            MeshPath = "";
+            TexturePath = "";
 
             Type = ItemType.None;
             Slot = EquipmentSlot.None;
             Hardness = ItemHardnessAllowed.None;
             NameFormat = ItemNameFormat.None;
 
-            BaseActions = 0;
+            RecoveryTime = 0f;
+            ActionSpeed = 0f;
+
             BasePower = 0;
+            BaseBuildTime = 0;
+            DurabilityMax = 0;
 
             WeaponData = null;
             AmmoData = null;
@@ -63,9 +76,10 @@ namespace Reclamation.Equipment
             TooltipText = "";
         }
 
-        public ItemDefinition(string name, string key, string large_sprite_key, string small_sprite_key, EquipmentSlot slot, int durability, int power, int hours, int actions,
-            ItemType type, ItemHardnessAllowed hardness, ItemNameFormat format,
-            WeaponData weapon, AmmoData ammo, WearableData armor, AccessoryData accessory, UsableData usable)
+        public ItemDefinition(string name, string key, string iconKey, string meshKey, string textureKey, EquipmentSlot slot, int durability, int power, int hours,
+            float recoveryTime, float actionSpeed, ItemType type, ItemHardnessAllowed hardness, ItemNameFormat format,
+            WeaponData weapon, AmmoData ammo, WearableData armor, AccessoryData accessory, UsableData usable,
+            Vector3 rotation, Vector3 offset)
         {
             Name = name;
             Key = key;
@@ -73,8 +87,15 @@ namespace Reclamation.Equipment
 
             Type = type;
             NameFormat = format;
-            LargeSpriteKey = large_sprite_key;
-            SmallSpriteKey = small_sprite_key;
+            IconPath = iconKey;
+            MeshPath = meshKey;
+            TexturePath = textureKey;
+
+            RecoveryTime = recoveryTime;
+            ActionSpeed = actionSpeed;
+
+            BasePower = power;
+            BaseBuildTime = hours;
             Slot = slot;
             DurabilityMax = durability;
             Hardness = hardness;
@@ -112,12 +133,12 @@ namespace Reclamation.Equipment
             else
                 UsableData = null;
 
-            BaseActions = actions;
-            BasePower = power;
-            BaseBuildTime = hours;
             ResourcesRequired = new List<ResourceData>();
             SkillRequirements = new List<SkillRequirement>();
             SetTooltipText();
+
+            this.rotation = new Vector3(rotation.x, rotation.y, rotation.z);
+            this.offset = offset;
         }
 
         public ItemDefinition(ItemDefinition item)
@@ -128,11 +149,14 @@ namespace Reclamation.Equipment
 
             Type = item.Type;
             NameFormat = item.NameFormat;
-            LargeSpriteKey = item.LargeSpriteKey;
-            SmallSpriteKey = item.SmallSpriteKey;
+            IconPath = item.IconPath;
+            MeshPath = item.MeshPath;
+            TexturePath = item.TexturePath;
+
+            RecoveryTime = item.RecoveryTime;
+            ActionSpeed = item.ActionSpeed;
 
             BaseBuildTime = item.BaseBuildTime;
-            BaseActions = item.BaseActions;
             BasePower = item.BasePower;
             Slot = item.Slot;
             DurabilityMax = item.DurabilityMax;
@@ -185,6 +209,9 @@ namespace Reclamation.Equipment
             }
 
             SetTooltipText();
+
+            rotation = item.rotation;
+            offset = item.offset;
         }
 
         public string GetResourcesText()

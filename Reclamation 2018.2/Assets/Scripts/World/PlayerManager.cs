@@ -27,17 +27,17 @@ namespace Reclamation.World
 
             PartyData party = new PartyData("Blue Party", Color.blue, 0, 3);
 
-            party.pcs[0] = new Pc(PcGenerator.Generate(0, Gender.None, "Imperial", "Soldier"));
-            party.pcs[1] = new Pc(PcGenerator.Generate(1, Gender.None, "Imperial", "Scout"));
-            party.pcs[2] = new Pc(PcGenerator.Generate(2, Gender.None, "Imperial", "Priest"));
+            party.pcs[0] = new PcData(PcGenerator.Generate(0, Gender.None, "Imperial", "Soldier"));
+            party.pcs[1] = new PcData(PcGenerator.Generate(1, Gender.None, "Imperial", "Scout"));
+            party.pcs[2] = new PcData(PcGenerator.Generate(2, Gender.None, "Imperial", "Priest"));
 
             parties.Add(CreatePartyObject(this.transform, playerSpawn.position, party));
 
             partyPanel.Initialize();
 
-            ModelManager.instance.SpawnPc(PortraitRoom.instance.characterMounts[0].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, party.pcs[0]);
-            ModelManager.instance.SpawnPc(PortraitRoom.instance.characterMounts[1].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, party.pcs[1]);
-            ModelManager.instance.SpawnPc(PortraitRoom.instance.characterMounts[2].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, party.pcs[2]);
+            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[0].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, party.pcs[0]);
+            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[1].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, party.pcs[1]);
+            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[2].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, party.pcs[2]);
         }
 
         public GameObject CreatePartyObject(Transform parent, Vector3 position, PartyData data)
@@ -50,25 +50,25 @@ namespace Reclamation.World
 
             PartyController partyController = partyGO.GetComponent<PartyController>();
 
-            GameObject pcGO = Instantiate(ModelManager.instance.GetPrefab(data.pcs[0]), new Vector3(position.x, y - 0.001f, position.z), Quaternion.identity);
-            pcGO.name = data.name + " PC ";
+            //GameObject pcGO = Instantiate(ModelManager.instance.GetPrefab(data.pcs[0]), new Vector3(position.x, y - 0.001f, position.z), Quaternion.identity);
+            //pcGO.name = data.name + " PC ";
 
-            partyGO.transform.SetParent(pcGO.transform);
+            //partyGO.transform.SetParent(pcGO.transform);
 
-            partyController.SetPartyData(data);
-            partyController.SetPcAnimator(pcGO.GetComponent<PcAnimator>());
-            partyController.SetPcMotor(pcGO.GetComponent<WorldPcMotor>());
+            //partyController.SetPartyData(data);
+            //partyController.SetPcAnimator(pcGO.GetComponent<PcAnimator>());
+            //partyController.SetPcMotor(pcGO.GetComponent<WorldPcMotor>());
 
-            Camera.main.transform.SetParent(pcGO.transform);
-            CameraController cam = Camera.main.GetComponent<CameraController>();
-            cam.target = partyGO.transform;
+            //Camera.main.transform.SetParent(pcGO.transform);
+            //CameraController cam = Camera.main.GetComponent<CameraController>();
+            //cam.target = partyGO.transform;
 
             return partyGO;
         }
 
-        public void CreatePortraitModel(Transform parent, Pc pc)
+        public void CreatePortraitModel(Transform parent, PcData pc)
         {
-            ModelManager.instance.SpawnPc(parent, parent.position, pc);
+            ModelManager.instance.SpawnCharacter(parent, parent.position, pc);
         }
     }
 }

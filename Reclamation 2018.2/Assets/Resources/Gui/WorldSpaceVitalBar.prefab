@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 223654367152649574}
   - component: {fileID: 114011346558969706}
   - component: {fileID: 114381274983441872}
+  - component: {fileID: 114329794006299098}
   m_Layer: 5
   m_Name: WorldSpaceVitalBar
   m_TagString: Untagged
@@ -84,6 +85,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114329794006299098
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1385076488437098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285d0bb5086882f4b8aa05ee1939a69d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114381274983441872
 MonoBehaviour:
   m_ObjectHideFlags: 1
