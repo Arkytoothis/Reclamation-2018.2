@@ -14,133 +14,141 @@ namespace Reclamation.Characters
     [System.Serializable]
     public class NPCDefinition
     {
-        public FantasyName Name;
-        public Gender Gender;
+        public FantasyName name;
+        public Gender gender;
 
-        public Species Species;
-        public Size Size;
+        public Species species;
+        public Size size;
 
-        public string Key;
-        public string RaceKey;
-        public string ProfessionKey;
+        public string key;
+        public string raceKey;
+        public string professionKey;
 
-        public List<int> BaseStart;
+        public List<int> baseStart;
         public List<GameValue> BasePerLevel;
-        public List<GameValue> DerivedPerLevel;
+        public List<GameValue> derivedPerLevel;
 
-        public List<int> BaseResistances;
-        public List<GameValue> ResistancePerLevel;
+        public List<int> baseResistances;
+        public List<GameValue> resistancePerLevel;
 
-        public List<int> SkillStart;
-        public List<GameValue> SkillPerLevel;
+        public List<int> skillStart;
+        public List<GameValue> skillPerLevel;
 
-        public int BaseSpeed;
-        public int MinLevel;
-        public int MaxLevel;
-        public int ExpPerLevel;
+        public int baseSpeed;
+        public int minLevel;
+        public int maxLevel;
+        public int expPerLevel;
 
-        public List<Ability> Abilities;
-        public CharacterInventory Inventory;
+        public List<Ability> abilities;
+        public CharacterInventory inventory;
 
-        public int Hair;
-        public int Beard;
+        public string maleDefaultHair;
+        public string maleDefaultBeard;
+        public string femaleDefaultHair;
+        public string femaleDefaultBeard;
 
-        public int MaxAccessories;
+        public int maxAccessories;
 
-        public string Description;
-        public string Background;
+        public string description;
+        public string background;
 
         public NPCDefinition()
         {
-            Name = new FantasyName();
-            Gender = Gender.None;
-            Species = Species.None;
-            Size = Size.None;
+            name = new FantasyName();
+            gender = Gender.None;
+            species = Species.None;
+            size = Size.None;
 
-            Key = "";
-            RaceKey = "";
-            ProfessionKey = "";
-            Description = "";
-            Background = "";
+            key = "";
+            raceKey = "";
+            professionKey = "";
+            description = "";
+            background = "";
 
-            Hair = -1;
-            Beard = -1;
-            MaxAccessories = 1;
+            maleDefaultHair = "";
+            maleDefaultBeard = "";
+            femaleDefaultHair = "";
+            femaleDefaultBeard = "";
 
-            Description = "";
-            Background = "";
+            maxAccessories = 1;
 
-            MinLevel = 0;
-            MaxLevel = 0;
-            ExpPerLevel = 0;
-            BaseSpeed = 0;
+            description = "";
+            background = "";
 
-            BaseStart = new List<int>();
+            minLevel = 0;
+            maxLevel = 0;
+            expPerLevel = 0;
+            baseSpeed = 0;
+
+            baseStart = new List<int>();
             BasePerLevel = new List<GameValue>();
 
-            DerivedPerLevel = new List<GameValue>();
+            derivedPerLevel = new List<GameValue>();
 
-            SkillStart = new List<int>();
-            SkillPerLevel = new List<GameValue>();
+            skillStart = new List<int>();
+            skillPerLevel = new List<GameValue>();
 
-            BaseResistances = new List<int>();
-            ResistancePerLevel = new List<GameValue>();
+            baseResistances = new List<int>();
+            resistancePerLevel = new List<GameValue>();
 
-            Abilities = new List<Ability>();
-            Inventory = new CharacterInventory();
+            abilities = new List<Ability>();
+            inventory = new CharacterInventory();
         }
 
-        public NPCDefinition(FantasyName name, Species species, Size size, Gender gender, string key, string race, string profession, int hair, int beard,
-            int min_level, int max_level, int exp_pre_level, int movement)
+        public NPCDefinition(FantasyName name, Species species, Size size, Gender gender, string key, string race, string profession,
+            int min_level, int max_level, int exp_pre_level, int movement, string maleHair, string maleBeard, string femaleHair, string femaleBeard)
         {
-            Name = name;
-            Species = species;
-            Size = size;
-            Key = key;
-            Gender = gender;
-            RaceKey = race;
-            ProfessionKey = profession;
-            Hair = hair;
-            Beard = beard;
-            MaxAccessories = Random.Range(1, 4);
+            this.name = name;
+            this.species = species;
+            this.size = size;
+            this.key = key;
+            this.gender = gender;
+            raceKey = race;
+            professionKey = profession;
+            maleDefaultHair = maleHair;
+            maleDefaultBeard = maleBeard;
+            femaleDefaultHair = femaleHair;
+            femaleDefaultBeard = femaleBeard;
 
-            MinLevel = min_level;
-            MaxLevel = max_level;
-            ExpPerLevel = exp_pre_level;
-            BaseSpeed = movement;
+            maxAccessories = Random.Range(1, 4);
 
-            BaseStart = new List<int>();
+            minLevel = min_level;
+            maxLevel = max_level;
+            expPerLevel = exp_pre_level;
+            baseSpeed = movement;
+
+            baseStart = new List<int>();
             BasePerLevel = new List<GameValue>();
             for (int i = 0; i < (int)BaseAttribute.Number; i++)
             {
-                BaseStart.Add(0);
+                baseStart.Add(0);
                 BasePerLevel.Add(new GameValue());
             }
 
-            DerivedPerLevel = new List<GameValue>();
+            derivedPerLevel = new List<GameValue>();
             for (int i = 0; i < (int)DerivedAttribute.Number; i++)
             {
-                DerivedPerLevel.Add(new GameValue());
+                derivedPerLevel.Add(new GameValue());
             }
 
-            SkillStart = new List<int>();
-            SkillPerLevel = new List<GameValue>();
+            skillStart = new List<int>();
+            skillPerLevel = new List<GameValue>();
             for (int i = 0; i < (int)Skill.Number; i++)
             {
-                SkillStart.Add(0);
-                SkillPerLevel.Add(new GameValue());
+                skillStart.Add(0);
+                skillPerLevel.Add(new GameValue());
             }
 
-            BaseResistances = new List<int>();
-            ResistancePerLevel = new List<GameValue>();
+            baseResistances = new List<int>();
+            resistancePerLevel = new List<GameValue>();
             for (int i = 0; i < (int)DamageType.Number; i++)
             {
-                BaseResistances.Add(0);
-                ResistancePerLevel.Add(new GameValue());
+                baseResistances.Add(0);
+                resistancePerLevel.Add(new GameValue());
             }
 
-            Abilities = new List<Ability>();
-            Inventory = new CharacterInventory();
+            abilities = new List<Ability>();
+            inventory = new CharacterInventory();
         }
 
         public void CalculateDerived()
@@ -153,7 +161,7 @@ namespace Reclamation.Characters
 
         public NpcData ConvertToCharacter()
         {
-            NpcData npc = new NpcData(Name, Key, Gender, RaceKey, ProfessionKey, Hair, Beard, -1, -1, -1, -1, -1);
+            NpcData npc = new NpcData(name, key, gender, raceKey, professionKey, -1, -1, -1, -1, -1);
 
             return npc;
         }

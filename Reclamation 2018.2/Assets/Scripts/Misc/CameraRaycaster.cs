@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Reclamation.Characters;
 using Reclamation.Props;
 
 namespace Reclamation.Misc
@@ -10,6 +11,7 @@ namespace Reclamation.Misc
     {
         public Texture2D moveCursor;
         public Texture2D interactCursor;
+        public Texture2D transitionCursor;
         public Texture2D meleeCursor;
         public Texture2D rangedCursor;
         public Texture2D powerCursor;
@@ -60,7 +62,7 @@ namespace Reclamation.Misc
             {
                 Npc npc = hit.collider.gameObject.GetComponent<Npc>();
 
-                if (npc != null)
+                if (npc != null && npc.CheckIsAlive() == true)
                 {
                     Cursor.SetCursor(meleeCursor, hotspot, CursorMode.Auto);
                     onMouseOverEnemy(npc.gameObject);
@@ -81,7 +83,11 @@ namespace Reclamation.Misc
 
                 if (interactable != null)
                 {
-                    Cursor.SetCursor(interactCursor, hotspot, CursorMode.Auto);
+                    if(interactable is Transition == true)
+                        Cursor.SetCursor(transitionCursor, hotspot, CursorMode.Auto);
+                    else
+                        Cursor.SetCursor(interactCursor, hotspot, CursorMode.Auto);
+
                     onMouseOverInteractable(interactable.gameObject);
                     return true;
                 }

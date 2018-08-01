@@ -28,7 +28,7 @@ namespace Reclamation.Characters
                 {
                     Any.Add(kvp.Key);
 
-                    switch (kvp.Value.Species)
+                    switch (kvp.Value.species)
                     {
                         case Species.Animal:
                             Animals.Add(kvp.Key);
@@ -70,8 +70,8 @@ namespace Reclamation.Characters
             if (Database.NPCs.ContainsKey(def))
             {
                 npc = new NpcData(Database.NPCs[def].ConvertToCharacter());
-                npc.Level = Random.Range(Database.GetNPC(npc.Key).MinLevel, Database.GetNPC(npc.Key).MaxLevel + 1);
-                npc.ExpValue = npc.Level * Database.GetNPC(npc.Key).ExpPerLevel;
+                npc.level = Random.Range(Database.GetNPC(npc.key).minLevel, Database.GetNPC(npc.key).maxLevel + 1);
+                npc.expValue = npc.level * Database.GetNPC(npc.key).expPerLevel;
 
                 CalculateAttributes(npc);
 
@@ -103,12 +103,12 @@ namespace Reclamation.Characters
 
             for (int i = 0; i < (int)BaseAttribute.Number; i++)
             {
-                value = Database.NPCs[npc.Key].BaseStart[i];
+                value = Database.NPCs[npc.key].baseStart[i];
                 mod = 0;
 
-                for (int j = 0; j < npc.Level; j++)
+                for (int j = 0; j < npc.level; j++)
                 {
-                    mod = Random.Range(Database.NPCs[npc.Key].BasePerLevel[i].Number, Database.NPCs[npc.Key].BasePerLevel[i].Die + 1);
+                    mod = Random.Range(Database.NPCs[npc.key].BasePerLevel[i].Number, Database.NPCs[npc.key].BasePerLevel[i].Die + 1);
                     value += mod;
                 }
 
@@ -135,12 +135,14 @@ namespace Reclamation.Characters
             {
                 value = 0;
 
-                for (int i = 0; i < npc.Level; i++)
+                for (int i = 0; i < npc.level; i++)
                 {
-                    value += Random.Range(Database.NPCs[npc.Key].DerivedPerLevel[a].Number, Database.NPCs[npc.Key].DerivedPerLevel[a].Die + 1);
+                    value += Random.Range(Database.NPCs[npc.key].derivedPerLevel[a].Number, Database.NPCs[npc.key].derivedPerLevel[a].Die + 1);
                 }
 
-                //npc.DerivedAttributes[a].ModifyStart(value);
+                value *= 10;
+
+                npc.SetStart(AttributeType.Derived, (int)DerivedAttribute.Health, 80, 0, 100);
             }
 
             //npc.DerivedAttributes[(int)DerivedAttribute.Speed].SetStart(Database.NPCs[npc.Key].BaseSpeed, 0, Database.NPCs[npc.Key].BaseSpeed);
@@ -148,29 +150,29 @@ namespace Reclamation.Characters
 
         public static void GenerateBoss(NpcData npc)
         {
-            npc.Name.LastName = "Boss";
+            npc.name.LastName = "Boss";
             //npc.DerivedAttributes[(int)DerivedAttribute.Health].ModifyStart(Random.Range(200, 1000));
             //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 100));
             //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 100));
             //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 100));
-            npc.Level += 3;
-            npc.ExpValue *= 3;
+            npc.level += 3;
+            npc.expValue *= 3;
         }
 
         public static void GenerateBossGuard(NpcData npc)
         {
-            npc.Name.LastName = "Boss Guard";
+            npc.name.LastName = "Boss Guard";
             //npc.DerivedAttributes[(int)DerivedAttribute.Health].ModifyStart(Random.Range(100, 250));
             //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 50));
             //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 50));
             //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 50));
-            npc.Level += 1;
-            npc.ExpValue *= 2;
+            npc.level += 1;
+            npc.expValue *= 2;
         }
 
         public static void GenerateObjectiveEnemy(NpcData npc)
         {
-            npc.Name.LastName = "Objective Enemy";
+            npc.name.LastName = "Objective Enemy";
             //npc.DerivedAttributes[(int)DerivedAttribute.Health].ModifyStart(Random.Range(5, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
@@ -179,7 +181,7 @@ namespace Reclamation.Characters
 
         public static void GenerateEnemy(NpcData npc)
         {
-            npc.Name.LastName = "Enemy";
+            npc.name.LastName = "Enemy";
             //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));
@@ -187,7 +189,7 @@ namespace Reclamation.Characters
 
         public static void GenerateRescueTarget(NpcData npc)
         {
-            npc.Name.LastName = "Rescue Target";
+            npc.name.LastName = "Rescue Target";
             //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));
@@ -195,7 +197,7 @@ namespace Reclamation.Characters
 
         public static void GenerateCitizen(NpcData npc)
         {
-            npc.Name.LastName = "Citizen";
+            npc.name.LastName = "Citizen";
             //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));

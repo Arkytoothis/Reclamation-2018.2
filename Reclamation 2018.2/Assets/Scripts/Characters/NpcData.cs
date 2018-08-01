@@ -18,23 +18,23 @@ namespace Reclamation.Characters
         Number, None
     }
 
-    public class NpcData : Character
+    public class NpcData : CharacterData
     {
-        public string Key;
-        public int NPCIndex;
-        public int PartyIndex;
-        public int PartySlot;
+        public string key;
+        public int npcIndex;
+        public int partyIndex;
+        public int partySlot;
 
-        public int Level;
-        public int ExpValue;
+        public int level;
+        public int expValue;
 
-        public List<Ability> Abilities;
+        public List<Ability> abilities;
 
         CombatStatus combatStatus;
         public CombatStatus CombatStatus { get { return combatStatus; } }
 
 
-        public new void ModifyAttribute(AttributeType type, int attribute, int value)
+        public override void ModifyAttribute(AttributeType type, int attribute, int value)
         {
             if (value == 0) return;
 
@@ -43,66 +43,72 @@ namespace Reclamation.Characters
             int cur = attributeManager.GetAttribute(AttributeListType.Derived, attribute).Current;
             int max = attributeManager.GetAttribute(AttributeListType.Derived, attribute).Maximum;
 
-            if (attribute == (int)DerivedAttribute.Armor)
+            if (attribute == (int)DerivedAttribute.Armor && onArmorChange != null)
                 onArmorChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Health)
+            else if (attribute == (int)DerivedAttribute.Health && onHealthChange != null)
                 onHealthChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Stamina)
+            else if (attribute == (int)DerivedAttribute.Stamina && onStaminaChange != null)
                 onStaminaChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Essence)
+            else if (attribute == (int)DerivedAttribute.Essence && onEssenceChange != null)
                 onEssenceChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Morale)
+            else if (attribute == (int)DerivedAttribute.Morale && onMoraleChange != null)
                 onMoraleChange(cur, max);
 
             CheckVitals();
         }
 
-        public delegate void OnArmorChange(int current, int max);
-        public event OnArmorChange onArmorChange;
+        public new void SetStart(AttributeType type, int attribute, int start, int min, int max)
+        {
+            if (start == 0) return;
+            attributeManager.SetStart((AttributeListType)type, attribute, start, min, max);
+        }
 
-        public delegate void OnHealthChange(int current, int max);
-        public event OnHealthChange onHealthChange;
+        public new delegate void OnArmorChange(int current, int max);
+        public new event OnArmorChange onArmorChange;
 
-        public delegate void OnStaminaChange(int current, int max);
-        public event OnStaminaChange onStaminaChange;
+        public new delegate void OnHealthChange(int current, int max);
+        public new event OnHealthChange onHealthChange;
 
-        public delegate void OnEssenceChange(int current, int max);
-        public event OnEssenceChange onEssenceChange;
+        public new delegate void OnStaminaChange(int current, int max);
+        public new event OnStaminaChange onStaminaChange;
 
-        public delegate void OnMoraleChange(int current, int max);
-        public event OnMoraleChange onMoraleChange;
+        public new delegate void OnEssenceChange(int current, int max);
+        public new event OnEssenceChange onEssenceChange;
 
-        public delegate void OnDeath();
-        public event OnDeath onDeath;
+        public new delegate void OnMoraleChange(int current, int max);
+        public new event OnMoraleChange onMoraleChange;
 
-        public delegate void OnRevive();
-        public event OnRevive onRevive;
+        public new delegate void OnDeath();
+        public new event OnDeath onDeath;
 
-        public delegate void OnInteract();
-        public event OnInteract onInteract;
+        public new delegate void OnRevive();
+        public new event OnRevive onRevive;
 
-        public delegate void OnAttack();
-        public event OnAttack onAttack;
+        public new delegate void OnInteract();
+        public new event OnInteract onInteract;
+
+        public new delegate void OnAttack();
+        public new event OnAttack onAttack;
 
         public NpcData()
         {
-            Name = new FantasyName();
-            Gender = Gender.None;
-            Background = null;
+            name = new FantasyName();
+            gender = Gender.None;
+            background = null;
 
-            Key = "";
+            key = "";
             combatStatus = CombatStatus.None;
-            RaceKey = "";
-            ProfessionKey = "";
-            NPCIndex = -1;
-            PartyIndex = -1;
-            Hair = -1;
-            Beard = -1;
+            raceKey = "";
+            professionKey = "";
+            npcIndex = -1;
+            partyIndex = -1;
+            hair = "";
+            beard = "";
 
-            Level = 0;
-            ExpValue = 0;
+            level = 0;
+            expValue = 0;
 
-            Description = "";
+            description = "";
 
             attributeManager = new AttributeManager();
 
@@ -115,23 +121,22 @@ namespace Reclamation.Characters
             for (int i = 0; i < (int)DamageType.Number; i++)
                 attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
 
-            Abilities = new List<Ability>();
-            Inventory = new CharacterInventory();
+            abilities = new List<Ability>();
+            inventory = new CharacterInventory();
         }
 
-        public NpcData(FantasyName name, string key, Gender gender, string race, string profession, int hair, int beard, int index, int map_x, int map_y, int enc_x, int enc_y)
+        public NpcData(FantasyName name, string key, Gender gender, string race, string profession, int index, int map_x, int map_y, int enc_x, int enc_y)
         {
-            Name = new FantasyName(name);
-            Background = new Background();
+            base.name = new FantasyName(name);
+            background = new Background();
 
-            Key = key;
-            Gender = gender;
-            RaceKey = race;
-            ProfessionKey = profession;
-            NPCIndex = index;
-            PartyIndex = -1;
-            Hair = hair;
-            Beard = beard;
+            this.key = key;
+            base.gender = gender;
+            raceKey = race;
+            professionKey = profession;
+            npcIndex = index;
+            partyIndex = -1;
+
             combatStatus = CombatStatus.Awake;
 
             attributeManager = new AttributeManager();
@@ -151,30 +156,30 @@ namespace Reclamation.Characters
                 attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
             }
 
-            Abilities = new List<Ability>();
-            Inventory = new CharacterInventory();
+            abilities = new List<Ability>();
+            inventory = new CharacterInventory();
         }
 
         public NpcData(NpcData npc)
         {
-            Name = new FantasyName(npc.Name);
-            Background = new Background(npc.Background);
+            name = new FantasyName(npc.name);
+            background = new Background(npc.background);
 
-            Key = npc.Key;
-            RaceKey = npc.RaceKey;
-            ProfessionKey = npc.ProfessionKey;
-            NPCIndex = npc.NPCIndex;
-            PartyIndex = npc.PartyIndex;
-            PartySlot = npc.PartySlot;
+            key = npc.key;
+            raceKey = npc.raceKey;
+            professionKey = npc.professionKey;
+            npcIndex = npc.npcIndex;
+            partyIndex = npc.partyIndex;
+            partySlot = npc.partySlot;
 
-            Hair = npc.Hair;
-            Beard = npc.Beard;
+            hair = npc.hair;
+            beard = npc.beard;
 
-            Description = npc.Description;
-            Background = npc.Background;
+            description = npc.description;
+            background = npc.background;
 
-            Level = npc.Level;
-            ExpValue = npc.ExpValue;
+            level = npc.level;
+            expValue = npc.expValue;
 
             combatStatus = npc.combatStatus;
 
@@ -195,10 +200,11 @@ namespace Reclamation.Characters
                 attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(npc.attributeManager.GetAttribute(AttributeListType.Resistance, i)));
             }
 
-            Abilities = new List<Ability>();
-            Inventory = new CharacterInventory(npc.Inventory);
+            abilities = new List<Ability>();
+            inventory = new CharacterInventory(npc.inventory);
         }
 
+        
         public void CheckVitals()
         {
             CheckHealth();
@@ -250,25 +256,24 @@ namespace Reclamation.Characters
         {
             isDead = true;
             onDeath();
-            Debug.Log(Name.FirstName + " has died");
         }
 
         public void Revive()
         {
             isDead = false;
-            onRevive();
-            Debug.Log(Name.FirstName + " has revived");
+            //onRevive();
+            Debug.Log(name.FirstName + " has revived");
         }
 
         public void Interact()
         {
-            Debug.Log(Name.FirstName + " is interacting");
-            onInteract();
+            Debug.Log(name.FirstName + " is interacting");
+            //onInteract();
         }
 
         public void Attack()
         {
-            Debug.Log(Name.FirstName + " is attacking");
+            Debug.Log(name.FirstName + " is attacking");
             onAttack();
         }
     }

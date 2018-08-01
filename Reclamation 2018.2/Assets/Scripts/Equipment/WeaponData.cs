@@ -11,6 +11,7 @@ namespace Reclamation.Equipment
     public class WeaponData
     {
         public WeaponType Type;
+        public WeaponGripType gripType;
         public AttackType AttackType;
         public AmmoType AmmoType;
 
@@ -25,11 +26,12 @@ namespace Reclamation.Equipment
             Damage = new List<DamageData>();
         }
 
-        public WeaponData(WeaponType type, AmmoType ammo, AttackType attack_type, int attack, int range, int actions, int parry, List<DamageData> damage)
+        public WeaponData(WeaponType type, AmmoType ammo, AttackType attack_type, WeaponGripType gripType, int attack, int range, int actions, int parry, List<DamageData> damage)
         {
             Type = type;
             AmmoType = ammo;
             AttackType = attack_type;
+            this.gripType = gripType;
 
             Attributes = new List<ItemAttribute>();
             Attributes.Add(new ItemAttribute((int)WeaponAttributes.Action_Speed, actions));

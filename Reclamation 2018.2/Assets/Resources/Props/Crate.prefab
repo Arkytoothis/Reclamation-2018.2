@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114765731183367490}
   - component: {fileID: 114252281458517348}
   - component: {fileID: 114946201514231170}
+  - component: {fileID: 114857335284383488}
   m_Layer: 13
   m_Name: Crate
   m_TagString: Untagged
@@ -213,6 +214,22 @@ MonoBehaviour:
     rgba: 4278255600
   AffectChildren: 1
   ExcludeParticleSystems: 1
+--- !u!114 &114857335284383488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1579473088994358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da578f3a5810d8340aa4b2e91fad4d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 23994841774812010}
+  interactableData: {fileID: 11400000, guid: 3d5f9c17fb5c372469b00e7b0b2fc24e, type: 2}
+  colorTransition: {fileID: 114252281458517348}
+  outline: {fileID: 114765731183367490}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114946201514231170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -224,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d337721a6a8e9b34bb81e72e47413352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionTransform: {fileID: 4878369618534954}
+  interactionPoint: {fileID: 1579473088994358}
   radius: 2
   hasInteracted: 0
   locked: 0

@@ -96,6 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285d0bb5086882f4b8aa05ee1939a69d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skinData: {fileID: 0}
+  background: {fileID: 114889528032011888}
+  foreground: {fileID: 114439870657265794}
 --- !u!114 &114381274983441872
 MonoBehaviour:
   m_ObjectHideFlags: 1

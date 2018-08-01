@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
+using BehaviorDesigner.Runtime.Tactical;
 
-namespace BehaviorDesigner.Runtime.Tactical
+namespace Reclamation.Characters
 {
+    [System.Serializable]
     /// <summary>
     /// Example component which will attack by firing a bullet.
     /// </summary>
-    public class MeleeAttack : MonoBehaviour, IAttackAgent
+    public class MeleeAttack : MonoBehaviour, IAttack
     {
         // The furthest distance that the agent is able to attack from
         public float attackDistance = 1f;
@@ -17,12 +19,19 @@ namespace BehaviorDesigner.Runtime.Tactical
         // The last time the agent attacked
         private float lastAttackTime;
 
+        private CharacterData characterData;
+
         /// <summary>
         /// Initialize the default values.
         /// </summary>
         private void Awake()
         {
             lastAttackTime = -repeatAttackDelay;
+        }
+
+        public void SetCharacterData(CharacterData character)
+        {
+            characterData = character;
         }
 
         /// <summary>
@@ -57,10 +66,23 @@ namespace BehaviorDesigner.Runtime.Tactical
         /// Does the actual attack. 
         /// </summary>
         /// <param name="targetPosition">The position to attack.</param>
-        public void Attack(Vector3 targetPosition)
+        public void Attack(GameObject defender)
         {
-            //Debug.Log("Melee Attack");
-            lastAttackTime = Time.time;
+            Damagable damagable = defender.GetComponent<Damagable>();
+
+            if (damagable == null)
+            {
+                Debug.Log("damagable == null");
+                return;
+            }
+
+            if (Random.Range(0, 100) > 65)
+            {
+                int damage = Random.Range(1, 10);
+                //Debug.Log(characterData.name.FirstName + " hit " + damagable.CharacterData.name.FirstName + " for " + damage + " damage");
+                lastAttackTime = Time.time;
+                damagable.Damage(damage);
+            }
         }
     }
 }

@@ -29,18 +29,19 @@ namespace Reclamation.Encounter
             Database.Initialize();
             ItemGenerator.Initialize();
             PcGenerator.Initialize();
+            NpcGenerator.Initialize();
             ModelManager.instance.Initialize();
 
             parties = new List<PartyData>(MaxParties);
 
             PartyData party = new PartyData("Blue Party", Color.blue, 0, 3);
 
-            party.pcs[0] = new PcData(PcGenerator.Generate(0, Gender.Male, "Mountain Dwarf", "Soldier"));
-            party.pcs[1] = new PcData(PcGenerator.Generate(1, Gender.Female, "Mountain Dwarf", "Rogue"));
-            party.pcs[2] = new PcData(PcGenerator.Generate(2, Gender.Male, "Halfling", "Scout"));
-            party.pcs[3] = new PcData(PcGenerator.Generate(3, Gender.Female, "Halfling", "Priest"));
+            party.pcs[0] = new PcData(PcGenerator.Generate(0, Gender.Male, "Ogrin", "Soldier"));
+            party.pcs[1] = new PcData(PcGenerator.Generate(1, Gender.Female, "Imperial", "Soldier"));
+            party.pcs[2] = new PcData(PcGenerator.Generate(2, Gender.Male, "Imperial", "Scout"));
+            party.pcs[3] = new PcData(PcGenerator.Generate(3, Gender.Female, "Halfling", "Rogue"));
             party.pcs[4] = new PcData(PcGenerator.Generate(4, Gender.Male, "High Elf", "Apprentice"));
-            party.pcs[5] = new PcData(PcGenerator.Generate(5, Gender.Female, "High Elf", "Priest"));
+            party.pcs[5] = new PcData(PcGenerator.Generate(5, Gender.Female, "Mountain Dwarf", "Priest"));
 
             parties.Add(party);
 

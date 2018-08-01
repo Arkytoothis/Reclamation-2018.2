@@ -116,11 +116,14 @@ namespace Reclamation.Encounter
             }
         }
 
-        public void DisableMovement(bool canSearch)
+        public void DisableMovement(bool canMove)
         {
             for (int i = 0; i < pcControllers.Count; i++)
             {
-                pcControllers[i].CanMove(false);
+                if (pcControllers[i].isFighting == false)
+                {
+                    pcControllers[i].CanMove(false);
+                }
             }
         }
 
@@ -128,7 +131,10 @@ namespace Reclamation.Encounter
         {
             for (int i = 0; i < pcControllers.Count; i++)
             {
-                pcControllers[i].StopAnimations();
+                if (pcControllers[i].isFighting == false)
+                {
+                    pcControllers[i].StopAnimations();
+                }
             }
         }
 
@@ -149,26 +155,50 @@ namespace Reclamation.Encounter
         public void OnMouseOverEnemy(GameObject target)
         {
             if (Input.GetMouseButtonUp(0))
-            {
+            {                
                 if (moveMode == MoveMode.Solo)
                 {
                     if (pcControllers[0].CheckAttack(target) == true)
                     {
-                        pcControllers[0].SetAttackTarget(target);
+                        if (target.GetComponent<Reclamation.Characters.CharacterController>().CheckIsAlive() == true)
+                        {
+                            if(pcControllers[0].CheckIsAlive() == true)
+                                pcControllers[0].SetAttackTarget(target);
+                        }
+                        else
+                        {
+                            if (pcControllers[0].CheckIsAlive() == true)
+                                pcControllers[0].SetInteractionTarget(target);
+                        }
                     }
                 }
                 else if (moveMode == MoveMode.Formation)
                 {
-                    for (int i = 0; i < pcControllers.Count; i++)
+                    if (target.GetComponent<Reclamation.Characters.CharacterController>().CheckIsAlive() == false)
                     {
-                        if (pcControllers[i].CheckRange(target) == true)
+                        if (pcControllers[0].CheckIsAlive() == true)
                         {
-                            pcControllers[i].SetAttackTarget(target);
+                            pcControllers[0].SetInteractionTarget(target);
+                            pcControllers[0].MoveTo(target);
                         }
-                        else
+                    }
+                    else
+                    {
+                        for (int i = 0; i < pcControllers.Count; i++)
                         {
-                            pcControllers[i].SetAttackTarget(target);
-                            MoveTo(target);
+                            if (pcControllers[i].CheckRange(target) == true)
+                            {
+                                if (pcControllers[i].CheckIsAlive() == true)
+                                    pcControllers[i].SetAttackTarget(target);
+                            }
+                            else
+                            {
+                                if (pcControllers[i].CheckIsAlive() == true)
+                                {
+                                    pcControllers[i].SetAttackTarget(target);
+                                    pcControllers[i].MoveTo(target);
+                                }
+                            }
                         }
                     }
                 }

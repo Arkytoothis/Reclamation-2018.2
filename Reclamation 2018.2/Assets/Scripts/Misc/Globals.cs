@@ -325,4 +325,10 @@ namespace Reclamation.Misc
         Large, Normal, Small,
         Number, None
     }
+
+    public enum WeaponGripType
+    {
+        Right_Hand, Left_Hand, Either_Hand, Both_Hands,
+        Number, None
+    }
 }

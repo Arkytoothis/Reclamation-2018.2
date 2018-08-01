@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114553397146757500}
   - component: {fileID: 114732900413037338}
   - component: {fileID: 114625193883926994}
+  - component: {fileID: 114759268873206920}
   m_Layer: 13
   m_Name: Barrel 02
   m_TagString: Untagged
@@ -145,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d337721a6a8e9b34bb81e72e47413352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionTransform: {fileID: 4216102864852378}
+  interactionPoint: {fileID: 1943269973714934}
   radius: 2
   hasInteracted: 0
   locked: 0
@@ -217,6 +218,22 @@ MonoBehaviour:
   MaterialPropertyName: 
   ExcludeParticleSystems: 1
   CurrentColorEditor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &114759268873206920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1943269973714934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da578f3a5810d8340aa4b2e91fad4d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 23186706718816978}
+  interactableData: {fileID: 11400000, guid: 3d5f9c17fb5c372469b00e7b0b2fc24e, type: 2}
+  colorTransition: {fileID: 114732900413037338}
+  outline: {fileID: 114553397146757500}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!136 &136716923074167644
 CapsuleCollider:
   m_ObjectHideFlags: 1

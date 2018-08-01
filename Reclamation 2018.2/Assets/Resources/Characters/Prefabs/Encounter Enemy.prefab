@@ -20,6 +20,8 @@ GameObject:
   - component: {fileID: 114316073096247030}
   - component: {fileID: 114339748386672644}
   - component: {fileID: 65607555693657132}
+  - component: {fileID: 114019384602647668}
+  - component: {fileID: 114418965197111394}
   m_Layer: 16
   m_Name: Encounter Enemy
   m_TagString: Untagged
@@ -53,8 +55,6 @@ GameObject:
   - component: {fileID: 13700000}
   - component: {fileID: 114212026180539078}
   - component: {fileID: 114315519937819968}
-  - component: {fileID: 114457921745838850}
-  - component: {fileID: 136964591758907754}
   m_Layer: 16
   m_Name: SkeletonWarrior_000
   m_TagString: Untagged
@@ -1354,7 +1354,7 @@ Animator:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: fc858bea307488240bef7b0a31a40b5a, type: 3}
-  m_Controller: {fileID: 9100000, guid: 2936026056f4e6e49bdb3445f8a845a1, type: 2}
+  m_Controller: {fileID: 9100000, guid: e8309d06ac52da24e904c9420731c602, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1389,6 +1389,22 @@ MonoBehaviour:
   priority: 0.5
   center: 1
   debug: 0
+--- !u!114 &114019384602647668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da578f3a5810d8340aa4b2e91fad4d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 13700000}
+  interactableData: {fileID: 11400000, guid: cc80de8f8108ebb4c82fbad4f81867a6, type: 2}
+  colorTransition: {fileID: 114315519937819968}
+  outline: {fileID: 114212026180539078}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114071435424595964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1543,7 +1559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77327bb63bbda9f4fbd9d41da425a780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 100
 --- !u!114 &114339748386672644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1569,6 +1584,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734b65f7d4d464347ac48b50630e17db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+--- !u!114 &114418965197111394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d337721a6a8e9b34bb81e72e47413352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
+  hasInteracted: 0
+  locked: 0
+  gold: 0
 --- !u!114 &114440775712600538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1590,22 +1621,6 @@ MonoBehaviour:
   bezierTangentLength: 0.4
   offset: 0.2
   factor: 0.1
---- !u!114 &114457921745838850
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da578f3a5810d8340aa4b2e91fad4d3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderer: {fileID: 13700000}
-  interactableData: {fileID: 11400000, guid: cc80de8f8108ebb4c82fbad4f81867a6, type: 2}
-  colorTransition: {fileID: 114315519937819968}
-  outline: {fileID: 114212026180539078}
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114529008577859352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1663,8 +1678,11 @@ MonoBehaviour:
   meleeDistance: 1.25
   target: {fileID: 0}
   destinationSetter: {fileID: 0}
+  pathfinder: {fileID: 0}
   rvo: {fileID: 0}
+  container: {fileID: 0}
   animator: {fileID: 0}
+  gui: {fileID: 0}
 --- !u!114 &114861301633720880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1691,16 +1709,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vitalBarPrefab: {fileID: 1385076488437098, guid: 1513904265f82f24c832e842ff7f0e28,
     type: 2}
---- !u!136 &136964591758907754
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 0.29
-  m_Height: 0.9896437
-  m_Direction: 1
-  m_Center: {x: -8.732288e-10, y: 0.038107306, z: 0.043776125}
+  barInstance: {fileID: 0}

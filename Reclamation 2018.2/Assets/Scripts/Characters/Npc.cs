@@ -1,125 +1,134 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Reclamation.Characters;
-using Reclamation.Encounter;
+using Reclamation.Props;
+using Reclamation.Gui;
 using Pathfinding;
 using Pathfinding.RVO;
 
-public class Npc : MonoBehaviour
+namespace Reclamation.Characters
 {
-    public float moveSpeed = 1f;
-    public float turnSpeed = 1f;
-    public float perceptionRadius = 10f;
-    public float rangedDistance = 5f;
-    public float meleeDistance = .11f;
-
-    public GameObject target = null;
-
-    public AIDestinationSetter destinationSetter;
-    public RVOController rvo;
-
-    [SerializeField]
-    private PcAnimator animator;
-    private NpcData npcData;
-
-    void Start()
+    public class Npc : CharacterController
     {
-        destinationSetter = gameObject.GetComponent<AIDestinationSetter>();
-        rvo = gameObject.GetComponent<RVOController>();
+        public float moveSpeed = 1f;
+        public float turnSpeed = 1f;
+        public float perceptionRadius = 10f;
+        public float rangedDistance = 5f;
+        public float meleeDistance = .11f;
 
-        //InvokeRepeating("FindTarget", 2f, 0.2f);
-        //InvokeRepeating("UpdateAi", 2f, 0.1f);
-    }
+        public GameObject target = null;
 
-    public void SetPcData(NpcData npc)
-    {
-        npcData = npc;
-        npcData.onDeath += animator.Death;
-        npcData.onRevive += animator.Revive;
-        npcData.onAttack += animator.Attack;
-    }
+        public AIDestinationSetter destinationSetter;
+        public RichAI pathfinder;
+        public RVOController rvo;
+        public Container container;
 
-    //public void FindTarget()
-    //{
-    //    for (int i = 0; i < EncounterManager.instance.pcs.Count; i++)
-    //    {
-    //        GameObject pc = EncounterManager.instance.pcs[i];
-    //        float distance = Vector3.Distance(transform.position, pc.transform.position);
-    //        if (distance <= perceptionRadius)
-    //        {
-    //            Debug.Log("I found a target");
-    //            target = pc;
-    //        }
-    //    }
+        [SerializeField]
+        private NpcAnimator animator;
+        private NpcData npcData;
+        public NpcData NpcData { get { return npcData; } }
 
-    //    if (target != null)
-    //    {
-    //        CancelInvoke("FindTarget");
-    //        destinationSetter.target = target.transform;
-    //        rvo.locked = false;
-    //    }
-    //}
+        [SerializeField] IAttack currentAttack;
+        [SerializeField] IDamageable currentDefense;
 
-    //void UpdateAi()
-    //{
-    //    if (target == null) return;
+        [SerializeField] NpcGui gui;
 
-    //    float distance = Vector3.Distance(transform.position, target.transform.position);
+        void Awake()
+        {
+            animator = GetComponent<NpcAnimator>();
+            destinationSetter = gameObject.GetComponent<AIDestinationSetter>();
+            rvo = gameObject.GetComponent<RVOController>();
+            pathfinder = gameObject.GetComponent<RichAI>();
+            currentAttack = gameObject.GetComponent<IAttack>();
+            currentDefense = gameObject.GetComponent<IDamageable>();
+            container = gameObject.GetComponent<Container>();
+            container.enabled = false;
 
-    //    if (distance > perceptionRadius)
-    //    {
-    //        Debug.Log("I lost my target");
-    //        target = null;
-    //        rvo.locked = true;
+            if (currentAttack == null)
+            {
+                Debug.Log("currentAttack == null");
+            }
+            if (currentDefense == null)
+            {
+                Debug.Log("currentDefense == null");
+            }
 
-    //        InvokeRepeating("FindTarget", 2f, 0.25f);
-    //    }
-    //    else
-    //    {
-    //        rvo.locked = false;
+            NpcData npc = NpcGenerator.Generate(NpcType.Enemy, Species.Undead, 1);
+            SetNpcData(npc);
+        }
 
-    //        if (distance < meleeDistance)
-    //        {
-    //            Debug.Log("melee attack");
-    //            rvo.locked = true;
-    //        }
-    //        else if (distance < rangedDistance)
-    //        {
-    //            Debug.Log("ranged attack");
-    //            rvo.locked = true;
-    //        }
-    //    }
+        void Start()
+        {
+            //InvokeRepeating("FindTarget", 2f, 0.2f);
+            //InvokeRepeating("UpdateAi", 2f, 0.1f);
+        }
 
-    //    if (target != null)
-    //    {
-    //    }
-    //}
+        public void SetNpcData(NpcData npc)
+        {
+            npcData = npc;
+            npcData.onDeath += animator.Death;
+            npcData.onDeath += OnDeath;
+            npcData.onRevive += animator.Revive;
+            npcData.onAttack += animator.Attack;
 
-    void Update()
-    {
-        if (target == null) return;
+            currentDefense.SetCharacterData(this.npcData);
+            currentAttack.SetCharacterData(this.npcData);
 
-        Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-    }
+            gui = gameObject.GetComponentInChildren<NpcGui>();
+            if (gui != null)
+            {
+                gui.SpawnHealthBar();
+                gui.SetData(ref npcData);
+            }
+        }
 
-    void OnDrawGizmosSelected()
-    {
-        //Gizmos.color = Color.yellow;
-        //Gizmos.DrawWireSphere(transform.position, perceptionRadius);
+        void Update()
+        {
+            if (CheckIsAlive() == false || target == null) return;
 
-        //Gizmos.color = Color.green;
-        //Gizmos.DrawWireSphere(transform.position, rangedDistance);
+            Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+        }
 
-        //Gizmos.color = Color.cyan;
-        //Gizmos.DrawWireSphere(transform.position, meleeDistance);
-    }
+        void OnDrawGizmosSelected()
+        {
+            //Gizmos.color = Color.yellow;
+            //Gizmos.DrawWireSphere(transform.position, perceptionRadius);
 
-    public bool CanAttack(GameObject target)
-    {
-        bool canAttack = true;
+            //Gizmos.color = Color.green;
+            //Gizmos.DrawWireSphere(transform.position, rangedDistance);
 
-        return canAttack;
+            //Gizmos.color = Color.cyan;
+            //Gizmos.DrawWireSphere(transform.position, meleeDistance);
+        }
+
+        public void CanMove(bool canMove)
+        {
+            rvo.locked = !canMove;
+        }
+
+        public bool CanAttack(GameObject target)
+        {
+            bool canAttack = true;
+
+            return canAttack;
+        }
+
+        public void OnDeath()
+        {
+            Debug.Log(npcData.name.FirstName + " has died");
+            destinationSetter.enabled = false;
+            pathfinder.enabled = false;
+            rvo.enabled = false;
+            CanMove(false);
+            Destroy(gui.barInstance);
+            target = null;
+            container.enabled = true;
+        }
+
+        public override bool CheckIsAlive()
+        {
+            return !npcData.isDead;
+        }
     }
 }

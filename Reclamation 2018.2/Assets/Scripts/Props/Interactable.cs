@@ -6,7 +6,6 @@ namespace Reclamation.Props
 {
     public abstract class Interactable : MonoBehaviour, IInteractable
     {
-        public Transform interactionTransform;
         public float radius = 1f;
         public bool hasInteracted = false;
         public bool locked = false;

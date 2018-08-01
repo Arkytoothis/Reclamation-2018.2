@@ -24,7 +24,7 @@ namespace Reclamation.Equipment
         public ItemType Type;
         public EquipmentSlot Slot;
         public ItemHardnessAllowed Hardness;
-
+        
         public float RecoveryTime;
         public float ActionSpeed;
 

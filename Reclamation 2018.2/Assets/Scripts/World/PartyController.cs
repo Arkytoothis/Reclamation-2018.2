@@ -55,7 +55,7 @@ namespace Reclamation.World
 
                     if (interactable != null)
                     {
-                        pcMotor.SetMoveTarget(interactable.interactionTransform.position);
+                        pcMotor.SetMoveTarget(interactable.transform.position);
                         SetFocus(interactable);
                     }
                 }

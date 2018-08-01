@@ -119,7 +119,7 @@ namespace Reclamation.World
 
         public void FollowTarget(Interactable interactable)
         {
-            focusTarget = interactable.interactionTransform;
+            focusTarget = interactable.transform;
             FaceTarget(focusTarget.position);
         }
 

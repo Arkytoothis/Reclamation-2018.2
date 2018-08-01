@@ -115,18 +115,18 @@ namespace Reclamation.Misc
         {
             GameObject empty = null;
 
-            if (pc.Gender == Gender.Male)
+            if (pc.gender == Gender.Male)
             {
                 empty = Instantiate(emptyPcPrefb, parent);
             }
-            else if (pc.Gender == Gender.Female)
+            else if (pc.gender == Gender.Female)
             {
                 empty = Instantiate(emptyPcPrefb, parent);
             }
 
             empty.transform.position = position;
 
-            GameObject model = Instantiate(characterPrefabs[pc.RaceKey + " " + pc.Gender], empty.transform);
+            GameObject model = Instantiate(characterPrefabs[pc.raceKey + " " + pc.gender], empty.transform);
             empty.GetComponent<Pc>().SetPcData(pc, model);
 
             return empty;
@@ -144,6 +144,7 @@ namespace Reclamation.Misc
             }
             else
             {
+                go.transform.localScale = Vector3.one;
                 //Debug.Log("Loading Item " + go.name + " success. " + key);
             }
 
@@ -177,6 +178,7 @@ namespace Reclamation.Misc
             }
             else
             {
+                Debug.Log("Loading Hair failed. " + hairKey);
                 return null;
             }
         }
@@ -189,10 +191,9 @@ namespace Reclamation.Misc
             }
             else
             {
+                Debug.Log("Loading Beard failed. " + beardKey);
                 return null;
             }
         }
-
-        
     }
 }

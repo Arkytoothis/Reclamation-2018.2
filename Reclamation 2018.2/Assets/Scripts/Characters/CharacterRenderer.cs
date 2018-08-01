@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Reclamation.Equipment;
 using Reclamation.Misc;
+using UnityEngine.Animations;
 
 namespace Reclamation.Characters
 {
@@ -33,11 +34,24 @@ namespace Reclamation.Characters
             if (pcData == null) return;
             this.pcData = pcData;
 
-            ItemData item = this.pcData.Inventory.EquippedItems[(int)EquipmentSlot.Right_Hand];
+            Vector3 raceScale = Database.GetRace(pcData.raceKey).scale;
+
+            LoadItem((int)EquipmentSlot.Right_Hand, (int)EquipmentRenderSlot.Right_Hand);
+            LoadItem((int)EquipmentSlot.Left_Hand, (int)EquipmentRenderSlot.Left_Hand);
+
+            if (pcData.hair != "")
+                SetHair(ModelManager.instance.GetHairModel(pcData.hair));
+            if (pcData.beard != "")
+                SetBeard(ModelManager.instance.GetBeardModel(pcData.beard));
+        }
+
+        public void LoadItem(int equipmentSlot, int renderSlot)
+        {
+            ItemData item = this.pcData.inventory.EquippedItems[equipmentSlot];
 
             if (item != null)
             {
-                GameObject go = Instantiate( ModelManager.instance.GetItemPrefab(item.Key));
+                GameObject go = Instantiate(ModelManager.instance.GetItemPrefab(item.Key));
 
                 if (go == null)
                 {
@@ -46,22 +60,49 @@ namespace Reclamation.Characters
                 else
                 {
                     ItemDefinition def = Database.GetItem(item.Key, false);
-                    //Debug.Log("Loading " + item.Name + " to Right Hand success");
-                    go.transform.SetParent(mounts[(int)EquipmentRenderSlot.Right_Hand], false);
-                    go.transform.localPosition += def.offset;
-                    go.transform.localRotation = new Quaternion(def.rotation.x, def.rotation.y, def.rotation.z, 0f);
+
+                    //Debug.Log(gameObject.transform.localScale);
+                    go.transform.SetParent(mounts[renderSlot], true);
+                    go.transform.localPosition = def.offset;
+                    go.transform.localEulerAngles = def.rotation;
+                    go.transform.localScale = Vector3.one;// new Vector3(2- gameObject.transform.localScale.x, 2- gameObject.transform.localScale.y, 2- gameObject.transform.localScale.z);
+
                 }
             }
         }
 
         public void SetHair(GameObject hair)
         {
-            GameObject go = Instantiate(hair, mounts[(int)EquipmentRenderSlot.Hair]);
+            GameObject go = Instantiate(hair);
+
+            ModelAdjustment adjustment = go.GetComponent<ModelAdjustment>();
+            if (adjustment != null)
+            {
+                go.transform.localPosition = adjustment.position;
+                go.transform.localEulerAngles = adjustment.rotation;
+                go.transform.localScale = adjustment.scale;
+            }
+
+            go.transform.SetParent(mounts[(int)EquipmentRenderSlot.Hair], false);
+
+            go.name = hair.name;
         }
 
         public void SetBeard(GameObject beard)
         {
-            GameObject go = Instantiate(beard, mounts[(int)EquipmentRenderSlot.Beard]);
+            GameObject go = Instantiate(beard);
+
+            ModelAdjustment adjustment = go.GetComponent<ModelAdjustment>();
+            if (adjustment != null)
+            {
+                go.transform.localPosition = adjustment.position;
+                go.transform.localEulerAngles = adjustment.rotation;
+                go.transform.localScale = adjustment.scale;
+            }
+
+            go.transform.SetParent(mounts[(int)EquipmentRenderSlot.Beard], false);
+
+            go.name = beard.name;
         }
     }
 }

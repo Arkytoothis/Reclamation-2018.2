@@ -1,23 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Characters;
 
-public class NpcGui : MonoBehaviour
+namespace Reclamation.Gui
 {
-    [SerializeField] GameObject vitalBarPrefab;
-
-    Camera cameraToLookAt;
-
-	void Start ()
+    public class NpcGui : MonoBehaviour
     {
-        cameraToLookAt = Camera.main;
-        Instantiate(vitalBarPrefab, transform.position, Quaternion.identity, transform);
-        gameObject.layer = 5;
-	}
-	
-	void LateUpdate ()
-    {
-        transform.LookAt(cameraToLookAt.transform);
-        transform.rotation = Quaternion.LookRotation(cameraToLookAt.transform.forward);
-	}
+        public GameObject vitalBarPrefab;
+        public WorldSpaceAttributeBar barInstance;
+
+        Camera cameraToLookAt;
+
+        void Awake()
+        {
+            cameraToLookAt = Camera.main;
+        }
+
+        public void SpawnHealthBar()
+        {
+            GameObject go = Instantiate(vitalBarPrefab, transform.position, Quaternion.identity, transform);
+            barInstance = go.GetComponent<WorldSpaceAttributeBar>();
+        }
+
+        public void SetData(ref NpcData npc)
+        {
+            barInstance.SetData(ref npc);
+        }
+
+        void LateUpdate()
+        {
+            transform.LookAt(cameraToLookAt.transform);
+            transform.rotation = Quaternion.LookRotation(cameraToLookAt.transform.forward);
+        }
+
+    }
 }

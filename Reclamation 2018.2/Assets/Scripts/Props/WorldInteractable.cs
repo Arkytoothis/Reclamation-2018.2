@@ -13,12 +13,12 @@ namespace Reclamation.Props
         public OutlineTarget outline;
         public Color defaultColor;
 
-        void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.yellow;
+        //void OnDrawGizmosSelected()
+        //{
+        //    Gizmos.color = Color.yellow;
 
-            if (interactionTransform != null) Gizmos.DrawWireSphere(interactionTransform.position, radius);
-        }
+        //    if (interactionPoint != null) Gizmos.DrawWireSphere(interactionPoint.transform.position, radius);
+        //}
 
         void OnMouseOver()
         {

@@ -88,12 +88,12 @@ namespace Reclamation.Sandbox
 
         public void SetHair(GameObject hair)
         {
-            //characterRenderer.SetHair(hair);
+            characterRenderer.SetHair(hair);
         }
 
         public void SetBeard(GameObject beard)
         {
-            //characterRenderer.SetBeard(beard);
+            characterRenderer.SetBeard(beard);
         }
     }
 }

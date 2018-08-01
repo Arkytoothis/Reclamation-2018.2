@@ -91,18 +91,18 @@ ModelImporter:
     400082: ShieldBow_Slot
     400084: //RootNode
     400086: WeaponSlot
-    7400000: Walk
-    7400002: Idle
-    7400004: Idle2
-    7400006: AttackMelee1
-    7400008: AttackMelee2
-    7400010: AttackMelee3
-    7400012: AttackRange1
-    7400014: AttackRange2
-    7400016: AttackRange3
-    7400018: Hit1
-    7400020: Hit2
-    7400022: Death
+    7400000: Skeleton Walk
+    7400002: Skeleton Idle 1
+    7400004: Skeleton Idle 2
+    7400006: Skeleton Melee 1
+    7400008: Skeleton Melee 2
+    7400010: Skeleton Melee 3
+    7400012: Skeleton Ranged 1
+    7400014: Skeleton Ranged 2
+    7400016: Skeleton Ranged 3
+    7400018: Skeleton Hit 1
+    7400020: Skeleton Hit 2
+    7400022: Skeleton Death
     9500000: //RootNode
     11100000: //RootNode
     2186277476908879412: ImportLogs
@@ -144,7 +144,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walk
+      name: Skeleton Walk
       takeName: Take 001
       firstFrame: 0
       lastFrame: 40
@@ -172,7 +172,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle
+      name: Skeleton Idle 1
       takeName: Take 001
       firstFrame: 50
       lastFrame: 80
@@ -200,7 +200,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle2
+      name: Skeleton Idle 2
       takeName: Take 001
       firstFrame: 90
       lastFrame: 150
@@ -228,7 +228,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: AttackMelee1
+      name: Skeleton Melee 1
       takeName: Take 001
       firstFrame: 160
       lastFrame: 190
@@ -256,7 +256,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: AttackMelee2
+      name: Skeleton Melee 2
       takeName: Take 001
       firstFrame: 200
       lastFrame: 230
@@ -284,7 +284,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: AttackMelee3
+      name: Skeleton Melee 3
       takeName: Take 001
       firstFrame: 240
       lastFrame: 270
@@ -312,7 +312,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: AttackRange1
+      name: Skeleton Ranged 1
       takeName: Take 001
       firstFrame: 280
       lastFrame: 320
@@ -340,7 +340,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: AttackRange2
+      name: Skeleton Ranged 2
       takeName: Take 001
       firstFrame: 330
       lastFrame: 370
@@ -368,7 +368,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: AttackRange3
+      name: Skeleton Ranged 3
       takeName: Take 001
       firstFrame: 380
       lastFrame: 420
@@ -396,7 +396,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Hit1
+      name: Skeleton Hit 1
       takeName: Take 001
       firstFrame: 430
       lastFrame: 440
@@ -424,7 +424,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Hit2
+      name: Skeleton Hit 2
       takeName: Take 001
       firstFrame: 450
       lastFrame: 460
@@ -452,7 +452,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Death
+      name: Skeleton Death
       takeName: Take 001
       firstFrame: 470
       lastFrame: 500

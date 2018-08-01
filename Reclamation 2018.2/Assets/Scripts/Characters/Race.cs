@@ -25,8 +25,11 @@ namespace Reclamation.Characters
         public GameValue EssencePerLevel;
 
         public bool Short;
-        public int Hair;
-        public int Beard;
+
+        public string maleDefaultHair;
+        public string maleDefaultBeard;
+        public string femaleDefaultHair;
+        public string femaleDefaultBeard;
 
         public bool HelmAllowed;
         public bool PantsAllowed;
@@ -65,11 +68,16 @@ namespace Reclamation.Characters
             Upkeep = new UpkeepData();
             StartingWealth = new GameValue();
             scale = Vector3.one;
+
+            maleDefaultHair = "";
+            maleDefaultBeard = "";
+            femaleDefaultHair = "";
+            femaleDefaultBeard = "";
         }
 
-        public Race(string name, string key, string male, string female, bool small, string wings, string horns, int hair, int beard, bool helm, bool pants, bool shoes,
+        public Race(string name, string key, string male, string female, bool small, string wings, string horns, bool helm, bool pants, bool shoes,
                     GameValue health, GameValue stamina, GameValue essence, int movement, float exp_mod, UpkeepData upkeep, GameValue wealth,
-                    Vector3 scale)
+                    Vector3 scale, string maleHair, string maleBeard, string femaleHair, string femaleBeard)
         {
             Name = name;
             Key = key;
@@ -80,8 +88,11 @@ namespace Reclamation.Characters
             Short = small;
             wingsPath = wings;
             hornsPath = horns;
-            Hair = hair;
-            Beard = beard;
+
+            maleDefaultHair = maleHair;
+            maleDefaultBeard = maleBeard;
+            femaleDefaultHair = femaleHair;
+            femaleDefaultBeard = femaleBeard;
 
             HelmAllowed = helm;
             PantsAllowed = pants;

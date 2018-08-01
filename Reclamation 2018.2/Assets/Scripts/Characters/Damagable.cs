@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using BehaviorDesigner.Runtime.Tactical;
+using Reclamation.Misc;
 
 namespace Reclamation.Characters
 {
@@ -8,36 +9,33 @@ namespace Reclamation.Characters
     /// </summary>
     public class Damagable : MonoBehaviour, IDamageable
     {
-        // The amount of health to begin with
-        public float startHealth = 100;
+        [SerializeField] CharacterData characterData;
+        public CharacterData CharacterData { get { return characterData; } }
 
-        private float currentHealth;
-
-        /// <summary>
-        /// Initailzies the current health.
-        /// </summary>
-        private void Awake()
+        public void SetCharacterData(CharacterData character)
         {
-            currentHealth = startHealth;
+            characterData = character;
         }
 
         /// <summary>
         /// Take damage. Deactivate if the amount of remaining health is 0.
         /// </summary>
         /// <param name="amount"></param>
-        public void Damage(float amount)
+        public void Damage(int amount)
         {
-            currentHealth = Mathf.Max(currentHealth - amount, 0);
+            //Debug.Log(characterData.name.FirstName + " has taken " + amount + " damage");
+            characterData.ModifyAttribute(Misc.AttributeType.Derived, (int)DerivedAttribute.Health, -amount);
 
-            if (currentHealth == 0) {
-                gameObject.SetActive(false);
+            if (characterData.GetDerived((int)DerivedAttribute.Health).Current <= 0)
+            {
+                //Debug.Log("Dead");
             }
         }
 
         // Is the object alive?
         public bool IsAlive()
         {
-            return currentHealth > 0;
+            return characterData.GetDerived((int)DerivedAttribute.Health).Current > 0;
         }
 
         /// <summary>
@@ -45,7 +43,7 @@ namespace Reclamation.Characters
         /// </summary>
         public void ResetHealth()
         {
-            currentHealth = startHealth;
+            characterData.ModifyAttribute(Misc.AttributeType.Derived, (int)DerivedAttribute.Health, characterData.GetDerived((int)DerivedAttribute.Health).Maximum);
             gameObject.SetActive(true);
         }
     }

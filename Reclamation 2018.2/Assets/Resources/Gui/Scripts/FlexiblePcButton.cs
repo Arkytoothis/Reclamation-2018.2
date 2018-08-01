@@ -24,7 +24,7 @@ namespace Reclamation.Gui
 
         public GameObject expBar;
 
-        private PcData pc;
+        //private PcData pc;
 
         protected override void OnSkinGui()
         {
@@ -41,27 +41,27 @@ namespace Reclamation.Gui
         {
             if (pc != null)
             {
-                this.pc = pc;
+                //this.pc = pc;
                 GameObject go = null;
                 AttributeBar bar = null;
-                nameLabel.text = this.pc.Name.FirstName;
+                nameLabel.text = pc.name.FirstName;
 
                 for (int i = 0; i < (int)Vital.Number; i++)
                 {
                     go = Instantiate(attributeBarPrefab, attributeBarsParent);
                     bar = go.GetComponent<AttributeBar>();
-                    bar.SetData(this.pc, i);
+                    bar.SetData(pc, i);
 
                     attributeBars.Add(go);
                 }
 
                 go = Instantiate(attributeBarPrefab, attributeBarsParent);
                 bar = go.GetComponent<AttributeBar>();
-                bar.SetExpData(this.pc);
+                bar.SetExpData(pc);
                 expBar = go;
 
-                PortraitRoom.instance.AddModel(ModelManager.instance.SpawnCharacter(null, Vector3.zero, this.pc), this.pc.EncounterIndex);
-                portrait.texture = PortraitRoom.instance.characterMounts[this.pc.EncounterIndex].rtCamera.targetTexture;
+                PortraitRoom.instance.AddModel(ModelManager.instance.SpawnCharacter(null, Vector3.zero, pc), pc.encounterIndex);
+                portrait.texture = PortraitRoom.instance.characterMounts[pc.encounterIndex].rtCamera.targetTexture;
             }
             else
             {

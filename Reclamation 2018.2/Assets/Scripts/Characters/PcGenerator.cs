@@ -87,33 +87,49 @@ namespace Reclamation.Characters
             if (p == "") profession_key = availableProfessions[Random.Range(0, availableProfessions.Count)];
             else profession_key = p;
 
-            int hair = -1;
-            int beard = -1;
+            Race race = Database.GetRace(race_key);
+            Profession profession = Database.GetProfession(profession_key);
 
-            //if (Database.Races[race_key].Hair != -1)
-            //    hair = SpriteManager.Instance.GetRandomHair();
-
-            //if (Database.Races[race_key].Beard != -1)
-            //    beard = SpriteManager.Instance.GetRandomBeard();
+            string hair = "";
+            string beard = "";
 
             if (gender == Gender.None)
             {
-                if (Random.Range(0, 100) < 50) gender = Gender.Male;
-                else gender = Gender.Female;
+                if (Random.Range(0, 100) < 50)
+                {
+                    gender = Gender.Male;
+                    hair = race.maleDefaultHair;
+                    beard = race.maleDefaultBeard;
+                }
+                else
+                {
+                    gender = Gender.Female;
+                    hair = race.femaleDefaultHair;
+                    beard = race.femaleDefaultBeard;
+                }
+            }
+            else if (gender == Gender.Male)
+            {
+                gender = Gender.Male;
+                hair = race.maleDefaultHair;
+                beard = race.maleDefaultBeard;
+            }
+            else if (gender == Gender.Female)
+            {
+                gender = Gender.Female;
+                hair = race.femaleDefaultHair;
+                beard = race.femaleDefaultBeard;
             }
 
             PcData pc = new PcData(NameGenerator.Get(gender, race_key, profession_key),
                 gender, BackgroundGenerator.Generate(), race_key, profession_key, hair, beard, index, index, index,
                 3 + GameValue.Roll(new GameValue(1, 3), false), 3 + GameValue.Roll(new GameValue(1, 3), false));
 
-            Race race = Database.GetRace(race_key);
-            Profession profession = Database.GetProfession(pc.ProfessionKey);
+            pc.personality = GeneratePersonality();
 
-            pc.Personality = GeneratePersonality();
-
-            pc.Level = 1;
+            pc.level = 1;
             pc.CalculateExp();
-            pc.Description = GenerateDescription(pc);
+            pc.description = GenerateDescription(pc);
 
             if (profession.StartingItems.Count > 0)
             {
@@ -123,12 +139,12 @@ namespace Reclamation.Characters
                         profession.StartingItems[i].PreKey, profession.StartingItems[i].PostKey, profession.StartingItems[i].StackSize);
 
                     if (race.ArmorSlotAllowed((EquipmentSlot)item.Slot) == true)
-                        pc.Inventory.EquipItem(item, ((EquipmentSlot)item.Slot));
+                        pc.inventory.EquipItem(item, ((EquipmentSlot)item.Slot));
                 }
             }
             else
             {
-                for (int i = 0; i < pc.Inventory.EquippedItems.Length; i++)
+                for (int i = 0; i < pc.inventory.EquippedItems.Length; i++)
                 {
                     if (Database.GetRace(race_key).ArmorSlotAllowed(((EquipmentSlot)i)) == true)
                     {
@@ -146,7 +162,7 @@ namespace Reclamation.Characters
                             ItemData item = ItemGenerator.CreateRandomItem(i, 25, 25, 25);
 
                             if (item != null)
-                                pc.Inventory.EquippedItems[i] = new ItemData(item);
+                                pc.inventory.EquippedItems[i] = new ItemData(item);
                         }
                     }
                 }
@@ -156,30 +172,30 @@ namespace Reclamation.Characters
 
             for (int i = 0; i < numAccessories; i++)
             {
-                pc.Inventory.EquipAccessory(ItemGenerator.CreateRandomItem(ItemTypeAllowed.Accessory, 0, 0, 0), -1);
+                pc.inventory.EquipAccessory(ItemGenerator.CreateRandomItem(ItemTypeAllowed.Accessory, 0, 0, 0), -1);
             }
 
-            for (int spell = 0; spell < pc.Abilities.KnownSpells.Count; spell++)
+            for (int spell = 0; spell < pc.abilities.KnownSpells.Count; spell++)
             {
                 if (Random.Range(0, 100) < 100)
                 {
-                    pc.Abilities.KnownSpells[spell].BoostRune = Helper.RandomValues<string, AbilityModifier>(Database.Runes).Key;
+                    pc.abilities.KnownSpells[spell].BoostRune = Helper.RandomValues<string, AbilityModifier>(Database.Runes).Key;
                 }
             }
 
             string key = positiveQuirks[Random.Range(0, positiveQuirks.Count)];
-            pc.Abilities.AddTrait(new Ability(Database.GetAbility(key)));
+            pc.abilities.AddTrait(new Ability(Database.GetAbility(key)));
 
             key = neutralQuirks[Random.Range(0, neutralQuirks.Count)];
-            pc.Abilities.AddTrait(new Ability(Database.GetAbility(key)));
+            pc.abilities.AddTrait(new Ability(Database.GetAbility(key)));
 
             key = negativeQuirks[Random.Range(0, negativeQuirks.Count)];
-            pc.Abilities.AddTrait(new Ability(Database.GetAbility(key)));
+            pc.abilities.AddTrait(new Ability(Database.GetAbility(key)));
 
             if (GameValue.Roll(1, 100) < 20)
             {
                 key = woundQuirks[Random.Range(0, woundQuirks.Count)];
-                pc.Abilities.AddTrait(new Ability(Database.GetAbility(key)));
+                pc.abilities.AddTrait(new Ability(Database.GetAbility(key)));
             }
 
             pc.CalculateAttributeModifiers();
@@ -192,8 +208,8 @@ namespace Reclamation.Characters
             //pc.Abilities.PowerSlots = (pc.BaseAttributes[(int)BaseAttribute.Memory].Current / 5) + 1;
             //pc.Abilities.SpellSlots = (pc.BaseAttributes[(int)BaseAttribute.Memory].Current / 5) + 1;
 
-            pc.Abilities.FindTraits();
-            pc.Abilities.FindAvailableAbilities();
+            pc.abilities.FindTraits();
+            pc.abilities.FindAvailableAbilities();
 
             //pc.AddExperience(Random.Range(0, 500) * 10, false);
 

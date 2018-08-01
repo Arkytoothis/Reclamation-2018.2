@@ -15,8 +15,8 @@ public class PcElement : MonoBehaviour
     {
         if (pc != null)
         {
-            nameLabel.text = pc.Name.FirstName;
-            detailsLabel.text = "Lvl " + pc.Level + " " + pc.RaceKey + " " + pc.ProfessionKey;
+            nameLabel.text = pc.name.FirstName;
+            detailsLabel.text = "Lvl " + pc.level + " " + pc.raceKey + " " + pc.professionKey;
         }
         else
         {

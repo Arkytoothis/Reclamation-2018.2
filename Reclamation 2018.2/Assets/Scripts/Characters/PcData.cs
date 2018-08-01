@@ -15,17 +15,17 @@ namespace Reclamation.Characters
     }
 
     [System.Serializable]
-    public class PcData : Character
+    public class PcData : CharacterData
     {
-        public UpkeepData Upkeep;
-        public int Wealth;
-        public PcStatus Status;
-        public int EncounterIndex;
-        public int WorldIndex;
-        public int PartyIndex;
-        public int PartySlot;
+        public UpkeepData upkeep;
+        public int wealth;
+        public PcStatus status;
+        public int encounterIndex;
+        public int worldIndex;
+        public int partyIndex;
+        public int partySlot;
 
-        public int Level;
+        public int level;
 
         private int experience;
         public int Experience { get { return experience; } }
@@ -36,31 +36,31 @@ namespace Reclamation.Characters
         private float expBonus;
         public float ExpBonus { get { return expBonus; } }
 
-        public CharacterAbilities Abilities;
+        public CharacterAbilities abilities;
 
-        public int MaxAccessories;
+        public int maxAccessories;
 
         public PcData()
         {
-            Wealth = 0;
-            Upkeep = new UpkeepData();
-            Name = new FantasyName();
-            Gender = Gender.None;
-            Background = null;
-            Status = PcStatus.Idle;
+            wealth = 0;
+            upkeep = new UpkeepData();
+            name = new FantasyName();
+            gender = Gender.None;
+            background = null;
+            status = PcStatus.Idle;
 
-            RaceKey = "";
-            ProfessionKey = "";
-            Description = "";
+            raceKey = "";
+            professionKey = "";
+            description = "";
 
-            EncounterIndex = -1;
-            WorldIndex = -1;
-            PartyIndex = -1;
-            Hair = -1;
-            Beard = -1;
-            MaxAccessories = 1;
+            encounterIndex = -1;
+            worldIndex = -1;
+            partyIndex = -1;
+            hair = "Hair 01";
+            beard = "";
+            maxAccessories = 1;
 
-            Level = 0;
+            level = 0;
             experience = 0;
             expToLevel = 0;
             maxExp = 0;
@@ -77,30 +77,31 @@ namespace Reclamation.Characters
             for (int i = 0; i < (int)DamageType.Number; i++)
                 attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
 
-            Abilities = new CharacterAbilities();
-            Inventory = new CharacterInventory();
+            abilities = new CharacterAbilities();
+            inventory = new CharacterInventory();
         }
 
-        public PcData(FantasyName name, Gender gender, Background background, string race, string profession, int hair, int beard, int index, int enc_index, int party_index,
+        public PcData(FantasyName name, Gender gender, Background background, string race, string profession, string hair, string beard, int index, int enc_index, int party_index,
             int power_slots, int spell_slots)
         {
-            Wealth = 0;
-            Upkeep = new UpkeepData();
-            Name = name;
-            Background = new Background(background);
+            wealth = 0;
+            upkeep = new UpkeepData();
+            base.name = name;
+            base.background = new Background(background);
 
-            Gender = gender;
-            RaceKey = race;
-            ProfessionKey = profession;
-            WorldIndex = index;
-            EncounterIndex = enc_index;
-            PartyIndex = party_index;
-            Hair = hair;
-            Beard = beard;
+            base.gender = gender;
+            raceKey = race;
+            professionKey = profession;
+            worldIndex = index;
+            encounterIndex = enc_index;
+            partyIndex = party_index;
 
-            MaxAccessories = Random.Range(1, 4);
+            this.hair = hair;
+            this.beard = beard;
 
-            Level = 0;
+            maxAccessories = Random.Range(1, 4);
+
+            level = 0;
             experience = 0;
             expToLevel = 0;
             maxExp = 0;
@@ -123,30 +124,30 @@ namespace Reclamation.Characters
                 attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
             }
 
-            Abilities = new CharacterAbilities(this, power_slots, spell_slots);
-            Inventory = new CharacterInventory();
+            abilities = new CharacterAbilities(this, power_slots, spell_slots);
+            inventory = new CharacterInventory();
         }
 
         public PcData(PcData pc)
         {
-            Name = pc.Name;
-            Gender = pc.Gender;
+            name = pc.name;
+            gender = pc.gender;
 
-            Wealth = pc.Wealth;
-            Upkeep = new UpkeepData(pc.Upkeep);
-            Background = new Background(pc.Background);
-            RaceKey = pc.RaceKey;
-            ProfessionKey = pc.ProfessionKey;
-            WorldIndex = pc.WorldIndex;
-            EncounterIndex = pc.EncounterIndex;
-            PartyIndex = pc.PartyIndex;
-            PartySlot = pc.PartySlot;
-            Hair = pc.Hair;
-            Beard = pc.Beard;
+            wealth = pc.wealth;
+            upkeep = new UpkeepData(pc.upkeep);
+            background = new Background(pc.background);
+            raceKey = pc.raceKey;
+            professionKey = pc.professionKey;
+            worldIndex = pc.worldIndex;
+            encounterIndex = pc.encounterIndex;
+            partyIndex = pc.partyIndex;
+            partySlot = pc.partySlot;
+            hair = pc.hair;
+            beard= pc.beard;
 
-            Description = pc.Description;
+            description = pc.description;
 
-            Level = pc.Level;
+            level = pc.level;
             experience = pc.Experience;
             expToLevel = pc.ExpToLevel;
             maxExp = pc.MaxExp;
@@ -174,8 +175,8 @@ namespace Reclamation.Characters
                 attributeManager.AddSkill(kvp.Key, new Attribute(kvp.Value));
             }
 
-            Abilities = new CharacterAbilities(pc);
-            Inventory = new CharacterInventory(pc.Inventory);
+            abilities = new CharacterAbilities(pc);
+            inventory = new CharacterInventory(pc.inventory);
         }
 
         public override void CalculateStartSkills()
@@ -209,9 +210,9 @@ namespace Reclamation.Characters
         {
             for (int slot = 0; slot < (int)EquipmentSlot.Number; slot++)
             {
-                if (Inventory.EquippedItems[slot] != null)
+                if (inventory.EquippedItems[slot] != null)
                 {
-                    ItemData item = Inventory.EquippedItems[slot];
+                    ItemData item = inventory.EquippedItems[slot];
 
                     if (item.WeaponData != null)
                     {
@@ -262,8 +263,8 @@ namespace Reclamation.Characters
 
         public void CalculateExp()
         {
-            expToLevel = Level * 1000;
-            maxExp = Level * 10000;
+            expToLevel = level * 1000;
+            maxExp = level * 10000;
         }
 
         public void CalculateExpCosts()
@@ -287,7 +288,7 @@ namespace Reclamation.Characters
 
             if (adjusted == true)
             {
-                expToAdd = (int)((float)amount * Database.GetRace(RaceKey).ExpModifier);
+                expToAdd = (int)((float)amount * Database.GetRace(raceKey).ExpModifier);
                 expToAdd += (int)((float)amount * ExpBonus);
             }
             else
@@ -312,7 +313,7 @@ namespace Reclamation.Characters
         {
             //Debug.Log(Name.FirstName + " has gained a level!");
             SpendExperience(expToLevel);
-            Level++;
+            level++;
             CalculateExp();
             CalculateExpCosts();
             CalculateDerivedAttributes();
@@ -322,27 +323,28 @@ namespace Reclamation.Characters
 
         public void CalculateUpkeep()
         {
-            Upkeep = new UpkeepData();
+            upkeep = new UpkeepData();
 
-            Race race = Database.GetRace(RaceKey);
-            Upkeep.Coin = race.Upkeep.Coin;
-            Upkeep.Essence = race.Upkeep.Essence;
-            Upkeep.Materials = race.Upkeep.Materials;
-            Upkeep.Rations = race.Upkeep.Rations;
+            Race race = Database.GetRace(raceKey);
+            upkeep.Coin = race.Upkeep.Coin;
+            upkeep.Essence = race.Upkeep.Essence;
+            upkeep.Materials = race.Upkeep.Materials;
+            upkeep.Rations = race.Upkeep.Rations;
 
-            Profession profession = Database.GetProfession(ProfessionKey);
-            Upkeep.Coin += profession.Upkeep.Coin;
-            Upkeep.Essence += profession.Upkeep.Essence;
-            Upkeep.Materials += profession.Upkeep.Materials;
-            Upkeep.Rations += profession.Upkeep.Rations;
+            Profession profession = Database.GetProfession(professionKey);
+            upkeep.Coin += profession.Upkeep.Coin;
+            upkeep.Essence += profession.Upkeep.Essence;
+            upkeep.Materials += profession.Upkeep.Materials;
+            upkeep.Rations += profession.Upkeep.Rations;
 
-            Wealth = Database.Races[RaceKey].StartingWealth.Roll(false) + Database.Professions[ProfessionKey].StartingWealth.Roll(false);
+            wealth = Database.Races[raceKey].StartingWealth.Roll(false) + Database.Professions[professionKey].StartingWealth.Roll(false);
         }
 
-        public new void ModifyAttribute(AttributeType type, int attribute, int value)
+        public override void ModifyAttribute(AttributeType type, int attribute, int value)
         {
             if (value == 0) return;
 
+            //Debug.Log("ModifyAttribute");
             base.ModifyAttribute(type, attribute, value);
 
             int cur = attributeManager.GetAttribute(AttributeListType.Derived, attribute).Current;
@@ -362,38 +364,39 @@ namespace Reclamation.Characters
             CheckVitals();
         }
 
-        public delegate void OnArmorChange(int current, int max);
-        public event OnArmorChange onArmorChange;
+        public new delegate void OnArmorChange(int current, int max);
+        public new event OnArmorChange onArmorChange;
 
-        public delegate void OnHealthChange(int current, int max);
-        public event OnHealthChange onHealthChange;
+        public new delegate void OnHealthChange(int current, int max);
+        public new event OnHealthChange onHealthChange;
 
-        public delegate void OnStaminaChange(int current, int max);
-        public event OnStaminaChange onStaminaChange;
+        public new delegate void OnStaminaChange(int current, int max);
+        public new event OnStaminaChange onStaminaChange;
 
-        public delegate void OnEssenceChange(int current, int max);
-        public event OnEssenceChange onEssenceChange;
+        public new delegate void OnEssenceChange(int current, int max);
+        public new event OnEssenceChange onEssenceChange;
 
-        public delegate void OnMoraleChange(int current, int max);
-        public event OnMoraleChange onMoraleChange;
+        public new delegate void OnMoraleChange(int current, int max);
+        public new event OnMoraleChange onMoraleChange;
+
+        public new delegate void OnDeath();
+        public new event OnDeath onDeath;
+
+        public new delegate void OnRevive();
+        public new event OnRevive onRevive;
+
+        public new delegate void OnInteract();
+        public new event OnInteract onInteract;
+
+        public new delegate void OnAttack();
+        public new event OnAttack onAttack;
+
 
         public delegate void OnExperienceChange(int current, int max);
         public event OnExperienceChange onExperienceChange;
 
-        public delegate void OnDeath();
-        public event OnDeath onDeath;
-
-        public delegate void OnRevive();
-        public event OnRevive onRevive;
-
         public delegate void OnLevelUp();
         public event OnLevelUp onLevelUp;
-
-        public delegate void OnInteract();
-        public event OnInteract onInteract;
-
-        public delegate void OnAttack();
-        public event OnAttack onAttack;
 
         public void CheckVitals()
         {
@@ -446,25 +449,25 @@ namespace Reclamation.Characters
         {
             isDead = true;
             onDeath();
-            Debug.Log(Name.FirstName + " has died");
+            Debug.Log(name.FirstName + " has died");
         }
 
         public void Revive()
         {
             isDead = false;
             onRevive();
-            Debug.Log(Name.FirstName + " has revived");
+            Debug.Log(name.FirstName + " has revived");
         }
 
         public void Interact()
         {
-            Debug.Log(Name.FirstName + " is interacting");
+            Debug.Log(name.FirstName + " is interacting");
             onInteract();
         }
 
         public void Attack()
         {
-            Debug.Log(Name.FirstName + " is attacking");
+            Debug.Log(name.FirstName + " is attacking");
             onAttack();
         }
     }

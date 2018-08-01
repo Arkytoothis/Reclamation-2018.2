@@ -29,7 +29,7 @@ namespace Reclamation.Gui.Encounter
 
         public void UpdateData()
         {
-            detailsLabel.text = pc.Name.FullName + ", Lvl " + pc.Level + " " + pc.RaceKey + " " + pc.ProfessionKey + "\n";
+            detailsLabel.text = pc.name.FullName + ", Lvl " + pc.level + " " + pc.raceKey + " " + pc.professionKey + "\n";
 
             string s = "";
             AttributeDefinition definition = null;

@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Reclamation.Characters;
+using Reclamation.Equipment;
 using Reclamation.Misc;
 using Reclamation.Props;
 using Pathfinding;
 using Pathfinding.RVO;
+using BehaviorDesigner.Runtime.Tactical;
 
-namespace Reclamation.Encounter
+namespace Reclamation.Characters
 {
     [System.Serializable]
-    public class Pc : MonoBehaviour
+    public class Pc : CharacterController
     {
         public GameObject model;
         public new Light light;
@@ -19,8 +20,8 @@ namespace Reclamation.Encounter
         public float moveSpeed = 3f;
         public float turnSpeed = 100f;
         public float perceptionRadius = 10f;
-        public float rangedDistance = 5f;
-        public float meleeDistance = 1f;
+        public float attackDistance = 1f;
+        public float repeatAttackDelay = 1f;
 
         public GameObject target = null;
 
@@ -28,34 +29,46 @@ namespace Reclamation.Encounter
         public RichAI pathfinder;
         public RVOController rvo;
 
-        public bool isAttacking = false;
+        public bool isFighting = false;
 
         [SerializeField]
         private PcAnimator animator;
-        private PcData pcData;
-
-        // The furthest distance that the agent is able to attack from
-        public float attackDistance = 1f;
+        [SerializeField] private PcData pcData;
+        public PcData PcData { get { return pcData; } } 
         // The amount of time it takes for the agent to be able to attack again
-        public float repeatAttackDelay = 1f;
         // The last time the agent attacked
         private float lastAttackTime;
 
-        private CharacterRenderer pcRenderer = null;
-        private Damagable targetDamagable = null;
-        private Interactable targetInteractable = null;
+        [SerializeField] private CharacterRenderer pcRenderer = null;
+        [SerializeField] private Damagable targetDamagable = null;
+        [SerializeField] private Interactable targetInteractable = null;
+
+        [SerializeField] private IAttack currentAttack;
+        [SerializeField] private IDamageable currentDefense;
 
         void Awake()
         {
             destinationSetter = gameObject.GetComponent<AIDestinationSetter>();
             rvo = gameObject.GetComponent<RVOController>();
             pathfinder = gameObject.GetComponent<RichAI>();
+            currentAttack = gameObject.GetComponent<IAttack>();
+            currentDefense = gameObject.GetComponent<IDamageable>();
+
+            if (currentAttack == null)
+            {
+                Debug.Log("currentAttack == null");
+            }
+            if (currentDefense == null)
+            {
+                Debug.Log("currentDefense == null");
+            }
         }
 
         void Start()
         {
             destinationSetter.target = null;
             InvokeRepeating("ProcessAi", 2f, 0.1f);
+
         }
 
         void LateUpdate()
@@ -65,18 +78,18 @@ namespace Reclamation.Encounter
 
         void ProcessAi()
         {
-            if (target != null)
+            if (CheckIsAlive() == true && target != null)
             {
                 targetDamagable = CheckDamagable(target);
                 targetInteractable = CheckInteractable(target);
                 
-                if (targetInteractable != null)
-                {
-                    ProcessInteraction(targetInteractable);
-                }
-                else if (targetDamagable != null)
+                if (targetDamagable != null)
                 {
                     ProcessAttack(targetDamagable);
+                }
+                else if (targetInteractable != null)
+                {
+                    ProcessInteraction(targetInteractable);
                 }
             }
         }
@@ -89,41 +102,56 @@ namespace Reclamation.Encounter
 
         public void ProcessAttack(Damagable damagable)
         {
-            if (CheckRange(target) == true && CheckTiming(target) == true)
+            if (target.GetComponent<CharacterController>() != null && target.GetComponent<CharacterController>().CheckIsAlive() == true)
             {
-                isAttacking = true;
-                lastAttackTime = Time.time;
-                animator.Attack();
-                CanMove(false);
-            }
-            else if (CheckRange(target) == false)
-            {
-                CanMove(true);
-                MoveTo(target);
+                if (CheckRange(target) == true && CheckTiming(target) == true)
+                {
+                    isFighting = true;
+                    lastAttackTime = Time.time;
+                    animator.Attack();
+                    currentAttack.Attack(target);
+                    CanMove(false);
+                }
+                else if (CheckRange(target) == false)
+                {
+                    isFighting = false;
+                    CanMove(true);
+                    MoveTo(target);
+                }
             }
         }
 
         public void ProcessInteraction(Interactable interactable)
         {
-            if (CanInteract(target) == true)
+            if (CanInteract(interactable) == true)
             {
                 animator.Interact();
+                interactable.GetComponent<Interactable>().Interact(gameObject);
                 SetInteractionTarget(null);
-                interactable.Interact(gameObject);
             }
         }
 
-        public void SetPcData(PcData pc, GameObject model)
+        public void SetPcData(PcData pcData, GameObject model)
         {
-            pcData = pc;
-            pcData.onDeath += animator.Death;
-            pcData.onRevive += animator.Revive;
-            pcData.onLevelUp += animator.LevelUp;
+            this.pcData = pcData;
+            this.pcData.onDeath += animator.Death;
+            this.pcData.onDeath += OnDeath;
+            this.pcData.onRevive += animator.Revive;
+            this.pcData.onLevelUp += animator.LevelUp;
+
+            ItemData item = this.pcData.inventory.EquippedItems[(int)EquipmentSlot.Right_Hand];
+
+            if (item != null)
+            {
+                attackDistance = (float)item.WeaponData.Attributes[(int)WeaponAttributes.Range].Value;
+                repeatAttackDelay = (float)item.RecoveryTime;
+            }
 
             SetModel(model);
-            pcRenderer.LoadEquipment(pcData);
-            //animator.animator.avatar = this.model.GetComponent<Animator>().avatar;
-            //animator.animator.runtimeAnimatorController = this.model.GetComponent<Animator>().runtimeAnimatorController;
+            pcRenderer.LoadEquipment(this.pcData);
+
+            currentDefense.SetCharacterData(this.pcData);
+            currentAttack.SetCharacterData(this.pcData);
         }
 
         public void StopAnimations()
@@ -143,9 +171,11 @@ namespace Reclamation.Encounter
 
         public bool CheckRange(GameObject target)
         {
+            if (target == null) return false;
+
             float distance = Vector3.Distance(transform.position, target.transform.position);
 
-            if (distance <= meleeDistance)
+            if (distance <= attackDistance)
             {
                 return true;
             }
@@ -170,12 +200,15 @@ namespace Reclamation.Encounter
         public Interactable CheckInteractable (GameObject target)
         {
             Interactable interactable = target.GetComponent<Interactable>();
+
             return interactable;
         }
 
         public bool CheckAttack(GameObject target)
         {
             if (target == null) return false;
+
+            if (target.GetComponent<CharacterController>().CheckIsAlive() == false) return false;
 
             if(CheckRange(target) == false || CheckTiming(target) == false || CheckDamagable(target) == false)
             {
@@ -192,9 +225,14 @@ namespace Reclamation.Encounter
             destinationSetter.target = target.transform;
         }
 
+        public void MoveTo(Transform target)
+        {
+            destinationSetter.target = target;
+        }
+
         public void FaceTarget()
         {
-            if(target != null)
+            if(CheckIsAlive() == true && target != null)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime * 10);
@@ -206,16 +244,15 @@ namespace Reclamation.Encounter
             rvo.locked = !canMove;
         }
 
-        public bool CanInteract(GameObject go)
+        public bool CanInteract(Interactable interactable)
         {
-            Interactable interactable = go.GetComponent<Interactable>();
             if (interactable == null)
             {
                 return false;
             }
 
             bool canInteract = false;
-            float distance = Vector3.Distance(transform.position, go.transform.position);
+            float distance = Vector3.Distance(transform.position, interactable.gameObject.transform.position);
 
             if (distance <= 1f)
             {
@@ -223,6 +260,20 @@ namespace Reclamation.Encounter
             }
 
             return canInteract;
+        }
+
+        public override bool CheckIsAlive()
+        {
+            return !pcData.isDead;
+        }
+
+        public void OnDeath()
+        {
+            destinationSetter.enabled = false;
+            pathfinder.enabled = false;
+            rvo.enabled = false;
+            CanMove(false);
+            target = null;
         }
     }
 }
