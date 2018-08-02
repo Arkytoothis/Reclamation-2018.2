@@ -94,17 +94,17 @@ namespace Reclamation.Misc
 
         void LoadCharacterPrefabs()
         {
-            emptyPcPrefb = Resources.Load<GameObject>(defaultCharacterPath + "PC");
+            emptyPcPrefb = Resources.Load<GameObject>(defaultCharacterPath + "Character Controllers/PC");
 
             foreach (KeyValuePair<string, Race> kvp in Database.Races)
             {
                 if (kvp.Value.maleModelPath != "" && kvp.Value.femaleModelPath != "")
                 {
-                    GameObject go = Resources.Load<GameObject>(defaultCharacterPath + kvp.Value.maleModelPath);
+                    GameObject go = Resources.Load<GameObject>(defaultCharacterPath + "Races/" + kvp.Value.maleModelPath);
                     characterPrefabs.Add(kvp.Value.Name + " Male", go);
                     characters.Add(go);
 
-                    go = Resources.Load<GameObject>(defaultCharacterPath + kvp.Value.femaleModelPath);
+                    go = Resources.Load<GameObject>(defaultCharacterPath + "Races/" + kvp.Value.femaleModelPath);
                     characterPrefabs.Add(kvp.Value.Name + " Female", go);
                     characters.Add(go);
                 }

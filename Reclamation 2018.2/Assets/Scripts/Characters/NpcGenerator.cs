@@ -142,7 +142,7 @@ namespace Reclamation.Characters
 
                 value *= 10;
 
-                npc.SetStart(AttributeType.Derived, (int)DerivedAttribute.Health, 80, 0, 100);
+                npc.SetStart(AttributeType.Derived, (int)DerivedAttribute.Health, value, 0, value);
             }
 
             //npc.DerivedAttributes[(int)DerivedAttribute.Speed].SetStart(Database.NPCs[npc.Key].BaseSpeed, 0, Database.NPCs[npc.Key].BaseSpeed);

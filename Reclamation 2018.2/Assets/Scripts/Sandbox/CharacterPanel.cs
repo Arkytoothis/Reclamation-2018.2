@@ -11,9 +11,9 @@ namespace Reclamation.Sandbox
     public class CharacterPanel : MonoBehaviour
     {
         [SerializeField] string currentRace;
-        [SerializeField] string currentProfession;
+        //[SerializeField] string currentProfession;
         [SerializeField] Gender currentGender;
-        [SerializeField] BodyType currentBodyType;
+        //[SerializeField] BodyType currentBodyType;
         [SerializeField] string currentHair;
         [SerializeField] string currentBeard;
         [SerializeField] string currentSkin;
@@ -107,7 +107,7 @@ namespace Reclamation.Sandbox
 
             if (Database.GetProfession(profession) != null)
             {
-                currentProfession = profession;
+                //currentProfession = profession;
                 //Generate();
             }
         }
@@ -115,7 +115,7 @@ namespace Reclamation.Sandbox
         public void UpdateBodyType()
         {
 
-            currentBodyType = BodyType.Normal;
+            //currentBodyType = BodyType.Normal;
             LoadBody(Database.GetRace(currentRace).scale, currentRace);
         }
 

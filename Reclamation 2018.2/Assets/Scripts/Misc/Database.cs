@@ -85,6 +85,9 @@ namespace Reclamation.Misc
         private static Dictionary<string, NPCDefinition> npcs = new Dictionary<string, NPCDefinition>();
         public static Dictionary<string, NPCDefinition> NPCs { get { return npcs; } }
 
+        private static Dictionary<string, FactionData> factions = new Dictionary<string, FactionData>();
+        public static Dictionary<string, FactionData> Factions { get { return factions; } }
+
         public static string DataPath;
 
         public static void Initialize()
@@ -133,6 +136,7 @@ namespace Reclamation.Misc
             LoadPreEnchants();
             LoadPostEnchants();
             LoadItemAttributes();
+            LoadFactions();
             LoadProfessions();
             LoadRaces();
             //LoadEncounterData();
@@ -3288,7 +3292,7 @@ namespace Reclamation.Misc
             npc.BasePerLevel[(int)BaseAttribute.Dexterity] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Charisma] = new GameValue(0, 0);
             npc.BasePerLevel[(int)BaseAttribute.Senses] = new GameValue(0, 0); npc.BasePerLevel[(int)BaseAttribute.Memory] = new GameValue(0, 0);
             npc.derivedPerLevel[(int)DerivedAttribute.Armor] = new GameValue(0, 0);
-            npc.derivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(1, 2); npc.derivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
+            npc.derivedPerLevel[(int)DerivedAttribute.Health] = new GameValue(12, 15); npc.derivedPerLevel[(int)DerivedAttribute.Stamina] = new GameValue(1, 1);
             npc.derivedPerLevel[(int)DerivedAttribute.Essence] = new GameValue(0, 1); npc.derivedPerLevel[(int)DerivedAttribute.Morale] = new GameValue(0, 0);
             npc.derivedPerLevel[(int)DerivedAttribute.Might_Attack] = new GameValue(0, 0); npc.derivedPerLevel[(int)DerivedAttribute.Finesse_Attack] = new GameValue(0, 0);
             npc.derivedPerLevel[(int)DerivedAttribute.Block] = new GameValue(0, 0); npc.derivedPerLevel[(int)DerivedAttribute.Dodge] = new GameValue(0, 0);
@@ -3296,8 +3300,6 @@ namespace Reclamation.Misc
             npc.derivedPerLevel[(int)DerivedAttribute.Critical_Strike] = new GameValue(0, 0); npc.derivedPerLevel[(int)DerivedAttribute.Critical_Damage] = new GameValue(0, 0);
             npc.derivedPerLevel[(int)DerivedAttribute.Perception] = new GameValue(0, 0);
             npcs.Add(npc.key, npc); npcKeys.Add(npc.key);
-
-           
         }
 
         public static void LoadQuirks()
@@ -3694,6 +3696,36 @@ namespace Reclamation.Misc
             accessoryAttributes.Add(att);
             att = new AttributeDefinition("Cooldown", "Cooldown", "Cd", "", 0, 9999, AttributeDefinitionType.Accessory, null);
             accessoryAttributes.Add(att);
+        }
+
+        public static void LoadFactions()
+        {
+            FactionData faction = new FactionData("Player", "Player");
+            faction.reputations = new List<Reputation>
+            {
+                new Reputation(ReputationLevel.Friendly),
+                new Reputation(ReputationLevel.Friendly),
+                new Reputation(ReputationLevel.Hated)
+            };
+            factions.Add(faction.key, faction);
+
+            faction = new FactionData("Neutral", "Neutral");
+            faction.reputations = new List<Reputation>
+            {
+                new Reputation(ReputationLevel.Neutral),
+                new Reputation(ReputationLevel.Friendly),
+                new Reputation(ReputationLevel.Neutral)
+            };
+            factions.Add(faction.key, faction);
+
+            faction = new FactionData("Enemy", "Enemy");
+            faction.reputations = new List<Reputation>
+            {
+                new Reputation(ReputationLevel.Hated),
+                new Reputation(ReputationLevel.Hated),
+                new Reputation(ReputationLevel.Friendly)
+            };
+            factions.Add(faction.key, faction);
         }
     }
 }

@@ -36,29 +36,14 @@ namespace Reclamation.Characters
         public bool isBroken = false;
 
         public delegate void OnArmorChange(int current, int max);
-        public event OnArmorChange onArmorChange;
-
         public delegate void OnHealthChange(int current, int max);
-        public event OnHealthChange onHealthChange;
-
         public delegate void OnStaminaChange(int current, int max);
-        public event OnStaminaChange onStaminaChange;
-
         public delegate void OnEssenceChange(int current, int max);
-        public event OnEssenceChange onEssenceChange;
-
         public delegate void OnMoraleChange(int current, int max);
-        public event OnMoraleChange onMoraleChange; public delegate void OnDeath();
-        public event OnDeath onDeath;
-
+        public delegate void OnDeath();
         public delegate void OnRevive();
-        public event OnRevive onRevive;
-
         public delegate void OnInteract();
-        public event OnInteract onInteract;
-
         public delegate void OnAttack();
-        public event OnAttack onAttack;
 
         public virtual void ModifyAttribute(AttributeType type, int attribute, int value)
         {

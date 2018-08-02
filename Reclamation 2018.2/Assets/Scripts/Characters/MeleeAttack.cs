@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using BehaviorDesigner.Runtime.Tactical;
+using Reclamation.Gui;
+using Reclamation.Misc;
 
 namespace Reclamation.Characters
 {
@@ -78,10 +79,24 @@ namespace Reclamation.Characters
 
             if (Random.Range(0, 100) > 65)
             {
-                int damage = Random.Range(1, 10);
-                //Debug.Log(characterData.name.FirstName + " hit " + damagable.CharacterData.name.FirstName + " for " + damage + " damage");
+                int dmg = Random.Range(1, 10);
+                if(characterData!= null && characterData.inventory != null && characterData.inventory.EquippedItems[(int)EquipmentSlot.Right_Hand] != null)
+                    dmg = characterData.inventory.EquippedItems[(int)EquipmentSlot.Right_Hand].WeaponData.Damage[0].DamageDice.Roll(false);
+
+                //Debug.Log(characterData.name.FirstName + " hit " + damagable.CharacterData.name.FirstName + " for " + dmg + " damage");
                 lastAttackTime = Time.time;
-                damagable.Damage(damage);
+                damagable.Damage(dmg);
+
+                string attColor = "<color=#00ff26>";
+                string defColor = "<color=#ff0000>";
+                string dmgColor = "<color=#ff9000>";
+
+                string message = "";
+                message += attColor + characterData.name.FirstName + "</color> hit ";
+                message += defColor + damagable.CharacterData.name.FirstName + "</color> for ";
+                message += dmgColor + dmg + "</color> damage";
+
+                MessageSystem.instance.AddMessage(message);
             }
         }
     }

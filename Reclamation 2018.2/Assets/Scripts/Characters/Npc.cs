@@ -33,6 +33,8 @@ namespace Reclamation.Characters
 
         [SerializeField] NpcGui gui;
 
+        new SkinnedMeshRenderer renderer;
+
         void Awake()
         {
             animator = GetComponent<NpcAnimator>();
@@ -42,6 +44,11 @@ namespace Reclamation.Characters
             currentAttack = gameObject.GetComponent<IAttack>();
             currentDefense = gameObject.GetComponent<IDamageable>();
             container = gameObject.GetComponent<Container>();
+
+            renderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+            material = renderer.material;
+            if (material == null) Debug.LogWarning("material == null");
+
             container.enabled = false;
 
             if (currentAttack == null)
@@ -55,6 +62,8 @@ namespace Reclamation.Characters
 
             NpcData npc = NpcGenerator.Generate(NpcType.Enemy, Species.Undead, 1);
             SetNpcData(npc);
+
+
         }
 
         void Start()
@@ -84,10 +93,15 @@ namespace Reclamation.Characters
 
         void Update()
         {
-            if (CheckIsAlive() == false || target == null) return;
-
-            Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+            if (CheckIsAlive() == true && target != null)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+            }
+            else if (CheckIsAlive() == false)
+            {
+                //ProcessDissolve();
+            }
         }
 
         void OnDrawGizmosSelected()
@@ -116,7 +130,6 @@ namespace Reclamation.Characters
 
         public void OnDeath()
         {
-            Debug.Log(npcData.name.FirstName + " has died");
             destinationSetter.enabled = false;
             pathfinder.enabled = false;
             rvo.enabled = false;
@@ -124,11 +137,37 @@ namespace Reclamation.Characters
             Destroy(gui.barInstance);
             target = null;
             container.enabled = true;
+            Destroy(this.gameObject, 1.1f);
+            ProcessDissolve();
         }
 
         public override bool CheckIsAlive()
         {
             return !npcData.isDead;
+        }
+
+        public float start = 0;
+        public float destination = 1;
+        public float threshold = 0.1f;
+        public float speed = 5;
+        float dissolve = 0;
+
+        void ProcessDissolve()
+        {
+            Hashtable param = new Hashtable();
+            param.Add("from", 0.0f);
+            param.Add("to", 1.0f);
+            param.Add("time", 1.0f);
+            param.Add("onupdate", "TweenedSomeValue");
+            iTween.ValueTo(gameObject, param);
+        }
+
+        public Material material;
+
+        public void TweenedSomeValue(float val)
+        {
+            dissolve = val;
+            material.SetFloat("_DissolveCutoff", dissolve);
         }
     }
 }

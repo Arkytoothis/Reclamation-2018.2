@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using Reclamation.Gui;
 using Reclamation.Misc;
 using Reclamation.Name;
 using Reclamation.Equipment;
@@ -344,11 +345,9 @@ namespace Reclamation.Characters
         {
             if (value == 0) return;
 
-            //Debug.Log("ModifyAttribute");
-            base.ModifyAttribute(type, attribute, value);
-
             int cur = attributeManager.GetAttribute(AttributeListType.Derived, attribute).Current;
             int max = attributeManager.GetAttribute(AttributeListType.Derived, attribute).Maximum;
+
 
             if (attribute == (int)DerivedAttribute.Armor)
                 onArmorChange(cur, max);
@@ -361,35 +360,19 @@ namespace Reclamation.Characters
             else if (attribute == (int)DerivedAttribute.Morale)
                 onMoraleChange(cur, max);
 
+            base.ModifyAttribute(type, attribute, value);
             CheckVitals();
         }
 
-        public new delegate void OnArmorChange(int current, int max);
-        public new event OnArmorChange onArmorChange;
-
-        public new delegate void OnHealthChange(int current, int max);
-        public new event OnHealthChange onHealthChange;
-
-        public new delegate void OnStaminaChange(int current, int max);
-        public new event OnStaminaChange onStaminaChange;
-
-        public new delegate void OnEssenceChange(int current, int max);
-        public new event OnEssenceChange onEssenceChange;
-
-        public new delegate void OnMoraleChange(int current, int max);
-        public new event OnMoraleChange onMoraleChange;
-
-        public new delegate void OnDeath();
-        public new event OnDeath onDeath;
-
-        public new delegate void OnRevive();
-        public new event OnRevive onRevive;
-
-        public new delegate void OnInteract();
-        public new event OnInteract onInteract;
-
-        public new delegate void OnAttack();
-        public new event OnAttack onAttack;
+        public event OnArmorChange onArmorChange;
+        public event OnHealthChange onHealthChange;
+        public event OnStaminaChange onStaminaChange;
+        public event OnEssenceChange onEssenceChange;
+        public event OnMoraleChange onMoraleChange;
+        public event OnDeath onDeath;
+        public event OnRevive onRevive;
+        public event OnInteract onInteract;
+        public event OnAttack onAttack;
 
 
         public delegate void OnExperienceChange(int current, int max);
@@ -449,26 +432,26 @@ namespace Reclamation.Characters
         {
             isDead = true;
             onDeath();
-            Debug.Log(name.FirstName + " has died");
+            MessageSystem.instance.AddMessage(name.FirstName + " has died");
         }
 
         public void Revive()
         {
             isDead = false;
             onRevive();
-            Debug.Log(name.FirstName + " has revived");
+            MessageSystem.instance.AddMessage(name.FirstName + " has revived");
         }
 
         public void Interact()
         {
-            Debug.Log(name.FirstName + " is interacting");
+            MessageSystem.instance.AddMessage(name.FirstName + " has interacting");
             onInteract();
         }
 
         public void Attack()
         {
-            Debug.Log(name.FirstName + " is attacking");
             onAttack();
+            MessageSystem.instance.AddMessage(name.FirstName + " has attacking");
         }
     }
 }

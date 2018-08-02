@@ -8,5 +8,7 @@ namespace Reclamation.Characters
     {
         public CharacterData data;
         public abstract bool CheckIsAlive();
+
+
     }
 }

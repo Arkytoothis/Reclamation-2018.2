@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using Reclamation.Abilities;
 using Reclamation.Name;
-using Reclamation.Characters;
+using Reclamation.Gui;
 using Reclamation.Misc;
 
 namespace Reclamation.Characters
@@ -54,6 +54,7 @@ namespace Reclamation.Characters
             else if (attribute == (int)DerivedAttribute.Morale && onMoraleChange != null)
                 onMoraleChange(cur, max);
 
+
             CheckVitals();
         }
 
@@ -63,32 +64,15 @@ namespace Reclamation.Characters
             attributeManager.SetStart((AttributeListType)type, attribute, start, min, max);
         }
 
-        public new delegate void OnArmorChange(int current, int max);
-        public new event OnArmorChange onArmorChange;
-
-        public new delegate void OnHealthChange(int current, int max);
-        public new event OnHealthChange onHealthChange;
-
-        public new delegate void OnStaminaChange(int current, int max);
-        public new event OnStaminaChange onStaminaChange;
-
-        public new delegate void OnEssenceChange(int current, int max);
-        public new event OnEssenceChange onEssenceChange;
-
-        public new delegate void OnMoraleChange(int current, int max);
-        public new event OnMoraleChange onMoraleChange;
-
-        public new delegate void OnDeath();
-        public new event OnDeath onDeath;
-
-        public new delegate void OnRevive();
-        public new event OnRevive onRevive;
-
-        public new delegate void OnInteract();
-        public new event OnInteract onInteract;
-
-        public new delegate void OnAttack();
-        public new event OnAttack onAttack;
+        public event OnArmorChange onArmorChange;
+        public event OnHealthChange onHealthChange;
+        public event OnStaminaChange onStaminaChange;
+        public event OnEssenceChange onEssenceChange;
+        public event OnMoraleChange onMoraleChange;
+        public event OnDeath onDeath;
+        public event OnRevive onRevive;
+        public event OnInteract onInteract;
+        public event OnAttack onAttack;
 
         public NpcData()
         {
@@ -256,24 +240,25 @@ namespace Reclamation.Characters
         {
             isDead = true;
             onDeath();
+            MessageSystem.instance.AddMessage(name.FirstName + " has died");
         }
 
         public void Revive()
         {
             isDead = false;
-            //onRevive();
-            Debug.Log(name.FirstName + " has revived");
+            onRevive();
+            MessageSystem.instance.AddMessage(name.FirstName + " has revived");
         }
 
         public void Interact()
         {
-            Debug.Log(name.FirstName + " is interacting");
-            //onInteract();
+            onInteract();
+            MessageSystem.instance.AddMessage(name.FirstName + " has interacting");
         }
 
         public void Attack()
         {
-            Debug.Log(name.FirstName + " is attacking");
+            MessageSystem.instance.AddMessage(name.FirstName + " has attacking");
             onAttack();
         }
     }

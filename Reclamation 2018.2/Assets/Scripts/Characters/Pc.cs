@@ -45,6 +45,7 @@ namespace Reclamation.Characters
 
         [SerializeField] private IAttack currentAttack;
         [SerializeField] private IDamageable currentDefense;
+        public IDamageable CurrentDefense { get { return currentDefense; } } 
 
         void Awake()
         {
@@ -137,6 +138,7 @@ namespace Reclamation.Characters
             this.pcData.onDeath += animator.Death;
             this.pcData.onDeath += OnDeath;
             this.pcData.onRevive += animator.Revive;
+            this.pcData.onRevive += OnRevive;
             this.pcData.onLevelUp += animator.LevelUp;
 
             ItemData item = this.pcData.inventory.EquippedItems[(int)EquipmentSlot.Right_Hand];
@@ -234,8 +236,11 @@ namespace Reclamation.Characters
         {
             if(CheckIsAlive() == true && target != null)
             {
-                Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime * 10);
+                if (Vector3.Distance(target.transform.position, transform.position) > 0)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime * 10);
+                }
             }
         }
 
@@ -273,6 +278,15 @@ namespace Reclamation.Characters
             pathfinder.enabled = false;
             rvo.enabled = false;
             CanMove(false);
+            target = null;
+        }
+
+        public void OnRevive()
+        {
+            destinationSetter.enabled = true;
+            pathfinder.enabled = true;
+            rvo.enabled = true;
+            CanMove(true);
             target = null;
         }
     }

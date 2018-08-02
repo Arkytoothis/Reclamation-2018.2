@@ -1,13 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using Pathfinding;
 using Reclamation.Characters;
 using Reclamation.Equipment;
 using Reclamation.Misc;
+using Reclamation.Gui;
 using Reclamation.Gui.Encounter;
-using Reclamation.World;
+using Guirao.UltimateTextDamage;
 
 namespace Reclamation.Encounter
 {
@@ -17,6 +16,7 @@ namespace Reclamation.Encounter
 
         public List<PartyData> parties;
         public List<GameObject> pcs;
+        public UltimateTextDamageManager textManagerWorld;
 
         void Awake()
         {
@@ -32,11 +32,13 @@ namespace Reclamation.Encounter
             NpcGenerator.Initialize();
             ModelManager.instance.Initialize();
 
+            MessageSystem.instance.Initialize();
+
             parties = new List<PartyData>(MaxParties);
 
             PartyData party = new PartyData("Blue Party", Color.blue, 0, 3);
 
-            party.pcs[0] = new PcData(PcGenerator.Generate(0, Gender.Male, "Ogrin", "Soldier"));
+            party.pcs[0] = new PcData(PcGenerator.Generate(0, Gender.Male, "Imperial", "Soldier"));
             party.pcs[1] = new PcData(PcGenerator.Generate(1, Gender.Female, "Imperial", "Soldier"));
             party.pcs[2] = new PcData(PcGenerator.Generate(2, Gender.Male, "Imperial", "Scout"));
             party.pcs[3] = new PcData(PcGenerator.Generate(3, Gender.Female, "Halfling", "Rogue"));
@@ -64,6 +66,7 @@ namespace Reclamation.Encounter
                 }
             }
 
+            MessageSystem.instance.AddMessage("Welcome to Reclamation!");
         }
 
         public void CreatePcs()
@@ -92,13 +95,13 @@ namespace Reclamation.Encounter
                 {
                     if (parties[0].pcs[i] != null)
                     {
-                        parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Armor, -Random.Range(0, 1));
-                        parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, -Random.Range(0, 6));
-                        parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Stamina, -Random.Range(0, 6));
-                        parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Essence, -Random.Range(0, 6));
-                        parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Morale, -Random.Range(0, 6));
+                        //parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Armor, -Random.Range(0, 1));
+                        pcs[i].GetComponent<Pc>().CurrentDefense.Heal(25);//.damaModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, 25);
+                        //parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Stamina, -Random.Range(0, 6));
+                        //parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Essence, -Random.Range(0, 6));
+                        //parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Morale, -Random.Range(0, 6));
 
-                        parties[0].pcs[i].AddExperience(Random.Range(0, 150), true);
+                        //parties[0].pcs[i].AddExperience(Random.Range(0, 150), true);
                     }
                 }
             }

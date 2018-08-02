@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using BehaviorDesigner.Runtime.Tactical;
+using Reclamation.Encounter;
 using Reclamation.Misc;
+using Reclamation.Gui;
 
 namespace Reclamation.Characters
 {
@@ -11,6 +12,20 @@ namespace Reclamation.Characters
     {
         [SerializeField] CharacterData characterData;
         public CharacterData CharacterData { get { return characterData; } }
+        public Transform textTransform;
+
+        void Start()
+        {
+            InvokeRepeating("Regen", 0.1f, 5f);
+        }
+
+        public void Regen()
+        {
+            if (characterData.GetDerived((int)DerivedAttribute.Health).Current < characterData.GetDerived((int)DerivedAttribute.Health).Maximum)
+            {
+                //Heal(1);
+            }
+        }
 
         public void SetCharacterData(CharacterData character)
         {
@@ -23,12 +38,32 @@ namespace Reclamation.Characters
         /// <param name="amount"></param>
         public void Damage(int amount)
         {
-            //Debug.Log(characterData.name.FirstName + " has taken " + amount + " damage");
-            characterData.ModifyAttribute(Misc.AttributeType.Derived, (int)DerivedAttribute.Health, -amount);
-
-            if (characterData.GetDerived((int)DerivedAttribute.Health).Current <= 0)
+            if (amount > 0)
             {
-                //Debug.Log("Dead");
+                EncounterManager.instance.textManagerWorld.Add(amount.ToString(), textTransform, "damage");
+                characterData.ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, -amount);
+            }
+        }
+
+        public void Heal(int amount)
+        {
+            int current = characterData.GetDerived((int)DerivedAttribute.Health).Current;
+            int max = characterData.GetDerived((int)DerivedAttribute.Health).Maximum;
+
+            if (current + amount > max)
+            {
+                amount = max - current;
+            }
+
+            if (current >= max)
+            {
+                amount = 0;
+            }
+
+            if (amount > 0)
+            {
+                characterData.ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, amount);
+                EncounterManager.instance.textManagerWorld.Add(amount.ToString(), textTransform, "heal");
             }
         }
 

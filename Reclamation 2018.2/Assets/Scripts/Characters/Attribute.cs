@@ -140,11 +140,14 @@ namespace Reclamation.Characters
 
         void Check()
         {
-            if (this.current < this.minimum)
-                this.current = this.minimum;
+            if (current < minimum)
+                current = minimum;
 
-            if (this.start < this.minimum)
-                this.start = this.minimum;
+            if (start < minimum)
+                start = minimum;
+
+            if (current > maximum)
+                current = maximum;
         }
 
         public void SetExpModifier(int mod)
