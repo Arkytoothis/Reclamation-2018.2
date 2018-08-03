@@ -32,7 +32,6 @@ namespace Reclamation.Characters
         public string femaleDefaultBeard;
 
         public bool HelmAllowed;
-        public bool PantsAllowed;
         public bool ShoesAllowed;
 
         public List<GameValue> StartingAttributes;
@@ -75,7 +74,7 @@ namespace Reclamation.Characters
             femaleDefaultBeard = "";
         }
 
-        public Race(string name, string key, string male, string female, bool small, string wings, string horns, bool helm, bool pants, bool shoes,
+        public Race(string name, string key, string male, string female, bool small, string wings, string horns, bool helm, bool shoes,
                     GameValue health, GameValue stamina, GameValue essence, int movement, float exp_mod, UpkeepData upkeep, GameValue wealth,
                     Vector3 scale, string maleHair, string maleBeard, string femaleHair, string femaleBeard)
         {
@@ -95,7 +94,6 @@ namespace Reclamation.Characters
             femaleDefaultBeard = femaleBeard;
 
             HelmAllowed = helm;
-            PantsAllowed = pants;
             ShoesAllowed = shoes;
             this.scale = scale;
 

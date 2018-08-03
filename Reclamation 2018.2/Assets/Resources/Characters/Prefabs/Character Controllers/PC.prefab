@@ -119,8 +119,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0.91320753, b: 0.759434, a: 1}
-  m_Intensity: 1.25
-  m_Range: 10
+  m_Intensity: 1.5
+  m_Range: 25
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -339,6 +339,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069bd824d88596e408eb6a1dfc4580ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Attributes:
+    controller: {fileID: 0}
   model: {fileID: 0}
   light: {fileID: 108216632922741906}
   moveSpeed: 3
@@ -369,10 +371,13 @@ MonoBehaviour:
       Ego: 0
       Bravery: 0
       Faith: 0
+    faction: Player
     species: 0
     size: 0
     raceKey: 
     professionKey: 
+    attributeManager:
+      controller: {fileID: 0}
     hair: Hair 01
     beard: 
     description: 

@@ -10,7 +10,7 @@ namespace Reclamation.Gui
     {
         public TMP_Text label;
         public string text;
-        [SerializeField] Button background;
+        [SerializeField] UnityEngine.UI.Button background;
 
         public void SetData(string text)
         {

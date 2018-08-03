@@ -20,48 +20,22 @@ namespace Reclamation.Characters
 
         public Color color;
 
-        public int maxCharacters;
-        public PcData[] pcs;
-
         public List<Attribute> attributes;
         public List<int> combinedSkills;
         public List<CharacterSkillPair> highestSkills;
 
-        public int currentPcs
-        {
-            get
-            {
-                int num = 0;
-                for (int i = 0; i < pcs.Length; i++)
-                {
-                    if (pcs[i] != null)
-                        num++;
-                    else
-                        break;
-                }
-                return num;
-            }
-        }
         public PartyData()
         {
             name = "New Party";
         }
 
-        public PartyData(string name, Color color, int index, int maxCharacters)
+        public PartyData(string name, Color color, int index)
         {
             status = PartyStatus.Idle;
 
             this.name = name;
             this.color = color;
             this.index = index;
-            this.maxCharacters = maxCharacters;
-
-            pcs = new PcData[MaxPartySize];
-
-            for (int i = 0; i < MaxPartySize; i++)
-            {
-                pcs[i] = null;
-            }
 
             attributes = new List<Attribute>();
             for (int i = 0; i < (int)PartyAttribute.Number; i++)
@@ -89,14 +63,6 @@ namespace Reclamation.Characters
             name = data.name;
             color = data.color;
             index = data.index;
-            maxCharacters = data.maxCharacters;
-
-            pcs = new PcData[MaxPartySize];
-
-            for (int i = 0; i < MaxPartySize; i++)
-            {
-                AddPc(data.pcs[i]);
-            }
 
             attributes = new List<Attribute>();
             for (int i = 0; i < (int)PartyAttribute.Number; i++)
@@ -115,38 +81,6 @@ namespace Reclamation.Characters
             {
                 highestSkills.Add(data.highestSkills[i]);
             }
-        }
-
-        public void AddPc(PcData pc)
-        {
-            if (pc == null)
-            {
-                //Debug.Log("pc == null");
-                return;
-            }
-
-            for (int i = 0; i < pcs.Length; i++)
-            {
-                if (pcs[i] == null)
-                {
-                    pcs[i] = new PcData(pc);
-                    //Debug.Log(pcs[i].Name.ShortName + " added");
-                    break;
-                }
-            }
-        }
-
-        public int CurrentCharacters()
-        {
-            int num = 0;
-
-            //for (int i = 0; i < characters.Count; i++)
-            //{
-            //    if (characters[i] != -1)
-            //        num++;
-            //}
-
-            return num;
         }
 
         public void UpdateCombinedSkills()

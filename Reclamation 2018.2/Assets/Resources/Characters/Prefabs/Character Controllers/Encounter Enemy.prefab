@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 114339748386672644}
   - component: {fileID: 65607555693657132}
   - component: {fileID: 114019384602647668}
-  - component: {fileID: 114418965197111394}
   m_Layer: 16
   m_Name: Encounter Enemy
   m_TagString: Untagged
@@ -1586,21 +1585,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
---- !u!114 &114418965197111394
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d337721a6a8e9b34bb81e72e47413352, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 1
-  hasInteracted: 0
-  locked: 0
-  gold: 0
 --- !u!114 &114440775712600538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1672,6 +1656,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e6327340f67f7a46b58badaf3de33be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Attributes:
+    controller: {fileID: 0}
   moveSpeed: 1
   turnSpeed: 10
   perceptionRadius: 3
@@ -1683,6 +1669,3990 @@ MonoBehaviour:
   rvo: {fileID: 0}
   container: {fileID: 0}
   animator: {fileID: 0}
+  npcData:
+    gender: 5
+    background:
+      Age: 0
+      Childhood: 
+      YoungAdulthood: 
+      Adulthood: 
+      Parents: 
+      Siblings: 
+      Education: 
+      Job: 
+    personality:
+      Order: 0
+      Morality: 0
+      Ego: 0
+      Bravery: 0
+      Faith: 0
+    species: 0
+    size: 0
+    raceKey: 
+    professionKey: 
+    attributeManager:
+      controller: {fileID: 0}
+    hair: 
+    beard: 
+    description: 
+    inventory:
+      EquippedItems:
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      Accessories:
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      - Name: 
+        Key: 
+        IconPath: 
+        MeshPath: 
+        TexturePath: 
+        NameFormat: 5
+        Type: 6
+        Slot: 14
+        Hardness: 13
+        SkillRequirements: []
+        StackSize: 0
+        RecoveryTime: 0
+        ActionSpeed: 0
+        Power: 0
+        DurabilityCur: 0
+        DurabilityMax: 0
+        Rarity: 0
+        WeaponData:
+          Type: 8
+          gripType: 0
+          AttackType: 0
+          AmmoType: 4
+          Attributes: []
+          Damage: []
+        AmmoData:
+          Type: 4
+          Attributes: []
+          Damage: []
+        WearableData:
+          Type: 4
+          Attributes: []
+          Resistances: []
+        AccessoryData:
+          Type: 5
+          Attributes: []
+        Material:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        Quality:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PreEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        PostEnchant:
+          Name: 
+          Key: 
+          Description: empty
+          Actions: 0
+          Power: 0
+          DurabilityModifier: 0
+          HoursToBuild: 0
+          Rarity: 0
+          Type: 6
+          AllowedItemType: 26
+          MaterialHardness: 10
+          MainColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          SecondaryColor:
+            Red: 1
+            Green: 1
+            Blue: 1
+            Alpha: 1
+          ResourcesRequired: []
+        ArtifactData:
+          Level: 0
+          Experience: 0
+          NextLevel: 0
+          Power: 0
+          LevelData: []
+        SetData:
+          SetName: 
+          NumPieces: 0
+          LevelData: []
+        UsableData:
+          Cooldown:
+            ComponentType: 1
+            Widgets: 0000000002000000
+            Type: 7
+            Value: 0
+        HoursToBuild: 0
+        ResourcesRequired: []
+        TooltipText: 
+      AccessoryLimit: 4
+    position: {x: 0, y: 0, z: 0}
+    isDead: 0
+    isExhausted: 0
+    isDrained: 0
+    isBroken: 0
+    key: 
+    npcIndex: -1
+    partyIndex: -1
+    partySlot: 0
+    level: 0
+    expValue: 0
+    abilities: []
   gui: {fileID: 0}
   start: 0
   destination: 1

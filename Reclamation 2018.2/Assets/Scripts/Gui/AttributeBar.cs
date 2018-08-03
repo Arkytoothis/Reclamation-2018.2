@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Reclamation.Characters;
 using Reclamation.Misc;
+using TMPro;
 
 namespace Reclamation.Gui
 {
@@ -12,36 +13,43 @@ namespace Reclamation.Gui
         public Image foreground;
         public Color color;
         public VitalData vitalData;
+        public TMP_Text label;
 
         public void SetData(PcData pc, int attribute)
         {
             if (attribute == (int)DerivedAttribute.Armor)
             {
-                pc.onArmorChange += UpdateAttribute;
+                pc.attributeManager.onArmorChange += UpdateAttribute;
                 color = vitalData.armorColor;
+                UpdateAttribute(pc.GetDerived((int)DerivedAttribute.Armor).Current, pc.GetDerived((int)DerivedAttribute.Armor).Maximum);
             }
             else if (attribute == (int)DerivedAttribute.Health)
             {
-                pc.onHealthChange += UpdateAttribute;
+                pc.attributeManager.onHealthChange += UpdateAttribute;
                 color = vitalData.healthColor;
+                UpdateAttribute(pc.GetDerived((int)DerivedAttribute.Health).Current, pc.GetDerived((int)DerivedAttribute.Health).Maximum);
             }
             else if (attribute == (int)DerivedAttribute.Stamina)
             {
-                pc.onStaminaChange += UpdateAttribute;
+                pc.attributeManager.onStaminaChange += UpdateAttribute;
                 color = vitalData.staminaColor;
+                UpdateAttribute(pc.GetDerived((int)DerivedAttribute.Stamina).Current, pc.GetDerived((int)DerivedAttribute.Stamina).Maximum);
             }
             else if (attribute == (int)DerivedAttribute.Essence)
             {
-                pc.onEssenceChange += UpdateAttribute;
+                pc.attributeManager.onEssenceChange += UpdateAttribute;
                 color = vitalData.essenceColor;
+                UpdateAttribute(pc.GetDerived((int)DerivedAttribute.Essence).Current, pc.GetDerived((int)DerivedAttribute.Essence).Maximum);
             }
             else if (attribute == (int)DerivedAttribute.Morale)
             {
-                pc.onMoraleChange += UpdateAttribute;
+                pc.attributeManager.onMoraleChange += UpdateAttribute;
                 color = vitalData.moraleColor;
+                UpdateAttribute(pc.GetDerived((int)DerivedAttribute.Morale).Current, pc.GetDerived((int)DerivedAttribute.Morale).Maximum);
             }
 
             foreground.color = color;
+
         }
 
         public void SetExpData(PcData pc)
@@ -54,10 +62,10 @@ namespace Reclamation.Gui
 
         public void UpdateAttribute(int current, int max)
         {
-            if (max > 0)
+            if (max != 0)
             {
                 float width = (float)current / (float)max;
-                //Debug.Log("current " + current + " / " + "max " + max + " = width " + width);
+                label.text = current + "/" + max;
                 foreground.GetComponent<RectTransform>().localScale = new Vector3(width, foreground.GetComponent<RectTransform>().localScale.y, foreground.GetComponent<RectTransform>().localScale.z);
             }
         }

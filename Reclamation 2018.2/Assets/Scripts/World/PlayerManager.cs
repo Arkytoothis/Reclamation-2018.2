@@ -25,19 +25,14 @@ namespace Reclamation.World
             parties = new List<GameObject>(MaxParties);
             numPartiesUnlocked = 1;
 
-            PartyData party = new PartyData("Blue Party", Color.blue, 0, 3);
-
-            party.pcs[0] = new PcData(PcGenerator.Generate(0, Gender.None, "Imperial", "Soldier"));
-            party.pcs[1] = new PcData(PcGenerator.Generate(1, Gender.None, "Imperial", "Scout"));
-            party.pcs[2] = new PcData(PcGenerator.Generate(2, Gender.None, "Imperial", "Priest"));
-
+            PartyData party = new PartyData("Blue Party", Color.blue, 0);
             parties.Add(CreatePartyObject(this.transform, playerSpawn.position, party));
 
             partyPanel.Initialize();
 
-            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[0].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, party.pcs[0]);
-            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[1].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, party.pcs[1]);
-            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[2].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, party.pcs[2]);
+            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[0].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, new PcData(PcGenerator.Generate(0, Gender.None, "Imperial", "Soldier")));
+            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[1].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, new PcData(PcGenerator.Generate(1, Gender.None, "Imperial", "Scout")));
+            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[2].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, new PcData(PcGenerator.Generate(2, Gender.None, "Imperial", "Priest")));
         }
 
         public GameObject CreatePartyObject(Transform parent, Vector3 position, PartyData data)
@@ -48,7 +43,7 @@ namespace Reclamation.World
             partyGO.name = data.name;
             partyGO.transform.position = new Vector3(position.x, y - 0.001f, position.z);
 
-            PartyController partyController = partyGO.GetComponent<PartyController>();
+            //PartyController partyController = partyGO.GetComponent<PartyController>();
 
             //GameObject pcGO = Instantiate(ModelManager.instance.GetPrefab(data.pcs[0]), new Vector3(position.x, y - 0.001f, position.z), Quaternion.identity);
             //pcGO.name = data.name + " PC ";

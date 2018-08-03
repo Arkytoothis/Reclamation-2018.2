@@ -22,7 +22,7 @@ namespace Reclamation.Gui.Encounter
 
         public void Initialize()
         {
-            SetData(EncounterManager.instance.parties[0].pcs[0]);
+            SetData(EncounterManager.instance.pcs[0].GetComponent<PcController>().PcData);
             UpdateData();
             Close();
         }
@@ -100,10 +100,10 @@ namespace Reclamation.Gui.Encounter
         {
             //Debug.Log("Next Pc");
             currentPc++;
-            if (currentPc > EncounterManager.instance.parties[0].currentPcs - 1)
+            if (currentPc > EncounterManager.instance.pcs.Count - 1)
                 currentPc = 0;
 
-            SetData(EncounterManager.instance.parties[0].pcs[currentPc]);
+            SetData(EncounterManager.instance.pcs[currentPc].GetComponent<PcController>().PcData);
             UpdateData();
         }
 
@@ -112,9 +112,9 @@ namespace Reclamation.Gui.Encounter
             //Debug.Log("Previous Pc");
             currentPc--;
             if (currentPc < 0)
-                currentPc = EncounterManager.instance.parties[0].currentPcs - 1;
+                currentPc = EncounterManager.instance.pcs.Count - 1;
 
-            SetData(EncounterManager.instance.parties[0].pcs[currentPc]);
+            SetData(EncounterManager.instance.pcs[currentPc].GetComponent<PcController>().PcData);
             UpdateData();
         }
 

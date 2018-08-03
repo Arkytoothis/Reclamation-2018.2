@@ -15,6 +15,14 @@ namespace Reclamation.Equipment
         public AttackType AttackType;
         public AmmoType AmmoType;
 
+        public string idleAnimation;
+        public string attackAnimation;
+
+        public string aimSound;
+
+        public string attackSound;
+        public string hitSound;
+
         public List<ItemAttribute> Attributes;
         public List<DamageData> Damage;
 
@@ -26,12 +34,21 @@ namespace Reclamation.Equipment
             Damage = new List<DamageData>();
         }
 
-        public WeaponData(WeaponType type, AmmoType ammo, AttackType attack_type, WeaponGripType gripType, int attack, int range, int actions, int parry, List<DamageData> damage)
+        public WeaponData(WeaponType type, AmmoType ammo, AttackType attack_type, WeaponGripType gripType, int attack, int range, int actions, int parry, List<DamageData> damage,
+            string idleAnimation, string attackAnimation, string aimSound, string attackSound, string hitSound)
         {
             Type = type;
             AmmoType = ammo;
             AttackType = attack_type;
+
             this.gripType = gripType;
+
+            this.idleAnimation = idleAnimation;
+            this.attackAnimation = attackAnimation;
+
+            this.aimSound = aimSound;
+            this.attackSound = attackSound;
+            this.hitSound = hitSound;
 
             Attributes = new List<ItemAttribute>();
             Attributes.Add(new ItemAttribute((int)WeaponAttributes.Action_Speed, actions));
@@ -54,6 +71,13 @@ namespace Reclamation.Equipment
             Type = data.Type;
             AmmoType = data.AmmoType;
             AttackType = data.AttackType;
+
+            this.idleAnimation = data.idleAnimation;
+            this.attackAnimation = data.attackAnimation;
+
+            this.aimSound = data.aimSound;
+            this.attackSound = data.attackSound;
+            this.hitSound = data.hitSound;
 
             Attributes = new List<ItemAttribute>();
             for (int i = 0; i < data.Attributes.Count; i++)

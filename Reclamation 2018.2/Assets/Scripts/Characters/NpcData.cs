@@ -18,13 +18,13 @@ namespace Reclamation.Characters
         Number, None
     }
 
+    [System.Serializable]
     public class NpcData : CharacterData
     {
         public string key;
         public int npcIndex;
         public int partyIndex;
         public int partySlot;
-
         public int level;
         public int expValue;
 
@@ -32,31 +32,7 @@ namespace Reclamation.Characters
 
         CombatStatus combatStatus;
         public CombatStatus CombatStatus { get { return combatStatus; } }
-
-
-        public override void ModifyAttribute(AttributeType type, int attribute, int value)
-        {
-            if (value == 0) return;
-
-            base.ModifyAttribute(type, attribute, value);
-
-            int cur = attributeManager.GetAttribute(AttributeListType.Derived, attribute).Current;
-            int max = attributeManager.GetAttribute(AttributeListType.Derived, attribute).Maximum;
-
-            if (attribute == (int)DerivedAttribute.Armor && onArmorChange != null)
-                onArmorChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Health && onHealthChange != null)
-                onHealthChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Stamina && onStaminaChange != null)
-                onStaminaChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Essence && onEssenceChange != null)
-                onEssenceChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Morale && onMoraleChange != null)
-                onMoraleChange(cur, max);
-
-
-            CheckVitals();
-        }
+        
 
         public new void SetStart(AttributeType type, int attribute, int start, int min, int max)
         {
@@ -64,15 +40,15 @@ namespace Reclamation.Characters
             attributeManager.SetStart((AttributeListType)type, attribute, start, min, max);
         }
 
-        public event OnArmorChange onArmorChange;
-        public event OnHealthChange onHealthChange;
-        public event OnStaminaChange onStaminaChange;
-        public event OnEssenceChange onEssenceChange;
-        public event OnMoraleChange onMoraleChange;
-        public event OnDeath onDeath;
-        public event OnRevive onRevive;
-        public event OnInteract onInteract;
-        public event OnAttack onAttack;
+        //public event OnArmorChange onArmorChange;
+        //public event OnHealthChange onHealthChange;
+        //public event OnStaminaChange onStaminaChange;
+        //public event OnEssenceChange onEssenceChange;
+        //public event OnMoraleChange onMoraleChange;
+        //public event OnDeath onDeath;
+        //public event OnRevive onRevive;
+        //public event OnInteract onInteract;
+        //public event OnAttack onAttack;
 
         public NpcData()
         {
@@ -88,6 +64,7 @@ namespace Reclamation.Characters
             partyIndex = -1;
             hair = "";
             beard = "";
+            faction = "Neutral";
 
             level = 0;
             expValue = 0;
@@ -109,7 +86,8 @@ namespace Reclamation.Characters
             inventory = new CharacterInventory();
         }
 
-        public NpcData(FantasyName name, string key, Gender gender, string race, string profession, int index, int map_x, int map_y, int enc_x, int enc_y)
+        public NpcData(FantasyName name, string key, Gender gender, string race, string profession, int index, int map_x, int map_y, int enc_x, int enc_y,
+            string faction)
         {
             base.name = new FantasyName(name);
             background = new Background();
@@ -142,6 +120,7 @@ namespace Reclamation.Characters
 
             abilities = new List<Ability>();
             inventory = new CharacterInventory();
+            this.faction = faction;
         }
 
         public NpcData(NpcData npc)
@@ -186,80 +165,12 @@ namespace Reclamation.Characters
 
             abilities = new List<Ability>();
             inventory = new CharacterInventory(npc.inventory);
+            faction = npc.faction;
         }
 
-        
-        public void CheckVitals()
+        public void SetupController(PcController controller)
         {
-            CheckHealth();
-            CheckStamina();
-            CheckEssence();
-            CheckMorale();
-        }
-
-        public void CheckHealth()
-        {
-            if (isDead == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Health).Current <= 0)
-            {
-                Death();
-            }
-            else if (isDead == true && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Health).Current > 0)
-            {
-                Revive();
-            }
-        }
-
-        public void CheckStamina()
-        {
-            if (isDead == false && isExhausted == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Stamina).Current <= 0)
-            {
-                isExhausted = true;
-                //Debug.Log(Name.FirstName + " is exhausted");
-            }
-        }
-
-        public void CheckEssence()
-        {
-            if (isDead == false && isDrained == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Essence).Current <= 0)
-            {
-                isDrained = true;
-                //Debug.Log(Name.FirstName + " is out of essence");
-            }
-        }
-
-        public void CheckMorale()
-        {
-            if (isDead == false && isBroken == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Morale).Current <= 0)
-            {
-                isBroken = true;
-                //Debug.Log(Name.FirstName + " is broken");
-            }
-        }
-
-        public void Death()
-        {
-            isDead = true;
-            onDeath();
-            MessageSystem.instance.AddMessage(name.FirstName + " has died");
-        }
-
-        public void Revive()
-        {
-            isDead = false;
-            onRevive();
-            MessageSystem.instance.AddMessage(name.FirstName + " has revived");
-        }
-
-        public void Interact()
-        {
-            onInteract();
-            MessageSystem.instance.AddMessage(name.FirstName + " has interacting");
-        }
-
-        public void Attack()
-        {
-            MessageSystem.instance.AddMessage(name.FirstName + " has attacking");
-            onAttack();
+            attributeManager.controller = controller;
         }
     }
 }

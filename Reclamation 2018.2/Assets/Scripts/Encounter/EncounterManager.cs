@@ -30,80 +30,98 @@ namespace Reclamation.Encounter
             ItemGenerator.Initialize();
             PcGenerator.Initialize();
             NpcGenerator.Initialize();
-            ModelManager.instance.Initialize();
 
+            AudioManager.instance.Initialize();
+            ModelManager.instance.Initialize();
             MessageSystem.instance.Initialize();
 
             parties = new List<PartyData>(MaxParties);
 
-            PartyData party = new PartyData("Blue Party", Color.blue, 0, 3);
-
-            party.pcs[0] = new PcData(PcGenerator.Generate(0, Gender.Male, "Imperial", "Soldier"));
-            party.pcs[1] = new PcData(PcGenerator.Generate(1, Gender.Female, "Imperial", "Soldier"));
-            party.pcs[2] = new PcData(PcGenerator.Generate(2, Gender.Male, "Imperial", "Scout"));
-            party.pcs[3] = new PcData(PcGenerator.Generate(3, Gender.Female, "Halfling", "Rogue"));
-            party.pcs[4] = new PcData(PcGenerator.Generate(4, Gender.Male, "High Elf", "Apprentice"));
-            party.pcs[5] = new PcData(PcGenerator.Generate(5, Gender.Female, "Mountain Dwarf", "Priest"));
-
+            PartyData party = new PartyData("Blue Party", Color.blue, 0);
             parties.Add(party);
 
-            CreatePcs();
+            CreatePc(new PcData(PcGenerator.Generate(0, Gender.Male, "Imperial", "Soldier")), 0);
+            CreatePc(new PcData(PcGenerator.Generate(1, Gender.Female, "Imperial", "Soldier")), 1);
+            CreatePc(new PcData(PcGenerator.Generate(2, Gender.Male, "Imperial", "Scout")), 2);
+            CreatePc(new PcData(PcGenerator.Generate(3, Gender.Female, "Halfling", "Rogue")), 3);
+            CreatePc(new PcData(PcGenerator.Generate(4, Gender.Male, "High Elf", "Apprentice")), 4);
+            CreatePc(new PcData(PcGenerator.Generate(5, Gender.Female, "Mountain Dwarf", "Priest")), 5);
+
             EncounterPartyManager.instance.Initialize();
 
             EncounterCursor.instance.pointToTarget = pcs[0].transform;
             EncounterGuiManager.instance.Initialize();
 
-            for (int i = 0; i < parties[0].pcs.Length; i++)
+            for (int i = 0; i < pcs.Count; i++)
             {
-                if (parties[0].pcs[i] != null)
-                {
-                    pcs[i].transform.position = EncounterPartyManager.instance.formationTransforms[i].position;
+                pcs[i].transform.position = EncounterPartyManager.instance.formationTransforms[i].position;
 
-                    if (i == 0)
-                        pcs[i].GetComponent<Pc>().light.enabled = true;
-                    else
-                        pcs[i].GetComponent<Pc>().light.enabled = false;
-                }
-            }
-
-            MessageSystem.instance.AddMessage("Welcome to Reclamation!");
-        }
-
-        public void CreatePcs()
-        {
-            for (int i = 0; i < parties[0].pcs.Length; i++)
-            {
-                if (parties[0].pcs[i] != null)
-                {
-                    pcs.Add(ModelManager.instance.SpawnCharacter(transform, EncounterPartyManager.instance.formationTransforms[i].position, parties[0].pcs[i]));
-                }
+                if (i == 0)
+                    pcs[i].GetComponent<PcController>().light.enabled = true;
+                else
+                    pcs[i].GetComponent<PcController>().light.enabled = false;
             }
 
             EncounterPartyManager.instance.SetControllers(pcs);
+
+            MessageSystem.instance.AddMessage("Welcome to Reclamation!");
+
+            AudioManager.instance.PlayMusic("01 Along the Journey quiet");
+            AudioManager.instance.PlayAmbient("castle abandoned");
         }
 
-        public void CreatePortraitModel(Transform parent, PcData pc)
+        public void CreatePc(PcData pcData, int index)
         {
-            ModelManager.instance.SpawnCharacter(parent, parent.position, pc);
+            pcs.Add(ModelManager.instance.SpawnCharacter(transform, EncounterPartyManager.instance.formationTransforms[index].position, pcData));
         }
 
         void Update()
         {            
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                for (int i = 0; i < parties[0].pcs.Length; i++)
+                for (int i = 0; i < pcs.Count; i++)
                 {
-                    if (parties[0].pcs[i] != null)
+                    if (pcs[i] != null)
                     {
-                        //parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Armor, -Random.Range(0, 1));
-                        pcs[i].GetComponent<Pc>().CurrentDefense.Heal(25);//.damaModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, 25);
-                        //parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Stamina, -Random.Range(0, 6));
-                        //parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Essence, -Random.Range(0, 6));
-                        //parties[0].pcs[i].ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Morale, -Random.Range(0, 6));
-
-                        //parties[0].pcs[i].AddExperience(Random.Range(0, 150), true);
+                        pcs[i].GetComponent<PcController>().CurrentDefense.Heal(1000);
+                        AudioManager.instance.PlaySound("heal 01");
                     }
                 }
+            }
+            else if (Input.GetKeyUp(KeyCode.K))
+            {
+                for (int i = 0; i < pcs.Count; i++)
+                {
+                    if (pcs[i] != null)
+                    {
+                        pcs[i].GetComponent<PcController>().CurrentDefense.Damage(1000);
+                    }
+                }
+            }
+
+            if (Input.GetKeyUp(KeyCode.F1))
+            {
+                EncounterPartyManager.instance.SetCurrentPc(0);
+            }
+            else if (Input.GetKeyUp(KeyCode.F2))
+            {
+                EncounterPartyManager.instance.SetCurrentPc(1);
+            }
+            else if (Input.GetKeyUp(KeyCode.F3))
+            {
+                EncounterPartyManager.instance.SetCurrentPc(2);
+            }
+            else if (Input.GetKeyUp(KeyCode.F4))
+            {
+                EncounterPartyManager.instance.SetCurrentPc(3);
+            }
+            else if (Input.GetKeyUp(KeyCode.F5))
+            {
+                EncounterPartyManager.instance.SetCurrentPc(4);
+            }
+            else if (Input.GetKeyUp(KeyCode.F6))
+            {
+                EncounterPartyManager.instance.SetCurrentPc(5);
             }
         }
     }

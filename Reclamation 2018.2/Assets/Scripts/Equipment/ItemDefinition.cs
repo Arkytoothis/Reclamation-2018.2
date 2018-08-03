@@ -17,6 +17,10 @@ namespace Reclamation.Equipment
         public string MeshPath;
         public string TexturePath;
 
+        public string particleEffect;
+        public string equipSound;
+        public string unequipSound;
+
         public Vector3 offset;
         public Vector3 rotation;
 
@@ -48,9 +52,14 @@ namespace Reclamation.Equipment
             Name = "";
             Key = "";
             Description = "empty";
+
             IconPath = "";
             MeshPath = "";
             TexturePath = "";
+
+            particleEffect = "";
+            equipSound = "";
+            unequipSound = "";
 
             Type = ItemType.None;
             Slot = EquipmentSlot.None;
@@ -79,7 +88,7 @@ namespace Reclamation.Equipment
         public ItemDefinition(string name, string key, string iconKey, string meshKey, string textureKey, EquipmentSlot slot, int durability, int power, int hours,
             float recoveryTime, float actionSpeed, ItemType type, ItemHardnessAllowed hardness, ItemNameFormat format,
             WeaponData weapon, AmmoData ammo, WearableData armor, AccessoryData accessory, UsableData usable,
-            Vector3 rotation, Vector3 offset)
+            Vector3 rotation, Vector3 offset, string particleEffect)
         {
             Name = name;
             Key = key;
@@ -90,6 +99,7 @@ namespace Reclamation.Equipment
             IconPath = iconKey;
             MeshPath = meshKey;
             TexturePath = textureKey;
+            this.particleEffect = particleEffect;
 
             RecoveryTime = recoveryTime;
             ActionSpeed = actionSpeed;
@@ -152,6 +162,7 @@ namespace Reclamation.Equipment
             IconPath = item.IconPath;
             MeshPath = item.MeshPath;
             TexturePath = item.TexturePath;
+            particleEffect = item.particleEffect;
 
             RecoveryTime = item.RecoveryTime;
             ActionSpeed = item.ActionSpeed;

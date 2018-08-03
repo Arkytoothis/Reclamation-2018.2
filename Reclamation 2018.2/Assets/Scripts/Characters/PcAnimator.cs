@@ -13,7 +13,7 @@ namespace Reclamation.Characters
 
         public Animator animator;
         RVOController characterController;
-        Pc pcController;
+        PcController pcController;
 
         void Start()
         {
@@ -23,8 +23,10 @@ namespace Reclamation.Characters
             characterController = GetComponent<RVOController>();
             if (characterController == null) Debug.LogError("controller == null");
 
-            pcController = GetComponent<Pc>();
+            pcController = GetComponent<PcController>();
             if (pcController == null) Debug.LogError("pcController == null");
+
+            animator.speed = 0.65f;
         }
 
         void Update()

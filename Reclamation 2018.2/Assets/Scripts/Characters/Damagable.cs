@@ -10,26 +10,16 @@ namespace Reclamation.Characters
     /// </summary>
     public class Damagable : MonoBehaviour, IDamageable
     {
-        [SerializeField] CharacterData characterData;
-        public CharacterData CharacterData { get { return characterData; } }
+        public CharacterData data;
         public Transform textTransform;
 
         void Start()
         {
-            InvokeRepeating("Regen", 0.1f, 5f);
         }
 
-        public void Regen()
+        public void SetController(CharacterData data)
         {
-            if (characterData.GetDerived((int)DerivedAttribute.Health).Current < characterData.GetDerived((int)DerivedAttribute.Health).Maximum)
-            {
-                //Heal(1);
-            }
-        }
-
-        public void SetCharacterData(CharacterData character)
-        {
-            characterData = character;
+            this.data = data;
         }
 
         /// <summary>
@@ -41,14 +31,16 @@ namespace Reclamation.Characters
             if (amount > 0)
             {
                 EncounterManager.instance.textManagerWorld.Add(amount.ToString(), textTransform, "damage");
-                characterData.ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, -amount);
+                data.attributeManager.ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, -amount);
+
+                AudioManager.instance.PlaySound("impact 01");
             }
         }
 
         public void Heal(int amount)
         {
-            int current = characterData.GetDerived((int)DerivedAttribute.Health).Current;
-            int max = characterData.GetDerived((int)DerivedAttribute.Health).Maximum;
+            int current = data.GetDerived((int)DerivedAttribute.Health).Current;
+            int max = data.GetDerived((int)DerivedAttribute.Health).Maximum;
 
             if (current + amount > max)
             {
@@ -62,15 +54,15 @@ namespace Reclamation.Characters
 
             if (amount > 0)
             {
-                characterData.ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, amount);
                 EncounterManager.instance.textManagerWorld.Add(amount.ToString(), textTransform, "heal");
+                data.attributeManager.ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, amount);
             }
         }
 
         // Is the object alive?
         public bool IsAlive()
         {
-            return characterData.GetDerived((int)DerivedAttribute.Health).Current > 0;
+            return !data.isDead;
         }
 
         /// <summary>
@@ -78,7 +70,7 @@ namespace Reclamation.Characters
         /// </summary>
         public void ResetHealth()
         {
-            characterData.ModifyAttribute(Misc.AttributeType.Derived, (int)DerivedAttribute.Health, characterData.GetDerived((int)DerivedAttribute.Health).Maximum);
+            data.attributeManager.ModifyAttribute(Misc.AttributeType.Derived, (int)DerivedAttribute.Health, data.GetDerived((int)DerivedAttribute.Health).Maximum);
             gameObject.SetActive(true);
         }
     }

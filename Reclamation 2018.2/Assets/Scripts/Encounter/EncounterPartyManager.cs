@@ -15,20 +15,19 @@ namespace Reclamation.Encounter
 
         public MoveMode moveMode = MoveMode.Follow;
         public LayerMask movementMask;
-        public List<Pc> pcControllers;
+        public List<PcController> pcControllers;
         public GameObject movementCursor;
 
         public List<Formation> defaultFormations;
         public List<Transform> formationTransforms;
 
         private Camera cam;
-        private bool[] selectedPcs;
+        private int selectedPc = 0;
         private int formationIndex = 0;
 
         void Awake()
         {
-            pcControllers = new List<Pc>();
-            selectedPcs = new bool[PartyData.MaxPartySize];
+            pcControllers = new List<PcController>();
         }
 
         public void Initialize()
@@ -36,32 +35,25 @@ namespace Reclamation.Encounter
             cam = Camera.main;
             cam.gameObject.GetComponent<CameraRaycaster>().onMouseOverEnemy += OnMouseOverEnemy;
             cam.gameObject.GetComponent<CameraRaycaster>().onMouseOverInteractable += OnMouseOverInteractable;
-
-            for (int i = 0; i < selectedPcs.Length; i++)
-            {
-                selectedPcs[i] = false;
-            }
-
-            selectedPcs[0] = true;
-            selectedPcs[1] = true;
-            selectedPcs[2] = true;
-
-            SetCurrentPc(0);
-            SetMoveMode(MoveMode.Formation);
-            SetFormation(0);
-            //Invoke("EnableMovement", .1f);
         }
 
         public void SetControllers(List<GameObject> pcs)
         {
             for (int i = 0; i < pcs.Count; i++)
             {
-                pcControllers.Add(pcs[i].GetComponent<Pc>());
+                pcControllers.Add(pcs[i].GetComponent<PcController>());
+                if(pcControllers[i] == null)
+                    Debug.Log("pcControllers[i] == null");
             }
+
+            SetCurrentPc(0);
+            SetMoveMode(MoveMode.Formation);
+            SetFormation(0);
         }
 
         public void SetCurrentPc(int index)
         {
+            selectedPc = index;
             cam.GetComponent<CameraController>().target = pcControllers[index].gameObject.transform;
         }
 

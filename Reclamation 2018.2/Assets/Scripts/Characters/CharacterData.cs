@@ -13,6 +13,7 @@ namespace Reclamation.Characters
         public Gender gender;
         public Background background;
         public CharacterPersonality personality;
+        public string faction;
 
         public Species species;
         public Size size;
@@ -34,21 +35,6 @@ namespace Reclamation.Characters
         public bool isExhausted = false;
         public bool isDrained = false;
         public bool isBroken = false;
-
-        public delegate void OnArmorChange(int current, int max);
-        public delegate void OnHealthChange(int current, int max);
-        public delegate void OnStaminaChange(int current, int max);
-        public delegate void OnEssenceChange(int current, int max);
-        public delegate void OnMoraleChange(int current, int max);
-        public delegate void OnDeath();
-        public delegate void OnRevive();
-        public delegate void OnInteract();
-        public delegate void OnAttack();
-
-        public virtual void ModifyAttribute(AttributeType type, int attribute, int value)
-        {
-            attributeManager.ModifyAttribute(type, attribute, value);
-        }
 
         public void SetStart(AttributeType type, int attribute, int start, int min, int max)
         {

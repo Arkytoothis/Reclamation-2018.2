@@ -1189,77 +1189,77 @@ namespace Reclamation.Misc
             ItemDefinition item = new ItemDefinition("Knife", "Knife", folder + "knife", folder + "knife", folder + "knife", EquipmentSlot.Right_Hand, 10, 1, 10, 0.5f, 0.1f,
                 ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
                 new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Finesse, WeaponGripType.Either_Hand, 15, 1, 5, 5,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }),
-                null, null, null, null, new Vector3(-8.696f, 4.995f, -179.488f), new Vector3(0.156f, 0.052f, -0.033f));
+                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }, "", "", "", "", ""),
+                null, null, null, null, new Vector3(-8.696f, 4.995f, -179.488f), new Vector3(0.156f, 0.052f, -0.033f), "");
             item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
             itemDefinitions.Add(item.Key, item);
 
             item = new ItemDefinition("Short Sword", "Short Sword", folder + "short sword", folder + "short sword", folder + "short sword", EquipmentSlot.Right_Hand, 10, 1, 10, 1f, 0.25f,
                 ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
                 new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Finesse, WeaponGripType.Right_Hand, 15, 1, 7, 5,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }),
-                null, null, null, null, new Vector3(7.232f, -9.425f, 171.125f), new Vector3(0.064f, 0.084f, 0.031f));
+                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }, "", "", "", "", ""),
+                null, null, null, null, new Vector3(7.232f, -9.425f, 171.125f), new Vector3(0.064f, 0.084f, 0.031f), "");
             item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
             itemDefinitions.Add(item.Key, item);
 
             item = new ItemDefinition("Short Bow", "Short Bow", folder + "short bow", folder + "short bow", folder + "short bow", EquipmentSlot.Right_Hand, 10, 1, 10, 2f, 0.5f,
                 ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
                 new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Finesse, WeaponGripType.Both_Hands, 15, 5, 5, 5,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }),
-                null, null, null, null, new Vector3(0.0f, -195.245f, 8.925f), new Vector3(-0.003f, -0.096f, 0.0010f));
+                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }, "", "", "", "", ""),
+                null, null, null, null, new Vector3(0.0f, -195.245f, 8.925f), new Vector3(-0.003f, -0.096f, 0.0010f), "");
             item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
             itemDefinitions.Add(item.Key, item);
 
             item = new ItemDefinition("Club", "Club", folder + "club", folder + "club", folder + "club", EquipmentSlot.Right_Hand, 10, 1, 10, 1f, 0.25f,
                 ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
                 new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Finesse, WeaponGripType.Right_Hand, 15, 1, 5, 5,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }),
-                null, null, null, null, new Vector3(0f, 0f, -179.976f), new Vector3(0.011f, 0.045f, -0.009f));
+                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }, "", "", "", "", ""),
+                null, null, null, null, new Vector3(0f, 0f, -179.976f), new Vector3(0.011f, 0.045f, -0.009f), "");
             item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
             itemDefinitions.Add(item.Key, item);
 
             item = new ItemDefinition("Staff", "Staff", folder + "staff", folder + "staff", folder + "staff", EquipmentSlot.Right_Hand, 10, 1, 10, 3f, 0.5f,
                 ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
                 new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Finesse, WeaponGripType.Both_Hands, 15, 5, 5, 5,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }),
-                null, null, null, null, new Vector3(0.0f, 0.0f, -189.922f), new Vector3(-0.004f, 0.08f, 0.013f));
+                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }, "", "", "", "", ""),
+                null, null, null, null, new Vector3(0.0f, 0.0f, -189.922f), new Vector3(-0.004f, 0.08f, 0.013f), "");
             item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
             itemDefinitions.Add(item.Key, item);
 
             item = new ItemDefinition("Buckler", "Buckler", folder + "buckler", folder + "buckler", folder + "buckler", EquipmentSlot.Left_Hand, 10, 1, 10, 5f, 1f,
                 ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
                 new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Finesse, WeaponGripType.Both_Hands, 15, 5, 5, 5,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }),
+                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }, "", "", "", "", ""),
                 null, 
-                new WearableData(WearableType.Shield, 1, 0, 5, 0, new List<ResistanceData> { new ResistanceData(DamageType.Physical, 2) }),
-                null, null, new Vector3(122.756f, 117.561f, -1.37f), new Vector3(-0.021f, 0.014f, 0.029f));
+                new WearableData(WearableType.Shield, 1, 0, 5, 0, new List<ResistanceData> { new ResistanceData(DamageType.Physical, 2) }, "", ""),
+                null, null, new Vector3(122.756f, 117.561f, -1.37f), new Vector3(-0.021f, 0.014f, 0.029f), "");
             item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
             itemDefinitions.Add(item.Key, item);
 
             item = new ItemDefinition("Small Shield", "Small Shield", folder + "small shield", folder + "small shield", folder + "small shield", EquipmentSlot.Left_Hand, 10, 1, 10, 5f, 1f,
                 ItemType.Weapon, ItemHardnessAllowed.Soft_or_Hard, ItemNameFormat.Material_First,
                 new WeaponData(WeaponType.One_Handed_Melee, AmmoType.None, AttackType.Finesse, WeaponGripType.Both_Hands, 15, 5, 5, 5,
-                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }),
+                new List<DamageData> { new DamageData(DamageType.Physical, (int)DerivedAttribute.Health, new GameValue(1, 4), GameValue.Zero, 0, 0) }, "", "", "", "", ""),
                 null,
-                new WearableData(WearableType.Shield, 1, 0, 5, 0, new List<ResistanceData> { new ResistanceData(DamageType.Physical, 2) }),
-                null, null, new Vector3(122.756f, 117.561f, -1.37f), new Vector3(-0.021f, 0.014f, 0.029f));
+                new WearableData(WearableType.Shield, 1, 0, 5, 0, new List<ResistanceData> { new ResistanceData(DamageType.Physical, 2) }, "", ""),
+                null, null, new Vector3(122.756f, 117.561f, -1.37f), new Vector3(-0.021f, 0.014f, 0.029f), "");
             item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 10), new ResourceData("Materials", 5), new ResourceData("Tools", 1) };
             itemDefinitions.Add(item.Key, item);
 
-            item = new ItemDefinition("Small Healing Potion", "Small Healing Potion", folder + "small healing potion", folder + "small healing potion", folder + "small healing potion", 
+            item = new ItemDefinition("Small Healing Potion", "Small Healing Potion", folder + "smallShealing potion", folder + "small healing potion", folder + "small healing potion", 
                 EquipmentSlot.None, 1, 2, 20, 1f, 1f,
                 ItemType.Accessory, ItemHardnessAllowed.Potion, ItemNameFormat.Material_First, null, null, null,
-                new AccessoryData(AccessoryType.Consumable, 5), new UsableData(TimeType.None, 0, new List<AbilityEffect> {
-                }), new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 0.0f, 0.0f));
+                new AccessoryData(AccessoryType.Consumable, 5, "", "", ""), new UsableData(TimeType.None, 0, new List<AbilityEffect> { }), 
+                new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 0.0f, 0.0f), "");
             item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 100), new ResourceData("Materials", 10), new ResourceData("Essence", 1) };
             itemDefinitions.Add(item.Key, item);
 
             item = new ItemDefinition("Small Energy Potion", "Small Energy Potion", folder + "small energy potion", folder + "small energy potion", folder + "small energy potion", 
                 EquipmentSlot.None, 1, 2, 20, 1f, 1f,
                 ItemType.Accessory, ItemHardnessAllowed.Potion, ItemNameFormat.Material_First, null, null, null,
-                new AccessoryData(AccessoryType.Consumable, 5),
+                new AccessoryData(AccessoryType.Consumable, 5, "", "", ""),
                 new UsableData(TimeType.None, 0, new List<AbilityEffect> {
-                }), new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 0.0f, 0.0f));
+                }), new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 0.0f, 0.0f), "");
             item.ResourcesRequired = new List<ResourceData> { new ResourceData("Coin", 100), new ResourceData("Materials", 10), new ResourceData("Essence", 1) };
             itemDefinitions.Add(item.Key, item);
         }
@@ -1518,7 +1518,7 @@ namespace Reclamation.Misc
 
         static void LoadRaces()
         {
-            Race temp = new Race("Beastman", "Beastman", "", "", false, "", "", false, false, false,
+            Race temp = new Race("Beastman", "Beastman", "", "", false, "", "", false, false,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5),
                 new Vector3(1,1,1), "", "", "", "");
             temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Bestial Rage", 1));
@@ -1528,7 +1528,7 @@ namespace Reclamation.Misc
             temp.StartingAttributes[(int)BaseAttribute.Willpower].Number = 5;
             races.Add(temp.Key, temp);
 
-            temp = new Race("Deep Dwarf", "Deep Dwarf", "", "", true, "", "", true, true, true,
+            temp = new Race("Deep Dwarf", "Deep Dwarf", "", "", true, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 8, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Dark Vision", 1));
@@ -1538,7 +1538,7 @@ namespace Reclamation.Misc
             temp.StartingAttributes[(int)BaseAttribute.Willpower].Number = 2;
             races.Add(temp.Key, temp);
 
-            temp = new Race("Spriggan", "Spriggan", "", "", false, "", "", false, true, true,
+            temp = new Race("Spriggan", "Spriggan", "", "", false, "", "", false, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 6, 0.5f, new UpkeepData(0, 4, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             temp.StartingAttributes[(int)BaseAttribute.Agility].Number = 2;
@@ -1547,29 +1547,29 @@ namespace Reclamation.Misc
             temp.StartingAttributes[(int)BaseAttribute.Intellect].Number = -3;
             races.Add(temp.Key, temp);
 
-            temp = new Race("Forest Elf", "Forest Elf", "", "", false, "", "", true, true, true,
+            temp = new Race("Forest Elf", "Forest Elf", "", "", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 11, 0.75f, new UpkeepData(0, 5, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Camoflage", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Goblin", "Goblin", "", "", true, "", "", true, true, true,
+            temp = new Race("Goblin", "Goblin", "", "", true, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 9, 0.8f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             races.Add(temp.Key, temp);
 
-            temp = new Race("Godkin", "Godkin", "", "", false, "", "", true, true, true,
+            temp = new Race("Godkin", "Godkin", "", "", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 0.1f, new UpkeepData(0, 0, 0, 5), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             temp.Resistances.Add(new ResistanceData(DamageType.Holy, 95));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Half Orc", "Half Orc", "", "", false, "", "", true, true, true,
+            temp = new Race("Half Orc", "Half Orc", "", "", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             races.Add(temp.Key, temp);
 
-            temp = new Race("Halfling", "Halfling", "Halfling Male", "Halfling Female", true, "", "", true, true, false,
+            temp = new Race("Halfling", "Halfling", "Halfling Male", "Halfling Female", true, "", "", true, false,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 12, 0, 0), new GameValue(1, 5),
                 new Vector3(0.7f, 0.8f, 0.8f), "hair 01", "", "hair 10", "");
             temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = 2;
@@ -1578,7 +1578,7 @@ namespace Reclamation.Misc
             temp.StartingAttributes[(int)BaseAttribute.Memory].Number = 2;
             races.Add(temp.Key, temp);
 
-            temp = new Race("High Elf", "High Elf", "High Elf Male", "High Elf Female", false, "", "", true, true, true,
+            temp = new Race("High Elf", "High Elf", "High Elf Male", "High Elf Female", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.5f, new UpkeepData(0, 5, 0, 0), new GameValue(1, 5),
                 new Vector3(0.65f, 0.9f, 0.8f), "hair 01", "", "hair 10", "");
             temp.StartingAttributes[(int)BaseAttribute.Endurance].Number = -2;
@@ -1587,97 +1587,97 @@ namespace Reclamation.Misc
             temp.StartingAttributes[(int)BaseAttribute.Memory].Number = 2;
             races.Add(temp.Key, temp);
 
-            temp = new Race("Mountain Dwarf", "Mountain Dwarf", "Mountain Dwarf Male", "Mountain Dwarf Female", true, "", "",  true, true, true,
+            temp = new Race("Mountain Dwarf", "Mountain Dwarf", "Mountain Dwarf Male", "Mountain Dwarf Female", true, "", "",  true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 9, 1.0f, new UpkeepData(0, 8, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 0.75f, 1.1f), "hair 01", "beard 01", "hair 10", "beard 01");
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Dark Vision", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Imperial", "Imperial", "Imperial Male", "Imperial Female", false, "", "", true, true, true,
+            temp = new Race("Imperial", "Imperial", "Imperial Male", "Imperial Female", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "hair 01", "beard 01", "hair 10", "");
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Fast Learner", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Southerner", "Southerner", "", "", false, "", "", true, true, true,
+            temp = new Race("Southerner", "Southerner", "", "", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Fast Learner", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Ogrin", "Ogrin", "Ogrin Male", "Ogrin Female", false, "", "", true, true, true,
+            temp = new Race("Ogrin", "Ogrin", "Ogrin Male", "Ogrin Female", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.1f, new UpkeepData(0, 7, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Fast Learner", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Orc", "Orc", "", "", false, "", "", true, true, true,
+            temp = new Race("Orc", "Orc", "", "", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 1.0f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             races.Add(temp.Key, temp);
 
-            temp = new Race("Plains Dwarf", "Plains Dwarf", "", "", true, "", "", true, true, true,
+            temp = new Race("Plains Dwarf", "Plains Dwarf", "", "", true, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 9, 1.1f, new UpkeepData(0, 9, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             races.Add(temp.Key, temp);
 
-            temp = new Race("Sidhe", "Sidhe", "", "", false, "race_323", "", true, true, true,
+            temp = new Race("Sidhe", "Sidhe", "", "", false, "race_323", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 16, 0.2f, new UpkeepData(0, 2, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Flight", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Revenant", "Revenant", "", "", false, "", "", true, true, true,
+            temp = new Race("Revenant", "Revenant", "", "", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 7, 0.2f, new UpkeepData(0, 0, 0, 4), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Undead", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Shade", "Shade", "", "", false, "race_321", "", true, true, true,
+            temp = new Race("Shade", "Shade", "", "", false, "race_321", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 11, 0.5f, new UpkeepData(0, 0, 0, 6), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Undead", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Shadow Elf", "Shadow Elf", "", "", false, "", "", true, true, true,
+            temp = new Race("Shadow Elf", "Shadow Elf", "", "", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.5f, new UpkeepData(0, 4, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Dark Vision", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Trollkin", "Trollkin", "", "", false, "", "", true, true, true,
+            temp = new Race("Trollkin", "Trollkin", "", "", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.75f, new UpkeepData(0, 11, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Regeneration", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Valarian", "Valarian", "", "", false, "", "", true, true, true,
+            temp = new Race("Valarian", "Valarian", "", "", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 10, 0.75f, new UpkeepData(0, 5, 0, 1), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             races.Add(temp.Key, temp);
 
-            temp = new Race("Vampire", "Vampire", "", "", false, "race_320", "", true, true, true,
+            temp = new Race("Vampire", "Vampire", "", "", false, "race_320", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 14, 0.1f, new UpkeepData(0, 0, 0, 6), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             temp.Traits.Add(new AbilityUnlock(AbilityType.Trait, "Undead", 1));
             races.Add(temp.Key, temp);
 
-            temp = new Race("Wolfen", "Wolfen", "", "", false, "", "", true, true, true,
+            temp = new Race("Wolfen", "Wolfen", "", "", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 9, 0, 1), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             races.Add(temp.Key, temp);
 
-            temp = new Race("Infernal", "Infernal", "", "", false, "", "", true, true, true,
+            temp = new Race("Infernal", "Infernal", "", "", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 7, 0, 1), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             races.Add(temp.Key, temp);
 
-            temp = new Race("Gnome", "Gnome", "", "", false, "", "", true, true, true,
+            temp = new Race("Gnome", "Gnome", "", "", false, "", "", true, true,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 5, 1, 1), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             races.Add(temp.Key, temp);
 
-            temp = new Race("Half Ogre", "Half Ogre", "", "", false, "", "", false, true, false,
+            temp = new Race("Half Ogre", "Half Ogre", "", "", false, "", "", false, false,
                 new GameValue(1, 10), new GameValue(1, 10), new GameValue(1, 10), 12, 1.0f, new UpkeepData(0, 11, 0, 0), new GameValue(1, 5),
                 new Vector3(1, 1, 1), "", "", "", "");
             races.Add(temp.Key, temp);
@@ -3234,8 +3234,8 @@ namespace Reclamation.Misc
 
         public static void LoadNPCs()
         {
-            NPCDefinition npc = new NPCDefinition(new FantasyName("Giant Rat", "", ""), Species.Animal, Size.Small, Gender.Either, "giant_rat", "", "",
-                1, 2, 10, 10, "", "", "", "");
+            NPCDefinition npc = new NPCDefinition(new FantasyName("Giant Rat", "", ""), Species.Animal, Size.Small, Gender.Either, "giant_rat", "", "", 
+                "Enemy", 1, 2, 10, 10, "", "", "", "");
             npc.baseStart[(int)BaseAttribute.Strength] = 10; npc.baseStart[(int)BaseAttribute.Intellect] = 10;
             npc.baseStart[(int)BaseAttribute.Endurance] = 10; npc.baseStart[(int)BaseAttribute.Wisdom] = 10;
             npc.baseStart[(int)BaseAttribute.Agility] = 10; npc.baseStart[(int)BaseAttribute.Willpower] = 10;
@@ -3258,7 +3258,7 @@ namespace Reclamation.Misc
             npcs.Add(npc.key, npc); npcKeys.Add(npc.key);
 
             npc = new NPCDefinition(new FantasyName("Giant Black Rat", "", ""), Species.Animal, Size.Small, Gender.Either, "giant_black_rat", "", "",
-                1, 2, 10, 10, "", "", "", "");
+                "Enemy", 1, 2, 10, 10, "", "", "", "");
             npc.baseStart[(int)BaseAttribute.Strength] = 10; npc.baseStart[(int)BaseAttribute.Intellect] = 10;
             npc.baseStart[(int)BaseAttribute.Endurance] = 10; npc.baseStart[(int)BaseAttribute.Wisdom] = 10;
             npc.baseStart[(int)BaseAttribute.Agility] = 10; npc.baseStart[(int)BaseAttribute.Willpower] = 10;
@@ -3280,7 +3280,7 @@ namespace Reclamation.Misc
             npcs.Add(npc.key, npc); npcKeys.Add(npc.key);            
 
             npc = new NPCDefinition(new FantasyName("Skeleton", "", ""), Species.Undead, Size.Small, Gender.Either, "Skeleton", "", "",
-                 2, 10, 20, 10, "", "", "", "");
+                 "Enemy", 2, 10, 20, 10, "", "", "", "");
             npc.baseStart[(int)BaseAttribute.Strength] = 10; npc.baseStart[(int)BaseAttribute.Intellect] = 10;
             npc.baseStart[(int)BaseAttribute.Endurance] = 10; npc.baseStart[(int)BaseAttribute.Wisdom] = 10;
             npc.baseStart[(int)BaseAttribute.Agility] = 10; npc.baseStart[(int)BaseAttribute.Willpower] = 10;
@@ -3701,30 +3701,24 @@ namespace Reclamation.Misc
         public static void LoadFactions()
         {
             FactionData faction = new FactionData("Player", "Player");
-            faction.reputations = new List<Reputation>
-            {
-                new Reputation(ReputationLevel.Friendly),
-                new Reputation(ReputationLevel.Friendly),
-                new Reputation(ReputationLevel.Hated)
-            };
+            faction.reputations = new Dictionary<string, Reputation>();
+            faction.reputations.Add("Player", new Reputation(ReputationLevel.Friendly));
+            faction.reputations.Add("Neutral", new Reputation(ReputationLevel.Neutral));
+            faction.reputations.Add("Enemy", new Reputation(ReputationLevel.Hated));
             factions.Add(faction.key, faction);
 
             faction = new FactionData("Neutral", "Neutral");
-            faction.reputations = new List<Reputation>
-            {
-                new Reputation(ReputationLevel.Neutral),
-                new Reputation(ReputationLevel.Friendly),
-                new Reputation(ReputationLevel.Neutral)
-            };
+            faction.reputations = new Dictionary<string, Reputation>();
+            faction.reputations.Add("Player", new Reputation(ReputationLevel.Neutral));
+            faction.reputations.Add("Neutral", new Reputation(ReputationLevel.Friendly));
+            faction.reputations.Add("Enemy", new Reputation(ReputationLevel.Hated));
             factions.Add(faction.key, faction);
 
             faction = new FactionData("Enemy", "Enemy");
-            faction.reputations = new List<Reputation>
-            {
-                new Reputation(ReputationLevel.Hated),
-                new Reputation(ReputationLevel.Hated),
-                new Reputation(ReputationLevel.Friendly)
-            };
+            faction.reputations = new Dictionary<string, Reputation>();
+            faction.reputations.Add("Player", new Reputation(ReputationLevel.Hated));
+            faction.reputations.Add("Neutral", new Reputation(ReputationLevel.Hated));
+            faction.reputations.Add("Enemy", new Reputation(ReputationLevel.Friendly));
             factions.Add(faction.key, faction);
         }
     }

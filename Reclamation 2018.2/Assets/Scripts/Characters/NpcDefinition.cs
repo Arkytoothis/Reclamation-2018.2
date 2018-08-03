@@ -23,6 +23,7 @@ namespace Reclamation.Characters
         public string key;
         public string raceKey;
         public string professionKey;
+        public string faction;
 
         public List<int> baseStart;
         public List<GameValue> BasePerLevel;
@@ -95,7 +96,7 @@ namespace Reclamation.Characters
             inventory = new CharacterInventory();
         }
 
-        public NPCDefinition(FantasyName name, Species species, Size size, Gender gender, string key, string race, string profession,
+        public NPCDefinition(FantasyName name, Species species, Size size, Gender gender, string key, string race, string profession, string faction,
             int min_level, int max_level, int exp_pre_level, int movement, string maleHair, string maleBeard, string femaleHair, string femaleBeard)
         {
             this.name = name;
@@ -103,6 +104,7 @@ namespace Reclamation.Characters
             this.size = size;
             this.key = key;
             this.gender = gender;
+            this.faction = faction;
             raceKey = race;
             professionKey = profession;
             maleDefaultHair = maleHair;
@@ -161,7 +163,7 @@ namespace Reclamation.Characters
 
         public NpcData ConvertToCharacter()
         {
-            NpcData npc = new NpcData(name, key, gender, raceKey, professionKey, -1, -1, -1, -1, -1);
+            NpcData npc = new NpcData(name, key, gender, raceKey, professionKey, -1, -1, -1, -1, -1, faction);
 
             return npc;
         }

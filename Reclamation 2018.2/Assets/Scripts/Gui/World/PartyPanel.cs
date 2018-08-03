@@ -25,7 +25,7 @@ namespace Reclamation.Gui.World
             {
                 for (int i = 0; i < PartyData.MaxPartySize; i++)
                 {
-                    pcElements[i].GetComponent<PartyPcElement>().SetData(partyData.pcs[i]);
+                    //pcElements[i].GetComponent<PartyPcElement>().SetData(partyData.pcs[i]);
                 }
             }
         }

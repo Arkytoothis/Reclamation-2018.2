@@ -60,7 +60,7 @@ namespace Reclamation.Misc
 
             if (Physics.Raycast(ray, out hit, 1000))
             {
-                Npc npc = hit.collider.gameObject.GetComponent<Npc>();
+                NpcController npc = hit.collider.gameObject.GetComponent<NpcController>();
 
                 if (npc != null && npc.CheckIsAlive() == true)
                 {

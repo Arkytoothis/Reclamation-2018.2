@@ -12,7 +12,7 @@ namespace Reclamation.Characters
 
         public Animator animator;
         RVOController characterController;
-        Npc npcController;
+        NpcController npcController;
 
         void Start()
         {
@@ -22,7 +22,7 @@ namespace Reclamation.Characters
             characterController = GetComponent<RVOController>();
             if (characterController == null) Debug.LogError("controller == null");
 
-            npcController = GetComponent<Npc>();
+            npcController = GetComponent<NpcController>();
             if (npcController == null) Debug.LogError("npcController == null");
         }
 

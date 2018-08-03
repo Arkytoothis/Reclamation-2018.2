@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Reclamation.Gui
 {
-    [CreateAssetMenu(menuName = "Flexible Button")]
+    [CreateAssetMenu(menuName = "Reclamation/Button")]
     public class ButtonData : ScriptableObject
     {
         [Header("Image Data")]

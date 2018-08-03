@@ -23,9 +23,9 @@ namespace Reclamation.Gui
             barInstance = go.GetComponent<WorldSpaceAttributeBar>();
         }
 
-        public void SetData(ref NpcData npc)
+        public void SetData(NpcData npc)
         {
-            barInstance.SetData(ref npc);
+            barInstance.SetData(npc);
         }
 
         void LateUpdate()

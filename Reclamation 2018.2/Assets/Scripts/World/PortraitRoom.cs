@@ -21,14 +21,15 @@ namespace Reclamation.Misc
 
         public void AddModel(GameObject model, int index)
         {
-            model.GetComponent<FogOfWarUnit>().enabled = false;
-            model.GetComponent<Seeker>().enabled = false;
-            //model.GetComponent<SimpleSmoothModifier>().enabled = false;
-            model.GetComponent<Pc>().enabled = false;
-            model.GetComponent<AIDestinationSetter>().enabled = false;
-            model.GetComponent<RichAI>().enabled = false;
+            //model.GetComponent<FogOfWarUnit>().enabled = false;
+            //model.GetComponent<Seeker>().enabled = false;
+            ////model.GetComponent<SimpleSmoothModifier>().enabled = false;
+            //model.GetComponent<PcController>().enabled = false;
+            //model.GetComponent<AIDestinationSetter>().enabled = false;
+            //model.GetComponent<RichAI>().enabled = false;
 
-            model.transform.SetParent(characterMounts[index].pivot, false);
+            GameObject go = Instantiate(model, characterMounts[index].pivot);
+            go.name = model.name;
         }
 
         //public RenderTexture CreatePortrait(GameObject go)

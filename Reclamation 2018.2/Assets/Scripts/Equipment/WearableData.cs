@@ -10,6 +10,11 @@ namespace Reclamation.Equipment
     public class WearableData
     {
         public WearableType Type;
+
+        public string impactSound;
+        public string blockSound;
+        public string stepSound;
+
         public List<ItemAttribute> Attributes;
         public List<ResistanceData> Resistances;
 
@@ -20,9 +25,11 @@ namespace Reclamation.Equipment
             Resistances = new List<ResistanceData>();
         }
 
-        public WearableData(WearableType type, int armor, int dodge, int block, int actions, List<ResistanceData> resistances)
+        public WearableData(WearableType type, int armor, int dodge, int block, int actions, List<ResistanceData> resistances, string impactSound, string stepSound)
         {
             Type = type;
+            this.impactSound = impactSound;
+            this.stepSound = stepSound;
 
             Attributes = new List<ItemAttribute>();
             Attributes.Add(new ItemAttribute((int)WearableAttributes.Action_Speed, actions));
@@ -43,6 +50,8 @@ namespace Reclamation.Equipment
         public WearableData(WearableData data)
         {
             Type = data.Type;
+            this.impactSound = data.impactSound;
+            this.stepSound = data.stepSound;
 
             Attributes = new List<ItemAttribute>();
             for (int i = 0; i < data.Attributes.Count; i++)

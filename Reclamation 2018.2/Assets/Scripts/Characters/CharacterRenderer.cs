@@ -34,8 +34,6 @@ namespace Reclamation.Characters
             if (pcData == null) return;
             this.pcData = pcData;
 
-            Vector3 raceScale = Database.GetRace(pcData.raceKey).scale;
-
             LoadItem((int)EquipmentSlot.Right_Hand, (int)EquipmentRenderSlot.Right_Hand);
             LoadItem((int)EquipmentSlot.Left_Hand, (int)EquipmentRenderSlot.Left_Hand);
 
@@ -60,12 +58,10 @@ namespace Reclamation.Characters
                 else
                 {
                     ItemDefinition def = Database.GetItem(item.Key, false);
-
-                    //Debug.Log(gameObject.transform.localScale);
                     go.transform.SetParent(mounts[renderSlot], true);
                     go.transform.localPosition = def.offset;
                     go.transform.localEulerAngles = def.rotation;
-                    go.transform.localScale = Vector3.one;// new Vector3(2- gameObject.transform.localScale.x, 2- gameObject.transform.localScale.y, 2- gameObject.transform.localScale.z);
+                    go.transform.localScale = Vector3.one;
 
                 }
             }

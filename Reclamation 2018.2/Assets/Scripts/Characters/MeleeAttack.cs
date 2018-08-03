@@ -20,7 +20,7 @@ namespace Reclamation.Characters
         // The last time the agent attacked
         private float lastAttackTime;
 
-        private CharacterData characterData;
+        public CharacterData data;
 
         /// <summary>
         /// Initialize the default values.
@@ -30,9 +30,11 @@ namespace Reclamation.Characters
             lastAttackTime = -repeatAttackDelay;
         }
 
-        public void SetCharacterData(CharacterData character)
+        public void SetController(CharacterData data)
         {
-            characterData = character;
+            this.data = data;
+
+            if (this.data == null) Debug.Log("this.data == null");
         }
 
         /// <summary>
@@ -69,6 +71,8 @@ namespace Reclamation.Characters
         /// <param name="targetPosition">The position to attack.</param>
         public void Attack(GameObject defender)
         {
+            if (data.isDead == true) return;
+
             Damagable damagable = defender.GetComponent<Damagable>();
 
             if (damagable == null)
@@ -77,26 +81,47 @@ namespace Reclamation.Characters
                 return;
             }
 
+            //AudioManager.instance.PlaySound("male attack 01");
+            AudioManager.instance.PlaySound("sword 01");
+
             if (Random.Range(0, 100) > 65)
             {
                 int dmg = Random.Range(1, 10);
-                if(characterData!= null && characterData.inventory != null && characterData.inventory.EquippedItems[(int)EquipmentSlot.Right_Hand] != null)
-                    dmg = characterData.inventory.EquippedItems[(int)EquipmentSlot.Right_Hand].WeaponData.Damage[0].DamageDice.Roll(false);
+                if(data != null && data.inventory != null && data.inventory.EquippedItems[(int)EquipmentSlot.Right_Hand] != null)
+                    dmg = data.inventory.EquippedItems[(int)EquipmentSlot.Right_Hand].WeaponData.Damage[0].DamageDice.Roll(false);
 
-                //Debug.Log(characterData.name.FirstName + " hit " + damagable.CharacterData.name.FirstName + " for " + dmg + " damage");
                 lastAttackTime = Time.time;
                 damagable.Damage(dmg);
+                string red = "<color=#00ff26>";
+                string green = "<color=#ff0000>";
 
-                string attColor = "<color=#00ff26>";
-                string defColor = "<color=#ff0000>";
+                string attColor = "";
+                string defColor = "";
                 string dmgColor = "<color=#ff9000>";
 
+                if (damagable.data.faction.Equals("Player") == true)
+                {
+                    attColor = green;
+                    defColor = red;
+                }
+                else if (damagable.data.faction.Equals("Enemy") == true)
+                {
+                    attColor = red;
+                    defColor = green;
+                }
+                else if (damagable.data.faction.Equals("Neutral") == true)
+                {
+                    attColor = green;
+                    defColor = red;
+                }
+
                 string message = "";
-                message += attColor + characterData.name.FirstName + "</color> hit ";
-                message += defColor + damagable.CharacterData.name.FirstName + "</color> for ";
-                message += dmgColor + dmg + "</color> damage";
+                message += attColor + data.name.FirstName + "</color> hit ";
+                message += defColor + damagable.data.name.FirstName + "</color> for ";
+                message += dmgColor + dmg + "</color> damage"; 
 
                 MessageSystem.instance.AddMessage(message);
+
             }
         }
     }

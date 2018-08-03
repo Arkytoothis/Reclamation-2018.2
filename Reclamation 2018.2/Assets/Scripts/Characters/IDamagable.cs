@@ -17,6 +17,6 @@
         /// <returns>True if the object is alive.</returns>
         bool IsAlive();
 
-        void SetCharacterData(CharacterData character);
+        void SetController(CharacterData data);
     }
 }

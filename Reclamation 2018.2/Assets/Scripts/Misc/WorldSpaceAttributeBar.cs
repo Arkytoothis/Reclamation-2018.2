@@ -20,12 +20,10 @@ namespace Reclamation.Gui
             transform.LookAt(Camera.main.transform);
         }
 
-        public void SetData(ref NpcData character)
+        public void SetData(NpcData character)
         {
             this.character = character;
-            character.onHealthChange += UpdateDisplay;
-
-
+            character.attributeManager.onHealthChange += UpdateDisplay;
             UpdateDisplay(this.character.GetDerived((int)DerivedAttribute.Health).Current / 2, this.character.GetDerived((int)DerivedAttribute.Health).Maximum);
         }
 
@@ -34,7 +32,6 @@ namespace Reclamation.Gui
             if (max > 0)
             {
                 float width = (float)current / (float)max;
-
                 foreground.GetComponent<RectTransform>().localScale = new Vector3(width, foreground.GetComponent<RectTransform>().localScale.y, foreground.GetComponent<RectTransform>().localScale.z);
             }
         }

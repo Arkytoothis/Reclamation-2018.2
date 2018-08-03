@@ -9,6 +9,9 @@ namespace Reclamation.Equipment
     public class AmmoData
     {
         public AmmoType Type;
+
+        public string hitSound;
+
         public List<ItemAttribute> Attributes;
         public List<DamageData> Damage;
 
@@ -19,9 +22,10 @@ namespace Reclamation.Equipment
             Damage = new List<DamageData>();
         }
 
-        public AmmoData(AmmoType type, int attack, int range, int actions, List<DamageData> damage)
+        public AmmoData(AmmoType type, int attack, int range, int actions, List<DamageData> damage, string hitSound)
         {
             Type = type;
+            this.hitSound = hitSound;
 
             Attributes = new List<ItemAttribute>();
             Attributes.Add(new ItemAttribute((int)AmmoAttributes.Action_Speed, actions));
@@ -41,6 +45,7 @@ namespace Reclamation.Equipment
         public AmmoData(AmmoData data)
         {
             Type = data.Type;
+            hitSound = data.hitSound;
 
             Attributes = new List<ItemAttribute>();
             for (int i = 0; i < data.Attributes.Count; i++)

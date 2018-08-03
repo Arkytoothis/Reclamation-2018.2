@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Reclamation.Characters
 {
-    [CreateAssetMenu(menuName = "Vital Data")]
+    [CreateAssetMenu(menuName = "Reclamation/Vital Data")]
     public class VitalData : ScriptableObject
     {
         public Color armorColor;

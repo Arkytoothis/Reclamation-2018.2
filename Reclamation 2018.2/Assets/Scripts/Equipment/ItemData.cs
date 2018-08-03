@@ -14,6 +14,7 @@ namespace Reclamation.Equipment
         public string IconPath;
         public string MeshPath;
         public string TexturePath;
+        public string particleEffect;
 
         public ItemNameFormat NameFormat;
         public ItemType Type;
@@ -56,6 +57,10 @@ namespace Reclamation.Equipment
             Slot = EquipmentSlot.None;
             Hardness = ItemHardnessAllowed.None;
             NameFormat = ItemNameFormat.None;
+            IconPath = "";
+            MeshPath = "";
+            TexturePath = "";
+            particleEffect = "";
 
             StackSize = 0;
             Power = 0;
@@ -92,6 +97,7 @@ namespace Reclamation.Equipment
             IconPath = item.IconPath;
             MeshPath = item.MeshPath;
             TexturePath = item.TexturePath;
+            particleEffect = item.particleEffect;
 
             Slot = item.Slot;
             DurabilityCur = item.DurabilityCur;
@@ -200,6 +206,7 @@ namespace Reclamation.Equipment
             IconPath = def.IconPath;
             MeshPath = def.MeshPath;
             TexturePath = def.TexturePath;
+            particleEffect = def.particleEffect;
 
             StackSize = stack_size;
             Slot = def.Slot;

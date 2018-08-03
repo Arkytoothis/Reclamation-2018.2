@@ -31,6 +31,6 @@ namespace Reclamation.Characters
         /// <param name="targetPosition">The position to attack.</param>
         void Attack(GameObject defender);
 
-        void SetCharacterData(CharacterData character);
+        void SetController(CharacterData data);
     }
 }

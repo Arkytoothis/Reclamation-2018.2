@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using Reclamation.Encounter;
 using Reclamation.Gui;
 using Reclamation.Misc;
 using Reclamation.Name;
@@ -49,7 +50,7 @@ namespace Reclamation.Characters
             gender = Gender.None;
             background = null;
             status = PcStatus.Idle;
-
+            faction = "Player";
             raceKey = "";
             professionKey = "";
             description = "";
@@ -127,6 +128,7 @@ namespace Reclamation.Characters
 
             abilities = new CharacterAbilities(this, power_slots, spell_slots);
             inventory = new CharacterInventory();
+            faction = "Player";
         }
 
         public PcData(PcData pc)
@@ -178,6 +180,7 @@ namespace Reclamation.Characters
 
             abilities = new CharacterAbilities(pc);
             inventory = new CharacterInventory(pc.inventory);
+            faction = "Player";
         }
 
         public override void CalculateStartSkills()
@@ -300,7 +303,7 @@ namespace Reclamation.Characters
             experience += expToAdd;
 
             if (experience >= expToLevel)
-                LevelUp();
+                onLevelUp();
 
             onExperienceChange(experience, expToLevel);
         }
@@ -308,18 +311,6 @@ namespace Reclamation.Characters
         public void SpendExperience(int amount)
         {
             experience -= amount;
-        }
-
-        public void LevelUp()
-        {
-            //Debug.Log(Name.FirstName + " has gained a level!");
-            SpendExperience(expToLevel);
-            level++;
-            CalculateExp();
-            CalculateExpCosts();
-            CalculateDerivedAttributes();
-
-            onLevelUp();
         }
 
         public void CalculateUpkeep()
@@ -341,38 +332,14 @@ namespace Reclamation.Characters
             wealth = Database.Races[raceKey].StartingWealth.Roll(false) + Database.Professions[professionKey].StartingWealth.Roll(false);
         }
 
-        public override void ModifyAttribute(AttributeType type, int attribute, int value)
+        public void LevelUp()
         {
-            if (value == 0) return;
-
-            int cur = attributeManager.GetAttribute(AttributeListType.Derived, attribute).Current;
-            int max = attributeManager.GetAttribute(AttributeListType.Derived, attribute).Maximum;
-
-
-            if (attribute == (int)DerivedAttribute.Armor)
-                onArmorChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Health)
-                onHealthChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Stamina)
-                onStaminaChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Essence)
-                onEssenceChange(cur, max);
-            else if (attribute == (int)DerivedAttribute.Morale)
-                onMoraleChange(cur, max);
-
-            base.ModifyAttribute(type, attribute, value);
-            CheckVitals();
+            SpendExperience(expToLevel);
+            level++;
+            CalculateExp();
+            CalculateExpCosts();
+            CalculateDerivedAttributes();
         }
-
-        public event OnArmorChange onArmorChange;
-        public event OnHealthChange onHealthChange;
-        public event OnStaminaChange onStaminaChange;
-        public event OnEssenceChange onEssenceChange;
-        public event OnMoraleChange onMoraleChange;
-        public event OnDeath onDeath;
-        public event OnRevive onRevive;
-        public event OnInteract onInteract;
-        public event OnAttack onAttack;
 
 
         public delegate void OnExperienceChange(int current, int max);
@@ -381,77 +348,9 @@ namespace Reclamation.Characters
         public delegate void OnLevelUp();
         public event OnLevelUp onLevelUp;
 
-        public void CheckVitals()
+        public void SetupController(PcController controller)
         {
-            CheckHealth();
-            CheckStamina();
-            CheckEssence();
-            CheckMorale();
-        }
-
-        public void CheckHealth()
-        {
-            if (isDead == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Health).Current <= 0)
-            {
-                Death();
-            }
-            else if (isDead == true && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Health).Current > 0)
-            {
-                Revive();
-            }
-        }
-
-        public void CheckStamina()
-        {
-            if (isDead == false && isExhausted == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Stamina).Current <= 0)
-            {
-                isExhausted = true;
-                //Debug.Log(Name.FirstName + " is exhausted");
-            }
-        }
-
-        public void CheckEssence()
-        {
-            if (isDead == false && isDrained == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Essence).Current <= 0)
-            {
-                isDrained = true;
-                //Debug.Log(Name.FirstName + " is out of essence");
-            }
-        }
-
-        public void CheckMorale()
-        {
-            if (isDead == false && isBroken == false && attributeManager.GetAttribute(AttributeListType.Derived, (int)DerivedAttribute.Morale).Current <= 0)
-            {
-                isBroken = true;
-                //Debug.Log(Name.FirstName + " is broken");
-            }
-        }
-
-        public void Death()
-        {
-            isDead = true;
-            onDeath();
-            MessageSystem.instance.AddMessage(name.FirstName + " has died");
-        }
-
-        public void Revive()
-        {
-            isDead = false;
-            onRevive();
-            MessageSystem.instance.AddMessage(name.FirstName + " has revived");
-        }
-
-        public void Interact()
-        {
-            MessageSystem.instance.AddMessage(name.FirstName + " has interacting");
-            onInteract();
-        }
-
-        public void Attack()
-        {
-            onAttack();
-            MessageSystem.instance.AddMessage(name.FirstName + " has attacking");
+            attributeManager.controller = controller;
         }
     }
 }

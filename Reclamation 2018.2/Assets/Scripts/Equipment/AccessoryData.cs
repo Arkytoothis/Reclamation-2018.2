@@ -9,6 +9,11 @@ namespace Reclamation.Equipment
     public class AccessoryData
     {
         public AccessoryType Type;
+
+        public string useAnimation;
+        public string useParticle;
+        public string useSound;
+
         public List<ItemAttribute> Attributes;
 
         public AccessoryData()
@@ -17,9 +22,14 @@ namespace Reclamation.Equipment
             Attributes = new List<ItemAttribute>();
         }
 
-        public AccessoryData(AccessoryType type, int actions)
+        public AccessoryData(AccessoryType type, int actions, string useAnimation, string useParticle, string useSound)
         {
             Type = type;
+
+            this.useAnimation = useAnimation;
+            this.useParticle = useParticle;
+            this.useSound = useSound;
+
             Attributes = new List<ItemAttribute>();
             Attributes.Add(new ItemAttribute((int)AccessoryAttributes.Action_Speed, actions));
             Attributes.Add(new ItemAttribute((int)AccessoryAttributes.Cooldown, actions));
@@ -28,6 +38,10 @@ namespace Reclamation.Equipment
         public AccessoryData(AccessoryData data)
         {
             Type = data.Type;
+
+            this.useAnimation = data.useAnimation;
+            this.useParticle = data.useParticle;
+            this.useSound = data.useSound;
 
             Attributes = new List<ItemAttribute>();
             for (int i = 0; i < data.Attributes.Count; i++)

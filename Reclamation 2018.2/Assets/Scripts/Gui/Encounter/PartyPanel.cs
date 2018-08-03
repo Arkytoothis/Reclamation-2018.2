@@ -19,8 +19,8 @@ namespace Reclamation.Gui.Encounter
             for (int i = 0; i < EncounterManager.instance.pcs.Count; i++)
             {
                 GameObject go = Instantiate(pcElementPrefab, pcElementsParent);
-                FlexiblePcButton button = go.GetComponent<FlexiblePcButton>();
-                button.SetData(EncounterManager.instance.pcs[i].GetComponent<Pc>().PcData);
+                PcButton button = go.GetComponent<PcButton>();
+                button.SetData(EncounterManager.instance.pcs[i].GetComponent<PcController>().PcData);
 
                 pcButtons.Add(go);
             }

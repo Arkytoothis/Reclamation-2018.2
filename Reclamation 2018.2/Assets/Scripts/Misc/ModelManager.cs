@@ -115,19 +115,11 @@ namespace Reclamation.Misc
         {
             GameObject empty = null;
 
-            if (pc.gender == Gender.Male)
-            {
-                empty = Instantiate(emptyPcPrefb, parent);
-            }
-            else if (pc.gender == Gender.Female)
-            {
-                empty = Instantiate(emptyPcPrefb, parent);
-            }
-
+            empty = Instantiate(emptyPcPrefb, parent);
             empty.transform.position = position;
 
             GameObject model = Instantiate(characterPrefabs[pc.raceKey + " " + pc.gender], empty.transform);
-            empty.GetComponent<Pc>().SetPcData(pc, model);
+            empty.GetComponent<PcController>().SetPcData(pc, model);
 
             return empty;
         }
