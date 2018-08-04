@@ -16,11 +16,11 @@ namespace Reclamation.Gui.Encounter
 
         public void Initialize()
         {
-            for (int i = 0; i < EncounterManager.instance.pcs.Count; i++)
+            for (int i = 0; i < EncounterManager.instance.PcsCount; i++)
             {
                 GameObject go = Instantiate(pcElementPrefab, pcElementsParent);
                 PcButton button = go.GetComponent<PcButton>();
-                button.SetData(EncounterManager.instance.pcs[i].GetComponent<PcController>().PcData);
+                button.SetData(EncounterManager.instance.GetPcData(i));
 
                 pcButtons.Add(go);
             }

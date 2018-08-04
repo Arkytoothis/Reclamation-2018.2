@@ -172,19 +172,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   radius: 0.2
-  height: 2
+  height: 1
   locked: 0
   lockWhenNotMoving: 0
-  agentTimeHorizon: 2
-  obstacleTimeHorizon: 2
+  agentTimeHorizon: 3
+  obstacleTimeHorizon: 3
   maxNeighbours: 10
   layer: 1
   collidesWith: -1
   wallAvoidForce: 1
   wallAvoidFalloff: 1
   priority: 0.5
-  center: 1
-  debug: 0
+  center: 0.5
+  debug: 1
 --- !u!114 &114171469711360420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -244,10 +244,10 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   acceleration: 10
   rotationSpeed: 500
-  slowdownTime: 0.25
+  slowdownTime: 0.1
   endReachedDistance: 0.01
-  wallForce: 0.1
-  wallDist: 0.01
+  wallForce: 0
+  wallDist: 0
   funnelSimplification: 0
   slowWhenNotFacingTarget: 1
   animCompatibility: {fileID: 0}
@@ -388,6 +388,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -405,18 +406,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -534,6 +547,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -551,18 +565,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -680,6 +706,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -697,18 +724,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -826,6 +865,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -843,18 +883,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -972,6 +1024,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -989,18 +1042,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -1118,6 +1183,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -1135,18 +1201,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -1264,6 +1342,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -1281,18 +1360,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -1410,6 +1501,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -1427,18 +1519,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -1556,6 +1660,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -1573,18 +1678,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -1702,6 +1819,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -1719,18 +1837,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -1848,6 +1978,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -1865,18 +1996,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -1994,6 +2137,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -2011,18 +2155,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -2140,6 +2296,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -2157,18 +2314,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -2287,6 +2456,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -2304,18 +2474,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -2433,6 +2615,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -2450,18 +2633,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -2579,6 +2774,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -2596,18 +2792,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -2725,6 +2933,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -2742,18 +2951,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -2871,6 +3092,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -2888,18 +3110,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -3017,6 +3251,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -3034,18 +3269,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -3163,6 +3410,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -3180,18 +3428,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -3309,6 +3569,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -3326,18 +3587,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -3455,6 +3728,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -3472,18 +3746,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -3601,6 +3887,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -3618,18 +3905,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -3747,6 +4046,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -3764,18 +4064,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -3893,6 +4205,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -3910,18 +4223,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -4039,6 +4364,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -4056,18 +4382,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 
@@ -4185,6 +4523,7 @@ MonoBehaviour:
         IconPath: 
         MeshPath: 
         TexturePath: 
+        particleEffect: 
         NameFormat: 5
         Type: 6
         Slot: 14
@@ -4202,18 +4541,30 @@ MonoBehaviour:
           gripType: 0
           AttackType: 0
           AmmoType: 4
+          idleAnimation: 
+          attackAnimation: 
+          aimSound: 
+          attackSound: 
+          hitSound: 
           Attributes: []
           Damage: []
         AmmoData:
           Type: 4
+          hitSound: 
           Attributes: []
           Damage: []
         WearableData:
           Type: 4
+          impactSound: 
+          blockSound: 
+          stepSound: 
           Attributes: []
           Resistances: []
         AccessoryData:
           Type: 5
+          useAnimation: 
+          useParticle: 
+          useSound: 
           Attributes: []
         Material:
           Name: 

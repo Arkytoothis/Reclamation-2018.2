@@ -21,7 +21,7 @@ namespace Reclamation.Characters
         public string raceKey;
         public string professionKey;
 
-        public AttributeManager attributeManager;
+        public AttributeManager attributes;
 
         public string hair;
         public string beard;
@@ -38,32 +38,32 @@ namespace Reclamation.Characters
 
         public void SetStart(AttributeType type, int attribute, int start, int min, int max)
         {
-            attributeManager.SetStart((AttributeListType)type, attribute, start, min, max);
+            attributes.SetStart((AttributeListType)type, attribute, start, min, max);
         }
 
         public Attribute GetBase(int attribute)
         {
-            return attributeManager.GetAttribute(AttributeListType.Base, attribute);
+            return attributes.GetAttribute(AttributeListType.Base, attribute);
         }
 
         public Attribute GetDerived(int attribute)
         {
-            return attributeManager.GetAttribute(AttributeListType.Derived, attribute);
+            return attributes.GetAttribute(AttributeListType.Derived, attribute);
         }
 
         public Attribute GetSkill(Skill skill)
         {
-            return attributeManager.GetSkill(skill);
+            return attributes.GetSkill(skill);
         }
 
         public Dictionary<Skill, Attribute> GetSkills()
         {
-            return attributeManager.GetSkills();
+            return attributes.GetSkills();
         }
 
         public Attribute GetResistance(int attribute)
         {
-            return attributeManager.GetAttribute(AttributeListType.Resistance, attribute);
+            return attributes.GetAttribute(AttributeListType.Resistance, attribute);
         }
 
         public void CalculateStartAttributes(bool randomize)
@@ -75,7 +75,7 @@ namespace Reclamation.Characters
             {
                 definition = Database.GetBaseAttribute(i);
 
-                attributeManager.SetStart(AttributeListType.Base, i, start, definition.Minimum, start);
+                attributes.SetStart(AttributeListType.Base, i, start, definition.Minimum, start);
             }
 
             if (randomize == true)
@@ -102,7 +102,7 @@ namespace Reclamation.Characters
                             total < Database.Professions[professionKey].MinimumAttributes[i])
                             total = Database.Professions[professionKey].MinimumAttributes[i];
 
-                        attributeManager.SetStart(AttributeListType.Base, i, total, 0, total);
+                        attributes.SetStart(AttributeListType.Base, i, total, 0, total);
                     }
                 }
                 else
@@ -118,15 +118,15 @@ namespace Reclamation.Characters
                             total < Database.Professions[professionKey].MinimumAttributes[i])
                             total = Database.Professions[professionKey].MinimumAttributes[i];
 
-                        attributeManager.SetStart(AttributeListType.Base, i, total, 0, total);
+                        attributes.SetStart(AttributeListType.Base, i, total, 0, total);
                     }
                 }
             }
 
             for (int i = 0; i < (int)BaseAttribute.Number; i++)
             {
-                int total = attributeManager.GetAttributeValue(AttributeListType.Base, AttributeComponentType.Start, i) + attributeManager.GetAttributeValue(AttributeListType.Base, AttributeComponentType.Modifier, i);
-                attributeManager.SetStart(AttributeListType.Base, i, total, 0, total);
+                int total = attributes.GetAttributeValue(AttributeListType.Base, AttributeComponentType.Start, i) + attributes.GetAttributeValue(AttributeListType.Base, AttributeComponentType.Modifier, i);
+                attributes.SetStart(AttributeListType.Base, i, total, 0, total);
             }
         }
 
@@ -182,7 +182,7 @@ namespace Reclamation.Characters
 
                 if (start < 0) start = 0;
 
-                attributeManager.SetStart(AttributeListType.Derived, i, start, definition.Minimum, start);
+                attributes.SetStart(AttributeListType.Derived, i, start, definition.Minimum, start);
             }
         }
 
@@ -220,7 +220,7 @@ namespace Reclamation.Characters
                 //int resistance = (int)Database.Races[RaceKey].Resistances[i].DamageType;
                 int value = Database.Races[raceKey].Resistances[i].Value;
                 //Resistances[resistance].SetStart(value, 0, 100);
-                attributeManager.SetStart(AttributeListType.Resistance, i, value, 0, 100);
+                attributes.SetStart(AttributeListType.Resistance, i, value, 0, 100);
             }
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using Reclamation.Gui.Encounter;
 using Reclamation.Misc;
 using Reclamation.Props;
 using Reclamation.Characters;
@@ -22,7 +23,13 @@ namespace Reclamation.Encounter
         public List<Transform> formationTransforms;
 
         private Camera cam;
-        private int selectedPc = 0;
+        private int selectedPc = -1;
+        public int SelectedPc
+        {
+            get { return selectedPc; }
+            set { selectedPc = value; }
+        }
+
         private int formationIndex = 0;
 
         void Awake()
@@ -53,8 +60,12 @@ namespace Reclamation.Encounter
 
         public void SetCurrentPc(int index)
         {
-            selectedPc = index;
-            cam.GetComponent<CameraController>().target = pcControllers[index].gameObject.transform;
+            if (selectedPc != index)
+            {
+                selectedPc = index;
+                cam.GetComponent<CameraController>().target = pcControllers[index].gameObject.transform;
+                EncounterGuiManager.instance.characterPanel.SetData(EncounterManager.instance.GetSelectedPcData());
+            }
         }
 
         public void SetMoveMode(MoveMode mode)

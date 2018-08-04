@@ -10,11 +10,14 @@ namespace Reclamation.Gui.Encounter
     {
         public PartyPanel partyPanel;
         public CharacterViewer characterViewer;
+        public CharacterPanel characterPanel;
 
         public void Initialize()
         {
             partyPanel.Initialize();
             characterViewer.Initialize();
+            characterPanel.Initialize();
+            characterPanel.SetData(EncounterManager.instance.GetSelectedPcData());
         }
 
         void Update()

@@ -5,18 +5,26 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using Reclamation.Abilities;
+using Reclamation.Audio;
+using Reclamation.Misc;
 using System;
 
 namespace Reclamation.Gui
 {
     public class ActionButton : GuiElement
     {
-        public ActionButtonData skinData;
-        public Image cooldownImage;
-        public TMP_Text cooldownLabel;
-        public Button button;
-        public float cooldown;
-        bool isCooldown = false;
+        [SerializeField] ActionButtonData skinData;
+        [SerializeField] Image icon;
+        [SerializeField] Image cooldownImage;
+        [SerializeField] TMP_Text cooldownLabel;
+        [SerializeField] TMP_Text hotkeyLabel;
+        [SerializeField] Button button;
+        [SerializeField] float cooldown;
+
+
+        [SerializeField] bool isCooldown = false;
+        [SerializeField] int index = -1;
+        public int Index { get { return index; } }
 
         protected override void OnSkinGui()
         {
@@ -38,10 +46,10 @@ namespace Reclamation.Gui
         {
             if (isCooldown == false)
             {
-                Debug.Log("Action Triggered");
+                //Debug.Log("Action Triggered");
                 isCooldown = true;
                 cooldownImage.fillAmount = 1;
-                AudioManager.instance.PlaySound("button 01");
+                AudioManager.instance.PlaySound("button 02", false);
             }
         }
 
@@ -63,12 +71,22 @@ namespace Reclamation.Gui
                 }
             }
         }
-
+        public void SetData(int index, Ability ability)
+        {
+            this.index = index;
+            SetData(ability);
+        }
 
         public void SetData(Ability ability)
         {
             if (ability != null)
             {
+                hotkeyLabel.text = (index + 1).ToString();
+                cooldown = ability.cooldown;
+
+                if (ability.SpriteKey == "") Debug.Log(ability.Name);
+                icon.sprite = SpriteManager.instance.GetAbilitySprite(ability.SpriteKey);
+                icon.color = Color.white;
                 //this.pc = pc;
                 //GameObject go = null;
                 //AttributeBar bar = null;
@@ -95,8 +113,12 @@ namespace Reclamation.Gui
             }
             else
             {
-                //nameLabel.text = "";
-                //portrait.texture = null;
+                cooldown = 0;
+                cooldownLabel.text = "";
+                cooldownImage.fillAmount = 0;
+                hotkeyLabel.text = (index + 1).ToString();
+                icon.color = Color.clear;
+                icon.sprite = null;
             }
         }
     }

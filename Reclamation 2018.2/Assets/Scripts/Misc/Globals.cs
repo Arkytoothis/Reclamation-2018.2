@@ -128,7 +128,9 @@ namespace Reclamation.Misc
     }
 
     public enum AttributeField
-    { Start, Current, Minimum, Maximum, Modifier }
+    {
+        Start, Current, Minimum, Maximum, Modifier
+    }
 
     public enum Gender
     {

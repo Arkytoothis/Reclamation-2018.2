@@ -37,7 +37,7 @@ namespace Reclamation.Characters
         public new void SetStart(AttributeType type, int attribute, int start, int min, int max)
         {
             if (start == 0) return;
-            attributeManager.SetStart((AttributeListType)type, attribute, start, min, max);
+            attributes.SetStart((AttributeListType)type, attribute, start, min, max);
         }
 
         //public event OnArmorChange onArmorChange;
@@ -71,16 +71,16 @@ namespace Reclamation.Characters
 
             description = "";
 
-            attributeManager = new AttributeManager();
+            attributes = new AttributeManager();
 
             for (int i = 0; i < (int)BaseAttribute.Number; i++)
-                attributeManager.AddAttribute(AttributeListType.Base, new Attribute(AttributeType.Base, i, GameSettings.AttributeExpCost));
+                attributes.AddAttribute(AttributeListType.Base, new Attribute(AttributeType.Base, i, GameSettings.AttributeExpCost));
 
             for (int i = 0; i < (int)DerivedAttribute.Number; i++)
-                attributeManager.AddAttribute(AttributeListType.Derived, new Attribute(AttributeType.Derived, i, 0));
+                attributes.AddAttribute(AttributeListType.Derived, new Attribute(AttributeType.Derived, i, 0));
 
             for (int i = 0; i < (int)DamageType.Number; i++)
-                attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
+                attributes.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
 
             abilities = new List<Ability>();
             inventory = new CharacterInventory();
@@ -101,21 +101,21 @@ namespace Reclamation.Characters
 
             combatStatus = CombatStatus.Awake;
 
-            attributeManager = new AttributeManager();
+            attributes = new AttributeManager();
 
             for (int i = 0; i < (int)BaseAttribute.Number; i++)
             {
-                attributeManager.AddAttribute(AttributeListType.Base, new Attribute(AttributeType.Base, i, GameSettings.AttributeExpCost));
+                attributes.AddAttribute(AttributeListType.Base, new Attribute(AttributeType.Base, i, GameSettings.AttributeExpCost));
             }
 
             for (int i = 0; i < (int)DerivedAttribute.Number; i++)
             {
-                attributeManager.AddAttribute(AttributeListType.Derived, new Attribute(AttributeType.Derived, i, 0));
+                attributes.AddAttribute(AttributeListType.Derived, new Attribute(AttributeType.Derived, i, 0));
             }
 
             for (int i = 0; i < (int)DamageType.Number; i++)
             {
-                attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
+                attributes.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
             }
 
             abilities = new List<Ability>();
@@ -146,21 +146,21 @@ namespace Reclamation.Characters
 
             combatStatus = npc.combatStatus;
 
-            attributeManager = new AttributeManager();
+            attributes = new AttributeManager();
 
             for (int i = 0; i < (int)BaseAttribute.Number; i++)
             {
-                attributeManager.AddAttribute(AttributeListType.Base, new Attribute(npc.attributeManager.GetAttribute(AttributeListType.Base, i)));
+                attributes.AddAttribute(AttributeListType.Base, new Attribute(npc.attributes.GetAttribute(AttributeListType.Base, i)));
             }
 
             for (int i = 0; i < (int)DerivedAttribute.Number; i++)
             {
-                attributeManager.AddAttribute(AttributeListType.Derived, new Attribute(npc.attributeManager.GetAttribute(AttributeListType.Derived, i)));
+                attributes.AddAttribute(AttributeListType.Derived, new Attribute(npc.attributes.GetAttribute(AttributeListType.Derived, i)));
             }
 
             for (int i = 0; i < (int)DamageType.Number; i++)
             {
-                attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(npc.attributeManager.GetAttribute(AttributeListType.Resistance, i)));
+                attributes.AddAttribute(AttributeListType.Resistance, new Attribute(npc.attributes.GetAttribute(AttributeListType.Resistance, i)));
             }
 
             abilities = new List<Ability>();
@@ -170,7 +170,7 @@ namespace Reclamation.Characters
 
         public void SetupController(PcController controller)
         {
-            attributeManager.controller = controller;
+            attributes.controller = controller;
         }
     }
 }

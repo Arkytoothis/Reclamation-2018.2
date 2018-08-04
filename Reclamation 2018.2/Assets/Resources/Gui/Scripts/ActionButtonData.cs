@@ -14,6 +14,6 @@ namespace Reclamation.Gui
         public Color cooldownTextColor;
 
         [Header("Sound Data")]
-        public Sound clickSound;
+        public string clickSound;
     }
 }

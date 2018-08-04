@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Audio;
 using Reclamation.Characters;
 using Reclamation.Equipment;
 using Reclamation.Misc;
@@ -14,8 +15,9 @@ namespace Reclamation.Encounter
     {
         const int MaxParties = 10;
 
-        public List<PartyData> parties;
-        public List<GameObject> pcs;
+        private List<PartyData> parties;
+        private List<GameObject> pcs;
+        public int PcsCount { get { return pcs.Count; } } 
         public UltimateTextDamageManager textManagerWorld;
 
         void Awake()
@@ -31,6 +33,7 @@ namespace Reclamation.Encounter
             PcGenerator.Initialize();
             NpcGenerator.Initialize();
 
+            SpriteManager.instance.Initialize();
             AudioManager.instance.Initialize();
             ModelManager.instance.Initialize();
             MessageSystem.instance.Initialize();
@@ -84,7 +87,6 @@ namespace Reclamation.Encounter
                     if (pcs[i] != null)
                     {
                         pcs[i].GetComponent<PcController>().CurrentDefense.Heal(1000);
-                        AudioManager.instance.PlaySound("heal 01");
                     }
                 }
             }
@@ -123,6 +125,82 @@ namespace Reclamation.Encounter
             {
                 EncounterPartyManager.instance.SetCurrentPc(5);
             }
+        }
+
+        public PcData GetPcData(string name)
+        {
+            PcData pcData = null;
+
+            foreach (GameObject go in pcs)
+            {
+                pcData = go.GetComponent<PcController>().PcData;
+
+                if (pcData.name.FullName.Equals(name) == true)
+                {
+                    Debug.Log("PcData for " + name + " found");
+                    break;
+                }
+            }
+
+            if (pcData == null)
+            {
+                Debug.Log("PcData for " + name + " not found");
+            }
+
+            return pcData;
+        }
+
+        public PcData GetPcData(int index)
+        {
+            if (index < 0 || index > pcs.Count - 1)
+            {
+                return null;
+            }
+
+            PcData pcData = pcs[index].GetComponent<PcController>().PcData;
+
+            if (pcData == null)
+            {
+                Debug.Log("pcData == null");
+            }
+
+            return pcData;
+        }
+
+        public GameObject GetPcObject(int index)
+        {
+            if (index < 0 || index > pcs.Count - 1)
+            {
+                return null;
+            }
+
+            GameObject go = pcs[index];
+
+            if (go == null)
+            {
+                Debug.Log("pcData == null");
+            }
+
+            return go;
+        }
+
+        public PcData GetSelectedPcData()
+        {
+            int index = EncounterPartyManager.instance.SelectedPc;
+
+            if (index < 0 || index > pcs.Count - 1)
+            {
+                return null;
+            }
+
+            PcData pcData = pcs[index].GetComponent<PcController>().PcData;
+
+            if (pcData == null)
+            {
+                Debug.Log("pcData == null");
+            }
+
+            return pcData;
         }
     }
 }

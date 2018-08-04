@@ -13,6 +13,6 @@ namespace Reclamation.Gui
         public ColorBlock buttonColors;
 
         [Header("Sound Data")]
-        public Sound clickSound;
+        public string clickSound;
     }
 }

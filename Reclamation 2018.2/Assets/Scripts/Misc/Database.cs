@@ -1345,6 +1345,7 @@ namespace Reclamation.Misc
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Survival, 2, 1));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Shadow_Magic, 1, 0));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Light_Armor, 1, 0));
+            temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Stealth", 1));
             temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Pickpocket", 1));
             temp.AttributePriorities.Add(BaseAttribute.Dexterity);
             temp.AttributePriorities.Add(BaseAttribute.Agility);
@@ -1401,7 +1402,7 @@ namespace Reclamation.Misc
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Lore, 1, 1));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Arcane_Magic, 1, 1));
             temp.SkillProficiencies.Add(new SkillProficiency(Skill.Alchemy, 1, 0));
-            temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Metamagic - Empower", 1));
+            temp.Powers.Add(new AbilityUnlock(AbilityType.Power, "Empower Spell", 1));
             temp.AttributePriorities.Add(BaseAttribute.Intellect);
             temp.AttributePriorities.Add(BaseAttribute.Memory);
             temp.AttributePriorities.Add(BaseAttribute.Dexterity);
@@ -1720,7 +1721,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new DurationComponent(DurationType.Permanent));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Scaly Hide", "Scaly Hide", "trait", AbilityClass.None, AbilityType.Trait, 0, Skill.None);
+            ability = new Ability("Scaly Hide", "Scaly Hide", "trait", AbilityClass.None, AbilityType.Trait, 5f, 0, Skill.None);
             ability.Components.Add(new TraitTypeComponent(TraitType.Misc));
             ability.Components.Add(new DurationComponent(DurationType.Permanent));
             abilities.Add(ability.Key, ability);
@@ -1738,7 +1739,7 @@ namespace Reclamation.Misc
 
         static void LoadPowers()
         {
-            Ability ability = new Ability("Strike", "Strike", "abilities_178", AbilityClass.Encounter, AbilityType.Power, 0, Skill.One_Hand_Melee, 1);
+            Ability ability = new Ability("Strike", "Strike", "strike", AbilityClass.Encounter, AbilityType.Power, 1f, 0, Skill.One_Hand_Melee, 1);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1747,7 +1748,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Power Strike", "Power Strike", "abilities_178", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.One_Hand_Melee, 5);
+            ability = new Ability("Power Strike", "Power Strike", "power strike", AbilityClass.Encounter, AbilityType.Power, 5f, 1000, Skill.One_Hand_Melee, 5);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1756,7 +1757,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("2H Strike", "2H Strike", "abilities_178", AbilityClass.Encounter, AbilityType.Power, 0, Skill.Two_hand_Melee, 1);
+            ability = new Ability("Reckless Strike", "Reckless Strike", "reckless strike", AbilityClass.Encounter, AbilityType.Power, 5f, 1000, Skill.Two_hand_Melee, 5);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1765,16 +1766,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Reckless Strike", "Reckless Strike", "abilities_439", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Two_hand_Melee, 5);
-            ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
-            ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
-            ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
-            ability.Components.Add(new RangeComponent(RangeType.Weapon));
-            ability.Components.Add(new TargetComponent(TargetType.Enemy));
-            ability.Components.Add(new AreaComponent(AreaType.Single));
-            abilities.Add(ability.Key, ability);
-
-            ability = new Ability("Whirlwind", "Whirlwind", "abilities_439", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Two_hand_Melee, 10);
+            ability = new Ability("Whirlwind", "Whirlwind", "whirlwind", AbilityClass.Encounter, AbilityType.Power, 5f, 1000, Skill.Two_hand_Melee, 10);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1783,7 +1775,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Sphere));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Long Strike", "Long Strike", "abilities_343", AbilityClass.Encounter, AbilityType.Power, 0, Skill.Polearms, 1);
+            ability = new Ability("Long Strike", "Long Strike", "long strike", AbilityClass.Encounter, AbilityType.Power, 5f, 0, Skill.Polearms, 1);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1792,7 +1784,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Beam));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Piercing Strike", "Piercing Strike", "abilities_343", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Polearms, 5);
+            ability = new Ability("Piercing Strike", "Piercing Strike", "piercing strike", AbilityClass.Encounter, AbilityType.Power, 5f, 1000, Skill.Polearms, 5);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1801,7 +1793,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Beam));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Stunning Blow", "Stunning Blow", "abilities_345", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.One_Hand_Melee, 5);
+            ability = new Ability("Stunning Blow", "Stunning Blow", "stunning blow", AbilityClass.Encounter, AbilityType.Power, 5f, 1000, Skill.One_Hand_Melee, 5);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1811,7 +1803,7 @@ namespace Reclamation.Misc
             abilities.Add(ability.Key, ability);
 
 
-            ability = new Ability("Taunt", "Taunt", "abilities_419", AbilityClass.Encounter, AbilityType.Power);
+            ability = new Ability("Taunt", "Taunt", "taunt", AbilityClass.Encounter, AbilityType.Power, 5f);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1820,7 +1812,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Improved Taunt", "Improved Taunt", "abilities_419", AbilityClass.Encounter, AbilityType.Power, 1000);
+            ability = new Ability("Provoke", "Provoke", "provoke", AbilityClass.Encounter, AbilityType.Power, 5f, 1000);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1829,7 +1821,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Sphere));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Pickpocket", "Pickpocket", "abilities_429", AbilityClass.Encounter, AbilityType.Power);
+            ability = new Ability("Stealth", "Stealth", "stealth", AbilityClass.Encounter, AbilityType.Power, 5f);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1838,37 +1830,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Metamagic - Empower", "Metamagic - Empower", "abilities_404", AbilityClass.Encounter, AbilityType.Power);
-            ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
-            ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
-            abilities.Add(ability.Key, ability);
-
-            ability = new Ability("Metamagic - Overcharge", "Metamagic - Overcharge", "abilities_404", AbilityClass.Encounter, AbilityType.Power, 1000);
-            ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
-            ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
-            abilities.Add(ability.Key, ability);
-
-            ability = new Ability("Metamagic - Quicken", "Metamagic - Quicken", "abilities_404", AbilityClass.Encounter, AbilityType.Power, 1000);
-            ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
-            ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
-            abilities.Add(ability.Key, ability);
-
-            ability = new Ability("Eagle Eye", "Eagle Eye", "abilities_310", AbilityClass.Encounter, AbilityType.Power, 1000);
-            ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
-            ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
-            abilities.Add(ability.Key, ability);
-
-            ability = new Ability("Repair", "Repair", "power", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Crafting, 5);
-            ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
-            ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
-            abilities.Add(ability.Key, ability);
-
-            ability = new Ability("Rebuild", "Rebuild", "power", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Engineering, 5);
-            ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
-            ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
-            abilities.Add(ability.Key, ability);
-
-            ability = new Ability("Careful Strike", "Careful Strike", "abilities_4", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.One_Hand_Melee, 5);
+            ability = new Ability("Pickpocket", "Pickpocket", "pickpocket", AbilityClass.Encounter, AbilityType.Power, 5f);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1877,7 +1839,37 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Shoot", "Shoot", "abilities_118", AbilityClass.Encounter, AbilityType.Power, 0, Skill.Archery, 1);
+            ability = new Ability("Empower Spell", "Empower Spell", "metamagic empower", AbilityClass.Encounter, AbilityType.Power, 5f);
+            ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
+            ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
+            abilities.Add(ability.Key, ability);
+
+            ability = new Ability("Overcharge Spell", "Overcharge Spell", "metamagic overcharge", AbilityClass.Encounter, AbilityType.Power, 5f, 1000);
+            ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
+            ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
+            abilities.Add(ability.Key, ability);
+
+            ability = new Ability("Metamagic - Quicken", "Metamagic - Quicken", "metamagic quicken", AbilityClass.Encounter, AbilityType.Power, 5f, 1000);
+            ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
+            ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
+            abilities.Add(ability.Key, ability);
+
+            ability = new Ability("Eagle Eye", "Eagle Eye", "eagle eye", AbilityClass.Encounter, AbilityType.Power, 5f, 1000);
+            ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
+            ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
+            abilities.Add(ability.Key, ability);
+
+            ability = new Ability("Repair", "Repair", "repair", AbilityClass.Encounter, AbilityType.Power, 5f, 1000, Skill.Crafting, 5);
+            ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
+            ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
+            abilities.Add(ability.Key, ability);
+
+            ability = new Ability("Rebuild", "Rebuild", "rebuild", AbilityClass.Encounter, AbilityType.Power, 5f, 1000, Skill.Engineering, 5);
+            ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
+            ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
+            abilities.Add(ability.Key, ability);
+
+            ability = new Ability("Careful Strike", "Careful Strike", "careful strike", AbilityClass.Encounter, AbilityType.Power, 5f, 1000, Skill.One_Hand_Melee, 5);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1886,7 +1878,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Accurate Shot", "Accurate Shot", "abilities_118", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Archery, 5);
+            ability = new Ability("Shoot", "Shoot", "shoot", AbilityClass.Encounter, AbilityType.Power, 5f, 0, Skill.Archery, 1);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1895,7 +1887,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Fire", "Fire", "abilities_118", AbilityClass.Encounter, AbilityType.Power, 0, Skill.Firearms, 1);
+            ability = new Ability("Accurate Shot", "Accurate Shot", "accurate shot", AbilityClass.Encounter, AbilityType.Power, 5f, 1000, Skill.Archery, 5);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1904,7 +1896,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Throw", "Throw", "abilities_118", AbilityClass.Encounter, AbilityType.Power, 0, Skill.Thrown, 1);
+            ability = new Ability("Fire", "Fire", "fire", AbilityClass.Encounter, AbilityType.Power, 5f, 0, Skill.Firearms, 1);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1913,7 +1905,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Trick Throw", "Trick Throw", "abilities_291", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Tricks, 5);
+            ability = new Ability("Throw", "Throw", "throw", AbilityClass.Encounter, AbilityType.Power, 5f, 0, Skill.Thrown, 1);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1922,7 +1914,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Point Blank Shot", "Point Blank Shot", "abilities_421", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Firearms, 5);
+            ability = new Ability("Trick Throw", "Trick Throw", "trick throw", AbilityClass.Encounter, AbilityType.Power, 5f, 1000, Skill.Tricks, 5);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1931,7 +1923,16 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Bestial Rage", "Bestial Rage", "abilities_424", AbilityClass.Encounter, AbilityType.Power);
+            ability = new Ability("Point Blank Shot", "Point Blank Shot", "point blank shot", AbilityClass.Encounter, AbilityType.Power, 5f, 1000, Skill.Firearms, 5);
+            ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
+            ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
+            ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
+            ability.Components.Add(new RangeComponent(RangeType.Weapon));
+            ability.Components.Add(new TargetComponent(TargetType.Enemy));
+            ability.Components.Add(new AreaComponent(AreaType.Single));
+            abilities.Add(ability.Key, ability);
+
+            ability = new Ability("Bestial Rage", "Bestial Rage", "bestial rage", AbilityClass.Encounter, AbilityType.Power, 5f);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1940,7 +1941,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Buckler Block", "Buckler Block", "abilities_257", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Bucklers, 1);
+            ability = new Ability("Buckler Block", "Buckler Block", "buckler block", AbilityClass.Encounter, AbilityType.Power, 5f, 1000, Skill.Bucklers, 1);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1949,7 +1950,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Shield Block", "Shield Block", "abilities_257", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Shields, 1);
+            ability = new Ability("Shield Block", "Shield Block", "shield block", AbilityClass.Encounter, AbilityType.Power, 5f, 1000, Skill.Shields, 1);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1958,7 +1959,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Rally", "Rally", "abilities_445", AbilityClass.Encounter, AbilityType.Power, 1000, Skill.Leadership, 1);
+            ability = new Ability("Rally", "Rally", "rally", AbilityClass.Encounter, AbilityType.Power, 5f, 1000, Skill.Leadership, 1);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.Turn, 5));
@@ -1967,7 +1968,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Single));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Fire Breath", "Fire Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
+            ability = new Ability("Fire Breath", "Fire Breath", "", AbilityClass.Encounter, AbilityType.Power, 5f);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.None));
@@ -1975,7 +1976,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Cone));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Lava Breath", "Lava Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
+            ability = new Ability("Lava Breath", "Lava Breath", "", AbilityClass.Encounter, AbilityType.Power, 5f);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.None));
@@ -1983,7 +1984,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Cone));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Lightning Breath", "Lightning Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
+            ability = new Ability("Lightning Breath", "Lightning Breath", "", AbilityClass.Encounter, AbilityType.Power, 5f);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.None));
@@ -1991,7 +1992,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Cone));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Ice Breath", "Ice Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
+            ability = new Ability("Ice Breath", "Ice Breath", "", AbilityClass.Encounter, AbilityType.Power, 5f);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.None));
@@ -1999,7 +2000,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Cone));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Poison Breath", "Poison Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
+            ability = new Ability("Poison Breath", "Poison Breath", "", AbilityClass.Encounter, AbilityType.Power, 5f);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.None));
@@ -2007,7 +2008,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Cone));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Acid Breath", "Acid Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
+            ability = new Ability("Acid Breath", "Acid Breath", "", AbilityClass.Encounter, AbilityType.Power, 5f);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.None));
@@ -2015,7 +2016,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Cone));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Holy Breath", "Holy Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
+            ability = new Ability("Holy Breath", "Holy Breath", "", AbilityClass.Encounter, AbilityType.Power, 5f);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.None));
@@ -2023,7 +2024,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Cone));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Unholy Breath", "Unholy Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
+            ability = new Ability("Unholy Breath", "Unholy Breath", "", AbilityClass.Encounter, AbilityType.Power, 5f);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.None));
@@ -2031,7 +2032,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Cone));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Shadow Breath", "Shadow Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
+            ability = new Ability("Shadow Breath", "Shadow Breath", "", AbilityClass.Encounter, AbilityType.Power, 5f);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.None));
@@ -2039,7 +2040,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new AreaComponent(AreaType.Cone));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Arcane Breath", "Arcane Breath", "abilities_380", AbilityClass.Encounter, AbilityType.Power);
+            ability = new Ability("Arcane Breath", "Arcane Breath", "", AbilityClass.Encounter, AbilityType.Power, 5f);
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Stamina, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
             ability.Components.Add(new CooldownComponent(TimeType.None));
@@ -2050,7 +2051,7 @@ namespace Reclamation.Misc
 
         static void LoadSpells()
         {
-            Ability ability = new Ability("Torchlight", "Torchlight", "abilities_24", AbilityClass.Encounter, AbilityType.Spell, 0, Skill.Fire_Magic, 1);
+            Ability ability = new Ability("Torchlight", "Torchlight", "torchlight", AbilityClass.Encounter, AbilityType.Spell, 5f, 0, Skill.Fire_Magic, 1);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Fire, 1));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
@@ -2058,7 +2059,7 @@ namespace Reclamation.Misc
             ability.Components.Add(new TargetComponent(TargetType.Self, 1));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Firebolt", "Firebolt", "abilities_24", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Fire_Magic, 5);
+            ability = new Ability("Firebolt", "Firebolt", "firebolt", AbilityClass.Encounter, AbilityType.Spell, 5f, 1000, Skill.Fire_Magic, 5);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Fire, 1));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
@@ -2069,7 +2070,7 @@ namespace Reclamation.Misc
             ability.Effects.Add(new DamageEffect(DamageType.Fire, (int)DerivedAttribute.Health, new GameValue(1), new GameValue(1, 3), 0, 0, 0f, 3));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Fireball", "Fireball", "abilities_19", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Fire_Magic, 10);
+            ability = new Ability("Fireball", "Fireball", "fireball", AbilityClass.Encounter, AbilityType.Spell, 5f, 1000, Skill.Fire_Magic, 10);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Fire, 3));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 20));
             ability.Components.Add(new DurationComponent(DurationType.Instant));
@@ -2081,7 +2082,7 @@ namespace Reclamation.Misc
             ability.Effects.Add(new DamageEffect(DamageType.Fire, (int)DerivedAttribute.Health, new GameValue(1, 2), new GameValue(1, 4), 0, 0, 0f, 3));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Hasten", "Hasten", "abilities_24", AbilityClass.Encounter, AbilityType.Spell, 0, Skill.Air_Magic, 1);
+            ability = new Ability("Hasten", "Hasten", "hasten", AbilityClass.Encounter, AbilityType.Spell, 5f, 0, Skill.Air_Magic, 1);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Fire, 1));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
@@ -2090,7 +2091,7 @@ namespace Reclamation.Misc
             //ability.Effects.Add(new RestoreEffect(RestoreType.Actions, new GameValue(2, 6), GameValue.Zero, true, 3));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Shockbolt", "Shockbolt", "abilities_293", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Air_Magic, 5);
+            ability = new Ability("Shockbolt", "Shockbolt", "shockbolt", AbilityClass.Encounter, AbilityType.Spell, 5f, 1000, Skill.Air_Magic, 5);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Air, 1));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
@@ -2101,7 +2102,7 @@ namespace Reclamation.Misc
             ability.Effects.Add(new DamageEffect(DamageType.Shock, (int)DerivedAttribute.Stamina, new GameValue(1, 6), GameValue.Zero, 0, 0, 0f, 3));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Lightning Bolt", "Lightning Bolt", "abilities_375", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Air_Magic, 10);
+            ability = new Ability("Lightning Bolt", "Lightning Bolt", "lightning bolt", AbilityClass.Encounter, AbilityType.Spell, 5f, 1000, Skill.Air_Magic, 10);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Air, 3));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 25));
             ability.Components.Add(new DurationComponent(DurationType.Instant, TimeType.None));
@@ -2113,7 +2114,7 @@ namespace Reclamation.Misc
             ability.Effects.Add(new DamageEffect(DamageType.Shock, (int)DerivedAttribute.Stamina, new GameValue(1, 6), GameValue.Zero, 0, 0, 0f, 3));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Armor!", "Armor!", "abilities_420", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Earth_Magic, 1);
+            ability = new Ability("Armor!", "Armor!", "armor!", AbilityClass.Encounter, AbilityType.Spell, 5f, 1000, Skill.Earth_Magic, 1);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Earth, 1));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant));
@@ -2123,7 +2124,7 @@ namespace Reclamation.Misc
             //ability.Effects.Add(new RestoreEffect(RestoreType.Armor, new GameValue(1, 4), GameValue.Zero, true, 3));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Stone Skin", "Stone Skin", "abilities_420", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Earth_Magic, 5);
+            ability = new Ability("Stone Skin", "Stone Skin", "stone skin", AbilityClass.Encounter, AbilityType.Spell, 5f, 1000, Skill.Earth_Magic, 5);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Earth, 1));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant));
@@ -2134,7 +2135,7 @@ namespace Reclamation.Misc
             ability.Effects.Add(new AlterCharacteristicEffect(AttributeType.Resistance, (int)DamageType.Physical, new GameValue(10), new GameValue(2, 6)));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Lesser Regen", "Lesser Regen", "abilities_82", AbilityClass.Encounter, AbilityType.Spell, 0, Skill.Water_Magic, 1);
+            ability = new Ability("Lesser Regen", "Lesser Regen", "lesser regen", AbilityClass.Encounter, AbilityType.Spell, 5f, 0, Skill.Water_Magic, 1);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Water, 2));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 15));
             ability.Components.Add(new DurationComponent(DurationType.Duration));
@@ -2144,7 +2145,7 @@ namespace Reclamation.Misc
             //ability.Effects.Add(new RestoreEffect(RestoreType.Health, new GameValue(1, 4), new GameValue(2, 6), false, 5));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Lesser Drain", "Lesser Drain", "abilities_163", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Death_Magic, 5);
+            ability = new Ability("Lesser Drain", "Lesser Drain", "lesser drain", AbilityClass.Encounter, AbilityType.Spell, 5f, 1000, Skill.Death_Magic, 5);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Death, 1));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
             ability.Components.Add(new DurationComponent(DurationType.Duration));
@@ -2155,7 +2156,7 @@ namespace Reclamation.Misc
             //ability.Effects.Add(new RestoreEffect(RestoreType.Health, new GameValue(1, 6), GameValue.Zero, true, 3));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Curse", "Curse", "abilities_171", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Death_Magic, 1);
+            ability = new Ability("Curse", "Curse", "curse", AbilityClass.Encounter, AbilityType.Spell, 5f, 1000, Skill.Death_Magic, 1);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Death, 1));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant));
@@ -2167,7 +2168,7 @@ namespace Reclamation.Misc
             //ability.Effects.Add(new RestoreEffect(RestoreType.Morale, new GameValue(-1, -4), GameValue.Zero, false, 2));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Lesser Heal", "Lesser Heal", "abilities_188", AbilityClass.Encounter, AbilityType.Spell, 0, Skill.Life_Magic, 1);
+            ability = new Ability("Lesser Heal", "Lesser Heal", "lesser heal", AbilityClass.Encounter, AbilityType.Spell, 5f, 0, Skill.Life_Magic, 1);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Life, 1));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
             ability.Components.Add(new DurationComponent(DurationType.Duration));
@@ -2177,7 +2178,7 @@ namespace Reclamation.Misc
             //ability.Effects.Add(new RestoreEffect(RestoreType.Health, new GameValue(1, 6), GameValue.Zero, false, 2));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Lesser Courage", "Lesser Courage", "abilities_315", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Life_Magic, 5);
+            ability = new Ability("Lesser Courage", "Lesser Courage", "lesser courage", AbilityClass.Encounter, AbilityType.Spell, 5f, 1000, Skill.Life_Magic, 5);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Life, 2));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
             ability.Components.Add(new DurationComponent(DurationType.Duration));
@@ -2187,7 +2188,7 @@ namespace Reclamation.Misc
             //ability.Effects.Add(new RestoreEffect(RestoreType.Morale, new GameValue(1, 6), GameValue.Zero, false, 2));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Bless", "Bless", "abilities_189", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Life_Magic, 1);
+            ability = new Ability("Bless", "Bless", "bless", AbilityClass.Encounter, AbilityType.Spell, 5f, 1000, Skill.Life_Magic, 1);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Life, 1));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 10));
             ability.Components.Add(new DurationComponent(DurationType.Instant));
@@ -2199,21 +2200,21 @@ namespace Reclamation.Misc
             //ability.Effects.Add(new RestoreEffect(RestoreType.Morale, new GameValue(1, 4), GameValue.Zero, false, 2));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Mirror Image", "Mirror Image", "abilities_191", AbilityClass.World, AbilityType.Spell, 1000, Skill.Shadow_Magic, 5);
+            ability = new Ability("Mirror Image", "Mirror Image", "mirror image", AbilityClass.World, AbilityType.Spell, 5f, 1000, Skill.Shadow_Magic, 5);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Shadow, 1));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 20));
             ability.Components.Add(new DurationComponent(DurationType.Instant));
             ability.Components.Add(new CooldownComponent(TimeType.Minute, 1));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Detect Illusion", "Detect Illusion", "abilities_468", AbilityClass.World, AbilityType.Spell, 1000, Skill.Shadow_Magic, 1);
+            ability = new Ability("Detect Illusion", "Detect Illusion", "detect illusion", AbilityClass.World, AbilityType.Spell, 5f, 1000, Skill.Shadow_Magic, 1);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Shadow, 1));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 20));
             ability.Components.Add(new DurationComponent(DurationType.Instant));
             ability.Components.Add(new CooldownComponent(TimeType.Minute, 1));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Arcane Missile", "Arcane Missile", "abilities_406", AbilityClass.Encounter, AbilityType.Spell, 1000, Skill.Arcane_Magic, 5);
+            ability = new Ability("Arcane Missile", "Arcane Missile", "arcane missile", AbilityClass.Encounter, AbilityType.Spell, 5f, 1000, Skill.Arcane_Magic, 5);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Arcane, 1));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 20));
             ability.Components.Add(new DurationComponent(DurationType.Instant));
@@ -2225,7 +2226,7 @@ namespace Reclamation.Misc
             ability.Effects.Add(new DamageEffect(DamageType.Arcane, (int)DerivedAttribute.Essence, new GameValue(1, 4), GameValue.Zero, 0, 0, 0f, 3));
             abilities.Add(ability.Key, ability);
 
-            ability = new Ability("Identify", "Identify", "abilities_442", AbilityClass.World, AbilityType.Spell, 1000, Skill.Arcane_Magic, 1);
+            ability = new Ability("Identify", "Identify", "identify", AbilityClass.World, AbilityType.Spell, 5f, 1000, Skill.Arcane_Magic, 1);
             ability.Components.Add(new SpellLevelComponent(SpellSchoolType.Arcane, 1));
             ability.Components.Add(new ResourceComponent(DerivedAttribute.Essence, 20));
             ability.Components.Add(new DurationComponent(DurationType.Instant));

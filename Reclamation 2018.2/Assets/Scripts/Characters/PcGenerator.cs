@@ -205,8 +205,8 @@ namespace Reclamation.Characters
             pc.CalculateResistances();
             pc.CalculateExpCosts();
 
-            //pc.Abilities.PowerSlots = (pc.BaseAttributes[(int)BaseAttribute.Memory].Current / 5) + 1;
-            //pc.Abilities.SpellSlots = (pc.BaseAttributes[(int)BaseAttribute.Memory].Current / 5) + 1;
+            pc.abilities.PowerSlots = (pc.attributes.GetAttribute(AttributeListType.Derived, (int)BaseAttribute.Memory).Current / 5) + 1;
+            pc.abilities.SpellSlots = (pc.attributes.GetAttribute(AttributeListType.Derived, (int)BaseAttribute.Memory).Current / 5) + 1;
 
             pc.abilities.FindTraits();
             pc.abilities.FindAvailableAbilities();

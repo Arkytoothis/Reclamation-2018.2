@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Encounter;
 using Reclamation.Props;
 using Reclamation.Gui;
 using Reclamation.Misc;
@@ -28,7 +29,7 @@ namespace Reclamation.Characters
 
         private NpcData npcData;
         public NpcData NpcData { get { return npcData; } }
-        public new AttributeManager Attributes { get { return npcData.attributeManager; } }
+        public new AttributeManager Attributes { get { return npcData.attributes; } }
 
         [SerializeField] IAttack currentAttack;
         [SerializeField] IDamageable currentDefense;
@@ -41,6 +42,8 @@ namespace Reclamation.Characters
         public event OnRevive onRevive;
         public event OnInteract onInteract;
         public event OnAttack onAttack;
+
+        bool healthBarEnabled = false;
 
         void Awake()
         {
@@ -78,11 +81,17 @@ namespace Reclamation.Characters
 
             currentDefense.SetController(npcData);
             currentAttack.SetController(npcData);
-            npcData.attributeManager.controller = this;
+            npcData.attributes.controller = this;
+            DisableHealthBar();
         }
 
         void Update()
         {
+            if (CheckIsAlive() == true && healthBarEnabled == false && Vector3.Distance(transform.position, EncounterManager.instance.GetPcObject(0).transform.position) <= perceptionRadius)
+            {
+                EnableHealthBar();
+            }
+
             if (CheckIsAlive() == true && target != null)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
@@ -157,11 +166,10 @@ namespace Reclamation.Characters
             rvo.enabled = false;
             highlighter.enabled = false;
             collider.enabled = false;
-
-            gui.gameObject.SetActive(false);
             CanMove(false);
             ProcessDissolve();
-            
+
+            DisableHealthBar();
             Destroy(this.gameObject, 5.1f);
             onDeath();
 
@@ -178,8 +186,10 @@ namespace Reclamation.Characters
             highlighter.enabled = true;
             collider.enabled = true;
 
+            EnableHealthBar();
             CanMove(true);
             onRevive();
+
             MessageSystem.instance.AddMessage(npcData.name.FirstName + " has revived");
         }
 
@@ -197,7 +207,19 @@ namespace Reclamation.Characters
 
         public override void ModifyAttribute(AttributeType type, int attribute, int value)
         {
-            npcData.attributeManager.ModifyAttribute(type, attribute, value);
+            npcData.attributes.ModifyAttribute(type, attribute, value);
+        }
+
+        public void EnableHealthBar()
+        {
+            gui.gameObject.SetActive(true);
+            healthBarEnabled = true;
+        }
+
+        public void DisableHealthBar()
+        {
+            gui.gameObject.SetActive(false);
+            healthBarEnabled = false;
         }
     }
 }

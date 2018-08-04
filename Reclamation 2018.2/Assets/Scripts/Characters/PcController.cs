@@ -34,7 +34,7 @@ namespace Reclamation.Characters
         private PcAnimator animator;
         [SerializeField] private PcData pcData;
         public PcData PcData { get { return pcData; } }
-        public new AttributeManager Attributes { get { return pcData.attributeManager; } }
+        public new AttributeManager Attributes { get { return pcData.attributes; } }
 
         // The amount of time it takes for the agent to be able to attack again
         // The last time the agent attacked
@@ -166,7 +166,7 @@ namespace Reclamation.Characters
 
             currentDefense.SetController(this.pcData);
             currentAttack.SetController(this.pcData);
-            this.pcData.attributeManager.controller = this;
+            this.pcData.attributes.controller = this;
         }
 
         public void StopAnimations()
@@ -329,7 +329,7 @@ namespace Reclamation.Characters
 
         public override void ModifyAttribute(AttributeType type, int attribute, int value)
         {
-            pcData.attributeManager.ModifyAttribute(type, attribute, value);
+            pcData.attributes.ModifyAttribute(type, attribute, value);
         }
     }
 }

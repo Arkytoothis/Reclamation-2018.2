@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Reclamation.Audio;
 using Reclamation.Encounter;
 using Reclamation.Misc;
 using Reclamation.Gui;
@@ -31,9 +32,10 @@ namespace Reclamation.Characters
             if (amount > 0)
             {
                 EncounterManager.instance.textManagerWorld.Add(amount.ToString(), textTransform, "damage");
-                data.attributeManager.ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, -amount);
+                data.attributes.ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, -amount);
 
-                AudioManager.instance.PlaySound("impact 01");
+                AudioManager.instance.PlaySound("impact 01", true);
+                //CFX_SpawnSystem.GetNextObject(gameObject,
             }
         }
 
@@ -55,7 +57,8 @@ namespace Reclamation.Characters
             if (amount > 0)
             {
                 EncounterManager.instance.textManagerWorld.Add(amount.ToString(), textTransform, "heal");
-                data.attributeManager.ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, amount);
+                data.attributes.ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, amount);
+                AudioManager.instance.PlaySound("heal 01", false);
             }
         }
 
@@ -70,7 +73,7 @@ namespace Reclamation.Characters
         /// </summary>
         public void ResetHealth()
         {
-            data.attributeManager.ModifyAttribute(Misc.AttributeType.Derived, (int)DerivedAttribute.Health, data.GetDerived((int)DerivedAttribute.Health).Maximum);
+            data.attributes.ModifyAttribute(Misc.AttributeType.Derived, (int)DerivedAttribute.Health, data.GetDerived((int)DerivedAttribute.Health).Maximum);
             gameObject.SetActive(true);
         }
     }

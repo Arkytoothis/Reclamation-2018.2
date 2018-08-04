@@ -31,7 +31,6 @@ namespace Reclamation.Props
         {
             colorTransition.enabled = true;
             outline.enabled = true;
-            Cursor.SetCursor(interactableData.cursor, Vector2.zero, CursorMode.Auto);
         }
 
         void OnMouseExit()

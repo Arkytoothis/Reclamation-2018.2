@@ -68,16 +68,16 @@ namespace Reclamation.Characters
             maxExp = 0;
             expBonus = 0;
 
-            attributeManager = new AttributeManager();
+            attributes = new AttributeManager();
 
             for (int i = 0; i < (int)BaseAttribute.Number; i++)
-                attributeManager.AddAttribute(AttributeListType.Base, new Attribute(AttributeType.Base, i, GameSettings.AttributeExpCost));
+                attributes.AddAttribute(AttributeListType.Base, new Attribute(AttributeType.Base, i, GameSettings.AttributeExpCost));
 
             for (int i = 0; i < (int)DerivedAttribute.Number; i++)
-                attributeManager.AddAttribute(AttributeListType.Derived, new Attribute(AttributeType.Derived, i, 0));
+                attributes.AddAttribute(AttributeListType.Derived, new Attribute(AttributeType.Derived, i, 0));
 
             for (int i = 0; i < (int)DamageType.Number; i++)
-                attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
+                attributes.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
 
             abilities = new CharacterAbilities();
             inventory = new CharacterInventory();
@@ -109,21 +109,21 @@ namespace Reclamation.Characters
             maxExp = 0;
             expBonus = 0.0f;
 
-            attributeManager = new AttributeManager();
+            attributes = new AttributeManager();
 
             for (int i = 0; i < (int)BaseAttribute.Number; i++)
             {
-                attributeManager.AddAttribute(AttributeListType.Base, new Attribute(AttributeType.Base, i, GameSettings.AttributeExpCost));
+                attributes.AddAttribute(AttributeListType.Base, new Attribute(AttributeType.Base, i, GameSettings.AttributeExpCost));
             }
 
             for (int i = 0; i < (int)DerivedAttribute.Number; i++)
             {
-                attributeManager.AddAttribute(AttributeListType.Derived, new Attribute(AttributeType.Derived, i, 0));
+                attributes.AddAttribute(AttributeListType.Derived, new Attribute(AttributeType.Derived, i, 0));
             }
 
             for (int i = 0; i < (int)DamageType.Number; i++)
             {
-                attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
+                attributes.AddAttribute(AttributeListType.Resistance, new Attribute(AttributeType.Resistance, i, 0));
             }
 
             abilities = new CharacterAbilities(this, power_slots, spell_slots);
@@ -156,26 +156,26 @@ namespace Reclamation.Characters
             maxExp = pc.MaxExp;
             expBonus = pc.ExpBonus;
 
-            attributeManager = new AttributeManager();
+            attributes = new AttributeManager();
 
             for (int i = 0; i < (int)BaseAttribute.Number; i++)
             {
-                attributeManager.AddAttribute(AttributeListType.Base, new Attribute(pc.attributeManager.GetAttribute(AttributeListType.Base, i)));
+                attributes.AddAttribute(AttributeListType.Base, new Attribute(pc.attributes.GetAttribute(AttributeListType.Base, i)));
             }
 
             for (int i = 0; i < (int)DerivedAttribute.Number; i++)
             {
-                attributeManager.AddAttribute(AttributeListType.Derived, new Attribute(pc.attributeManager.GetAttribute(AttributeListType.Derived, i)));
+                attributes.AddAttribute(AttributeListType.Derived, new Attribute(pc.attributes.GetAttribute(AttributeListType.Derived, i)));
             }
 
             for (int i = 0; i < (int)DamageType.Number; i++)
             {
-                attributeManager.AddAttribute(AttributeListType.Resistance, new Attribute(pc.attributeManager.GetAttribute(AttributeListType.Resistance, i)));
+                attributes.AddAttribute(AttributeListType.Resistance, new Attribute(pc.attributes.GetAttribute(AttributeListType.Resistance, i)));
             }
 
             foreach (KeyValuePair<Skill, Attribute> kvp in pc.GetSkills())
             {
-                attributeManager.AddSkill(kvp.Key, new Attribute(kvp.Value));
+                attributes.AddSkill(kvp.Key, new Attribute(kvp.Value));
             }
 
             abilities = new CharacterAbilities(pc);
@@ -185,19 +185,30 @@ namespace Reclamation.Characters
 
         public override void CalculateStartSkills()
         {
-            int numSkills = Random.Range(0, 6);
-            int start = 0;
-            for (int i = 0; i < numSkills; i++)
+            for (int j = 0; j < Database.GetProfession(professionKey).SkillProficiencies.Count; j++)
             {
-                SkillDefinition skillDef = Database.Skills[Random.Range(0, Database.Skills.Count)];
+                int value = Database.GetProfession(professionKey).SkillProficiencies[j].Value;
+                int result = GameValue.Roll(new GameValue(1, 2), false) * value;
+                Skill key = Database.GetProfession(professionKey).SkillProficiencies[j].Skill;
+
                 Attribute skill = new Attribute();
-
-                start = Random.Range(1, 4);
                 skill.Type = AttributeType.Skill;
-                skill.SetStart(start, 0, 100);
-
-                attributeManager.AddSkill(skillDef.key, skill);
+                skill.SetStart(result, 0, 100);
+                attributes.AddSkill(key, skill);
             }
+
+            for (int i = 0; i < Database.GetRace(raceKey).SkillProficiencies.Count; i++)
+            {
+                int value = Database.GetRace(raceKey).SkillProficiencies[i].Value;
+                Skill key = Database.GetRace(raceKey).SkillProficiencies[i].Skill;
+
+                Attribute skill = new Attribute();
+                skill.Type = AttributeType.Skill;
+                skill.SetStart(value, 0, 100);
+                attributes.AddSkill(key, skill);
+            }
+
+            CalculateExpCosts();
         }           
 
         public bool CanEquip(ItemData item, EquipmentSlot slot)
@@ -350,7 +361,7 @@ namespace Reclamation.Characters
 
         public void SetupController(PcController controller)
         {
-            attributeManager.controller = controller;
+            attributes.controller = controller;
         }
     }
 }

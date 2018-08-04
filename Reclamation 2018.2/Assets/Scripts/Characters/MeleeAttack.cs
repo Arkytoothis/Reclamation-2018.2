@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Reclamation.Audio;
 using Reclamation.Gui;
 using Reclamation.Misc;
 
@@ -82,7 +83,7 @@ namespace Reclamation.Characters
             }
 
             //AudioManager.instance.PlaySound("male attack 01");
-            AudioManager.instance.PlaySound("sword 01");
+            AudioManager.instance.PlaySound("sword 01", true);
 
             if (Random.Range(0, 100) > 65)
             {

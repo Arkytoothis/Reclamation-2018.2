@@ -15,6 +15,6 @@ namespace Reclamation.Gui
         public string text;
 
         [Header("Sound Data")]
-        public Sound clickSound;
+        public string clickSound;
     }
 }

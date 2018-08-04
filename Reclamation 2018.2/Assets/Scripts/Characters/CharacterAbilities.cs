@@ -159,16 +159,23 @@ namespace Reclamation.Characters
 
             foreach (KeyValuePair<string, Ability> kvp in Database.Abilities)
             {
-                Attribute skill = pc.attributeManager.GetSkill(kvp.Value.SkillUsed);
+                Attribute skill = pc.attributes.GetSkill(kvp.Value.SkillUsed);
 
-                if (skill == null) return;
-
-                if (kvp.Value.SkillUsed != Skill.None && skill.Current > kvp.Value.SkillRequired)
+                if (skill != null)
                 {
-                    if (kvp.Value.Type == AbilityType.Power)
-                        availablePowers.Add(Database.GetAbility(kvp.Key));
-                    else if (kvp.Value.Type == AbilityType.Spell)
-                        availableSpells.Add(Database.GetAbility(kvp.Key));
+                    //Debug.Log(kvp.Value.SkillUsed + " " + kvp.Value.SkillRequired + "/" + skill + " " + skill.Current);
+
+                    if (kvp.Value.SkillUsed != Skill.None && skill.Current > kvp.Value.SkillRequired)
+                    {
+                        if (kvp.Value.Type == AbilityType.Power)
+                        {
+                            availablePowers.Add(Database.GetAbility(kvp.Key));
+                        }
+                        else if (kvp.Value.Type == AbilityType.Spell)
+                        {
+                            availableSpells.Add(Database.GetAbility(kvp.Key));
+                        }
+                    }
                 }
             }
         }

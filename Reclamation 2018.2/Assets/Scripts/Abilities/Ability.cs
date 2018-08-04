@@ -29,6 +29,8 @@ namespace Reclamation.Abilities
         public string PreRune;
         public string PostRune;
 
+        public float cooldown;
+
         public Ability()
         {
             Class = AbilityClass.None;
@@ -51,9 +53,10 @@ namespace Reclamation.Abilities
             BoostRune = "Blank";
             PreRune = "Blank";
             PostRune = "Blank";
+            cooldown = 0;
         }
 
-        public Ability(string name, string key, string sprite_key, AbilityClass ability_class, AbilityType ability_type, int exp = 0, Skill skill = Skill.None, int required = 0)
+        public Ability(string name, string key, string sprite_key, AbilityClass ability_class, AbilityType ability_type, float cooldown = 0f, int exp = 0, Skill skill = Skill.None, int required = 0)
         {
             Name = name;
             Key = key;
@@ -71,6 +74,7 @@ namespace Reclamation.Abilities
 
             Components = new List<AbilityComponent>();
             Effects = new List<AbilityEffect>();
+            this.cooldown = cooldown;
         }
 
         public Ability(Ability ability)
@@ -106,6 +110,7 @@ namespace Reclamation.Abilities
             BoostRune = ability.BoostRune;
             PreRune = ability.PreRune;
             PostRune = ability.PostRune;
+            cooldown = ability.cooldown;
         }
 
         public string GetName()

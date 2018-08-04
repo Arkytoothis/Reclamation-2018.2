@@ -23,7 +23,7 @@ namespace Reclamation.Gui
         public void SetData(NpcData character)
         {
             this.character = character;
-            character.attributeManager.onHealthChange += UpdateDisplay;
+            character.attributes.onHealthChange += UpdateDisplay;
             UpdateDisplay(this.character.GetDerived((int)DerivedAttribute.Health).Current / 2, this.character.GetDerived((int)DerivedAttribute.Health).Maximum);
         }
 

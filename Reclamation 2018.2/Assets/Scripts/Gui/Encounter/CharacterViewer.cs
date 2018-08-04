@@ -17,12 +17,12 @@ namespace Reclamation.Gui.Encounter
         public TMP_Text resistancesLabel;
         public bool isOpen = false;
 
-        private int currentPc = 0;
+        private int pcIndexToView = 0;
         private PcData pc;
 
         public void Initialize()
         {
-            SetData(EncounterManager.instance.pcs[0].GetComponent<PcController>().PcData);
+            SetData(EncounterManager.instance.GetPcData(0));
             UpdateData();
             Close();
         }
@@ -79,7 +79,7 @@ namespace Reclamation.Gui.Encounter
                 skillDef = Database.GetSkill(kvp.Value.Index);
                 Attribute skill = pc.GetSkill(kvp.Key);
 
-                s += skillDef.Name + "<pos=200>" + skill.Current + "\n";
+                s += kvp.Key + "<pos=200>" + skill.Current + "\n";
             }
 
             skillsLabel.text = s;
@@ -98,23 +98,21 @@ namespace Reclamation.Gui.Encounter
 
         public void NextPc()
         {
-            //Debug.Log("Next Pc");
-            currentPc++;
-            if (currentPc > EncounterManager.instance.pcs.Count - 1)
-                currentPc = 0;
+            pcIndexToView++;
+            if (pcIndexToView > EncounterManager.instance.PcsCount - 1)
+                pcIndexToView = 0;
 
-            SetData(EncounterManager.instance.pcs[currentPc].GetComponent<PcController>().PcData);
+            SetData(EncounterManager.instance.GetPcData(pcIndexToView));
             UpdateData();
         }
 
         public void PreviousPc()
         {
-            //Debug.Log("Previous Pc");
-            currentPc--;
-            if (currentPc < 0)
-                currentPc = EncounterManager.instance.pcs.Count - 1;
+            pcIndexToView--;
+            if (pcIndexToView < 0)
+                pcIndexToView = EncounterManager.instance.PcsCount - 1;
 
-            SetData(EncounterManager.instance.pcs[currentPc].GetComponent<PcController>().PcData);
+            SetData(EncounterManager.instance.GetPcData(pcIndexToView));
             UpdateData();
         }
 

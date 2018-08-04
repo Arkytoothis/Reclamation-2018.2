@@ -4,94 +4,152 @@ using UnityEngine;
 using UnityEngine.Audio;
 using Reclamation.Misc;
 
-[System.Serializable]
-public class Sound
+namespace Reclamation.Audio
 {
-    public string name;
-    public AudioClip clip;
-
-    [Range(0, 1)] public float spatialBlend = 0f;
-    [Range(0, 1)] public float volume = 0.7f;
-    [Range(0.1f, 3f)] public float pitch = 1f;
-    public bool loop;
-    public bool playOnAwake;
-
-    public AudioSource source;
-
-    public void SetSource(AudioSource source)
+    public class AudioManager : Singleton<AudioManager>
     {
-        name = source.name;
-        this.source = source;
-        source.clip = clip;
-    }
+        [SerializeField] Dictionary<string, SoundEffect> soundEffects;
+        [SerializeField] Dictionary<string, SoundEffect> ambientLoops;
+        [SerializeField] Dictionary<string, SoundEffect> musicTracks;
 
-    public void Play(string name)
-    {
-        source.volume = volume;
-        source.pitch = pitch;
-        source.spatialBlend = spatialBlend;
-
-        source.PlayOneShot(source.clip);
-    }
-}
-
-public class AudioManager : Singleton<AudioManager>
-{
-    [SerializeField] Sound[] soundEffects;
-    [SerializeField] Sound[] ambientLoops;
-    [SerializeField] Sound[] musicTracks;
-
-    public void Initialize()
-    {
-        foreach (Sound sound in soundEffects)
+        public void Initialize()
         {
-            sound.source = gameObject.AddComponent<AudioSource>();
-            sound.source.clip = sound.clip;
-            sound.source.volume = sound.volume;
-            sound.source.pitch = sound.pitch;
-            sound.source.playOnAwake = sound.playOnAwake;
-            sound.source.spatialBlend = sound.spatialBlend;
-            sound.source.loop = sound.loop;
+            soundEffects = new Dictionary<string, SoundEffect>();
+            ambientLoops = new Dictionary<string, SoundEffect>();
+            musicTracks = new Dictionary<string, SoundEffect>();
+
+            LoadSoundEffects();
+            LoadAmbientLoops();
+            LoadMusicTracks();
+
+            foreach (KeyValuePair<string, SoundEffect> kvp in soundEffects)
+            {
+                kvp.Value.source = gameObject.AddComponent<AudioSource>();
+                kvp.Value.source.name = kvp.Key;
+                kvp.Value.source.clip = kvp.Value.clip;
+                kvp.Value.source.volume = kvp.Value.volume;
+                kvp.Value.source.pitch = kvp.Value.pitch;
+                kvp.Value.source.playOnAwake = kvp.Value.playOnAwake;
+                kvp.Value.source.spatialBlend = kvp.Value.spatialBlend;
+                kvp.Value.source.loop = kvp.Value.loop;
+            }
+
+            foreach (KeyValuePair<string, SoundEffect> kvp in ambientLoops)
+            {
+                kvp.Value.source = gameObject.AddComponent<AudioSource>();
+                kvp.Value.source.name = kvp.Key;
+                kvp.Value.source.clip = kvp.Value.clip;
+                kvp.Value.source.volume = kvp.Value.volume;
+                kvp.Value.source.pitch = kvp.Value.pitch;
+                kvp.Value.source.playOnAwake = kvp.Value.playOnAwake;
+                kvp.Value.source.spatialBlend = kvp.Value.spatialBlend;
+                kvp.Value.source.loop = kvp.Value.loop;
+            }
+
+            foreach (KeyValuePair<string, SoundEffect> kvp in musicTracks)
+            {
+                kvp.Value.source = gameObject.AddComponent<AudioSource>();
+                kvp.Value.source.name = kvp.Key;
+                kvp.Value.source.clip = kvp.Value.clip;
+                kvp.Value.source.volume = kvp.Value.volume;
+                kvp.Value.source.pitch = kvp.Value.pitch;
+                kvp.Value.source.playOnAwake = kvp.Value.playOnAwake;
+                kvp.Value.source.spatialBlend = kvp.Value.spatialBlend;
+                kvp.Value.source.loop = kvp.Value.loop;
+            }
         }
 
-        foreach (Sound sound in ambientLoops)
+        void LoadSoundEffects()
         {
-            sound.source = gameObject.AddComponent<AudioSource>();
-            sound.source.clip = sound.clip;
-            sound.source.volume = sound.volume;
-            sound.source.pitch = sound.pitch;
-            sound.source.playOnAwake = sound.playOnAwake;
-            sound.source.spatialBlend = sound.spatialBlend;
-            sound.source.loop = sound.loop;
+            UnityEngine.Object[] objects = Resources.LoadAll("Audio/Sound Effects");
+
+            foreach (GameObject go in objects)
+            {
+                SoundEffect soundEffect = go.GetComponent<SoundEffect>();
+
+                if (soundEffect == null)
+                {
+                }
+                else
+                {
+                    //Debug.Log("Sound Effect " + go.name + " loaded");
+                    soundEffects.Add(go.name, soundEffect);
+                }
+            }
         }
 
-        foreach (Sound sound in musicTracks)
+        void LoadAmbientLoops()
         {
-            sound.source = gameObject.AddComponent<AudioSource>();
-            sound.source.clip = sound.clip;
-            sound.source.volume = sound.volume;
-            sound.source.pitch = sound.pitch;
-            sound.source.playOnAwake = sound.playOnAwake;
-            sound.source.spatialBlend = sound.spatialBlend;
-            sound.source.loop = sound.loop;
+            UnityEngine.Object[] objects = Resources.LoadAll("Audio/Ambient Loops");
+
+            foreach (GameObject go in objects)
+            {
+                SoundEffect ambientLoop = go.GetComponent<SoundEffect>();
+
+                if (ambientLoop == null)
+                {
+                }
+                else
+                {
+                    //Debug.Log("Ambient Loop " + go.name + " loaded");
+                    ambientLoops.Add(go.name, ambientLoop);
+                }
+            }
         }
-    }
 
-    public void PlaySound(string name)
-    {
-        Sound s = Array.Find(soundEffects, sound => sound.name == name);
-        s.source.Play();
-    }
+        void LoadMusicTracks()
+        {
+            UnityEngine.Object[] objects = Resources.LoadAll("Audio/Music Tracks");
 
-    public void PlayAmbient(string name)
-    {
-        Sound s = Array.Find(ambientLoops, sound => sound.name == name);
-        s.source.Play();
-    }
+            foreach (GameObject go in objects)
+            {
+                SoundEffect musicTrack = go.GetComponent<SoundEffect>();
 
-    public void PlayMusic(string name)
-    {
-        Sound s = Array.Find(musicTracks, sound => sound.name == name);
-        s.source.Play();
+                if (musicTrack == null)
+                {
+                }
+                else
+                {
+                    //Debug.Log("Music Track " + go.name + " loaded");
+                    musicTracks.Add(go.name, musicTrack);
+                }
+            }
+        }
+
+        public void PlaySound(string key, bool variance)
+        {
+            if (soundEffects.ContainsKey(key) == false)
+            {
+                Debug.LogWarning("soundEffects does not contain " + key);
+            }
+            else
+            {
+                soundEffects[key].Play(variance);
+            }
+        }
+
+        public void PlayAmbient(string key)
+        {
+            if (ambientLoops.ContainsKey(key) == false)
+            {
+                Debug.LogWarning("ambientLoops does not contain " + key);
+            }
+            else
+            {
+                ambientLoops[key].Play(false);
+            }
+        }
+
+        public void PlayMusic(string key)
+        {
+            if (musicTracks.ContainsKey(key) == false)
+            {
+                Debug.LogWarning("musicTracks does not contain " + key);
+            }
+            else
+            {
+                musicTracks[key].Play(false);
+            }
+        }
     }
 }
