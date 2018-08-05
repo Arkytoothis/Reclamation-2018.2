@@ -150,7 +150,7 @@ namespace Reclamation.Characters
 
         public static void GenerateBoss(NpcData npc)
         {
-            npc.name.LastName = "Boss";
+            npc.Name.LastName = "Boss";
             //npc.DerivedAttributes[(int)DerivedAttribute.Health].ModifyStart(Random.Range(200, 1000));
             //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 100));
             //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 100));
@@ -161,7 +161,7 @@ namespace Reclamation.Characters
 
         public static void GenerateBossGuard(NpcData npc)
         {
-            npc.name.LastName = "Boss Guard";
+            npc.Name.LastName = "Boss Guard";
             //npc.DerivedAttributes[(int)DerivedAttribute.Health].ModifyStart(Random.Range(100, 250));
             //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 50));
             //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 50));
@@ -172,7 +172,7 @@ namespace Reclamation.Characters
 
         public static void GenerateObjectiveEnemy(NpcData npc)
         {
-            npc.name.LastName = "Objective Enemy";
+            npc.Name.LastName = "Objective Enemy";
             //npc.DerivedAttributes[(int)DerivedAttribute.Health].ModifyStart(Random.Range(5, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
@@ -181,7 +181,7 @@ namespace Reclamation.Characters
 
         public static void GenerateEnemy(NpcData npc)
         {
-            npc.name.LastName = "Enemy";
+            npc.Name.LastName = "Enemy";
             //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));
@@ -189,7 +189,7 @@ namespace Reclamation.Characters
 
         public static void GenerateRescueTarget(NpcData npc)
         {
-            npc.name.LastName = "Rescue Target";
+            npc.Name.LastName = "Rescue Target";
             //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));
@@ -197,7 +197,7 @@ namespace Reclamation.Characters
 
         public static void GenerateCitizen(NpcData npc)
         {
-            npc.name.LastName = "Citizen";
+            npc.Name.LastName = "Citizen";
             //npc.DerivedAttributes[(int)DerivedAttribute.Block].ModifyStart(Random.Range(1, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Dodge].ModifyStart(Random.Range(1, 20));
             //npc.DerivedAttributes[(int)DerivedAttribute.Parry].ModifyStart(Random.Range(1, 20));

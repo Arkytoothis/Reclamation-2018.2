@@ -72,7 +72,7 @@ namespace Reclamation.Characters
         /// <param name="targetPosition">The position to attack.</param>
         public void Attack(GameObject defender)
         {
-            if (data.isDead == true) return;
+            if (data.IsDead == true) return;
 
             Damagable damagable = defender.GetComponent<Damagable>();
 
@@ -88,8 +88,8 @@ namespace Reclamation.Characters
             if (Random.Range(0, 100) > 65)
             {
                 int dmg = Random.Range(1, 10);
-                if(data != null && data.inventory != null && data.inventory.EquippedItems[(int)EquipmentSlot.Right_Hand] != null)
-                    dmg = data.inventory.EquippedItems[(int)EquipmentSlot.Right_Hand].WeaponData.Damage[0].DamageDice.Roll(false);
+                if(data != null && data.Inventory != null && data.Inventory.EquippedItems[(int)EquipmentSlot.Right_Hand] != null)
+                    dmg = data.Inventory.EquippedItems[(int)EquipmentSlot.Right_Hand].WeaponData.Damage[0].DamageDice.Roll(false);
 
                 lastAttackTime = Time.time;
                 damagable.Damage(dmg);
@@ -100,25 +100,25 @@ namespace Reclamation.Characters
                 string defColor = "";
                 string dmgColor = "<color=#ff9000>";
 
-                if (damagable.data.faction.Equals("Player") == true)
+                if (damagable.data.Faction.Equals("Player") == true)
                 {
                     attColor = green;
                     defColor = red;
                 }
-                else if (damagable.data.faction.Equals("Enemy") == true)
+                else if (damagable.data.Faction.Equals("Enemy") == true)
                 {
                     attColor = red;
                     defColor = green;
                 }
-                else if (damagable.data.faction.Equals("Neutral") == true)
+                else if (damagable.data.Faction.Equals("Neutral") == true)
                 {
                     attColor = green;
                     defColor = red;
                 }
 
                 string message = "";
-                message += attColor + data.name.FirstName + "</color> hit ";
-                message += defColor + damagable.data.name.FirstName + "</color> for ";
+                message += attColor + data.Name.FirstName + "</color> hit ";
+                message += defColor + damagable.data.Name.FirstName + "</color> for ";
                 message += dmgColor + dmg + "</color> damage"; 
 
                 MessageSystem.instance.AddMessage(message);

@@ -37,15 +37,15 @@ namespace Reclamation.Characters
             LoadItem((int)EquipmentSlot.Right_Hand, (int)EquipmentRenderSlot.Right_Hand);
             LoadItem((int)EquipmentSlot.Left_Hand, (int)EquipmentRenderSlot.Left_Hand);
 
-            if (pcData.hair != "")
-                SetHair(ModelManager.instance.GetHairModel(pcData.hair));
-            if (pcData.beard != "")
-                SetBeard(ModelManager.instance.GetBeardModel(pcData.beard));
+            if (pcData.Hair != "")
+                SetHair(ModelManager.instance.GetHairModel(pcData.Hair));
+            if (pcData.Beard != "")
+                SetBeard(ModelManager.instance.GetBeardModel(pcData.Beard));
         }
 
         public void LoadItem(int equipmentSlot, int renderSlot)
         {
-            ItemData item = this.pcData.inventory.EquippedItems[equipmentSlot];
+            ItemData item = this.pcData.Inventory.EquippedItems[equipmentSlot];
 
             if (item != null)
             {

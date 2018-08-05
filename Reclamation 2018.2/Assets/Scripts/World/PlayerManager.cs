@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Reclamation.Gui.World;
 using Reclamation.Misc;
-using Reclamation.Characters;
+using Reclamation.Party;
 
 namespace Reclamation.World
 {
@@ -12,27 +12,36 @@ namespace Reclamation.World
     {
         const int MaxParties = 10;
 
-        public Transform playerSpawn;
-        public GameObject partyPrefab;
+        [SerializeField] Transform playerSpawn;
+        [SerializeField] GameObject partyPrefab;
 
-        public int numPartiesUnlocked;
-        public List<GameObject> parties;
+        [SerializeField] int numPartiesUnlocked;
+        [SerializeField] List<GameObject> parties;
 
-        public PartyPanel partyPanel;
+        [SerializeField] PartyPanel partyPanel;
 
         public void Initialize()
         {
             parties = new List<GameObject>(MaxParties);
             numPartiesUnlocked = 1;
 
-            PartyData party = new PartyData("Blue Party", Color.blue, 0);
-            parties.Add(CreatePartyObject(this.transform, playerSpawn.position, party));
+            GameObject partyObject = Instantiate(partyPrefab);
+            PartyData newParty = partyObject.GetComponent<PartyData>();
+            newParty.SetPartyData("Blue Party", Color.blue, 0);
+
+            PartyRenderer renderer = partyObject.GetComponent<PartyRenderer>();
+            GameObject characterModel = Instantiate(ModelManager.instance.GetCharacterPrefab(Vector3.one, "Imperial Male"), partyObject.transform);
+            renderer.SetModel(characterModel);
+            parties.Add(partyObject);
 
             partyPanel.Initialize();
 
-            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[0].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, new PcData(PcGenerator.Generate(0, Gender.None, "Imperial", "Soldier")));
-            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[1].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, new PcData(PcGenerator.Generate(1, Gender.None, "Imperial", "Scout")));
-            ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[2].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, new PcData(PcGenerator.Generate(2, Gender.None, "Imperial", "Priest")));
+            //PartyData party = new PartyData("Blue Party", Color.blue, 0);
+            //parties.Add(CreatePartyObject(this.transform, playerSpawn.position, party));
+
+            //ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[0].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, new PcData(PcGenerator.Generate(0, Gender.None, "Imperial", "Soldier")));
+            //ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[1].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, new PcData(PcGenerator.Generate(1, Gender.None, "Imperial", "Scout")));
+            //ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[2].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, new PcData(PcGenerator.Generate(2, Gender.None, "Imperial", "Priest")));
         }
 
         public GameObject CreatePartyObject(Transform parent, Vector3 position, PartyData data)
@@ -61,9 +70,9 @@ namespace Reclamation.World
             return partyGO;
         }
 
-        public void CreatePortraitModel(Transform parent, PcData pc)
+        public PartyData GetPartyData(int index)
         {
-            ModelManager.instance.SpawnCharacter(parent, parent.position, pc);
+            return parties[index].GetComponent<PartyData>();
         }
     }
 }

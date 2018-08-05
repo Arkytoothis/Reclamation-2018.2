@@ -30,7 +30,6 @@ namespace Reclamation.Misc
             if (initialized == false)
             {
                 initialized = true;
-                DontDestroyOnLoad(transform.gameObject);
 
                 //NormalFont = Resources.Load<TMP_FontAsset>("Fonts/normal");
 

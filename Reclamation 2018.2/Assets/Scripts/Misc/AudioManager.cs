@@ -9,8 +9,22 @@ namespace Reclamation.Audio
     public class AudioManager : Singleton<AudioManager>
     {
         [SerializeField] Dictionary<string, SoundEffect> soundEffects;
+        public Dictionary<string, SoundEffect> SoundEffects
+        {
+            get
+            {
+                return soundEffects;
+            }
+        }
+
         [SerializeField] Dictionary<string, SoundEffect> ambientLoops;
+        public Dictionary<string, SoundEffect> AmbientLoops { get { return ambientLoops; } }
+
         [SerializeField] Dictionary<string, SoundEffect> musicTracks;
+        public Dictionary<string, SoundEffect> MusicTracks { get { return musicTracks; } }
+
+        [SerializeField] Playlist worldPlaylist;
+        public Playlist WorldPlaylist { get { return worldPlaylist; } }
 
         public void Initialize()
         {
@@ -136,7 +150,7 @@ namespace Reclamation.Audio
             }
             else
             {
-                ambientLoops[key].Play(false);
+                ambientLoops[key].source.Play();
             }
         }
 
@@ -148,7 +162,7 @@ namespace Reclamation.Audio
             }
             else
             {
-                musicTracks[key].Play(false);
+                musicTracks[key].source.Play();
             }
         }
     }

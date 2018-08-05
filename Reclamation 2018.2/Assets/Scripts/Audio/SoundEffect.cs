@@ -42,7 +42,6 @@ namespace Reclamation.Audio
             }
 
             source.spatialBlend = spatialBlend;
-
             source.PlayOneShot(clip);
         }
     }

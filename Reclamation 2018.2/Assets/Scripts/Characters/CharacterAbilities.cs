@@ -68,8 +68,8 @@ namespace Reclamation.Characters
         public CharacterAbilities(PcData pc)
         {
             this.pc = pc;
-            PowerSlots = pc.abilities.PowerSlots;
-            SpellSlots = pc.abilities.SpellSlots;
+            PowerSlots = pc.Abilities.PowerSlots;
+            SpellSlots = pc.Abilities.SpellSlots;
 
             traits = new List<Ability>();
             availablePowers = new List<Ability>();
@@ -79,26 +79,26 @@ namespace Reclamation.Characters
             knownSpells = new List<Ability>();
             memorizedSpells = new List<Ability>();
 
-            for (int i = 0; i < pc.abilities.Traits.Count; i++)
-                traits.Add(pc.abilities.traits[i]);
+            for (int i = 0; i < pc.Abilities.Traits.Count; i++)
+                traits.Add(pc.Abilities.traits[i]);
 
-            for (int i = 0; i < pc.abilities.AvailablePowers.Count; i++)
-                availablePowers.Add(pc.abilities.AvailablePowers[i]);
+            for (int i = 0; i < pc.Abilities.AvailablePowers.Count; i++)
+                availablePowers.Add(pc.Abilities.AvailablePowers[i]);
 
-            for (int i = 0; i < pc.abilities.KnownPowers.Count; i++)
-                knownPowers.Add(pc.abilities.KnownPowers[i]);
+            for (int i = 0; i < pc.Abilities.KnownPowers.Count; i++)
+                knownPowers.Add(pc.Abilities.KnownPowers[i]);
 
-            for (int i = 0; i < pc.abilities.MemorizedPowers.Count; i++)
-                memorizedPowers.Add(pc.abilities.MemorizedPowers[i]);
+            for (int i = 0; i < pc.Abilities.MemorizedPowers.Count; i++)
+                memorizedPowers.Add(pc.Abilities.MemorizedPowers[i]);
 
-            for (int i = 0; i < pc.abilities.AvailableSpells.Count; i++)
-                availableSpells.Add(pc.abilities.availableSpells[i]);
+            for (int i = 0; i < pc.Abilities.AvailableSpells.Count; i++)
+                availableSpells.Add(pc.Abilities.availableSpells[i]);
 
-            for (int i = 0; i < pc.abilities.KnownSpells.Count; i++)
-                knownSpells.Add(pc.abilities.KnownSpells[i]);
+            for (int i = 0; i < pc.Abilities.KnownSpells.Count; i++)
+                knownSpells.Add(pc.Abilities.KnownSpells[i]);
 
-            for (int i = 0; i < pc.abilities.MemorizedSpells.Count; i++)
-                memorizedSpells.Add(pc.abilities.memorizedSpells[i]);
+            for (int i = 0; i < pc.Abilities.MemorizedSpells.Count; i++)
+                memorizedSpells.Add(pc.Abilities.memorizedSpells[i]);
         }
 
         public void AddTrait(Ability trait)
@@ -118,19 +118,19 @@ namespace Reclamation.Characters
 
         public void FindTraits()
         {
-            Race race = Database.GetRace(pc.raceKey);
+            Race race = Database.GetRace(pc.RaceKey);
             //Profession profession = Database.GetProfession(pc.ProfessionKey);
 
             for (int i = 0; i < race.Traits.Count; i++)
             {
-                pc.abilities.AddTrait(Database.GetAbility(race.Traits[i].Ability));
+                pc.Abilities.AddTrait(Database.GetAbility(race.Traits[i].Ability));
             }
         }
 
         public void FindAvailableAbilities()
         {
-            Race race = Database.GetRace(pc.raceKey);
-            Profession profession = Database.GetProfession(pc.professionKey);
+            Race race = Database.GetRace(pc.RaceKey);
+            Profession profession = Database.GetProfession(pc.ProfessionKey);
 
             for (int i = 0; i < profession.Traits.Count; i++)
             {
@@ -159,7 +159,7 @@ namespace Reclamation.Characters
 
             foreach (KeyValuePair<string, Ability> kvp in Database.Abilities)
             {
-                Attribute skill = pc.attributes.GetSkill(kvp.Value.SkillUsed);
+                Attribute skill = pc.Attributes.GetSkill(kvp.Value.SkillUsed);
 
                 if (skill != null)
                 {

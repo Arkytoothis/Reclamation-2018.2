@@ -31,11 +31,11 @@ namespace Reclamation.Characters
         {
             if (amount > 0)
             {
-                EncounterManager.instance.textManagerWorld.Add(amount.ToString(), textTransform, "damage");
-                data.attributes.ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, -amount);
+                data.Attributes.ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, -amount);
 
+                EncounterManager.instance.textManagerWorld.Add(amount.ToString(), textTransform, "damage");
                 AudioManager.instance.PlaySound("impact 01", true);
-                //CFX_SpawnSystem.GetNextObject(gameObject,
+                ParticleManager.instance.SpawnEffect("hit", transform);
             }
         }
 
@@ -56,16 +56,18 @@ namespace Reclamation.Characters
 
             if (amount > 0)
             {
+                data.Attributes.ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, amount);
+
                 EncounterManager.instance.textManagerWorld.Add(amount.ToString(), textTransform, "heal");
-                data.attributes.ModifyAttribute(AttributeType.Derived, (int)DerivedAttribute.Health, amount);
                 AudioManager.instance.PlaySound("heal 01", false);
+                ParticleManager.instance.SpawnEffect("circular light wall", transform);
             }
         }
 
         // Is the object alive?
         public bool IsAlive()
         {
-            return !data.isDead;
+            return !data.IsDead;
         }
 
         /// <summary>
@@ -73,7 +75,7 @@ namespace Reclamation.Characters
         /// </summary>
         public void ResetHealth()
         {
-            data.attributes.ModifyAttribute(Misc.AttributeType.Derived, (int)DerivedAttribute.Health, data.GetDerived((int)DerivedAttribute.Health).Maximum);
+            data.Attributes.ModifyAttribute(Misc.AttributeType.Derived, (int)DerivedAttribute.Health, data.GetDerived((int)DerivedAttribute.Health).Maximum);
             gameObject.SetActive(true);
         }
     }

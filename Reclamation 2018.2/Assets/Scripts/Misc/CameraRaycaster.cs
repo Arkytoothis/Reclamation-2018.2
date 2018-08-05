@@ -9,25 +9,25 @@ namespace Reclamation.Misc
 {
     public class CameraRaycaster : MonoBehaviour
     {
-        public Texture2D moveCursor;
-        public Texture2D interactCursor;
-        public Texture2D transitionCursor;
-        public Texture2D meleeCursor;
-        public Texture2D rangedCursor;
-        public Texture2D powerCursor;
-        public Texture2D spellCursor;
-        public Texture2D guiCursor;
-        public Texture2D errorCursor;
+        [SerializeField] Texture2D moveCursor;
+        [SerializeField] Texture2D interactCursor;
+        [SerializeField] Texture2D transitionCursor;
+        [SerializeField] Texture2D meleeCursor;
+        [SerializeField] Texture2D rangedCursor;
+        [SerializeField] Texture2D powerCursor;
+        [SerializeField] Texture2D spellCursor;
+        [SerializeField] Texture2D guiCursor;
+        [SerializeField] Texture2D errorCursor;
 
-        public Vector2 hotspot;
+        [SerializeField] Vector2 hotspot;
 
-        public delegate void OnMouseOverTerrain(Vector3 destination);
+        public delegate bool OnMouseOverTerrain(Vector3 destination);
         public event OnMouseOverTerrain onMouseOverWalkable;
 
-        public delegate void OnMouseOverEnemy(GameObject go);
+        public delegate bool OnMouseOverEnemy(GameObject go);
         public event OnMouseOverEnemy onMouseOverEnemy;
 
-        public delegate void OnMouseOverInteractable(GameObject go);
+        public delegate bool OnMouseOverInteractable(GameObject go);
         public event OnMouseOverInteractable onMouseOverInteractable;
 
         const int WALKABLE_LAYER_NUMBER = 8;

@@ -9,7 +9,7 @@ namespace Reclamation.Gui.Encounter
     public class EncounterGuiManager : Singleton<EncounterGuiManager>
     {
         public PartyPanel partyPanel;
-        public CharacterViewer characterViewer;
+        public CharacterScreen characterViewer;
         public CharacterPanel characterPanel;
 
         public void Initialize()

@@ -47,7 +47,7 @@ namespace Reclamation.World
                 intensityMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.73f) * (1 / 0.02f)));
             }
 
-            sun.intensity = sunInitialIntensity * intensityMultiplier;
+            //sun.intensity = sunInitialIntensity * intensityMultiplier;
 
             //RenderSettings.ambientIntensity = (intensityMultiplier + 1) - 0.75f;
         }

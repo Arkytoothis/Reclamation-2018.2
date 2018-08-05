@@ -22,7 +22,7 @@ namespace Reclamation.Encounter
 
         void Awake()
         {
-            Invoke("Initialize", 0.1f);
+            Invoke(nameof(Initialize), 0.1f);
             pcs = new List<GameObject>();
         }
 
@@ -36,6 +36,7 @@ namespace Reclamation.Encounter
             SpriteManager.instance.Initialize();
             AudioManager.instance.Initialize();
             ModelManager.instance.Initialize();
+            ParticleManager.instance.Initialize();
             MessageSystem.instance.Initialize();
 
             parties = new List<PartyData>(MaxParties);
@@ -135,7 +136,7 @@ namespace Reclamation.Encounter
             {
                 pcData = go.GetComponent<PcController>().PcData;
 
-                if (pcData.name.FullName.Equals(name) == true)
+                if (pcData.Name.FullName.Equals(name) == true)
                 {
                     Debug.Log("PcData for " + name + " found");
                     break;

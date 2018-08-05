@@ -29,7 +29,7 @@ namespace Reclamation.Characters
 
         private NpcData npcData;
         public NpcData NpcData { get { return npcData; } }
-        public new AttributeManager Attributes { get { return npcData.attributes; } }
+        public new AttributeManager Attributes { get { return npcData.Attributes; } }
 
         [SerializeField] IAttack currentAttack;
         [SerializeField] IDamageable currentDefense;
@@ -81,7 +81,7 @@ namespace Reclamation.Characters
 
             currentDefense.SetController(npcData);
             currentAttack.SetController(npcData);
-            npcData.attributes.controller = this;
+            npcData.Attributes.controller = this;
             DisableHealthBar();
         }
 
@@ -129,7 +129,7 @@ namespace Reclamation.Characters
 
         public override bool CheckIsAlive()
         {
-            return !npcData.isDead;
+            return !npcData.IsDead;
         }
 
         public float start = 0;
@@ -158,7 +158,7 @@ namespace Reclamation.Characters
 
         public override void Death()
         {
-            npcData.isDead = true;
+            npcData.SetIsDead(true);
             target = null;
 
             destinationSetter.enabled = false;
@@ -173,12 +173,12 @@ namespace Reclamation.Characters
             Destroy(this.gameObject, 5.1f);
             onDeath();
 
-            MessageSystem.instance.AddMessage(npcData.name.FirstName + " has died");
+            MessageSystem.instance.AddMessage(npcData.Name.FirstName + " has died");
         }
 
         public override void Revive()
         {
-            npcData.isDead = false;
+            npcData.SetIsDead(false);
 
             destinationSetter.enabled = true;
             pathfinder.enabled = true;
@@ -190,7 +190,7 @@ namespace Reclamation.Characters
             CanMove(true);
             onRevive();
 
-            MessageSystem.instance.AddMessage(npcData.name.FirstName + " has revived");
+            MessageSystem.instance.AddMessage(npcData.Name.FirstName + " has revived");
         }
 
         public override void Interact()
@@ -207,7 +207,7 @@ namespace Reclamation.Characters
 
         public override void ModifyAttribute(AttributeType type, int attribute, int value)
         {
-            npcData.attributes.ModifyAttribute(type, attribute, value);
+            npcData.Attributes.ModifyAttribute(type, attribute, value);
         }
 
         public void EnableHealthBar()

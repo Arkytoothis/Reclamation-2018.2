@@ -141,7 +141,7 @@ namespace Reclamation.Encounter
             }
         }
 
-        public void OnMouseOverInteractable(GameObject target)
+        public bool OnMouseOverInteractable(GameObject target)
         {
             if (Input.GetMouseButtonUp(0))
             {
@@ -153,9 +153,11 @@ namespace Reclamation.Encounter
                     pcControllers[0].MoveTo(target);
                 }
             }
+
+            return true;
         }
 
-        public void OnMouseOverEnemy(GameObject target)
+        public bool OnMouseOverEnemy(GameObject target)
         {
             if (Input.GetMouseButtonUp(0))
             {                
@@ -206,6 +208,8 @@ namespace Reclamation.Encounter
                     }
                 }
             }
+
+            return true;
         }
 
         public void MoveTo(GameObject target)

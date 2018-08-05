@@ -83,12 +83,12 @@ namespace Reclamation.Characters
             if (r == "") race_key = availableRaces[Random.Range(0, availableRaces.Count)];
             else race_key = r;
 
-            string profession_key = "";
-            if (p == "") profession_key = availableProfessions[Random.Range(0, availableProfessions.Count)];
-            else profession_key = p;
+            string professionKey = "";
+            if (p == "") professionKey = availableProfessions[Random.Range(0, availableProfessions.Count)];
+            else professionKey = p;
 
             Race race = Database.GetRace(race_key);
-            Profession profession = Database.GetProfession(profession_key);
+            Profession profession = Database.GetProfession(professionKey);
 
             string hair = "";
             string beard = "";
@@ -121,15 +121,14 @@ namespace Reclamation.Characters
                 beard = race.femaleDefaultBeard;
             }
 
-            PcData pc = new PcData(NameGenerator.Get(gender, race_key, profession_key),
-                gender, BackgroundGenerator.Generate(), race_key, profession_key, hair, beard, index, index, index,
+            PcData pc = new PcData(NameGenerator.Get(gender, race_key, professionKey),
+                gender, 1, race_key, professionKey, hair, beard, index, index, index,
                 3 + GameValue.Roll(new GameValue(1, 3), false), 3 + GameValue.Roll(new GameValue(1, 3), false));
 
-            pc.personality = GeneratePersonality();
-
-            pc.level = 1;
+            pc.Background = BackgroundGenerator.Generate();
+            pc.Personality = GeneratePersonality();
+            pc.Description = GenerateDescription(pc);
             pc.CalculateExp();
-            pc.description = GenerateDescription(pc);
 
             if (profession.StartingItems.Count > 0)
             {
@@ -139,12 +138,12 @@ namespace Reclamation.Characters
                         profession.StartingItems[i].PreKey, profession.StartingItems[i].PostKey, profession.StartingItems[i].StackSize);
 
                     if (race.ArmorSlotAllowed((EquipmentSlot)item.Slot) == true)
-                        pc.inventory.EquipItem(item, ((EquipmentSlot)item.Slot));
+                        pc.Inventory.EquipItem(item, ((EquipmentSlot)item.Slot));
                 }
             }
             else
             {
-                for (int i = 0; i < pc.inventory.EquippedItems.Length; i++)
+                for (int i = 0; i < pc.Inventory.EquippedItems.Length; i++)
                 {
                     if (Database.GetRace(race_key).ArmorSlotAllowed(((EquipmentSlot)i)) == true)
                     {
@@ -162,7 +161,7 @@ namespace Reclamation.Characters
                             ItemData item = ItemGenerator.CreateRandomItem(i, 25, 25, 25);
 
                             if (item != null)
-                                pc.inventory.EquippedItems[i] = new ItemData(item);
+                                pc.Inventory.EquippedItems[i] = new ItemData(item);
                         }
                     }
                 }
@@ -172,30 +171,30 @@ namespace Reclamation.Characters
 
             for (int i = 0; i < numAccessories; i++)
             {
-                pc.inventory.EquipAccessory(ItemGenerator.CreateRandomItem(ItemTypeAllowed.Accessory, 0, 0, 0), -1);
+                pc.Inventory.EquipAccessory(ItemGenerator.CreateRandomItem(ItemTypeAllowed.Accessory, 0, 0, 0), -1);
             }
 
-            for (int spell = 0; spell < pc.abilities.KnownSpells.Count; spell++)
+            for (int spell = 0; spell < pc.Abilities.KnownSpells.Count; spell++)
             {
                 if (Random.Range(0, 100) < 100)
                 {
-                    pc.abilities.KnownSpells[spell].BoostRune = Helper.RandomValues<string, AbilityModifier>(Database.Runes).Key;
+                    pc.Abilities.KnownSpells[spell].BoostRune = Helper.RandomValues<string, AbilityModifier>(Database.Runes).Key;
                 }
             }
 
             string key = positiveQuirks[Random.Range(0, positiveQuirks.Count)];
-            pc.abilities.AddTrait(new Ability(Database.GetAbility(key)));
+            pc.Abilities.AddTrait(new Ability(Database.GetAbility(key)));
 
             key = neutralQuirks[Random.Range(0, neutralQuirks.Count)];
-            pc.abilities.AddTrait(new Ability(Database.GetAbility(key)));
+            pc.Abilities.AddTrait(new Ability(Database.GetAbility(key)));
 
             key = negativeQuirks[Random.Range(0, negativeQuirks.Count)];
-            pc.abilities.AddTrait(new Ability(Database.GetAbility(key)));
+            pc.Abilities.AddTrait(new Ability(Database.GetAbility(key)));
 
             if (GameValue.Roll(1, 100) < 20)
             {
                 key = woundQuirks[Random.Range(0, woundQuirks.Count)];
-                pc.abilities.AddTrait(new Ability(Database.GetAbility(key)));
+                pc.Abilities.AddTrait(new Ability(Database.GetAbility(key)));
             }
 
             pc.CalculateAttributeModifiers();
@@ -205,11 +204,11 @@ namespace Reclamation.Characters
             pc.CalculateResistances();
             pc.CalculateExpCosts();
 
-            pc.abilities.PowerSlots = (pc.attributes.GetAttribute(AttributeListType.Derived, (int)BaseAttribute.Memory).Current / 5) + 1;
-            pc.abilities.SpellSlots = (pc.attributes.GetAttribute(AttributeListType.Derived, (int)BaseAttribute.Memory).Current / 5) + 1;
+            pc.Abilities.PowerSlots = (pc.Attributes.GetAttribute(AttributeListType.Derived, (int)BaseAttribute.Memory).Current / 5) + 1;
+            pc.Abilities.SpellSlots = (pc.Attributes.GetAttribute(AttributeListType.Derived, (int)BaseAttribute.Memory).Current / 5) + 1;
 
-            pc.abilities.FindTraits();
-            pc.abilities.FindAvailableAbilities();
+            pc.Abilities.FindTraits();
+            pc.Abilities.FindAvailableAbilities();
 
             //pc.AddExperience(Random.Range(0, 500) * 10, false);
 

@@ -37,7 +37,7 @@ namespace Reclamation.Characters
         public new void SetStart(AttributeType type, int attribute, int start, int min, int max)
         {
             if (start == 0) return;
-            attributes.SetStart((AttributeListType)type, attribute, start, min, max);
+            Attributes.SetStart((AttributeListType)type, attribute, start, min, max);
         }
 
         //public event OnArmorChange onArmorChange;
@@ -86,17 +86,17 @@ namespace Reclamation.Characters
             inventory = new CharacterInventory();
         }
 
-        public NpcData(FantasyName name, string key, Gender gender, string race, string profession, int index, int map_x, int map_y, int enc_x, int enc_y,
+        public NpcData(FantasyName name, string key, Gender gender, string raceKey, string professionKey, int npcIndex, int map_x, int map_y, int enc_x, int enc_y,
             string faction)
         {
-            base.name = new FantasyName(name);
-            background = new Background();
+            this.name = new FantasyName(name);
+            this.background = new Background();
 
             this.key = key;
-            base.gender = gender;
-            raceKey = race;
-            professionKey = profession;
-            npcIndex = index;
+            this.gender = gender;
+            this.raceKey = raceKey;
+            this.professionKey = professionKey;
+            this.npcIndex = npcIndex;
             partyIndex = -1;
 
             combatStatus = CombatStatus.Awake;
@@ -125,7 +125,7 @@ namespace Reclamation.Characters
 
         public NpcData(NpcData npc)
         {
-            name = new FantasyName(npc.name);
+            name = new FantasyName(npc.Name);
             background = new Background(npc.background);
 
             key = npc.key;

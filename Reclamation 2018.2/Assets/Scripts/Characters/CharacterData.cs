@@ -9,32 +9,51 @@ namespace Reclamation.Characters
     [System.Serializable]
     public abstract class CharacterData
     {
-        public FantasyName name;
-        public Gender gender;
-        public Background background;
-        public CharacterPersonality personality;
-        public string faction;
+        [SerializeField] protected FantasyName name;
+        [SerializeField] protected Gender gender;
+        [SerializeField] protected Background background;
+        [SerializeField] protected CharacterPersonality personality;
+        [SerializeField] protected Species species;
+        [SerializeField] protected Size size;
 
-        public Species species;
-        public Size size;
+        [SerializeField] protected string description;
+        [SerializeField] protected string raceKey;
+        [SerializeField] protected string professionKey;
+        [SerializeField] protected string faction;
+        [SerializeField] protected string hair;
+        [SerializeField] protected string beard;
 
-        public string raceKey;
-        public string professionKey;
+        [SerializeField] protected AttributeManager attributes;
+        [SerializeField] protected CharacterInventory inventory;
 
-        public AttributeManager attributes;
+        [SerializeField] protected bool isDead = false;
+        [SerializeField] protected bool isExhausted = false;
+        [SerializeField] protected bool isDrained = false;
+        [SerializeField] protected bool isBroken = false;
 
-        public string hair;
-        public string beard;
+        public FantasyName Name { get { return name; } }
+        public Gender Gender { get { return gender; } }
+        public Background Background { get { return background; } set { background = value; } }
+        public CharacterPersonality Personality { get { return personality; } set { personality = value; } }
+        public string Faction { get { return faction; } }
+        public Species Species { get { return species; } }
+        public Size Size { get { return size; } }
+        public string RaceKey { get { return raceKey; } }
+        public string ProfessionKey { get { return professionKey; } }
+        public AttributeManager Attributes { get { return attributes; } }
+        public string Hair { get { return hair; } }
+        public string Beard { get { return beard; } }
+        public string Description { get { return description; } set { description = value; } }
+        public CharacterInventory Inventory { get { return inventory; } }
+        public bool IsDead { get { return isDead; } }
+        public bool IsExhausted { get { return isExhausted; } }
+        public bool IsDrained { get { return isDrained; } }
+        public bool IsBroken { get { return isBroken; } }
 
-        public string description;
-
-        public CharacterInventory inventory;
-        public Vector3 position;
-
-        public bool isDead = false;
-        public bool isExhausted = false;
-        public bool isDrained = false;
-        public bool isBroken = false;
+        public void SetIsDead(bool isDead)
+        {
+            this.isDead = isDead;
+        }
 
         public void SetStart(AttributeType type, int attribute, int start, int min, int max)
         {
@@ -223,7 +242,5 @@ namespace Reclamation.Characters
                 attributes.SetStart(AttributeListType.Resistance, i, value, 0, 100);
             }
         }
-
-        
     }
 }

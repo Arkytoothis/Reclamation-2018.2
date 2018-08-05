@@ -1,55 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Reclamation.Audio;
+using Reclamation.Characters;
+using Reclamation.Gui;
+using Reclamation.Equipment;
 using Reclamation.Misc;
 
 namespace Reclamation.World
 {
     public class WorldManager : Singleton<WorldManager>
     {
-        public GameObject[] worldSitePrefabs;
-        public List<GameObject> worldSites;
-        public float seaLevel = 1f;
+        [SerializeField] Camera mainCamera;
 
-        private List<Vector3> worldSitePositions;
+        void Awake()
+        {
+            Invoke(nameof(Initialize), 0.1f);
+            mainCamera = Camera.main;
+        }
 
         public void Initialize()
         {
-            worldSitePositions = new List<Vector3>();
-            FindWorldSiteSpawns();
-            SpawnWorldSite(10);
+            //Debug.Log("GameManager.Initialize");
+
+            Database.Initialize();
+            ItemGenerator.Initialize();
+            PcGenerator.Initialize();
+            NpcGenerator.Initialize();
+
+            SpriteManager.instance.Initialize();
+            AudioManager.instance.Initialize();
+            ModelManager.instance.Initialize();
+            ParticleManager.instance.Initialize();
+            MessageSystem.instance.Initialize();
+            MapManager.instance.Initialize();
+            ScreenManager.instance.Initialize();
+            PlayerManager.instance.Initialize();
+
+            StartGame();
         }
 
-        public void FindWorldSiteSpawns()
+        public void StartGame()
         {
-            for (int i = 0; i < 250; i++)
-            {
-                float x = Random.Range(0f, 250f);
-                float z = Random.Range(0f, 250f);
-                float y = Terrain.activeTerrain.SampleHeight(new Vector3(x, 0, z));
+            //Debug.Log("GameManager.StartGame");
+            mainCamera.transform.SetParent(MapManager.instance.Stronghold.transform);
+            CameraController cam = mainCamera.GetComponent<CameraController>();
+            cam.target = MapManager.instance.Stronghold.transform.transform;
 
-                if (y > seaLevel)
-                {
-                    worldSitePositions.Add(new Vector3(x, y, z));
-                }
-            }
-        }
-
-        public void SpawnWorldSite(int numToSpawn)
-        {
-            for (int i = 0; i < numToSpawn; i++)
-            {
-                int prefabIndexToSpawn = Random.Range(0, worldSitePrefabs.Length);
-
-                GameObject go = Instantiate(worldSitePrefabs[prefabIndexToSpawn], transform);
-
-                int positionIndex = Random.Range(0, worldSitePositions.Count);
-                Vector3 positionToSpawn = worldSitePositions[positionIndex];
-
-                go.transform.position = positionToSpawn;
-
-                worldSites.Add(go);
-            }
+            AudioManager.instance.WorldPlaylist.StartPlaying(0);
         }
     }
 }

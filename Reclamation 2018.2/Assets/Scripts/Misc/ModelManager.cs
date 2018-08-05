@@ -118,7 +118,7 @@ namespace Reclamation.Misc
             empty = Instantiate(emptyPcPrefb, parent);
             empty.transform.position = position;
 
-            GameObject model = Instantiate(characterPrefabs[pc.raceKey + " " + pc.gender], empty.transform);
+            GameObject model = Instantiate(characterPrefabs[pc.RaceKey + " " + pc.Gender], empty.transform);
             empty.GetComponent<PcController>().SetPcData(pc, model);
 
             return empty;

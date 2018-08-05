@@ -19,28 +19,42 @@ namespace Reclamation.Characters
     [System.Serializable]
     public class PcData : CharacterData
     {
-        public UpkeepData upkeep;
-        public int wealth;
-        public PcStatus status;
-        public int encounterIndex;
-        public int worldIndex;
-        public int partyIndex;
-        public int partySlot;
+        [SerializeField] UpkeepData upkeep;
+        [SerializeField] int wealth;
+        [SerializeField] PcStatus status;
 
-        public int level;
+        [SerializeField] int encounterIndex;
+        [SerializeField] int worldIndex;
+        [SerializeField] int partyIndex;
+        [SerializeField] int partySlot;
 
-        private int experience;
+        [SerializeField] int level;
+        [SerializeField] int experience;
+        [SerializeField] int expToLevel;
+        [SerializeField] int maxExp;
+        [SerializeField] float expBonus;
+        [SerializeField] int maxAccessories;
+
+        [SerializeField] CharacterAbilities abilities;
+
+        public UpkeepData Upkeep { get { return upkeep; } }
+        public int Wealth { get { return wealth; } }
+        public PcStatus Status { get { return status; } }
+
+        public int EncounterIndex { get { return encounterIndex; } }
+        public int WorldIndex { get { return worldIndex; } }
+        public int PartyIndex { get { return partyIndex; } }
+        public int PartySlot { get { return partySlot; } }
+
+        public int Level { get { return level; } }
         public int Experience { get { return experience; } }
-        private int expToLevel;
         public int ExpToLevel { get { return expToLevel; } }
-        private int maxExp;
         public int MaxExp { get { return maxExp; } }
-        private float expBonus;
         public float ExpBonus { get { return expBonus; } }
 
-        public CharacterAbilities abilities;
+        public int MaxAccessories { get { return maxAccessories; } }
+        public CharacterAbilities Abilities { get { return abilities; } }
 
-        public int maxAccessories;
 
         public PcData()
         {
@@ -83,20 +97,19 @@ namespace Reclamation.Characters
             inventory = new CharacterInventory();
         }
 
-        public PcData(FantasyName name, Gender gender, Background background, string race, string profession, string hair, string beard, int index, int enc_index, int party_index,
+        public PcData(FantasyName name, Gender gender, int level, string raceKey, string professionKey, string hair, string beard, int worldIndex, int encounterIndex, int partyIndex,
             int power_slots, int spell_slots)
         {
             wealth = 0;
             upkeep = new UpkeepData();
-            base.name = name;
-            base.background = new Background(background);
 
-            base.gender = gender;
-            raceKey = race;
-            professionKey = profession;
-            worldIndex = index;
-            encounterIndex = enc_index;
-            partyIndex = party_index;
+            this.name = name;
+            this.gender = gender;
+            this.raceKey = raceKey;
+            this.professionKey = professionKey;
+            this.worldIndex = worldIndex;
+            this.encounterIndex = encounterIndex;
+            this.partyIndex = partyIndex;
 
             this.hair = hair;
             this.beard = beard;
@@ -133,24 +146,24 @@ namespace Reclamation.Characters
 
         public PcData(PcData pc)
         {
-            name = pc.name;
+            name = pc.Name;
             gender = pc.gender;
 
-            wealth = pc.wealth;
-            upkeep = new UpkeepData(pc.upkeep);
+            wealth = pc.Wealth;
+            upkeep = new UpkeepData(pc.Upkeep);
             background = new Background(pc.background);
             raceKey = pc.raceKey;
             professionKey = pc.professionKey;
-            worldIndex = pc.worldIndex;
-            encounterIndex = pc.encounterIndex;
-            partyIndex = pc.partyIndex;
-            partySlot = pc.partySlot;
+            worldIndex = pc.WorldIndex;
+            encounterIndex = pc.EncounterIndex;
+            partyIndex = pc.PartyIndex;
+            partySlot = pc.PartySlot;
             hair = pc.hair;
             beard= pc.beard;
 
             description = pc.description;
 
-            level = pc.level;
+            level = pc.Level;
             experience = pc.Experience;
             expToLevel = pc.ExpToLevel;
             maxExp = pc.MaxExp;
@@ -278,8 +291,8 @@ namespace Reclamation.Characters
 
         public void CalculateExp()
         {
-            expToLevel = level * 1000;
-            maxExp = level * 10000;
+            expToLevel = Level * 1000;
+            maxExp = Level * 10000;
         }
 
         public void CalculateExpCosts()
@@ -329,16 +342,16 @@ namespace Reclamation.Characters
             upkeep = new UpkeepData();
 
             Race race = Database.GetRace(raceKey);
-            upkeep.Coin = race.Upkeep.Coin;
-            upkeep.Essence = race.Upkeep.Essence;
-            upkeep.Materials = race.Upkeep.Materials;
-            upkeep.Rations = race.Upkeep.Rations;
+            Upkeep.Coin = race.Upkeep.Coin;
+            Upkeep.Essence = race.Upkeep.Essence;
+            Upkeep.Materials = race.Upkeep.Materials;
+            Upkeep.Rations = race.Upkeep.Rations;
 
             Profession profession = Database.GetProfession(professionKey);
-            upkeep.Coin += profession.Upkeep.Coin;
-            upkeep.Essence += profession.Upkeep.Essence;
-            upkeep.Materials += profession.Upkeep.Materials;
-            upkeep.Rations += profession.Upkeep.Rations;
+            Upkeep.Coin += profession.Upkeep.Coin;
+            Upkeep.Essence += profession.Upkeep.Essence;
+            Upkeep.Materials += profession.Upkeep.Materials;
+            Upkeep.Rations += profession.Upkeep.Rations;
 
             wealth = Database.Races[raceKey].StartingWealth.Roll(false) + Database.Professions[professionKey].StartingWealth.Roll(false);
         }

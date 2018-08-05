@@ -46,7 +46,7 @@ namespace Reclamation.Gui
                 //this.pc = pc;
                 GameObject go = null;
                 AttributeBar bar = null;
-                nameLabel.text = pc.name.FirstName;
+                nameLabel.text = pc.Name.FirstName;
 
                 for (int i = 0; i < (int)Vital.Number; i++)
                 {
@@ -62,10 +62,10 @@ namespace Reclamation.Gui
                 bar.SetExpData(pc);
                 expBar = go;
 
-                GameObject model = ModelManager.instance.CharacterPrefabs[pc.raceKey + " " + pc.gender];
+                GameObject model = ModelManager.instance.CharacterPrefabs[pc.RaceKey + " " + pc.Gender];
 
-                PortraitRoom.instance.AddModel(model, pc.encounterIndex);
-                portrait.texture = PortraitRoom.instance.characterMounts[pc.encounterIndex].rtCamera.targetTexture;
+                PortraitRoom.instance.AddModel(model, pc.EncounterIndex);
+                portrait.texture = PortraitRoom.instance.characterMounts[pc.EncounterIndex].rtCamera.targetTexture;
             }
             else
             {

@@ -30,7 +30,7 @@ namespace Reclamation.Encounter
             raycaster.onMouseOverWalkable += OnMouseOverWalkable;
         }
 
-        public void OnMouseOverWalkable(Vector3 position)
+        public bool OnMouseOverWalkable(Vector3 position)
         {
             //if (Input.GetMouseButtonDown(0))
             //{
@@ -77,6 +77,8 @@ namespace Reclamation.Encounter
             {
                 EncounterPartyManager.instance.EnableMovement();
             }
+
+            return true;
         }
 
         public void EnableMarkers()

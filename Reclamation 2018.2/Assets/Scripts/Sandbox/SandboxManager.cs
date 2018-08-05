@@ -39,7 +39,7 @@ namespace Reclamation.Sandbox
 
         void Start()
         {
-            Invoke("Initialize", 0.1f);
+            Invoke(nameof(Initialize), 0.1f);
         }
 
         void Initialize()

@@ -19,31 +19,31 @@ namespace Reclamation.Gui
         {
             if (attribute == (int)DerivedAttribute.Armor)
             {
-                pc.attributes.onArmorChange += UpdateAttribute;
+                pc.Attributes.onArmorChange += UpdateAttribute;
                 color = vitalData.armorColor;
                 UpdateAttribute(pc.GetDerived((int)DerivedAttribute.Armor).Current, pc.GetDerived((int)DerivedAttribute.Armor).Maximum);
             }
             else if (attribute == (int)DerivedAttribute.Health)
             {
-                pc.attributes.onHealthChange += UpdateAttribute;
+                pc.Attributes.onHealthChange += UpdateAttribute;
                 color = vitalData.healthColor;
                 UpdateAttribute(pc.GetDerived((int)DerivedAttribute.Health).Current, pc.GetDerived((int)DerivedAttribute.Health).Maximum);
             }
             else if (attribute == (int)DerivedAttribute.Stamina)
             {
-                pc.attributes.onStaminaChange += UpdateAttribute;
+                pc.Attributes.onStaminaChange += UpdateAttribute;
                 color = vitalData.staminaColor;
                 UpdateAttribute(pc.GetDerived((int)DerivedAttribute.Stamina).Current, pc.GetDerived((int)DerivedAttribute.Stamina).Maximum);
             }
             else if (attribute == (int)DerivedAttribute.Essence)
             {
-                pc.attributes.onEssenceChange += UpdateAttribute;
+                pc.Attributes.onEssenceChange += UpdateAttribute;
                 color = vitalData.essenceColor;
                 UpdateAttribute(pc.GetDerived((int)DerivedAttribute.Essence).Current, pc.GetDerived((int)DerivedAttribute.Essence).Maximum);
             }
             else if (attribute == (int)DerivedAttribute.Morale)
             {
-                pc.attributes.onMoraleChange += UpdateAttribute;
+                pc.Attributes.onMoraleChange += UpdateAttribute;
                 color = vitalData.moraleColor;
                 UpdateAttribute(pc.GetDerived((int)DerivedAttribute.Morale).Current, pc.GetDerived((int)DerivedAttribute.Morale).Maximum);
             }
