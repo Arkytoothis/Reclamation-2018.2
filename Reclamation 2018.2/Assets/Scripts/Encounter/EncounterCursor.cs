@@ -30,7 +30,7 @@ namespace Reclamation.Encounter
             raycaster.onMouseOverWalkable += OnMouseOverWalkable;
         }
 
-        public bool OnMouseOverWalkable(Vector3 position)
+        public bool OnMouseOverWalkable(RaycastHit hit)
         {
             //if (Input.GetMouseButtonDown(0))
             //{
@@ -59,7 +59,7 @@ namespace Reclamation.Encounter
             {
                 EncounterPartyManager.instance.Stop();
                 EncounterPartyManager.instance.DisableMovement(false);
-                gameObject.transform.position = position;
+                gameObject.transform.position = hit.transform.position;
                 transform.LookAt(pointToTarget, Vector3.up);
                 EncounterPartyManager.instance.ResetFormation();
             }

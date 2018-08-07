@@ -7,9 +7,9 @@ using Reclamation.Name;
 namespace Reclamation.Characters
 {
     [System.Serializable]
-    public abstract class CharacterData
+    public abstract class CharacterData : MonoBehaviour
     {
-        [SerializeField] protected FantasyName name;
+        [SerializeField] protected new FantasyName name;
         [SerializeField] protected Gender gender;
         [SerializeField] protected Background background;
         [SerializeField] protected CharacterPersonality personality;

@@ -44,15 +44,15 @@ namespace Reclamation.Audio
             if (currentClipIndex > clips.Count - 1)
                 currentClipIndex = 0;
 
-            Debug.Log("Playing " + clips[currentClipIndex]);
+            //Debug.Log("Playing " + clips[currentClipIndex]);
             return clips[currentClipIndex];
         }
 
         public void StartPlaying(int index)
         {
-            Debug.Log("Starting playlist " + gameObject.name);
+            //Debug.Log("Starting playlist " + gameObject.name);
             string clip = clips[index];
-            Debug.Log("track " + clip);
+            //Debug.Log("track " + clip);
             audioSource = AudioManager.instance.MusicTracks[clip].source;
             audioSource.Play();
         }

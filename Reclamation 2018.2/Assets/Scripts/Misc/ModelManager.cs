@@ -23,7 +23,7 @@ namespace Reclamation.Misc
 
         public List<GameObject> characters = new List<GameObject>();
 
-        public GameObject emptyPcPrefb;
+        public GameObject emptyPcPrefab;
 
         public string defaultItemPath = "Equipment/Prefabs/";
         public string defaultCharacterPath = "Characters/Prefabs/";
@@ -94,7 +94,7 @@ namespace Reclamation.Misc
 
         void LoadCharacterPrefabs()
         {
-            emptyPcPrefb = Resources.Load<GameObject>(defaultCharacterPath + "Character Controllers/PC");
+            emptyPcPrefab = Resources.Load<GameObject>(defaultCharacterPath + "Character Controllers/PC");
 
             foreach (KeyValuePair<string, Race> kvp in Database.Races)
             {
@@ -115,11 +115,25 @@ namespace Reclamation.Misc
         {
             GameObject empty = null;
 
-            empty = Instantiate(emptyPcPrefb, parent);
-            empty.transform.position = position;
+            empty = Instantiate(emptyPcPrefab, parent, false);
+            //empty.transform.position = new Vector3(parent.position.x, parent.position.y + 2f, parent.position.z);
 
             GameObject model = Instantiate(characterPrefabs[pc.RaceKey + " " + pc.Gender], empty.transform);
-            empty.GetComponent<PcController>().SetPcData(pc, model);
+            empty.GetComponent<PcController>().SetPcData(model);
+
+            return empty;
+        }
+        
+        public GameObject SpawnCharacter(Transform parent, Vector3 position, Gender gender, string race)
+        {
+            GameObject empty = null;
+            empty = Instantiate(emptyPcPrefab);
+            empty.transform.position = Vector3.zero;
+            empty.transform.SetParent(parent);
+            empty.transform.position = position;
+
+            GameObject model = Instantiate(characterPrefabs[race + " " + gender], empty.transform, false);
+            model.transform.SetParent(empty.transform);
 
             return empty;
         }

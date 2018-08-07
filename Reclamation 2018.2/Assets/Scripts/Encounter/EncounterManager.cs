@@ -15,7 +15,7 @@ namespace Reclamation.Encounter
     {
         const int MaxParties = 10;
 
-        private List<PartyData> parties;
+        private List<PartyData_OLD> parties;
         private List<GameObject> pcs;
         public int PcsCount { get { return pcs.Count; } } 
         public UltimateTextDamageManager textManagerWorld;
@@ -39,17 +39,17 @@ namespace Reclamation.Encounter
             ParticleManager.instance.Initialize();
             MessageSystem.instance.Initialize();
 
-            parties = new List<PartyData>(MaxParties);
+            parties = new List<PartyData_OLD>(MaxParties);
 
-            PartyData party = new PartyData("Blue Party", Color.blue, 0);
+            PartyData_OLD party = new PartyData_OLD("Blue Party", Color.blue, 0);
             parties.Add(party);
 
-            CreatePc(new PcData(PcGenerator.Generate(0, Gender.Male, "Imperial", "Soldier")), 0);
-            CreatePc(new PcData(PcGenerator.Generate(1, Gender.Female, "Imperial", "Soldier")), 1);
-            CreatePc(new PcData(PcGenerator.Generate(2, Gender.Male, "Imperial", "Scout")), 2);
-            CreatePc(new PcData(PcGenerator.Generate(3, Gender.Female, "Halfling", "Rogue")), 3);
-            CreatePc(new PcData(PcGenerator.Generate(4, Gender.Male, "High Elf", "Apprentice")), 4);
-            CreatePc(new PcData(PcGenerator.Generate(5, Gender.Female, "Mountain Dwarf", "Priest")), 5);
+            //CreatePc(new PcData(PcGenerator.Generate(0, Gender.Male, "Imperial", "Soldier")), 0);
+            //CreatePc(new PcData(PcGenerator.Generate(1, Gender.Female, "Imperial", "Soldier")), 1);
+            //CreatePc(new PcData(PcGenerator.Generate(2, Gender.Male, "Imperial", "Scout")), 2);
+            //CreatePc(new PcData(PcGenerator.Generate(3, Gender.Female, "Halfling", "Rogue")), 3);
+            //CreatePc(new PcData(PcGenerator.Generate(4, Gender.Male, "High Elf", "Apprentice")), 4);
+            //CreatePc(new PcData(PcGenerator.Generate(5, Gender.Female, "Mountain Dwarf", "Priest")), 5);
 
             EncounterPartyManager.instance.Initialize();
 

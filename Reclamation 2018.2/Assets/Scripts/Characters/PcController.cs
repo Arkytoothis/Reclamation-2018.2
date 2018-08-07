@@ -32,17 +32,17 @@ namespace Reclamation.Characters
 
         [SerializeField]
         private PcAnimator animator;
-        [SerializeField] private PcData pcData;
-        public PcData PcData { get { return pcData; } }
-        public new AttributeManager Attributes { get { return pcData.Attributes; } }
+        public PcData PcData { get { return GetComponent<PcData>(); } }
+        public new AttributeManager Attributes { get { return PcData.Attributes; } }
 
         // The amount of time it takes for the agent to be able to attack again
         // The last time the agent attacked
         private float lastAttackTime;
 
-        [SerializeField] private CharacterRenderer pcRenderer = null;
-        [SerializeField] private Damagable targetDamagable = null;
-        [SerializeField] private Interactable targetInteractable = null;
+        [SerializeField] Transform followTarget;
+        [SerializeField] private CharacterRenderer pcRenderer;
+        [SerializeField] private Damagable targetDamagable;
+        [SerializeField] private Interactable targetInteractable;
 
         [SerializeField] private IAttack currentAttack;
         [SerializeField] private IDamageable currentDefense;
@@ -55,6 +55,8 @@ namespace Reclamation.Characters
 
         public delegate void OnLevelUp();
         public event OnLevelUp onLevelUp;
+
+        public Transform FollowTarget { get { return followTarget; } }
 
         void Awake()
         {
@@ -77,8 +79,7 @@ namespace Reclamation.Characters
         void Start()
         {
             destinationSetter.target = null;
-            InvokeRepeating(nameof(ProcessAi), 2f, 0.1f);
-
+            InvokeRepeating(nameof(ProcessAi), 2f, 0.08f);
         }
 
         void LateUpdate()
@@ -141,32 +142,31 @@ namespace Reclamation.Characters
             }
         }
 
-        public void SetPcData(PcData pcData, GameObject model)
+        public void SetPcData(GameObject model)
         {
-            this.pcData = pcData;
-            this.pcData.onLevelUp += animator.LevelUp;
+            PcData.onLevelUp += animator.LevelUp;
 
             onDeath += animator.Death;
             onRevive += animator.Revive;
             onAttack += Attack;
             onInteract += Interact;
             onLevelUp += LevelUp;
-            onLevelUp += pcData.LevelUp;
+            onLevelUp += PcData.LevelUp;
 
-            ItemData item = this.pcData.Inventory.EquippedItems[(int)EquipmentSlot.Right_Hand];
+            ItemData item = PcData.Inventory.EquippedItems[(int)EquipmentSlot.Right_Hand];
 
             if (item != null)
             {
-                attackDistance = (float)item.WeaponData.Attributes[(int)WeaponAttributes.Range].Value;
+                attackDistance = 1;// (float)item.WeaponData.Attributes[(int)WeaponAttributes.Range].Value;
                 repeatAttackDelay = (float)item.RecoveryTime;
             }
 
             SetModel(model);
-            pcRenderer.LoadEquipment(this.pcData);
+            pcRenderer.LoadEquipment(PcData);
 
-            currentDefense.SetController(this.pcData);
-            currentAttack.SetController(this.pcData);
-            this.pcData.Attributes.controller = this;
+            currentDefense.SetController(PcData);
+            currentAttack.SetController(PcData);
+            PcData.Attributes.controller = this;
         }
 
         public void StopAnimations()
@@ -282,7 +282,7 @@ namespace Reclamation.Characters
 
         public override bool CheckIsAlive()
         {
-            return !pcData.IsDead;
+            return !PcData.IsDead;
         }
 
         public override void Death()
@@ -292,9 +292,9 @@ namespace Reclamation.Characters
             rvo.enabled = false;
             CanMove(false);
             target = null;
-            pcData.SetIsDead(true);
+            PcData.SetIsDead(true);
             onDeath();
-            MessageSystem.instance.AddMessage(pcData.Name.FirstName + " has died");
+            MessageSystem.instance.AddMessage(PcData.Name.FirstName + " has died");
         }
 
         public override void Revive()
@@ -304,9 +304,9 @@ namespace Reclamation.Characters
             rvo.enabled = true;
             CanMove(true);
             target = null;
-            pcData.SetIsDead(false);
+            PcData.SetIsDead(false);
             onRevive();
-            MessageSystem.instance.AddMessage(pcData.Name.FirstName + " has revived");
+            MessageSystem.instance.AddMessage(PcData.Name.FirstName + " has revived");
         }
 
         public override void Interact()
@@ -329,7 +329,7 @@ namespace Reclamation.Characters
 
         public override void ModifyAttribute(AttributeType type, int attribute, int value)
         {
-            pcData.Attributes.ModifyAttribute(type, attribute, value);
+            PcData.Attributes.ModifyAttribute(type, attribute, value);
         }
     }
 }

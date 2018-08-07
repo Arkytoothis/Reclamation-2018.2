@@ -11,16 +11,19 @@ namespace Reclamation.Party
         public delegate bool OnInteractOrderGiven(GameObject target);
         public event OnInteractOrderGiven onInteractOrderGiven;
 
-        public delegate bool OnMoveOrderGiven(Vector3 destination);
+        public delegate bool OnMoveOrderGiven(Transform target);
         public event OnMoveOrderGiven onMoveOrderGiven;
-        
+
+        public delegate bool OnTerrainClicked(RaycastHit hit);
+        public event OnTerrainClicked onTerrainClicked;
+
         void Awake()
         {
             Camera.main.GetComponent<CameraRaycaster>().onMouseOverWalkable += MouseOverWalkable;
             Camera.main.GetComponent<CameraRaycaster>().onMouseOverInteractable += MouseOverInteractable;
         }
 
-        public bool MouseOverWalkable(Vector3 destination)
+        public bool MouseOverWalkable(RaycastHit hit)
         {
             if (EventSystem.current.IsPointerOverGameObject() == true) return false;
 
@@ -31,7 +34,10 @@ namespace Reclamation.Party
             if (Input.GetMouseButtonDown(1))
             {
                 //Debug.Log("Move order given " + destination);
-                onMoveOrderGiven(destination);
+
+                PartyCursor.instance.PlaceMoveCursor(hit.point);
+                //onTerrainClicked(hit);
+                onMoveOrderGiven(PartyCursor.instance.transform);
             }
 
             return true;

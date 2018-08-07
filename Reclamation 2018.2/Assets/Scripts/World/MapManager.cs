@@ -14,24 +14,24 @@ namespace Reclamation.World
         [SerializeField] GameObject[] worldSitePrefabs;
         [SerializeField] List<GameObject> worldSites;
 
-        [SerializeField] float seaLevel = 1f;
+        [SerializeField] float seaLevel = 6f;
 
         private List<Vector3> worldSitePositions;
 
         public void Initialize()
         {
             worldSitePositions = new List<Vector3>();
-            FindWorldSiteSpawns();
-            SpawnStronghold();
-            SpawnWorldSite(10);
+            //FindWorldSiteSpawns();
+            //SpawnStronghold();
+            //SpawnWorldSite(10);
         }
 
         public void FindWorldSiteSpawns()
         {
             for (int i = 0; i < 250; i++)
             {
-                float x = Random.Range(0f, 250f);
-                float z = Random.Range(0f, 250f);
+                float x = Random.Range(0f, 1000f);
+                float z = Random.Range(0f, 1000f);
                 float y = Terrain.activeTerrain.SampleHeight(new Vector3(x, 0, z));
 
                 if (y > seaLevel)
@@ -60,13 +60,13 @@ namespace Reclamation.World
 
         public void SpawnStronghold()
         {
-            GameObject go = Instantiate(strongholdPrefab, transform);
+            //GameObject go = Instantiate(strongholdPrefab, transform);
 
-            int positionIndex = Random.Range(0, worldSitePositions.Count);
-            Vector3 positionToSpawn = worldSitePositions[positionIndex];
-            go.transform.position = positionToSpawn;
+            //int positionIndex = Random.Range(0, worldSitePositions.Count);
+            //Vector3 positionToSpawn = worldSitePositions[positionIndex];
+            //go.transform.position = positionToSpawn;
 
-            stronghold = go;
+            //stronghold = go;
         }
     }
 }

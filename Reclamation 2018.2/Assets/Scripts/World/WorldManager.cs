@@ -11,18 +11,18 @@ namespace Reclamation.World
 {
     public class WorldManager : Singleton<WorldManager>
     {
-        [SerializeField] Camera mainCamera;
+        [SerializeField] new Camera camera;
 
         void Awake()
         {
+            //Debug.Log("WorldManager.Awake");
             Invoke(nameof(Initialize), 0.1f);
-            mainCamera = Camera.main;
+            camera = Camera.main;
         }
 
         public void Initialize()
         {
-            //Debug.Log("GameManager.Initialize");
-
+            //Debug.Log("WorldManager.Initialize");
             Database.Initialize();
             ItemGenerator.Initialize();
             PcGenerator.Initialize();
@@ -42,10 +42,12 @@ namespace Reclamation.World
 
         public void StartGame()
         {
+            MessageSystem.instance.AddMessage("Welcome to Reclamation");
+
             //Debug.Log("GameManager.StartGame");
-            mainCamera.transform.SetParent(MapManager.instance.Stronghold.transform);
-            CameraController cam = mainCamera.GetComponent<CameraController>();
-            cam.target = MapManager.instance.Stronghold.transform.transform;
+            camera.transform.SetParent(PlayerManager.instance.Pcs[0].transform);
+            CameraController cameraController = camera.GetComponent<CameraController>();
+            cameraController.target = PlayerManager.instance.Pcs[0].transform;
 
             AudioManager.instance.WorldPlaylist.StartPlaying(0);
         }

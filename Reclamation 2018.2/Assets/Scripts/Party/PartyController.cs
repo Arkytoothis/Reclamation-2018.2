@@ -1,19 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Reclamation.World;
+using Reclamation.Characters;
 
 namespace Reclamation.Party
 {
     public class PartyController : MonoBehaviour
     {
-        public T GetPartyComponent<T>()
+        private void Update()
         {
-            T t = GetComponentInChildren<T>();
-
-            if (t == null)
-                Debug.LogWarning("Component " + typeof(T).ToString() + " not found");
-
-            return t;
+            //transform.position = PlayerManager.instance.Pcs[0].transform.position;
         }
     }
 }

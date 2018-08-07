@@ -75,7 +75,7 @@ namespace Reclamation.Characters
             }
         }
 
-        public static PcData Generate(int index, Gender gender, string r, string p)
+        public static PcData Generate(GameObject root, int index, Gender gender, string r, string p)
         {
             //if (availableRaces == null || availableProfessions == null) return null;
 
@@ -121,7 +121,8 @@ namespace Reclamation.Characters
                 beard = race.femaleDefaultBeard;
             }
 
-            PcData pc = new PcData(NameGenerator.Get(gender, race_key, professionKey),
+            PcData pc = root.GetComponent<PcData>();
+            pc.SetPcData(NameGenerator.Get(gender, race_key, professionKey),
                 gender, 1, race_key, professionKey, hair, beard, index, index, index,
                 3 + GameValue.Roll(new GameValue(1, 3), false), 3 + GameValue.Roll(new GameValue(1, 3), false));
 

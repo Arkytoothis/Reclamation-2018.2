@@ -289,4 +289,5 @@ MonoBehaviour:
   radius: 1
   hasInteracted: 0
   locked: 0
+  interactionTransform: {fileID: 4490015882518158}
   transitionTo: 

@@ -21,7 +21,7 @@ namespace Reclamation.World
         {
             currentZoom -= Input.GetAxis("Mouse ScrollWheel") * (zoomSpeed + currentZoom);
             currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
-            currentYaw += Input.GetAxis("Horizontal") * yawSpeed * 0.05f;
+            currentYaw += Input.GetAxis("Horizontal") * yawSpeed * Time.deltaTime;
         }
 
         void LateUpdate()
@@ -32,6 +32,12 @@ namespace Reclamation.World
                 transform.LookAt(target.position + Vector3.up * pitch);
                 transform.RotateAround(target.position, Vector3.up, currentYaw);
             }
+        }
+
+        public void SetTarget(Transform target)
+        {
+            this.target = target;
+            //transform.SetParent(target, false);
         }
     }
 }

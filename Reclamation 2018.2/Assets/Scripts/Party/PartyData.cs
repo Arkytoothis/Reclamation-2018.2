@@ -25,6 +25,13 @@ namespace Reclamation.Party
         [SerializeField] List<int> combinedSkills;
         [SerializeField] List<CharacterSkillPair> highestSkills;
 
+        public PartyStatus Status { get { return status; } }
+        public string Name { get { return name; } }
+        public int Index { get { return index; } }
+        public Color Color { get { return color; } }
+        public List<Attribute> Attributes { get { return attributes; } }
+        public List<int> CombinedSkills { get { return combinedSkills; } }
+        public List<CharacterSkillPair> HighestSkills { get { return highestSkills; } }
         public PartyData()
         {
             name = "New Party";

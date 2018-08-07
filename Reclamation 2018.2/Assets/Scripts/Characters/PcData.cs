@@ -56,7 +56,7 @@ namespace Reclamation.Characters
         public CharacterAbilities Abilities { get { return abilities; } }
 
 
-        public PcData()
+        public void Initialize()
         {
             wealth = 0;
             upkeep = new UpkeepData();
@@ -97,7 +97,7 @@ namespace Reclamation.Characters
             inventory = new CharacterInventory();
         }
 
-        public PcData(FantasyName name, Gender gender, int level, string raceKey, string professionKey, string hair, string beard, int worldIndex, int encounterIndex, int partyIndex,
+        public void SetPcData(FantasyName name, Gender gender, int level, string raceKey, string professionKey, string hair, string beard, int worldIndex, int encounterIndex, int partyIndex,
             int power_slots, int spell_slots)
         {
             wealth = 0;
@@ -144,7 +144,7 @@ namespace Reclamation.Characters
             faction = "Player";
         }
 
-        public PcData(PcData pc)
+        public void SetPcData(PcData pc)
         {
             name = pc.Name;
             gender = pc.gender;

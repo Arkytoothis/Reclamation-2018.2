@@ -21,7 +21,7 @@ namespace Reclamation.Misc
 
         [SerializeField] Vector2 hotspot;
 
-        public delegate bool OnMouseOverTerrain(Vector3 destination);
+        public delegate bool OnMouseOverTerrain(RaycastHit hit);
         public event OnMouseOverTerrain onMouseOverWalkable;
 
         public delegate bool OnMouseOverEnemy(GameObject go);
@@ -65,7 +65,10 @@ namespace Reclamation.Misc
                 if (npc != null && npc.CheckIsAlive() == true)
                 {
                     Cursor.SetCursor(meleeCursor, hotspot, CursorMode.Auto);
-                    onMouseOverEnemy(npc.gameObject);
+
+                    if(onMouseOverEnemy != null)
+                        onMouseOverEnemy(npc.gameObject);
+
                     return true;
                 }
             }
@@ -88,7 +91,9 @@ namespace Reclamation.Misc
                     else
                         Cursor.SetCursor(interactCursor, hotspot, CursorMode.Auto);
 
-                    onMouseOverInteractable(interactable.gameObject);
+                    if(onMouseOverInteractable != null)
+                        onMouseOverInteractable(interactable.gameObject);
+
                     return true;
                 }
             }
@@ -107,7 +112,10 @@ namespace Reclamation.Misc
                 if (hit.collider.gameObject.layer == 8)
                 {
                     Cursor.SetCursor(moveCursor, hotspot, CursorMode.Auto);
-                    onMouseOverWalkable(hit.point);
+
+                    if(onMouseOverWalkable != null)
+                        onMouseOverWalkable(hit);
+
                     return true;
                 }
             }

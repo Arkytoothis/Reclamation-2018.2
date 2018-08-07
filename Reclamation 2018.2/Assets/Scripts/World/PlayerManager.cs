@@ -1,10 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using Reclamation.Gui.World;
 using Reclamation.Misc;
+using Reclamation.Characters;
 using Reclamation.Party;
+using Reclamation.Props;
+using Pathfinding;
 
 namespace Reclamation.World
 {
@@ -12,67 +13,78 @@ namespace Reclamation.World
     {
         const int MaxParties = 10;
 
-        [SerializeField] Transform playerSpawn;
+
+        [SerializeField] Transform partySpawn;
+
         [SerializeField] GameObject partyPrefab;
 
         [SerializeField] int numPartiesUnlocked;
         [SerializeField] List<GameObject> parties;
+        [SerializeField] List<GameObject> pcs;
 
         [SerializeField] PartyPanel partyPanel;
+
+        public List<GameObject> Parties { get { return parties; } }
+        public List<GameObject> Pcs { get { return pcs; } }
 
         public void Initialize()
         {
             parties = new List<GameObject>(MaxParties);
+            pcs = new List<GameObject>();
+
             numPartiesUnlocked = 1;
 
-            GameObject partyObject = Instantiate(partyPrefab);
-            PartyData newParty = partyObject.GetComponent<PartyData>();
-            newParty.SetPartyData("Blue Party", Color.blue, 0);
+            CreateParty(partySpawn.position);
 
-            PartyRenderer renderer = partyObject.GetComponent<PartyRenderer>();
-            GameObject characterModel = Instantiate(ModelManager.instance.GetCharacterPrefab(Vector3.one, "Imperial Male"), partyObject.transform);
-            renderer.SetModel(characterModel);
-            parties.Add(partyObject);
+            CreatePc(0, Gender.Male, "Imperial", "Soldier");
+            CreatePc(1, Gender.Female, "Mountain Dwarf", "Priest");
+            CreatePc(2, Gender.Male, "Halfling", "Scout");
+
+            //Camera.main.GetComponent<CameraController>().SetTarget(pcs[0].transform);
+            PartyCursor.instance.PlaceMoveCursor(pcs[0].transform.position);
 
             partyPanel.Initialize();
-
-            //PartyData party = new PartyData("Blue Party", Color.blue, 0);
-            //parties.Add(CreatePartyObject(this.transform, playerSpawn.position, party));
-
-            //ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[0].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, new PcData(PcGenerator.Generate(0, Gender.None, "Imperial", "Soldier")));
-            //ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[1].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, new PcData(PcGenerator.Generate(1, Gender.None, "Imperial", "Scout")));
-            //ModelManager.instance.SpawnCharacter(PortraitRoom.instance.characterMounts[2].pivot, PortraitRoom.instance.characterMounts[0].pivot.position, new PcData(PcGenerator.Generate(2, Gender.None, "Imperial", "Priest")));
         }
 
-        public GameObject CreatePartyObject(Transform parent, Vector3 position, PartyData data)
+        void CreateParty(Vector3 spawnPosition)
         {
-            float y = Terrain.activeTerrain.SampleHeight(new Vector3(position.x, 0, position.z));
+            float y = Terrain.activeTerrain.SampleHeight(new Vector3(spawnPosition.x, 0, spawnPosition.z));
+            spawnPosition = new Vector3(spawnPosition.x, y + 2, spawnPosition.z);
 
-            GameObject partyGO = Instantiate(partyPrefab);
-            partyGO.name = data.name;
-            partyGO.transform.position = new Vector3(position.x, y - 0.001f, position.z);
+            GameObject partyObject = Instantiate(partyPrefab);
+            partyObject.transform.position = spawnPosition;
 
-            //PartyController partyController = partyGO.GetComponent<PartyController>();
+            parties.Add(partyObject);
 
-            //GameObject pcGO = Instantiate(ModelManager.instance.GetPrefab(data.pcs[0]), new Vector3(position.x, y - 0.001f, position.z), Quaternion.identity);
-            //pcGO.name = data.name + " PC ";
+            PartyData newParty = parties[0].GetComponent<PartyData>();
+            newParty.SetPartyData("Blue Party", Color.blue, 0);
+        }
 
-            //partyGO.transform.SetParent(pcGO.transform);
+        void CreatePc(int index, Gender gender, string race, string profession)
+        {
+            GameObject pcObject = ModelManager.instance.SpawnCharacter(parties[0].transform, parties[0].transform.position, gender, race);
+            pcObject.GetComponent<AIDestinationSetter>().target = null;
 
-            //partyController.SetPartyData(data);
-            //partyController.SetPcAnimator(pcGO.GetComponent<PcAnimator>());
-            //partyController.SetPcMotor(pcGO.GetComponent<WorldPcMotor>());
+            PcData pcData = pcObject.GetComponent<PcData>();
+            pcData = PcGenerator.Generate(pcObject, index, gender, race, profession);
 
-            //Camera.main.transform.SetParent(pcGO.transform);
-            //CameraController cam = Camera.main.GetComponent<CameraController>();
-            //cam.target = partyGO.transform;
-
-            return partyGO;
+            pcs.Add(pcObject);
         }
 
         public PartyData GetPartyData(int index)
         {
-            return parties[index].GetComponent<PartyData>();
+            if (parties[index].GetComponent<PartyData>() != null)
+                return parties[index].GetComponent<PartyData>();
+            else
+                return null;
+        }
+
+        public PcData GetPcData(int index)
+        {
+            if (pcs[index] != null)
+                return pcs[index].GetComponent<PcData>();
+            else
+                return null;
         }
     }
 }

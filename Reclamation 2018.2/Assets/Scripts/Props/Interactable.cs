@@ -10,8 +10,10 @@ namespace Reclamation.Props
         public bool hasInteracted = false;
         public bool locked = false;
 
-        protected Transform partyTransform;
+        [SerializeField] Transform interactionTransform;
         protected GameObject other;
+
+        public Transform InteractionTransform { get { return interactionTransform; } }
 
         public abstract bool Interact(GameObject other);
     }

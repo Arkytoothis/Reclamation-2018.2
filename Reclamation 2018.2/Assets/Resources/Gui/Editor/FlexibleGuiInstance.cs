@@ -9,21 +9,38 @@ namespace Reclamation.Gui
     {
         static GameObject clickedObject;
 
-        [MenuItem("GameObject/Flexible Gui/Button", priority = 0)]
+        [MenuItem("GameObject/Reclamation/Button", priority = 0)]
         public static void AddButton()
         {
-            Create("Flexible Button");
+            Create("Button");
         }
 
-        [MenuItem("GameObject/Flexible Gui/Pc Button", priority = 0)]
+        [MenuItem("GameObject/Reclamation/Pc Button", priority = 0)]
         public static void AddPcButton()
         {
-            Create("Flexible Pc Button");
+            Create("Pc Button");
+        }
+
+        [MenuItem("GameObject/Reclamation/Action Button", priority = 0)]
+        public static void AddActionButton()
+        {
+            Create("Action Button");
+        }
+
+        [MenuItem("GameObject/Reclamation/List Panel", priority = 0)]
+        public static void AddListPanel()
+        {
+            Create("List Panel");
+        }
+
+        [MenuItem("GameObject/Reclamation/Panel", priority = 0)]
+        public static void AddPanel()
+        {
+            Create("Panel");
         }
 
         private static GameObject Create(string objectName)
         {
-            Debug.Log("Gui/" + objectName);
             GameObject instance = Instantiate(Resources.Load<GameObject>("Gui/" + objectName));
             instance.name = objectName;
             clickedObject = UnityEditor.Selection.activeObject as GameObject;

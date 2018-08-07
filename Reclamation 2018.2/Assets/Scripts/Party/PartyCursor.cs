@@ -1,22 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Reclamation.World;
+using Reclamation.Misc;
 using UnityEngine;
 
 namespace Reclamation.Party
 {
-    public class PartyCursor : MonoBehaviour
+    public class PartyCursor : Singleton<PartyCursor>
     {
-        [SerializeField] GameObject cursorObject;
-
-        void Awake()
+        public bool PlaceMoveCursor(Vector3 position)
         {
-            GetComponent<PartyInput>().onMoveOrderGiven += Move;
-        }
-
-        public bool Move(Vector3 destination)
-        {
-            Debug.Log("Moving Cursor");
-            cursorObject.transform.position = destination;
+            //Debug.Log("Moving Cursor " + position);
+            transform.position = position;
 
             return true;
         }

@@ -235,7 +235,7 @@ namespace Reclamation.Encounter
 
         public void ResetFormation()
         {
-            for (int i = 0; i < PartyData.MaxPartySize; i++)
+            for (int i = 0; i < PartyData_OLD.MaxPartySize; i++)
             {
                 formationTransforms[i].localPosition = new Vector3(defaultFormations[formationIndex].Positions[i].x, 0, defaultFormations[formationIndex].Positions[i].y);
             }
