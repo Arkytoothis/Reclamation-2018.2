@@ -10,11 +10,11 @@ namespace Reclamation.World
         [Range(0, 1)]
         public float currentTimeOfDay = 0;
 
-        float sunInitialIntensity;
+        //float sunInitialIntensity;
 
         void Start()
         {
-            sunInitialIntensity = sun.intensity;
+            //sunInitialIntensity = sun.intensity;
         }
 
         void Update()

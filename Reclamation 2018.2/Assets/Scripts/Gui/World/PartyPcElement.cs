@@ -10,7 +10,7 @@ namespace Reclamation.Gui
         [SerializeField] TMP_Text nameLabel;
         [SerializeField] TMP_Text detailsLabel;
         [SerializeField] TMP_Text hpLabel;
-        [SerializeField] Button button;
+        [SerializeField] UnityEngine.UI.Button button;
 
         public void SetData(PcData pc)
         {

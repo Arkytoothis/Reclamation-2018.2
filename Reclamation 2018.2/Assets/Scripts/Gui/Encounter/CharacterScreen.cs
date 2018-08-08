@@ -79,7 +79,7 @@ namespace Reclamation.Gui.Encounter
                 skillDef = Database.GetSkill(kvp.Value.Index);
                 Attribute skill = pc.GetSkill(kvp.Key);
 
-                s += kvp.Key + "<pos=200>" + skill.Current + "\n";
+                s += skillDef.Name + "<pos=200>" + skill.Current + "\n";
             }
 
             skillsLabel.text = s;

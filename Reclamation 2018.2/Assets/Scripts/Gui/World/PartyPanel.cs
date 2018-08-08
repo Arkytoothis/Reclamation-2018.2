@@ -50,25 +50,4 @@ namespace Reclamation.Gui.World
             }
         }
     }
-
-    [System.Serializable]
-    public class ListData
-    {
-        [SerializeField] List<GameObject> gameObjects;
-        [SerializeField] GameObject prefab;
-        [SerializeField] Transform parent;
-
-        public ListData()
-        {
-            gameObjects = new List<GameObject>();
-            prefab = null;
-            parent = null;
-        }
-
-        public void SetData(GameObject prefab, Transform parent)
-        {
-            this.prefab = prefab;
-            this.parent = parent;
-        }
-    }
 }

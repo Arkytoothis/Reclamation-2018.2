@@ -11,6 +11,7 @@ namespace Reclamation.Party
         public void SetModel(GameObject model)
         {
             this.model = model;
+            this.model.name = model.name;
         }
     }
 }

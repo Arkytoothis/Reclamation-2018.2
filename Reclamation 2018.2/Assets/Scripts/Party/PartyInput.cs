@@ -14,8 +14,8 @@ namespace Reclamation.Party
         public delegate bool OnMoveOrderGiven(Transform target);
         public event OnMoveOrderGiven onMoveOrderGiven;
 
-        public delegate bool OnTerrainClicked(RaycastHit hit);
-        public event OnTerrainClicked onTerrainClicked;
+        //public delegate bool OnTerrainClicked(RaycastHit hit);
+        //public event OnTerrainClicked onTerrainClicked;
 
         void Awake()
         {

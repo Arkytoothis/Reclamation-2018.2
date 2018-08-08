@@ -18,7 +18,7 @@ namespace Reclamation.World
 
         [SerializeField] GameObject partyPrefab;
 
-        [SerializeField] int numPartiesUnlocked;
+        //[SerializeField] int numPartiesUnlocked;
         [SerializeField] List<GameObject> parties;
         [SerializeField] List<GameObject> pcs;
 
@@ -32,7 +32,7 @@ namespace Reclamation.World
             parties = new List<GameObject>(MaxParties);
             pcs = new List<GameObject>();
 
-            numPartiesUnlocked = 1;
+            //numPartiesUnlocked = 1;
 
             CreateParty(partySpawn.position);
 
@@ -67,6 +67,7 @@ namespace Reclamation.World
 
             PcData pcData = pcObject.GetComponent<PcData>();
             pcData = PcGenerator.Generate(pcObject, index, gender, race, profession);
+            pcData.SetIsDead(false);
 
             pcs.Add(pcObject);
         }

@@ -34,8 +34,8 @@ namespace Reclamation.World
             ParticleManager.instance.Initialize();
             MessageSystem.instance.Initialize();
             MapManager.instance.Initialize();
-            ScreenManager.instance.Initialize();
             PlayerManager.instance.Initialize();
+            ScreenManager.instance.Initialize();
 
             StartGame();
         }
